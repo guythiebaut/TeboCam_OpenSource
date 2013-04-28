@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0FF635C0-695D-467C-B13D-BCA92E137D4B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeboCam</RootNamespace>
+    <AssemblyName>TeboCam</AssemblyName>
+    <StartupObject>TeboCam.preferences</StartupObject>
+    <ApplicationIcon>TeboCam.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="calibrate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>calibrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CameraWindow.resx">
+      <DependentUpon>CameraWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CaptureDeviceForm.resx">
+      <DependentUpon>CaptureDeviceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="schedule.resx">
+      <DependentUpon>schedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fileprefix.resx">
+      <DependentUpon>fileprefix.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="image.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="preferences.resx">
+      <DependentUpon>preferences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="timestamp.resx">
+      <DependentUpon>timestamp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="train.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>train.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="webcamConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>webcamConfig.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="bubble.cs">
+    </Compile>
+    <Compile Include="calibrate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="calibrate.Designer.cs">
+      <DependentUpon>calibrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera.cs" />
+    <Compile Include="CameraRig.cs" />
+    <Compile Include="CameraWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CaptureDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommandLine.cs" />
+    <Compile Include="licence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="schedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="schedule.Designer.cs">
+      <DependentUpon>schedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fileprefix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fileprefix.Designer.cs">
+      <DependentUpon>fileprefix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="crypt.cs" />
+    <Compile Include="database.cs" />
+    <Compile Include="fileManager.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ftp.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="image.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="image.Designer.cs">
+      <DependentUpon>image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageThumbs.cs" />
+    <Compile Include="IMotionDetector.cs" />
+    <Compile Include="InputBoxDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeftRightMid.cs" />
+    <Compile Include="mail.cs" />
+    <Compile Include="MotionDetector3Optimized.cs" />
+    <Compile Include="preferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="preferences.designer.cs">
+      <DependentUpon>preferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Pulse.cs" />
+    <Compile Include="regex.cs" />
+    <Compile Include="sensitiveInfo.cs" />
+    <Compile Include="teboDebug.cs" />
+    <Compile Include="time.cs" />
+    <Compile Include="timestamp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="timestamp.Designer.cs">
+      <DependentUpon>timestamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="train.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="train.Designer.cs">
+      <DependentUpon>train.cs</DependentUpon>
+    </Compile>
+    <Compile Include="update.cs" />
+    <Compile Include="VideoSource\ByteArrayUtils.cs" />
+    <Compile Include="VideoSource\CameraEvents.cs" />
+    <Compile Include="VideoSource\CaptureDevice.cs" />
+    <Compile Include="VideoSource\IVideoSource.cs" />
+    <Compile Include="VideoSource\JPEGStream.cs" />
+    <Compile Include="VideoSource\MJPEGStream.cs" />
+    <Compile Include="VideoSource\VideoFileSource.cs" />
+    <Compile Include="VideoSource\VideoStream.cs" />
+    <Compile Include="webcamConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="webcamConfig.Designer.cs">
+      <DependentUpon>webcamConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="webdata.cs" />
+    <Compile Include="webPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AForge.Imaging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e12ceb15b47eb5cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.1.3.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL" />
+    <Reference Include="AForge.Video.DirectShow, Version=2.1.4.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL" />
+    <Reference Include="cuteButton, Version=1.0.4319.27512, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\custom_controls\ctlCuteButton\ctlCuteButton\bin\Release\cuteButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dshow\dshow.csproj">
+      <Project>{37B08AFD-F4BC-4E13-9119-537BA6A12CCB}</Project>
+      <Name>dshow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\vfw\vfw.csproj">
+      <Project>{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}</Project>
+      <Name>vfw</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\landscape.bmp" />
+    <Content Include="Resources\1.gif" />
+    <Content Include="Resources\2.gif" />
+    <Content Include="Resources\3.gif" />
+    <Content Include="Resources\4.gif" />
+    <Content Include="Resources\5.gif" />
+    <Content Include="Resources\6.gif" />
+    <Content Include="Resources\7.gif" />
+    <Content Include="Resources\8.gif" />
+    <Content Include="Resources\9.gif" />
+    <Content Include="Resources\arrowIn.bmp" />
+    <None Include="Resources\arrowIn1.bmp" />
+    <Content Include="Resources\arrowOut.bmp" />
+    <None Include="Resources\arrowOut1.bmp" />
+    <Content Include="Resources\level.bmp" />
+    <None Include="Resources\nolevel.bmp" />
+    <Content Include="Resources\nolandscape.bmp" />
+    <None Include="Resources\nolandscape2.bmp" />
+    <Content Include="TeboCam.ico" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

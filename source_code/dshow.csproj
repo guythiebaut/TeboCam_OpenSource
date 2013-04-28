@@ -1,0 +1,159 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37B08AFD-F4BC-4E13-9119-537BA6A12CCB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>dshow</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>dshow</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IBaseFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IBasicVideo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ICreateDevEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IEnumPins.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IFileSourceFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IFilterGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IGraphBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IMediaControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IMediaEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IMediaPosition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IMediaSeeking.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IPin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IPropertyBag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ISampleGrabber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IVideoFrameStep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\IVideoWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Structures.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Uuids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Win32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FilterCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="Core\1.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
