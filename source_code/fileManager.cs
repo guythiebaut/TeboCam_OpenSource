@@ -681,11 +681,11 @@ namespace TeboCam
                                 }
                                 if (configData.LocalName.Equals("ipWebcamUser"))
                                 {
-                                    CameraRig.addInfo("ipWebcamUser", configData.ReadString());
-                                } 
+                                    CameraRig.addInfo("ipWebcamUser",decrypt( configData.ReadString()));
+                                }
                                 if (configData.LocalName.Equals("ipWebcamPassword"))
                                 {
-                                    CameraRig.addInfo("ipWebcamPassword", configData.ReadString());
+                                    CameraRig.addInfo("ipWebcamPassword", decrypt(configData.ReadString()));
                                 }
 
 
@@ -842,11 +842,11 @@ namespace TeboCam
                                 }
                                 if (configData.LocalName.Equals("ipWebcamUser"))
                                 {
-                                    pre262.ipWebcamUser = configData.ReadString();
+                                    pre262.ipWebcamUser = decrypt(configData.ReadString());
                                 }
                                 if (configData.LocalName.Equals("ipWebcamPassword"))
                                 {
-                                    pre262.ipWebcamPassword = configData.ReadString();
+                                    pre262.ipWebcamPassword = decrypt(configData.ReadString());
                                 }
 
 
@@ -1636,7 +1636,7 @@ namespace TeboCam
 
                     config.getFirstProfile();
 
-                    while (config.getNextProfile())
+                    while (config.moreProfiles())
                     {
 
                         configData.Indentation = 4;
@@ -1657,6 +1657,9 @@ namespace TeboCam
 
                         configData.Indentation = 12;
 
+                        //!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        //Webcam individual settings
+                        //!!!!!!!!!!!!!!!!!!!!!!!!!!
                         foreach (info infoI in CameraRig.camInfo)
                         {
 
@@ -1816,19 +1819,19 @@ namespace TeboCam
                                 configData.WriteStartElement("", "stampAppendPubLoc", "");
                                 configData.WriteString(infoI.stampAppendPubLoc.ToString());
                                 configData.WriteEndElement();
-
+                                                                
                                 configData.WriteStartElement("", "ipWebcamAddress", "");
                                 configData.WriteString(infoI.ipWebcamAddress.ToString());
                                 configData.WriteEndElement();
 
                                 configData.WriteStartElement("", "ipWebcamUser", "");
-                                configData.WriteString(infoI.ipWebcamUser.ToString());
+                                configData.WriteString(encrypt(infoI.ipWebcamUser.ToString()));
                                 configData.WriteEndElement();
 
                                 configData.WriteStartElement("", "ipWebcamPassword", "");
-                                configData.WriteString(infoI.ipWebcamPassword.ToString());
+                                configData.WriteString(encrypt(infoI.ipWebcamPassword.ToString()));
                                 configData.WriteEndElement();
-
+                                
                                 configData.Indentation = 12;
 
                             }
@@ -2289,7 +2292,6 @@ namespace TeboCam
                         configData.WriteEndElement();
 
 
-
                         //******************************
                         //Do not put anything after this
                         //******************************
@@ -2334,7 +2336,7 @@ namespace TeboCam
             {
                 crypt crypt = new crypt();
 
-                string tmpStr = crypt.EncryptToString(inStr); ;
+                string tmpStr = crypt.EncryptToString(inStr);
                 tmpStr = "a" + tmpStr;
                 return tmpStr;
             }

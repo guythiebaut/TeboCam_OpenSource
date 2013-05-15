@@ -623,10 +623,10 @@ namespace TeboCam
 
                     drawRect
                     (
-                    CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectX,
-                    CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectY,
-                    CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectWidth,
-                    CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectHeight
+                    CameraRig.rig[CameraRig.drawCam].cam.rectX,
+                    CameraRig.rig[CameraRig.drawCam].cam.rectY,
+                    CameraRig.rig[CameraRig.drawCam].cam.rectWidth,
+                    CameraRig.rig[CameraRig.drawCam].cam.rectHeight
                     );
 
 
@@ -659,10 +659,10 @@ namespace TeboCam
 
 
 
-            CurrentTopLeft.X = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectX;
-            CurrentTopLeft.Y = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectY;
-            CurrentBottomRight.X = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectX + CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectWidth;
-            CurrentBottomRight.Y = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectY + CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectHeight;
+            CurrentTopLeft.X = CameraRig.rig[CameraRig.drawCam].cam.rectX;
+            CurrentTopLeft.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY;
+            CurrentBottomRight.X = CameraRig.rig[CameraRig.drawCam].cam.rectX + CameraRig.rig[CameraRig.drawCam].cam.rectWidth;
+            CurrentBottomRight.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY + CameraRig.rig[CameraRig.drawCam].cam.rectHeight;
 
 
             //CurrentTopLeft.X = (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectX");
@@ -815,13 +815,13 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).rectWidth = width;
                 config.getProfile(bubble.profileInUse).rectHeight = height;
 
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectX = topLeftX;
+                CameraRig.rig[CameraRig.drawCam].cam.rectX = topLeftX;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectX", topLeftX);
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectY = topLeftY;
+                CameraRig.rig[CameraRig.drawCam].cam.rectY = topLeftY;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectY", topLeftY);
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectWidth = width;
+                CameraRig.rig[CameraRig.drawCam].cam.rectWidth = width;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectWidth", width);
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectHeight = height;
+                CameraRig.rig[CameraRig.drawCam].cam.rectHeight = height;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectHeight", height);
 
                 CameraRig.rig[CameraRig.drawCam].cam.Lock();

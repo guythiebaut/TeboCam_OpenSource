@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Net;
+using System.Net.NetworkInformation;
 
 //using AForge.Video;
 using AForge.Video.DirectShow;
@@ -84,9 +86,46 @@ namespace TeboCam
 
         private void bttnCamProp_Click(object sender, EventArgs e)
         {
-            VideoCaptureDevice localSource = new VideoCaptureDevice(selectedWebcam);
-            //localSource.DisplayPropertyPage(this.Handle); // modal dialog
-            localSource.DisplayPropertyPage(IntPtr.Zero); // non-modal
+
+            //hjfgjgf
+
+            if (CameraRig.rig[CameraRig.drawCam].cam.isIPCamera)
+            {
+
+                try
+                {
+
+                    IPAddress parsedIPAddress;
+                    Uri parsedUri;
+                    string name = CameraRig.rig[CameraRig.drawCam].cam.name;
+
+                    //check that the url resolves
+                    if (Uri.TryCreate(name, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
+                    {
+
+                        System.Diagnostics.Process.Start("http:\\" + parsedIPAddress.ToString());
+
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                    bubble.logAddLine("Unable to connect webcam index site.");
+
+                }
+
+            }
+            else
+            {
+
+                VideoCaptureDevice localSource = new VideoCaptureDevice(selectedWebcam);
+                localSource.DisplayPropertyPage(IntPtr.Zero); // non-modal
+
+            }
+
+
+
         }
 
 
@@ -101,7 +140,7 @@ namespace TeboCam
 
                 CameraRig.getCam(selectedWebcam).MotionDetector.Reset();
                 config.getProfile(bubble.profileInUse).areaDetection = radioButton4.Checked;
-                CameraRig.getCam(selectedWebcam).MotionDetector.areaDetection = radioButton4.Checked;
+                CameraRig.getCam(selectedWebcam).areaDetection = radioButton4.Checked;
 
                 areaOffAtMotion.Enabled = radioButton4.Checked;
                 groupBox4.Enabled = radioButton4.Checked;
@@ -131,8 +170,8 @@ namespace TeboCam
 
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "areaOffAtMotion", areaOffAtMotion.Checked);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.areaOffAtMotionTriggered = false;
-            CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.areaOffAtMotionReset = false;
+            CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionTriggered = false;
+            CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionReset = false;
 
         }
 
@@ -173,10 +212,10 @@ namespace TeboCam
                 cameraWindow.Camera.Lock();
 
                 drawArgs a = new drawArgs();
-                a.x = CameraRig.getCam(selectedWebcam).MotionDetector.rectX;
-                a.y = CameraRig.getCam(selectedWebcam).MotionDetector.rectY;
-                a.width = CameraRig.getCam(selectedWebcam).MotionDetector.rectWidth;
-                a.height = CameraRig.getCam(selectedWebcam).MotionDetector.rectHeight;
+                a.x = CameraRig.getCam(selectedWebcam).rectX;
+                a.y = CameraRig.getCam(selectedWebcam).rectY;
+                a.width = CameraRig.getCam(selectedWebcam).rectWidth;
+                a.height = CameraRig.getCam(selectedWebcam).rectHeight;
                 drawInitialRectangle(null, a);
 
                 System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
@@ -235,10 +274,10 @@ namespace TeboCam
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "rectWidth", 80);
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "rectHeight", 80);
 
-            CameraRig.getCam(selectedWebcam).MotionDetector.rectX = 20;
-            CameraRig.getCam(selectedWebcam).MotionDetector.rectY = 20;
-            CameraRig.getCam(selectedWebcam).MotionDetector.rectWidth = 80;
-            CameraRig.getCam(selectedWebcam).MotionDetector.rectHeight = 80;
+            CameraRig.getCam(selectedWebcam).rectX = 20;
+            CameraRig.getCam(selectedWebcam).rectY = 20;
+            CameraRig.getCam(selectedWebcam).rectWidth = 80;
+            CameraRig.getCam(selectedWebcam).rectHeight = 80;
 
             cameraWindow.drawRectOnOpen();
 
@@ -367,7 +406,7 @@ namespace TeboCam
                 tmpInt = bubble.detectionCountDown;
                 secondsToTrainStart = time.secondsSinceStart();
 
-                CameraRig.getCam(CameraRig.trainCam).MotionDetector.calibrating = false;
+                CameraRig.getCam(CameraRig.trainCam).calibrating = false;
 
                 actCount.ForeColor = Color.Blue;
                 txtMess.ForeColor = Color.Blue;
@@ -386,7 +425,7 @@ namespace TeboCam
 
                 tmpInt = bubble.detectionTrain;
                 secondsToTrainStart = time.secondsSinceStart();
-                CameraRig.getCam(CameraRig.trainCam).MotionDetector.calibrating = true;
+                CameraRig.getCam(CameraRig.trainCam).calibrating = true;
                 actCount.ForeColor = Color.Red;
                 txtMess.ForeColor = Color.Red;
 
@@ -404,7 +443,7 @@ namespace TeboCam
 
                 //calculate average motion sensitivity setting
                 //only calculate average based on non zero values
-                CameraRig.getCam(CameraRig.drawCam).MotionDetector.calibrating = false;
+                CameraRig.getCam(CameraRig.drawCam).calibrating = false;
                 tmpDbl = 0;
                 tmpInt = 0;
                 foreach (double val in bubble.training)
@@ -455,7 +494,7 @@ namespace TeboCam
                 for (int i = 0; i < CameraRig.cameraCount(); i++)
                 {
                     CameraRig.getCam(i).motionLevelEvent -= new motionLevelEventHandler(drawLevel);
-                    CameraRig.getCam(i).MotionDetector.calibrating = false;
+                    CameraRig.getCam(i).calibrating = false;
                 }
 
                 levelBitmap.Dispose();

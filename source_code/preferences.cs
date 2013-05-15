@@ -18,8 +18,11 @@ using TeboWeb;
 //using dshow;
 //using dshow.Core;
 
+using System.Net;
+using System.Net.NetworkInformation;
 //using AForge.Video;
 using AForge.Video.DirectShow;
+using AForge.Vision.Motion;
 
 enum enumCommandLine
 {
@@ -610,20 +613,85 @@ namespace TeboCam
             bool nocam;
 
 
-            List<string> camrigCams = new List<string>();
-            camrigCams = CameraRig.camerasListedUnderProfile(bubble.profileInUse);
+            //List<string> camrigCams = new List<string>();
+            List<List<string>> camrigCams = new List<List<string>>();
+
+
+            camrigCams = CameraRig.cameraCredentialsListedUnderProfile(bubble.profileInUse);
+
+
+            //*****************************
+            //IP Webcams
+            //*****************************
+
+            //find if any webcams are present
+            for (int i = 0; i < camrigCams.Count; i++)
+            {
+
+                //we have an ip webcam in the profile
+                if (camrigCams[i][1] != string.Empty)
+                {
+
+                    IPAddress parsedIPAddress;
+                    Uri parsedUri;
+
+
+                    //check that the url resolves
+                    if (Uri.TryCreate(camrigCams[i][1], UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
+                    {
+
+                        Ping pingSender = new Ping();
+                        PingReply reply = pingSender.Send(parsedIPAddress);
+                        
+                        //is ip webcam running?
+                        if (reply.Status == IPStatus.Success)
+                        {
+
+                            AForge.Video.MJPEGStream stream = new AForge.Video.MJPEGStream(camrigCams[i][1]);
+
+                            if (camrigCams[i][2] != string.Empty)
+                            {
+
+                                stream.Login = camrigCams[i][2];
+                                stream.Password = camrigCams[i][3];
+
+                            }
+                            
+                            OpenVideoSource(null, stream, true);
+
+                        }
+
+
+                    }
+
+
+                }
+
+            }
+
+            //*****************************
+            //IP Webcams
+            //*****************************
+
+
+
+
+            //*****************************
+            //USB Webcams
+            //*****************************
 
             nocam = false;
 
             try
             {
                 filters = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-                if (filters.Count == 0) throw new ApplicationException();
+                if (filters.Count == 0) nocam = true;
             }
             catch (ApplicationException)
             {
                 nocam = true;
             }
+
 
             //we have camera(s) attached so let's connect it/them
             if (!nocam)
@@ -635,22 +703,37 @@ namespace TeboCam
                     for (int c = 0; c < camrigCams.Count; c++)
                     {
 
-                        if (filters[i].MonikerString == camrigCams[c])
+                        if (camrigCams[c][1] == string.Empty)
                         {
 
-                            Thread.Sleep(1000);
-                            VideoCaptureDevice localSource = new VideoCaptureDevice(camrigCams[c]);
-                            OpenVideoSource(localSource, null, false);
-                            //remove camera from list of cameras to look for as we have now attached it
-                            camrigCams.RemoveAt(c);
+                            if (filters[i].MonikerString == camrigCams[c][0])
+                            {
+
+                                Thread.Sleep(1000);
+                                VideoCaptureDevice localSource = new VideoCaptureDevice(camrigCams[c][0]);
+
+
+                                OpenVideoSource(localSource, null, false);
+                                //remove camera from list of cameras to look for as we have now attached it
+                                camrigCams.RemoveAt(c);
+
+                            }
+
 
                         }
+
 
                     }
 
                 }
 
             }
+
+            //*****************************
+            //USB Webcams
+            //*****************************
+
+
 
         }
 
@@ -979,27 +1062,60 @@ namespace TeboCam
                 if (form.Device.ipCam)
                 {
 
+                    IPAddress parsedIPAddress;
+                    Uri parsedUri;
 
-                    //AForge.Video.MJPEGStream stream = new AForge.Video.MJPEGStream("http://192.111.1.1/mjpg/video.mjpg");
-                    //stream.Source = "http://192.111.1.1/mjpg/video.mjpg";
-                    VideoSource.MJPEGStream stream = new VideoSource.MJPEGStream();// ("http://192.111.1.1/mjpg/video.mjpg");
-                    stream.VideoSource = "http://192.111.1.1/mjpg/video.mjpg";
-                    stream.Login = "";
-                    stream.Password = "";
+                    //check that the url resolves
+                    if (Uri.TryCreate(form.Device.address, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
+                    {
 
-                    //if (!string.IsNullOrEmpty(form.Device.name))
-                    //{
+                        Ping pingSender = new Ping();
+                        PingReply reply = pingSender.Send(parsedIPAddress);
 
-                    //    stream.Login = "";
-                    //    stream.Password = "";
-                    //    //stream.Login = form.Device.name;
-                    //    //stream.Password = form.Device.password;
+                        //the ip webcam is running
+                        if (reply.Status ==IPStatus.Success)
+                        {
 
-                    //}
+                            CameraRig.updateInfo(bubble.profileInUse, form.Device.address, "ipWebcamAddress", form.Device.address);
 
-                    //Camera camera = new Camera(stream, detector);
+                            AForge.Video.MJPEGStream stream = new AForge.Video.MJPEGStream(form.Device.address);
+                           
+                            if (form.Device.user != string.Empty)
+                            {
 
-                    OpenVideoSource(null, stream, true);
+                                stream.Login = form.Device.user;
+                                stream.Password = form.Device.password;
+
+                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, "ipWebcamUser", form.Device.user);
+                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, "ipWebcamPassword", form.Device.password);
+
+                            }
+
+                            OpenVideoSource(null, stream, true);
+                            
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("The URL you have entered is not connecting to a webcam." + Environment.NewLine +
+                                            "It may be that the webcam has not fully booted yet - it can take 1 minute on some webcams." + Environment.NewLine +
+                                            "You may also have supplied an incorrect URL for the webcam.",
+                                            "IP Webcam not detected", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+                        }
+
+
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("The URL you have entered is not valid.", "Non Valid URL", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+                    }
+
+
+
 
                 }
                 else
@@ -1011,9 +1127,9 @@ namespace TeboCam
                         // create video source
                         VideoCaptureDevice localSource = new VideoCaptureDevice(form.Device.address);
 
-                        config.getProfile(bubble.profileInUse).webcam = form.Device.address;
+                        //config.getProfile(bubble.profileInUse).webcam = form.Device.address;
 
-                        // open it
+                        // open camera
                         OpenVideoSource(localSource, null, false);
 
                     }
@@ -1021,59 +1137,36 @@ namespace TeboCam
                 }
 
 
-                //if (!CameraRig.camerasAlreadySelected(form.Device))
-                //{
-
-                //    // create video source
-                //    VideoCaptureDevice localSource = new VideoCaptureDevice(form.Device);
-
-                //    config.getProfile(bubble.profileInUse).webcam = form.Device;
-
-                //    // open it
-                //    OpenVideoSource(localSource, false);
-
-                //}
-
             }
         }
 
         // Open video source
 
 
-        //private void OpenVideoSource(VideoCaptureDevice source, AForge.Video.MJPEGStream ipStream, Boolean ip)//(VideoCaptureDevice source)
-        private void OpenVideoSource(VideoCaptureDevice source, VideoSource.MJPEGStream ipStream, Boolean ip)//(VideoCaptureDevice source)
+        private void OpenVideoSource(VideoCaptureDevice source, AForge.Video.MJPEGStream ipStream, Boolean ip)//(VideoCaptureDevice source)
         {
 
+            MotionDetector detector = new MotionDetector(new SimpleBackgroundModelingDetector());
 
-            IMotionDetector detector = new MotionDetector3Optimized();
-
-            // enable/disable motion alarm
-            if (detector != null)
-            {
-                detector.MotionLevelCalculation = true;
-            }
-
-            //AForge.Video.DirectShow.VideoCaptureDevice camSource ;
             string camSource;
 
             // create camera
             Camera camera;
 
-            //if (!ip)
-            //{
+            if (!ip)
+            {
 
-            camSource = source.Source;
-            camera = new Camera(source, detector);
+                camSource = source.Source;
+                camera = new Camera(source, detector, camSource);
 
-            //}
-            //else
-            //{
+            }
+            else
+            {
 
-            //    ////camSource = ipStream.Source;
-            //    //camSource = ipStream.VideoSource;
-            //    //camera = new Camera(ipStream, detector);
+                camSource = ipStream.Source;
+                camera = new Camera(ipStream, detector, camSource);
 
-            //}
+            }
 
             camera.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
             camera.motionLevelEvent += new motionLevelEventHandler(bubble.motionEvent);
@@ -1127,6 +1220,7 @@ namespace TeboCam
 
             if (CameraRig.rig[curCam].cam.alarmActive)
             {
+
                 if (CameraRig.rig[curCam].displayButton == 1) selcam(this.bttncam1sel, 1);
                 if (CameraRig.rig[curCam].displayButton == 2) selcam(this.bttncam2sel, 2);
                 if (CameraRig.rig[curCam].displayButton == 3) selcam(this.bttncam3sel, 3);
@@ -1155,11 +1249,8 @@ namespace TeboCam
 
 
 
-            CameraRig.rig[curCam].cam.MotionDetector.id = curCam;
-
             CameraRig.alert(bubble.Alert.on);
-            CameraRig.rig[curCam].cam.MotionDetector.exposeArea = bubble.exposeArea;
-
+            CameraRig.rig[curCam].cam.exposeArea = bubble.exposeArea;
 
 
             CameraRig.rig[curCam].cam.motionAlarm -= new alarmEventHandler(bubble.camera_Alarm);
@@ -1528,7 +1619,7 @@ namespace TeboCam
             {
                 bubble.Alert.on = true;
                 bubble.logAddLine("Motion detection activated");
-                            }
+            }
 
             SetInfo(txtMess, "");
             databaseUpdate(false);
@@ -1633,7 +1724,7 @@ namespace TeboCam
                 }
             }
             else
-            {                
+            {
                 //20130427 restored as the scheduleOnAtStart property now takes care of reactivating at start up
                 if (bttnMotionSchedule.Checked) SetCheckBox(bttnMotionSchedule, false);
 
@@ -2046,7 +2137,14 @@ namespace TeboCam
                 Application.DoEvents();
 
                 int secs = time.secondsSinceStart();
-                pulse.stopCheck(bubble.pulseProcessName);
+
+                if (config.getProfile(bubble.profileInUse).freezeGuard)
+                {
+
+                    pulse.stopCheck(bubble.pulseProcessName);
+
+                }
+
                 //killPulseCheck();
                 Thread.Sleep(6000);
 
@@ -3141,8 +3239,8 @@ namespace TeboCam
             if (!bubble.drawMode && frameCount > 0 && frameCount == framePrevious)
             {
 
-                List<string> camrigCams = new List<string>();
-                camrigCams = CameraRig.camerasListedUnderProfile(bubble.profileInUse);
+                List<List<string>> camrigCams = new List<List<string>>();
+                camrigCams = CameraRig.cameraCredentialsListedUnderProfile(bubble.profileInUse);
 
 
                 //attempt to reconnect to camera
@@ -4180,6 +4278,7 @@ namespace TeboCam
 
                     CameraRig.activeCam = camId;
                     CameraRig.rig[camId].cam.MotionDetector.Reset();
+                    //set the camerawindow bitmap
                     cameraWindow.Camera = CameraRig.rig[camId].cam;
                     SetLabelVisible(lblCameraName, CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, "friendlyName").ToString().Trim() != "");
                     SetLabel(lblCameraName, CameraRig.rig[camId].friendlyName);

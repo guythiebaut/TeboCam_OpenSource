@@ -3,8 +3,9 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using dshow;
-using dshow.Core;
+using AForge.Video.DirectShow;
+//using dshow;
+//using dshow.Core;
 
 namespace TeboCam
 {
@@ -13,7 +14,10 @@ namespace TeboCam
     /// </summary>
     public class CaptureDeviceForm : System.Windows.Forms.Form
     {
-        FilterCollection filters;
+
+        //AForge.Video.DirectShow.FilterInfoCollection filters;
+        //FilterCollection filters;
+        FilterInfoCollection filters;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox deviceCombo;
         private System.Windows.Forms.Button cancelButton;
@@ -29,7 +33,6 @@ namespace TeboCam
 
         //private string device;
         private selected selectedValues = new selected();
-        private Label label5;
 
         /// <summary>
         /// Required designer variable.
@@ -45,7 +48,7 @@ namespace TeboCam
         {
             get { return selectedValues; }
         }
-        
+
 
 
 
@@ -60,21 +63,30 @@ namespace TeboCam
             //
             try
             {
-                filters = new FilterCollection(FilterCategory.VideoInputDevice);
+                filters = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
                 if (filters.Count == 0)
                     throw new ApplicationException();
 
                 // add all devices to combo
-                foreach (Filter filter in filters)
+                for (int i = 0; i < filters.Count; i++)
                 {
-                    deviceCombo.Items.Add(filter.Name);
+                    deviceCombo.Items.Add(filters[i].MonikerString);
                 }
+                //                foreach (VideoCaptureDevice filter in filters)
+                //{
+                //    deviceCombo.Items.Add(filter.MonikerString);
+                //                }
 
                 // number the webcams in case there are more than one of the same type present
                 int tmpInt = 0;
-                foreach (Filter filter in filters)
+
+                for (int f = 0; f < filters.Count; f++)
                 {
+                 
+                  
+                //foreach (Filter filter in filters)
+                //{
 
                     int cnt = 1;
                     for (int i = tmpInt + 1; i < filters.Count; i++)
@@ -86,6 +98,8 @@ namespace TeboCam
                     }
 
                     tmpInt++;
+                                   
+                //}
 
                 }
 
@@ -109,7 +123,7 @@ namespace TeboCam
             {
                 deviceCombo.Items.Add("No local capture devices");
                 deviceCombo.Enabled = false;
-                okButton.Enabled = false;
+                //okButton.Enabled = false;
             }
 
             if (deviceCombo.SelectedIndex == -1) deviceCombo.SelectedIndex = 0;
@@ -150,7 +164,6 @@ namespace TeboCam
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -206,7 +219,6 @@ namespace TeboCam
             // rdIpCam
             // 
             this.rdIpCam.AutoSize = true;
-            this.rdIpCam.Enabled = false;
             this.rdIpCam.Location = new System.Drawing.Point(103, 12);
             this.rdIpCam.Name = "rdIpCam";
             this.rdIpCam.Size = new System.Drawing.Size(74, 17);
@@ -220,7 +232,7 @@ namespace TeboCam
             this.txtIpAddress.Location = new System.Drawing.Point(7, 108);
             this.txtIpAddress.Name = "txtIpAddress";
             this.txtIpAddress.Size = new System.Drawing.Size(325, 20);
-            this.txtIpAddress.TabIndex = 12;
+            this.txtIpAddress.TabIndex = 14;
             // 
             // label2
             // 
@@ -237,7 +249,7 @@ namespace TeboCam
             this.txtPassword.Location = new System.Drawing.Point(152, 151);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(122, 20);
-            this.txtPassword.TabIndex = 14;
+            this.txtPassword.TabIndex = 16;
             // 
             // txtUsername
             // 
@@ -265,21 +277,12 @@ namespace TeboCam
             this.label4.TabIndex = 17;
             this.label4.Text = "Username";
             // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(176, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 14);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "<-- currently under construction";
-            // 
             // CaptureDeviceForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(344, 238);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtUsername);
@@ -322,8 +325,9 @@ namespace TeboCam
             {
 
                 selectedValues.ipCam = true;
+                selectedValues.name = txtIpAddress.Text;
                 selectedValues.address = txtIpAddress.Text;
-                selectedValues.name = txtUsername.Text;
+                selectedValues.user = txtUsername.Text;
                 selectedValues.password = txtPassword.Text;
 
 
@@ -348,7 +352,7 @@ namespace TeboCam
                 txtIpAddress.Enabled = false;
                 txtUsername.Enabled = false;
                 txtPassword.Enabled = false;
-                
+
 
             }
             else
@@ -366,7 +370,7 @@ namespace TeboCam
 
         }
 
-       public  class selected
+        public class selected
         {
 
             public bool ipCam = false;

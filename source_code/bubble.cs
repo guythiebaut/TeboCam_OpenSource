@@ -1198,7 +1198,7 @@ namespace TeboCam
             profileGiven = 0;
         }
 
-        public static bool getNextProfile()
+        public static bool moreProfiles()
         {
 
             if (profileGiven < profiles.Count)
@@ -2827,7 +2827,7 @@ namespace TeboCam
                 try { pubPicture(null, a); }
                 catch { }
                 testImagePublishData.Add(testImagePublishCount);
-                testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionLevel * 100)));
+                testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100)));
 
 
                 testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));

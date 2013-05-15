@@ -117,6 +117,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommandLine.cs" />
+    <Compile Include="imageFilter.cs" />
     <Compile Include="licence.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -150,13 +151,11 @@
       <DependentUpon>image.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageThumbs.cs" />
-    <Compile Include="IMotionDetector.cs" />
     <Compile Include="InputBoxDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LeftRightMid.cs" />
     <Compile Include="mail.cs" />
-    <Compile Include="MotionDetector3Optimized.cs" />
     <Compile Include="preferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,14 +185,6 @@
       <DependentUpon>train.cs</DependentUpon>
     </Compile>
     <Compile Include="update.cs" />
-    <Compile Include="VideoSource\ByteArrayUtils.cs" />
-    <Compile Include="VideoSource\CameraEvents.cs" />
-    <Compile Include="VideoSource\CaptureDevice.cs" />
-    <Compile Include="VideoSource\IVideoSource.cs" />
-    <Compile Include="VideoSource\JPEGStream.cs" />
-    <Compile Include="VideoSource\MJPEGStream.cs" />
-    <Compile Include="VideoSource\VideoFileSource.cs" />
-    <Compile Include="VideoSource\VideoStream.cs" />
     <Compile Include="webcamConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,16 +195,23 @@
     <Compile Include="webPage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AForge.Imaging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\references\AForge.Imaging.dll</HintPath>
+    <Reference Include="AForge">
+      <HintPath>libraries\AForge.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Math, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e12ceb15b47eb5cc, processorArchitecture=MSIL">
+    <Reference Include="AForge.Imaging, Version=2.2.4.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\references\AForge.Math.dll</HintPath>
+      <HintPath>libraries\AForge.Imaging.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video, Version=2.1.3.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL" />
-    <Reference Include="AForge.Video.DirectShow, Version=2.1.4.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL" />
+    <Reference Include="AForge.Video">
+      <HintPath>libraries\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>libraries\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Vision, Version=2.2.4.0, Culture=neutral, PublicKeyToken=b612fa915eefaa06, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libraries\AForge.Vision.dll</HintPath>
+    </Reference>
     <Reference Include="cuteButton, Version=1.0.4319.27512, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\custom_controls\ctlCuteButton\ctlCuteButton\bin\Release\cuteButton.dll</HintPath>
@@ -232,10 +230,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dshow\dshow.csproj">
-      <Project>{37B08AFD-F4BC-4E13-9119-537BA6A12CCB}</Project>
-      <Name>dshow</Name>
-    </ProjectReference>
     <ProjectReference Include="..\vfw\vfw.csproj">
       <Project>{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}</Project>
       <Name>vfw</Name>

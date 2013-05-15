@@ -47,7 +47,7 @@ namespace TeboCam
         public bool publishLocal = false;
         public bool timerOn = false;
 
-        public  string fileURLPubWeb = "";
+        public string fileURLPubWeb = "";
         public string filenamePrefixPubWeb = "webcamPublish";
         public int cycleStampCheckedPubWeb = 1;
         public int startCyclePubWeb = 1;
@@ -57,7 +57,7 @@ namespace TeboCam
 
         public string fileDirAlertLoc = bubble.imageFolder;
         public bool fileDirAlertCust = false;
-        public  string fileDirPubLoc =bubble.imageFolder;
+        public string fileDirPubLoc = bubble.imageFolder;
         public bool fileDirPubCust = false;
         public string filenamePrefixPubLoc = "webcamPublish";
         public int cycleStampCheckedPubLoc = 1;
@@ -118,7 +118,7 @@ namespace TeboCam
                     camInfo[i].profileName = newProfile;
                     break;
                 }
-                
+
             }
 
 
@@ -137,7 +137,36 @@ namespace TeboCam
 
 
 
-        public static List<string> camerasListedUnderProfile(string profileName)
+        public static List<List<string>> cameraCredentialsListedUnderProfile(string profileName)
+        {
+
+            List<List<string>> lst = new List<List<string>>();
+
+            foreach (info infoI in camInfo)
+            {
+
+
+                if (infoI.profileName == profileName)
+                {
+
+                    List<string> item = new List<string>();
+                    item.Add(infoI.webcam);
+                    item.Add(infoI.ipWebcamAddress);
+                    item.Add(infoI.ipWebcamUser);
+                    item.Add(infoI.ipWebcamPassword);
+                    lst.Add(item);
+
+                }
+
+
+
+            }
+
+            return lst;
+
+        }
+
+        public static List<string> cameraCredentials(string profileName,string webcam )
         {
 
             List<string> lst = new List<string>();
@@ -145,13 +174,23 @@ namespace TeboCam
             foreach (info infoI in camInfo)
             {
 
-                if (infoI.profileName == profileName) lst.Add(infoI.webcam);
+                if (infoI.profileName == profileName && infoI.webcam==webcam)
+                {
+                    
+                    lst.Add(infoI.webcam);
+                    lst.Add(infoI.ipWebcamAddress);
+                    lst.Add(infoI.ipWebcamUser);
+                    lst.Add(infoI.ipWebcamPassword);
+
+                }
+
 
             }
 
             return lst;
 
         }
+
 
         public static void clear()
         {
@@ -219,7 +258,6 @@ namespace TeboCam
 
                         if (infoType == "publishFirst") { infoI.publishFirst = (bool)val; }
                         if (infoType == "lastPublished") { infoI.lastPublished = (int)val; }
-
 
                         if (infoType == "ipWebcamAddress") { infoI.ipWebcamAddress = (string)val; }
                         if (infoType == "ipWebcamUser") { infoI.ipWebcamUser = (string)val; }
@@ -309,77 +347,77 @@ namespace TeboCam
         public static void addInfo(string infoType, object val)
         {
 
-                if (infoType == "webcam")
-                {
+            if (infoType == "webcam")
+            {
 
-                    infoIdx++;
-                    info p_item = new info();
-                    camInfo.Add(p_item);
-                    camInfo[infoIdx].webcam = (string)val;
+                infoIdx++;
+                info p_item = new info();
+                camInfo.Add(p_item);
+                camInfo[infoIdx].webcam = (string)val;
 
-                }
+            }
 
-                if (camInfo.Count > 0)
-                {
+            if (camInfo.Count > 0)
+            {
 
-                    if (infoType == "profileName") { camInfo[infoIdx].profileName = (string)val; }
-                    if (infoType == "friendlyName") { camInfo[infoIdx].friendlyName = (string)val; }
+                if (infoType == "profileName") { camInfo[infoIdx].profileName = (string)val; }
+                if (infoType == "friendlyName") { camInfo[infoIdx].friendlyName = (string)val; }
 
-                    if (infoType == "areaDetection") { camInfo[infoIdx].areaDetection = (bool)val; }
-                    if (infoType == "areaDetectionWithin") { camInfo[infoIdx].areaDetectionWithin = (bool)val; }
-
-
-                    if (infoType == "alarmActive") { camInfo[infoIdx].alarmActive = (bool)val; }
-                    if (infoType == "publishActive") { camInfo[infoIdx].publishActive = (bool)val; }
+                if (infoType == "areaDetection") { camInfo[infoIdx].areaDetection = (bool)val; }
+                if (infoType == "areaDetectionWithin") { camInfo[infoIdx].areaDetectionWithin = (bool)val; }
 
 
-                    //may be of use in future
-                    if (infoType == "areaOffAtMotion") { camInfo[infoIdx].areaOffAtMotion = (bool)val; }
-                    //may be of use in future
-
-                    if (infoType == "rectX") { camInfo[infoIdx].rectX = (int)val; }
-                    if (infoType == "rectY") { camInfo[infoIdx].rectY = (int)val; }
-                    if (infoType == "rectWidth") { camInfo[infoIdx].rectWidth = (int)val; }
-                    if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
-                    if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
-                    if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
+                if (infoType == "alarmActive") { camInfo[infoIdx].alarmActive = (bool)val; }
+                if (infoType == "publishActive") { camInfo[infoIdx].publishActive = (bool)val; }
 
 
+                //may be of use in future
+                if (infoType == "areaOffAtMotion") { camInfo[infoIdx].areaOffAtMotion = (bool)val; }
+                //may be of use in future
 
-                    if (infoType == "pubImage") { camInfo[infoIdx].pubImage = (bool)val; }
-                    if (infoType == "pubTime") { camInfo[infoIdx].pubTime = (int)val; }
-                    if (infoType == "pubHours") { camInfo[infoIdx].pubHours = (bool)val; }
-                    if (infoType == "pubMins") { camInfo[infoIdx].pubMins = (bool)val; }
-                    if (infoType == "pubSecs") { camInfo[infoIdx].pubSecs = (bool)val; }
-                    if (infoType == "publishWeb") { camInfo[infoIdx].publishWeb = (bool)val; }
-                    if (infoType == "publishLocal") { camInfo[infoIdx].publishLocal = (bool)val; }
-                    if (infoType == "timerOn") { camInfo[infoIdx].timerOn = (bool)val; }
-                    if (infoType == "fileURLPubWeb") { camInfo[infoIdx].fileURLPubWeb = (string)val; }
-                    if (infoType == "filenamePrefixPubWeb") { camInfo[infoIdx].filenamePrefixPubWeb = (string)val; }
-                    if (infoType == "cycleStampCheckedPubWeb") { camInfo[infoIdx].cycleStampCheckedPubWeb = (int)val; }
-                    if (infoType == "startCyclePubWeb") { camInfo[infoIdx].startCyclePubWeb = (int)val; }
-                    if (infoType == "endCyclePubWeb") { camInfo[infoIdx].endCyclePubWeb = (int)val; }
-                    if (infoType == "currentCyclePubWeb") { camInfo[infoIdx].currentCyclePubWeb = (int)val; }
-                    if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
-                    if (infoType == "fileDirPubLoc") { camInfo[infoIdx].fileDirPubLoc = (string)val; }
-                    if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
-                    if (infoType == "fileDirPubCust") { camInfo[infoIdx].fileDirPubCust = (bool)val; }
-                    if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
-                    if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
-                    if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
-                    if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
-                    if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
-
-                    if (infoType == "publishFirst") { camInfo[infoIdx].publishFirst = (bool)val; }
-                    if (infoType == "lastPublished") { camInfo[infoIdx].lastPublished = (int)val; }
+                if (infoType == "rectX") { camInfo[infoIdx].rectX = (int)val; }
+                if (infoType == "rectY") { camInfo[infoIdx].rectY = (int)val; }
+                if (infoType == "rectWidth") { camInfo[infoIdx].rectWidth = (int)val; }
+                if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
+                if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
+                if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
 
 
-                    if (infoType == "ipWebcamAddress") { camInfo[infoIdx].ipWebcamAddress = (string)val; }
-                    if (infoType == "ipWebcamUser") { camInfo[infoIdx].ipWebcamUser = (string)val; }
-                    if (infoType == "ipWebcamPassword") { camInfo[infoIdx].ipWebcamPassword = (string)val; }
+
+                if (infoType == "pubImage") { camInfo[infoIdx].pubImage = (bool)val; }
+                if (infoType == "pubTime") { camInfo[infoIdx].pubTime = (int)val; }
+                if (infoType == "pubHours") { camInfo[infoIdx].pubHours = (bool)val; }
+                if (infoType == "pubMins") { camInfo[infoIdx].pubMins = (bool)val; }
+                if (infoType == "pubSecs") { camInfo[infoIdx].pubSecs = (bool)val; }
+                if (infoType == "publishWeb") { camInfo[infoIdx].publishWeb = (bool)val; }
+                if (infoType == "publishLocal") { camInfo[infoIdx].publishLocal = (bool)val; }
+                if (infoType == "timerOn") { camInfo[infoIdx].timerOn = (bool)val; }
+                if (infoType == "fileURLPubWeb") { camInfo[infoIdx].fileURLPubWeb = (string)val; }
+                if (infoType == "filenamePrefixPubWeb") { camInfo[infoIdx].filenamePrefixPubWeb = (string)val; }
+                if (infoType == "cycleStampCheckedPubWeb") { camInfo[infoIdx].cycleStampCheckedPubWeb = (int)val; }
+                if (infoType == "startCyclePubWeb") { camInfo[infoIdx].startCyclePubWeb = (int)val; }
+                if (infoType == "endCyclePubWeb") { camInfo[infoIdx].endCyclePubWeb = (int)val; }
+                if (infoType == "currentCyclePubWeb") { camInfo[infoIdx].currentCyclePubWeb = (int)val; }
+                if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
+                if (infoType == "fileDirPubLoc") { camInfo[infoIdx].fileDirPubLoc = (string)val; }
+                if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
+                if (infoType == "fileDirPubCust") { camInfo[infoIdx].fileDirPubCust = (bool)val; }
+                if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
+                if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
+                if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
+                if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
+                if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
+
+                if (infoType == "publishFirst") { camInfo[infoIdx].publishFirst = (bool)val; }
+                if (infoType == "lastPublished") { camInfo[infoIdx].lastPublished = (int)val; }
 
 
-                }
+                if (infoType == "ipWebcamAddress") { camInfo[infoIdx].ipWebcamAddress = (string)val; }
+                if (infoType == "ipWebcamUser") { camInfo[infoIdx].ipWebcamUser = (string)val; }
+                if (infoType == "ipWebcamPassword") { camInfo[infoIdx].ipWebcamPassword = (string)val; }
+
+
+            }
 
             //}
 
@@ -397,8 +435,8 @@ namespace TeboCam
                 {
 
                     item.friendlyName = (string)(CameraRig.rigInfoGet(profileName, webcam, "friendlyName"));
-                    item.cam.MotionDetector.areaDetection = (bool)(CameraRig.rigInfoGet(profileName, webcam, "areaDetection"));
-                    item.cam.MotionDetector.areaDetectionWithin = (bool)(CameraRig.rigInfoGet(profileName, webcam, "areaDetectionWithin"));
+                    item.cam.areaDetection = (bool)(CameraRig.rigInfoGet(profileName, webcam, "areaDetection"));
+                    item.cam.areaDetectionWithin = (bool)(CameraRig.rigInfoGet(profileName, webcam, "areaDetectionWithin"));
 
                 }
 
@@ -503,13 +541,15 @@ namespace TeboCam
                     rig[id].friendlyName = infoI.friendlyName;
                     rig[id].displayButton = infoI.displayButton;
 
-                    rig[id].cam.MotionDetector.areaDetectionWithin = infoI.areaDetectionWithin;
-                    rig[id].cam.MotionDetector.areaDetection = infoI.areaDetection;
 
-                    rig[id].cam.MotionDetector.rectX = infoI.rectX;
-                    rig[id].cam.MotionDetector.rectY = infoI.rectY;
-                    rig[id].cam.MotionDetector.rectHeight = infoI.rectHeight;
-                    rig[id].cam.MotionDetector.rectWidth = infoI.rectWidth;
+                    rig[id].cam.areaDetectionWithin = infoI.areaDetectionWithin;
+                    rig[id].cam.areaDetection = infoI.areaDetection;
+
+                    rig[id].cam.rectX = infoI.rectX;
+                    rig[id].cam.rectY = infoI.rectY;
+                    rig[id].cam.rectHeight = infoI.rectHeight;
+                    rig[id].cam.rectWidth = infoI.rectWidth;
+
                     rig[id].cam.movementVal = infoI.movementVal;
 
 
@@ -537,12 +577,14 @@ namespace TeboCam
 
                 rig[id].displayButton = infoI.displayButton;
 
-                rig[id].cam.MotionDetector.areaDetectionWithin = infoI.areaDetectionWithin;
-                rig[id].cam.MotionDetector.areaDetection = infoI.areaDetection;
-                rig[id].cam.MotionDetector.rectX = infoI.rectX;
-                rig[id].cam.MotionDetector.rectY = infoI.rectY;
-                rig[id].cam.MotionDetector.rectHeight = infoI.rectHeight;
-                rig[id].cam.MotionDetector.rectWidth = infoI.rectWidth;
+                rig[id].cam.areaDetectionWithin = infoI.areaDetectionWithin;
+                rig[id].cam.areaDetection = infoI.areaDetection;
+                rig[id].cam.rectX = infoI.rectX;
+                rig[id].cam.rectY = infoI.rectY;
+                rig[id].cam.rectHeight = infoI.rectHeight;
+                rig[id].cam.rectWidth = infoI.rectWidth;
+
+
                 rig[id].cam.movementVal = infoI.movementVal;
 
 
@@ -764,14 +806,14 @@ namespace TeboCam
 
         public static void AreaOffAtMotionTrigger(int camId)
         {
-            if (camerasAttached()) rig[camId].cam.MotionDetector.areaOffAtMotionTriggered = true;
+            if (camerasAttached()) rig[camId].cam.areaOffAtMotionTriggered = true;
         }
 
         public static bool AreaOffAtMotionIsTriggeredCam(int camId)
         {
             if (camerasAttached())
             {
-                return rig[camId].cam.MotionDetector.areaOffAtMotionTriggered;
+                return rig[camId].cam.areaOffAtMotionTriggered;
             }
             else
             {
@@ -782,56 +824,56 @@ namespace TeboCam
 
         public static bool Calibrating
         {
-            get { return rig[activeCam].cam.MotionDetector.calibrating; }
+            get { return rig[activeCam].cam.calibrating; }
             set
             {
-                if (camerasAttached()) rig[activeCam].cam.MotionDetector.calibrating = value;
+                if (camerasAttached()) rig[activeCam].cam.calibrating = value;
             }
         }
 
         public static bool AreaOffAtMotionTriggered
         {
-            get { return rig[activeCam].cam.MotionDetector.areaOffAtMotionTriggered; }
+            get { return rig[activeCam].cam.areaOffAtMotionTriggered; }
             set
             {
-                if (camerasAttached()) rig[activeCam].cam.MotionDetector.areaOffAtMotionTriggered = value;
+                if (camerasAttached()) rig[activeCam].cam.areaOffAtMotionTriggered = value;
             }
         }
 
         public static bool AreaOffAtMotionReset
         {
-            get { return rig[activeCam].cam.MotionDetector.areaOffAtMotionReset; }
+            get { return rig[activeCam].cam.areaOffAtMotionReset; }
             set
             {
-                if (camerasAttached()) rig[activeCam].cam.MotionDetector.areaOffAtMotionReset = value;
+                if (camerasAttached()) rig[activeCam].cam.areaOffAtMotionReset = value;
             }
         }
 
         public static bool AreaDetection
         {
-            get { return rig[drawCam].cam.MotionDetector.areaDetection; }
+            get { return rig[drawCam].cam.areaDetection; }
             set
             {
-                if (camerasAttached()) rig[drawCam].cam.MotionDetector.areaDetection = value;
+                if (camerasAttached()) rig[drawCam].cam.areaDetection = value;
             }
         }
 
         public static bool AreaDetectionWithin
         {
-            get { return rig[drawCam].cam.MotionDetector.areaDetectionWithin; }
+            get { return rig[drawCam].cam.areaDetectionWithin; }
             set
             {
                 if (camerasAttached())
-                    rig[drawCam].cam.MotionDetector.areaDetectionWithin = value;
+                    rig[drawCam].cam.areaDetectionWithin = value;
             }
         }
 
         public static bool ExposeArea
         {
-            get { return rig[drawCam].cam.MotionDetector.exposeArea; }
+            get { return rig[drawCam].cam.exposeArea; }
             set
             {
-                if (camerasAttached()) rig[drawCam].cam.MotionDetector.exposeArea = value;
+                if (camerasAttached()) rig[drawCam].cam.exposeArea = value;
             }
         }
 
