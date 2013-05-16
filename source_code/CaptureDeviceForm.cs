@@ -33,17 +33,15 @@ namespace TeboCam
 
         //private string device;
         private selected selectedValues = new selected();
-
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.Container components = null;
+        private ToolTip toolTip1;
+        private IContainer components;
 
         // Device
         //public string Device
         //{
         //    get { return device; }
         //}
+
         public selected Device
         {
             get { return selectedValues; }
@@ -53,7 +51,7 @@ namespace TeboCam
 
 
         // Constructor
-        public CaptureDeviceForm(string dvc)
+        public CaptureDeviceForm(string dvc,bool tooltips)
         {
             //
             // Required for Windows Form Designer support
@@ -63,6 +61,9 @@ namespace TeboCam
             //
             try
             {
+
+                toolTip1.Active = tooltips;
+
                 filters = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
                 if (filters.Count == 0)
@@ -151,6 +152,7 @@ namespace TeboCam
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CaptureDeviceForm));
             this.label1 = new System.Windows.Forms.Label();
             this.deviceCombo = new System.Windows.Forms.ComboBox();
@@ -164,6 +166,7 @@ namespace TeboCam
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -233,15 +236,16 @@ namespace TeboCam
             this.txtIpAddress.Name = "txtIpAddress";
             this.txtIpAddress.Size = new System.Drawing.Size(325, 20);
             this.txtIpAddress.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.txtIpAddress, resources.GetString("txtIpAddress.ToolTip"));
             // 
             // label2
             // 
             this.label2.Enabled = false;
             this.label2.Location = new System.Drawing.Point(7, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 14);
+            this.label2.Size = new System.Drawing.Size(287, 14);
             this.label2.TabIndex = 13;
-            this.label2.Text = "IP webcam address";
+            this.label2.Text = "IP webcam address(mjpeg stream)";
             // 
             // txtPassword
             // 
@@ -250,6 +254,8 @@ namespace TeboCam
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(122, 20);
             this.txtPassword.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.txtPassword, "The password for your webcam\r\n\r\nThis will be set or you will have \r\nset this from" +
+        " the IP webcam web page.");
             // 
             // txtUsername
             // 
@@ -258,6 +264,8 @@ namespace TeboCam
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(122, 20);
             this.txtUsername.TabIndex = 15;
+            this.toolTip1.SetToolTip(this.txtUsername, "The login for your webcam.\r\n\r\nThis will be set or you will have \r\nset this from t" +
+        "he IP webcam web page.");
             // 
             // label3
             // 
@@ -275,7 +283,15 @@ namespace TeboCam
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 14);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Username";
+            this.label4.Text = "Login";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 20000;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ReshowDelay = 100;
+            this.toolTip1.ToolTipTitle = "Tip";
             // 
             // CaptureDeviceForm
             // 

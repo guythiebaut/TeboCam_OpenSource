@@ -642,7 +642,7 @@ namespace TeboCam
 
                         Ping pingSender = new Ping();
                         PingReply reply = pingSender.Send(parsedIPAddress);
-                        
+
                         //is ip webcam running?
                         if (reply.Status == IPStatus.Success)
                         {
@@ -656,7 +656,7 @@ namespace TeboCam
                                 stream.Password = camrigCams[i][3];
 
                             }
-                            
+
                             OpenVideoSource(null, stream, true);
 
                         }
@@ -1054,7 +1054,7 @@ namespace TeboCam
 
             string tmpStr = config.getProfile(bubble.profileInUse).webcam;
 
-            CaptureDeviceForm form = new CaptureDeviceForm(tmpStr);
+            CaptureDeviceForm form = new CaptureDeviceForm(tmpStr, toolTip1.Active);
 
             if (form.ShowDialog(this) == DialogResult.OK)
             {
@@ -1073,13 +1073,13 @@ namespace TeboCam
                         PingReply reply = pingSender.Send(parsedIPAddress);
 
                         //the ip webcam is running
-                        if (reply.Status ==IPStatus.Success)
+                        if (reply.Status == IPStatus.Success)
                         {
 
                             CameraRig.updateInfo(bubble.profileInUse, form.Device.address, "ipWebcamAddress", form.Device.address);
 
                             AForge.Video.MJPEGStream stream = new AForge.Video.MJPEGStream(form.Device.address);
-                           
+
                             if (form.Device.user != string.Empty)
                             {
 
@@ -1092,7 +1092,7 @@ namespace TeboCam
                             }
 
                             OpenVideoSource(null, stream, true);
-                            
+
                         }
                         else
                         {
@@ -5039,6 +5039,8 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
+
 
 
 
