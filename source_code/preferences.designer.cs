@@ -170,6 +170,12 @@ namespace TeboCam
             this.button21 = new System.Windows.Forms.Button();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.pingBox = new System.Windows.Forms.GroupBox();
+            this.rdPingActiveCamera = new System.Windows.Forms.RadioButton();
+            this.rdPingAllCameras = new System.Windows.Forms.RadioButton();
+            this.ping = new System.Windows.Forms.CheckBox();
+            this.pingMins = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.mosaicImagesPerRow = new System.Windows.Forms.TextBox();
             this.sendMosaic = new System.Windows.Forms.CheckBox();
             this.sndTest = new System.Windows.Forms.Button();
@@ -184,9 +190,6 @@ namespace TeboCam
             this.label20 = new System.Windows.Forms.Label();
             this.loadToFtp = new System.Windows.Forms.CheckBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.ping = new System.Windows.Forms.CheckBox();
-            this.pingMins = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -331,7 +334,6 @@ namespace TeboCam
             this.sqlImageFilename = new System.Windows.Forms.TextBox();
             this.sqlImageRoot = new System.Windows.Forms.TextBox();
             this.Test = new System.Windows.Forms.TabPage();
-            this.ipCamPic = new System.Windows.Forms.PictureBox();
             this.bttnToolTips = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button24 = new System.Windows.Forms.Button();
@@ -401,6 +403,7 @@ namespace TeboCam
             this.emailIntelPanel.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.pingBox.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.Email_Ftp.SuspendLayout();
@@ -420,8 +423,6 @@ namespace TeboCam
             this.groupBox17.SuspendLayout();
             this.Online.SuspendLayout();
             this.groupBox20.SuspendLayout();
-            this.Test.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipCamPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -920,6 +921,7 @@ namespace TeboCam
             // 
             // calendar
             // 
+            this.calendar.BackColor = System.Drawing.Color.LemonChiffon;
             this.calendar.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.calendar.Location = new System.Drawing.Point(267, 81);
             this.calendar.Name = "calendar";
@@ -1365,7 +1367,7 @@ namespace TeboCam
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(155, 25);
             this.button4.TabIndex = 30;
-            this.button4.Text = "Add Webcam";
+            this.button4.Text = "Add Webcam USB/IP";
             this.toolTip1.SetToolTip(this.button4, "Select a webcam from currently\r\nattached webcams.");
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -2138,6 +2140,7 @@ namespace TeboCam
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.pingBox);
             this.groupBox14.Controls.Add(this.mosaicImagesPerRow);
             this.groupBox14.Controls.Add(this.sendMosaic);
             this.groupBox14.Controls.Add(this.sndTest);
@@ -2152,14 +2155,85 @@ namespace TeboCam
             this.groupBox14.Controls.Add(this.label20);
             this.groupBox14.Controls.Add(this.loadToFtp);
             this.groupBox14.Controls.Add(this.label32);
-            this.groupBox14.Controls.Add(this.label40);
-            this.groupBox14.Controls.Add(this.ping);
-            this.groupBox14.Controls.Add(this.pingMins);
             this.groupBox14.Location = new System.Drawing.Point(6, 6);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(295, 310);
+            this.groupBox14.Size = new System.Drawing.Size(295, 363);
             this.groupBox14.TabIndex = 59;
             this.groupBox14.TabStop = false;
+            // 
+            // pingBox
+            // 
+            this.pingBox.Controls.Add(this.rdPingActiveCamera);
+            this.pingBox.Controls.Add(this.rdPingAllCameras);
+            this.pingBox.Controls.Add(this.ping);
+            this.pingBox.Controls.Add(this.pingMins);
+            this.pingBox.Controls.Add(this.label40);
+            this.pingBox.Location = new System.Drawing.Point(19, 271);
+            this.pingBox.Name = "pingBox";
+            this.pingBox.Size = new System.Drawing.Size(251, 86);
+            this.pingBox.TabIndex = 65;
+            this.pingBox.TabStop = false;
+            this.pingBox.Text = "Ping";
+            // 
+            // rdPingActiveCamera
+            // 
+            this.rdPingActiveCamera.AutoSize = true;
+            this.rdPingActiveCamera.Location = new System.Drawing.Point(121, 56);
+            this.rdPingActiveCamera.Name = "rdPingActiveCamera";
+            this.rdPingActiveCamera.Size = new System.Drawing.Size(120, 17);
+            this.rdPingActiveCamera.TabIndex = 53;
+            this.rdPingActiveCamera.Text = "Active Camera";
+            this.rdPingActiveCamera.UseVisualStyleBackColor = true;
+            // 
+            // rdPingAllCameras
+            // 
+            this.rdPingAllCameras.AutoSize = true;
+            this.rdPingAllCameras.Checked = true;
+            this.rdPingAllCameras.Location = new System.Drawing.Point(6, 56);
+            this.rdPingAllCameras.Name = "rdPingAllCameras";
+            this.rdPingAllCameras.Size = new System.Drawing.Size(103, 17);
+            this.rdPingAllCameras.TabIndex = 52;
+            this.rdPingAllCameras.TabStop = true;
+            this.rdPingAllCameras.Text = "All Cameras";
+            this.rdPingAllCameras.UseVisualStyleBackColor = true;
+            this.rdPingAllCameras.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // ping
+            // 
+            this.ping.AutoSize = true;
+            this.ping.BackColor = System.Drawing.SystemColors.Control;
+            this.ping.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.ping.Location = new System.Drawing.Point(6, 24);
+            this.ping.Name = "ping";
+            this.ping.Size = new System.Drawing.Size(96, 17);
+            this.ping.TabIndex = 49;
+            this.ping.Text = "Ping Every";
+            this.toolTip1.SetToolTip(this.ping, resources.GetString("ping.ToolTip"));
+            this.ping.UseVisualStyleBackColor = false;
+            this.ping.CheckedChanged += new System.EventHandler(this.ping_CheckedChanged);
+            // 
+            // pingMins
+            // 
+            this.pingMins.BackColor = System.Drawing.Color.LemonChiffon;
+            this.pingMins.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pingMins.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.pingMins.Location = new System.Drawing.Point(110, 22);
+            this.pingMins.Name = "pingMins";
+            this.pingMins.Size = new System.Drawing.Size(48, 21);
+            this.pingMins.TabIndex = 50;
+            this.toolTip1.SetToolTip(this.pingMins, "The interval in minutes for sending a\r\n\'ping\' email.");
+            this.pingMins.Leave += new System.EventHandler(this.pingMins_Leave);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.ForeColor = System.Drawing.Color.Black;
+            this.label40.Location = new System.Drawing.Point(164, 28);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(57, 13);
+            this.label40.TabIndex = 51;
+            this.label40.Text = "Minutes";
             // 
             // mosaicImagesPerRow
             // 
@@ -2347,43 +2421,6 @@ namespace TeboCam
             this.label32.TabIndex = 47;
             this.label32.Text = "Notification Settings";
             // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(177, 278);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(57, 13);
-            this.label40.TabIndex = 51;
-            this.label40.Text = "Minutes";
-            // 
-            // ping
-            // 
-            this.ping.AutoSize = true;
-            this.ping.BackColor = System.Drawing.SystemColors.Control;
-            this.ping.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ping.Location = new System.Drawing.Point(19, 274);
-            this.ping.Name = "ping";
-            this.ping.Size = new System.Drawing.Size(96, 17);
-            this.ping.TabIndex = 49;
-            this.ping.Text = "Ping Every";
-            this.toolTip1.SetToolTip(this.ping, resources.GetString("ping.ToolTip"));
-            this.ping.UseVisualStyleBackColor = false;
-            this.ping.CheckedChanged += new System.EventHandler(this.ping_CheckedChanged);
-            // 
-            // pingMins
-            // 
-            this.pingMins.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pingMins.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pingMins.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pingMins.Location = new System.Drawing.Point(123, 272);
-            this.pingMins.Name = "pingMins";
-            this.pingMins.Size = new System.Drawing.Size(48, 21);
-            this.pingMins.TabIndex = 50;
-            this.toolTip1.SetToolTip(this.pingMins, "The interval in minutes for sending a\r\n\'ping\' email.");
-            this.pingMins.Leave += new System.EventHandler(this.pingMins_Leave);
-            // 
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.label21);
@@ -2393,7 +2430,7 @@ namespace TeboCam
             this.groupBox13.Controls.Add(this.label27);
             this.groupBox13.Controls.Add(this.label26);
             this.groupBox13.Controls.Add(this.imageFileInterval);
-            this.groupBox13.Location = new System.Drawing.Point(6, 320);
+            this.groupBox13.Location = new System.Drawing.Point(6, 362);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(295, 200);
             this.groupBox13.TabIndex = 58;
@@ -4188,21 +4225,12 @@ namespace TeboCam
             // 
             // Test
             // 
-            this.Test.Controls.Add(this.ipCamPic);
             this.Test.Location = new System.Drawing.Point(4, 22);
             this.Test.Name = "Test";
             this.Test.Size = new System.Drawing.Size(944, 569);
             this.Test.TabIndex = 7;
             this.Test.Text = "Test";
             this.Test.UseVisualStyleBackColor = true;
-            // 
-            // ipCamPic
-            // 
-            this.ipCamPic.Location = new System.Drawing.Point(124, 56);
-            this.ipCamPic.Name = "ipCamPic";
-            this.ipCamPic.Size = new System.Drawing.Size(308, 231);
-            this.ipCamPic.TabIndex = 0;
-            this.ipCamPic.TabStop = false;
             // 
             // bttnToolTips
             // 
@@ -4370,8 +4398,8 @@ namespace TeboCam
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(964, 662);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bttnToolTips);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.notConnected);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.bttnUpdateFooter);
@@ -4450,6 +4478,8 @@ namespace TeboCam
             this.groupBox21.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.pingBox.ResumeLayout(false);
+            this.pingBox.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -4483,8 +4513,6 @@ namespace TeboCam
             this.Online.ResumeLayout(false);
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
-            this.Test.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ipCamPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -4812,8 +4840,10 @@ namespace TeboCam
         private System.Windows.Forms.Panel pnlStartupOptions;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.PictureBox ipCamPic;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.CheckBox bttnMotionScheduleOnAtStart;
+        private System.Windows.Forms.GroupBox pingBox;
+        private System.Windows.Forms.RadioButton rdPingActiveCamera;
+        private System.Windows.Forms.RadioButton rdPingAllCameras;
     }
 }

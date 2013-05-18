@@ -133,12 +133,9 @@ namespace TeboCam
                 // detach event
                 if (camera != null)
                 {
+
                     camera.NewFrame -= new EventHandler(camera_NewFrame);
 
-                    //camera.Alarm -= new EventHandler(camera_Alarm);
-                    //camera.motionAlarm -= new alarmEventHandler(camera_Alarm);
-
-                    //timer.Stop();
                 }
 
                 camera = value;
@@ -150,20 +147,12 @@ namespace TeboCam
                 // attach event
                 if (camera != null)
                 {
+
                     camera.NewFrame += new EventHandler(camera_NewFrame);
-
-
-                    //camera.Alarm += new EventHandler(camera_Alarm);                    
-                    //camera.motionAlarm += new alarmEventHandler(camera_Alarm);
-
                     bubble.takePicture += new EventHandler(take_picture);
-                    //bubble.pubPicture += new ImagePubEventHandler(take_picture_publish);
-                    //preferences.drawInitialRectangle += new EventHandler(drawInitialRectangle);
-
                     webcamConfig.drawInitialRectangle -= new drawEventHandler(drawInitialRectangle);
                     webcamConfig.drawInitialRectangle += new drawEventHandler(drawInitialRectangle);
 
-                    //timer.Start();
                 }
 
                 // unlock
@@ -248,12 +237,10 @@ namespace TeboCam
             {
                 try
                 {
-                    //20110403 was causing freezing
-                    //CameraRig.rig[CameraRig.activeCam].cam.Lock();
+
                     camera.Lock();
 
                     // draw frame
-                    //if (CameraRig.rig[CameraRig.activeCam].cam.LastFrame != null)
                     if (camera.pubFrame != null)
                     {
                         if (showCam)
@@ -262,7 +249,7 @@ namespace TeboCam
                             if (imageToFrame)
                             {
                                 g.DrawRectangle(pen, camera.pubFrame.Width, camera.pubFrame.Height, rc.Width, rc.Height);
-                                g.DrawImage(resizeImage(camera.pubFrame, 320, 240), rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
+                                g.DrawImage(bubble.resizeImage(camera.pubFrame, 320, 240), rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
                             }
                             else
                             {
@@ -292,13 +279,15 @@ namespace TeboCam
                 }
                 catch (Exception)
                 {
-                    //CameraRig.rig[CameraRig.activeCam].cam.Unlock();
+
                     camera.Unlock();
+
                 }
                 finally
                 {
-                    //CameraRig.rig[CameraRig.activeCam].cam.Unlock();
+
                     camera.Unlock();
+
                 }
             }
 
@@ -334,35 +323,35 @@ namespace TeboCam
 
         }
 
-        private static Bitmap resizeImage(Bitmap imgToResize, int width, int height)
-        {
-            int sourceWidth = imgToResize.Width;
-            int sourceHeight = imgToResize.Height;
+        //private static Bitmap resizeImage(Bitmap imgToResize, int width, int height)
+        //{
+        //    int sourceWidth = imgToResize.Width;
+        //    int sourceHeight = imgToResize.Height;
 
-            float nPercent = 0;
-            float nPercentW = 0;
-            float nPercentH = 0;
+        //    float nPercent = 0;
+        //    float nPercentW = 0;
+        //    float nPercentH = 0;
 
-            nPercentW = ((float)width / (float)sourceWidth);
-            nPercentH = ((float)height / (float)sourceHeight);
+        //    nPercentW = ((float)width / (float)sourceWidth);
+        //    nPercentH = ((float)height / (float)sourceHeight);
 
-            if (nPercentH < nPercentW)
-                nPercent = nPercentH;
-            else
-                nPercent = nPercentW;
+        //    if (nPercentH < nPercentW)
+        //        nPercent = nPercentH;
+        //    else
+        //        nPercent = nPercentW;
 
-            int destWidth = (int)(sourceWidth * nPercent);
-            int destHeight = (int)(sourceHeight * nPercent);
+        //    int destWidth = (int)(sourceWidth * nPercent);
+        //    int destHeight = (int)(sourceHeight * nPercent);
 
-            Bitmap b = new Bitmap(destWidth, destHeight);
-            Graphics g = Graphics.FromImage((Bitmap)b);
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //    Bitmap b = new Bitmap(destWidth, destHeight);
+        //    Graphics g = Graphics.FromImage((Bitmap)b);
+        //    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
-            g.Dispose();
+        //    g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+        //    g.Dispose();
 
-            return (Bitmap)b;
-        }
+        //    return (Bitmap)b;
+        //}
 
 
 
@@ -381,30 +370,25 @@ namespace TeboCam
                 {
                     Rectangle rc = this.Parent.ClientRectangle;
 
-                    //int width = CameraRig.rig[CameraRig.activeCam].cam.LastFrame.Width;
-                    //int height = CameraRig.rig[CameraRig.activeCam].cam.LastFrame.Height;
-
                     int width = camera.pubFrame.Width;
                     int height = camera.pubFrame.Height;
 
-                    //if (CameraRig.rig[CameraRig.activeCam].cam != null)
                     if (camera != null)
                     {
 
-                        //CameraRig.rig[CameraRig.activeCam].cam.Lock();
                         camera.Lock();
 
                         // get frame dimension
-                        //if (CameraRig.rig[CameraRig.activeCam].cam.LastFrame != null)
                         if (camera.pubFrame != null)
                         {
-                            //width = CameraRig.rig[CameraRig.activeCam].cam.LastFrame.Width;
-                            //height = CameraRig.rig[CameraRig.activeCam].cam.LastFrame.Height;
+
                             width = camera.pubFrame.Width;
                             height = camera.pubFrame.Height;
+
                         }
-                        //CameraRig.rig[CameraRig.activeCam].cam.Unlock();
+
                         camera.Unlock();
+
                     }
 
                     //
@@ -453,25 +437,60 @@ namespace TeboCam
 
                 }
 
+
                 imageText stampArgs = new imageText();
-                stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
+
+
+                if (config.getProfile(bubble.profileInUse).pingAll)
+                {
+
+                    mosaic mos = new mosaic();
+                    int imgHeight = 0;
+                    int imgWidth = 0;
+
+                    //set the height and width to the largest image
+                    foreach (rigItem item in CameraRig.rig)
+                    {
+
+                        if (item.cam.pubFrame.Height > imgHeight || item.cam.pubFrame.Width > imgWidth)
+                        {
+
+                            imgHeight = item.cam.pubFrame.Height;
+                            imgWidth = item.cam.pubFrame.Width;
+
+                        }
+
+                    }
+
+
+                    foreach (rigItem item in CameraRig.rig)
+                    {
+
+                        mos.addToList(bubble.resizeImage(item.cam.pubFrame, imgWidth, imgHeight));
+
+                    }
+
+
+                    stampArgs.bitmap = (Bitmap)mos.getMosaicBitmap(4).Clone();
+
+                }
+                else//if (config.getProfile(bubble.profileInUse).pingStatsStamp)
+                {
+
+
+                    stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
+
+
+                }
+
+
+
+
                 stampArgs.type = "Ping";
                 stampArgs.backingRectangle = config.getProfile(bubble.profileInUse).pingTimeStampRect;
                 stampArgs.stats = lst;
 
-                //saveBmp = bubble.timeStampImage((Bitmap)CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Clone(), "Ping");
-                //saveBmp = bubble.timeStampImage((Bitmap)camera.pubFrame.Clone(), "Ping", config.getProfile(bubble.profileInUse).pingTimeStampRect);
                 saveBmp = bubble.timeStampImage(stampArgs);
-
-                //specify jpeg compression
-                //ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
-                //System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
-                //EncoderParameters myEncoderParameters = new EncoderParameters(1);
-                //EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
-                //myEncoderParameters.Param[0] = myEncoderParameter;
-                //// Save the bitmap as a JPG file with 50 quality level compression.
-                ////0 is greatest compression, 100 is least compression
-                //saveBmp.Save(bubble.tmpFolder + fName, jgpEncoder, myEncoderParameters);
 
                 ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
                 System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
@@ -480,8 +499,6 @@ namespace TeboCam
                 myEncoderParameters.Param[0] = myEncoderParameter;
                 saveBmp.Save(bubble.tmpFolder + fName, jgpEncoder, myEncoderParameters);
 
-
-                //saveBmp.Save(bubble.tmpFolder + fName, ImageFormat.Jpeg);
                 Bitmap thumb = bubble.GetThumb(saveBmp);
                 thumb.Save(bubble.tmpFolder + bubble.tmbPrefix + fName, ImageFormat.Jpeg);
 
@@ -490,9 +507,7 @@ namespace TeboCam
                 bubble.logAddLine("Image saved: " + fName);
                 bubble.pingError = false;
                 haveTheFlag = false;
-                //old code 20091226
-                //camera.pubFrame.Save(bubble.imageFolder + fName, ImageFormat.Jpeg);
-                //old code 20091226
+
             }
             catch (Exception)
             {
@@ -631,9 +646,9 @@ namespace TeboCam
 
 
 
-                    // drawRect((int)CameraRig.rigInfoGet(bubble.profileInUse, "rectX"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectY"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectWidth"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectHeight")); 
-                    //drawRect(config.getProfile(bubble.profileInUse).rectX, config.getProfile(bubble.profileInUse).rectY, config.getProfile(bubble.profileInUse).rectWidth, config.getProfile(bubble.profileInUse).rectHeight);
+
                     rectDrawn = false;
+
                 }
 
             }
@@ -663,17 +678,6 @@ namespace TeboCam
             CurrentTopLeft.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY;
             CurrentBottomRight.X = CameraRig.rig[CameraRig.drawCam].cam.rectX + CameraRig.rig[CameraRig.drawCam].cam.rectWidth;
             CurrentBottomRight.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY + CameraRig.rig[CameraRig.drawCam].cam.rectHeight;
-
-
-            //CurrentTopLeft.X = (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectX");
-            //CurrentTopLeft.Y = (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectY");
-            //CurrentBottomRight.X = (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectX") + (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectWidth");
-            //CurrentBottomRight.Y = (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectY") + (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectHeight");
-
-            //CurrentTopLeft.X = config.getProfile(bubble.profileInUse).rectX;
-            //CurrentTopLeft.Y = config.getProfile(bubble.profileInUse).rectY;
-            //CurrentBottomRight.X = config.getProfile(bubble.profileInUse).rectX + config.getProfile(bubble.profileInUse).rectWidth;
-            //CurrentBottomRight.Y = config.getProfile(bubble.profileInUse).rectY + config.getProfile(bubble.profileInUse).rectHeight;
 
 
             rectDrawn = true;
@@ -769,10 +773,6 @@ namespace TeboCam
 
             drawRect(e.x, e.y, e.width, e.height);
 
-
-            //drawRect((int)CameraRig.rigInfoGet(bubble.profileInUse, "rectX"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectY"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectWidth"), (int)CameraRig.rigInfoGet(bubble.profileInUse, "rectHeight"));
-            //drawRect(config.getProfile(bubble.profileInUse).rectX, config.getProfile(bubble.profileInUse).rectY, config.getProfile(bubble.profileInUse).rectWidth, config.getProfile(bubble.profileInUse).rectHeight);
-
         }
 
         private void drawRect(int topLeftX, int topLeftY, int width, int height)
@@ -782,11 +782,10 @@ namespace TeboCam
             {
                 Graphics g = this.CreateGraphics();
 
-                //if (topLeftY + height > CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Height) { height = CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Height - topLeftY; }
                 if (topLeftY + height > camera.pubFrame.Height) { height = camera.pubFrame.Height - topLeftY; }
                 if (height < 1) { height = 1; }
                 if (topLeftY < 0) { topLeftY = 0; }
-                //if (topLeftY >= CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Height)
+
                 if (topLeftY >= camera.pubFrame.Height)
                 {
                     topLeftY = camera.pubFrame.Height - 1;
@@ -794,14 +793,13 @@ namespace TeboCam
                 }
 
 
-                //if (topLeftX + width > CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Width) { width = CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Width - topLeftX; }
                 if (topLeftX + width > camera.pubFrame.Width) { width = camera.pubFrame.Width - topLeftX; }
                 if (width < 1) { width = 1; }
                 if (topLeftX < 0) { topLeftX = 0; }
-                //if (topLeftX >= CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Width)
+
                 if (topLeftX >= camera.pubFrame.Width)
                 {
-                    //topLeftX = CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Width - 1;
+
                     topLeftX = camera.pubFrame.Width - 1;
                     width = 1;
                 }
@@ -827,8 +825,6 @@ namespace TeboCam
                 CameraRig.rig[CameraRig.drawCam].cam.Lock();
                 CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.Reset();
                 CameraRig.rig[CameraRig.drawCam].cam.Unlock();
-
-                //System.Diagnostics.Debug.WriteLine(CameraRig.drawCam);
 
 
             }
@@ -920,7 +916,6 @@ namespace TeboCam
                     CurrentBottomRight.Y = cursor.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
-                    //g.DrawRectangle(MyPen, CurrentTopLeft.X, CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
                     drawRect(CurrentTopLeft.X, CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
                 }
             }
@@ -955,7 +950,6 @@ namespace TeboCam
                     CurrentBottomRight.Y = cursor.Y;
                     RectangleWidth = CurrentBottomRight.X - CurrentTopLeft.X;
                     RectangleHeight = CurrentBottomRight.Y - CurrentTopLeft.Y;
-                    //g.DrawRectangle(MyPen, CurrentTopLeft.X, CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
                     drawRect(CurrentTopLeft.X, CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
                 }
             }
@@ -1066,3 +1060,4 @@ namespace TeboCam
 
 
 }
+

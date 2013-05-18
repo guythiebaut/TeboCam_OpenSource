@@ -1174,11 +1174,11 @@ namespace TeboCam
             // start camera
             camera.Start();
 
-            rigItem rig_it = new rigItem();
-            rig_it.cameraName = camSource;//source.Source;
-            rig_it.cam = camera;
-            rig_it.cam.cam = CameraRig.cameraCount();
-            CameraRig.addCamera(rig_it);
+            rigItem rig_item = new rigItem();
+            rig_item.cameraName = camSource;//source.Source;
+            rig_item.cam = camera;
+            rig_item.cam.cam = CameraRig.cameraCount();
+            CameraRig.addCamera(rig_item);
             int curCam = CameraRig.cameraCount() - 1;
             CameraRig.activeCam = curCam;
 
@@ -2214,6 +2214,13 @@ namespace TeboCam
             bubble.pings = 0;
         }
 
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).pingAll = rdPingAllCameras.Checked;
+
+        }
 
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -3424,7 +3431,6 @@ namespace TeboCam
 
             onlineVal.Enabled = bubble.DatabaseCredentialsCorrect;
             rdOnlinejpg.Enabled = bubble.DatabaseCredentialsCorrect;
-            //rdOnlinets.Enabled = bubble.DatabaseCredentialsCorrect;
             alertVal.Text = config.getProfile(bubble.profileInUse).alertCompression.ToString();
             pingVal.Text = config.getProfile(bubble.profileInUse).pingCompression.ToString();
             publishVal.Text = config.getProfile(bubble.profileInUse).publishCompression.ToString();
@@ -5039,6 +5045,7 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
 
 
 

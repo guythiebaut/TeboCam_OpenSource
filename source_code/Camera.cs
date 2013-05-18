@@ -137,6 +137,7 @@ namespace TeboCam
         //private Bitmap lastFrame = null;
         public Bitmap pubFrame = null;
 
+
         public bool alert = false;
         public bool alarmActive = false;
         public bool publishActive = false;

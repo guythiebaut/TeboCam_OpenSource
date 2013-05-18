@@ -444,27 +444,27 @@ namespace TeboCam
 
     }
 
-    public static class mosaic
+    public class mosaic
     {
 
-        private static List<Bitmap> bitmaps = new List<Bitmap>();
+        private List<Bitmap> bitmaps = new List<Bitmap>();
 
-        public static void clearList()
+        public void clearList()
         {
             bitmaps.Clear();
         }
 
-        public static void addToList(Bitmap bitmap)
+        public void addToList(Bitmap bitmap)
         {
             bitmaps.Add(bitmap);
         }
 
-        public static void addToList(string path)
+        public void addToList(string path)
         {
             bitmaps.Add(new Bitmap(path));
         }
 
-        public static void saveMosaicAsJpg(int imagesPerRow, string path, int compression)
+        public void saveMosaicAsJpg(int imagesPerRow, string path, int compression)
         {
 
             Bitmap resultBit = getMosaicBitmap(imagesPerRow);
@@ -480,7 +480,7 @@ namespace TeboCam
 
         }
 
-        public static void saveMosaicAsBmp(int imagesPerRow, string path)
+        public void saveMosaicAsBmp(int imagesPerRow, string path)
         {
 
             Bitmap resultBit = getMosaicBitmap(imagesPerRow);
@@ -490,10 +490,10 @@ namespace TeboCam
         }
 
         /// <summary>
-        /// using a List of Bitmaps as input a Bitmap patchword is returned 
+        /// using a List of Bitmaps as input a Bitmap patchwork is returned 
         /// </summary>
         /// <returns>Bitmap</returns>
-        public static Bitmap getMosaicBitmap(int imagesPerRow)
+        public Bitmap getMosaicBitmap(int imagesPerRow)
         {
 
             try
@@ -517,7 +517,7 @@ namespace TeboCam
                     imagesX = imagesPerRow;
                 }
 
-                //get the width and height of the images()images must hasve same width and height)
+                //get the width and height of the images()images must have same width and height)
                 int width = imageItems[0].Width;
                 int height = imageItems[0].Height;
 
@@ -579,7 +579,7 @@ namespace TeboCam
         }
 
 
-        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        private ImageCodecInfo GetEncoder(ImageFormat format)
         {
 
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
@@ -1343,6 +1343,7 @@ namespace TeboCam
         public long maxImagesToEmail;
         public double movementVal;
         public bool ping;
+        public bool pingAll;
         public int pingInterval;
         public string pingSubject;
         public int rectHeight;
@@ -1512,6 +1513,7 @@ namespace TeboCam
             maxImagesToEmail = 10;
             movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
             ping = false;
+            pingAll = true;
             pingInterval = 120;
             pingSubject = "WebCamPing";
             rectHeight = 80;
@@ -2036,11 +2038,14 @@ namespace TeboCam
                                 //send mosaic
                                 if (config.getProfile(bubble.profileInUse).sendMosaicImages || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
                                 {
-                                    mosaic.clearList();
+
+                                    mosaic mos = new mosaic();
+
+                                    mos.clearList();
 
                                     for (int i = 0; i < emailToProcess; i++)
                                     {
-                                        mosaic.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
+                                        mos.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
                                         imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
                                     }
 
@@ -2053,7 +2058,7 @@ namespace TeboCam
                                     if (!spamStopEmail)
                                     {
 
-                                        mosaic.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
+                                        mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
                                                                      thumbFolder + rand + mosaicFile,
                                                                      config.getProfile(bubble.profileInUse).alertCompression);
 
@@ -2061,14 +2066,14 @@ namespace TeboCam
                                     else
                                     {
 
-                                        mosaic.saveMosaicAsJpg(10,
+                                        mos.saveMosaicAsJpg(10,
                                                                thumbFolder + rand + mosaicFile,
                                                                config.getProfile(bubble.profileInUse).alertCompression);
 
                                     }
 
 
-                                    mosaic.clearList();
+                                    mos.clearList();
 
                                     mail.attachments.Add(thumbFolder + rand + mosaicFile);
 
@@ -2112,12 +2117,14 @@ namespace TeboCam
                                 if (config.getProfile(bubble.profileInUse).sendMosaicImages)
                                 {
 
-                                    mosaic.clearList();
+                                    mosaic mos = new mosaic();
+
+                                    mos.clearList();
 
                                     for (int i = 0; i < (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail); i++)
                                     {
 
-                                        mosaic.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
+                                        mos.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
                                         imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
                                         imagesToEmail--;
 
@@ -2126,11 +2133,11 @@ namespace TeboCam
                                     string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
 
                                     pulseEvent(null, new EventArgs());
-                                    mosaic.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
+                                    mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
                                                                  thumbFolder + rand + mosaicFile,
                                                                  config.getProfile(bubble.profileInUse).alertCompression);
 
-                                    mosaic.clearList();
+                                    mos.clearList();
 
                                     mail.attachments.Add(thumbFolder + rand + mosaicFile);
 
@@ -3771,7 +3778,7 @@ namespace TeboCam
             PointF B = new PointF(-fThickness * 2F, 0);
             PointF C = new PointF(0, -fLength);
             PointF D = new PointF(0, fThickness * 4F);
-            PointF[] points ={ A, D, B, C };
+            PointF[] points = { A, D, B, C };
             g.FillPolygon(new SolidBrush(color), points);
 
         }
@@ -3894,146 +3901,7 @@ namespace TeboCam
 
         }
 
-        public static Bitmap timeStampImageOLD(Bitmap imageIn, string type, bool backingRectangle)
-        {
 
-            string position = "";
-            string format = "";
-            string colour = "";
-            string formatStr = "";
-            Brush textBrush = Brushes.Black;
-            Brush rectBrush = Brushes.Black;
-            int time = 70;
-            int date = 80;
-            int full = 150;
-            int textWidth = 0;
-
-
-            try
-            {
-
-                if (type == "Alert")
-                {
-                    if (!config.getProfile(bubble.profileInUse).alertTimeStamp) return imageIn;
-                    position = config.getProfile(bubble.profileInUse).alertTimeStampPosition;
-                    format = config.getProfile(bubble.profileInUse).alertTimeStampFormat;
-                    colour = config.getProfile(bubble.profileInUse).alertTimeStampColour;
-                }
-
-                if (type == "Ping")
-                {
-                    if (!config.getProfile(bubble.profileInUse).pingTimeStamp) return imageIn;
-                    position = config.getProfile(bubble.profileInUse).pingTimeStampPosition;
-                    format = config.getProfile(bubble.profileInUse).pingTimeStampFormat;
-                    colour = config.getProfile(bubble.profileInUse).pingTimeStampColour;
-                }
-
-                if (type == "Publish")
-                {
-                    if (!config.getProfile(bubble.profileInUse).publishTimeStamp) return imageIn;
-                    position = config.getProfile(bubble.profileInUse).publishTimeStampPosition;
-                    format = config.getProfile(bubble.profileInUse).publishTimeStampFormat;
-                    colour = config.getProfile(bubble.profileInUse).publishTimeStampColour;
-                }
-
-                if (type == "Online")
-                {
-                    if (!config.getProfile(bubble.profileInUse).onlineTimeStamp) return imageIn;
-                    position = config.getProfile(bubble.profileInUse).onlineTimeStampPosition;
-                    format = config.getProfile(bubble.profileInUse).onlineTimeStampFormat;
-                    colour = config.getProfile(bubble.profileInUse).onlineTimeStampColour;
-                }
-
-                switch (format)
-                {
-                    case "hhmm":
-                        formatStr = DateTime.Now.ToString("HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                        textWidth = time;
-                        break;
-                    case "ddmmyy":
-                        formatStr = DateTime.Now.ToString("dd-MMM-yy", System.Globalization.CultureInfo.InvariantCulture);
-                        textWidth = date;
-                        break;
-                    case "ddmmyyhhmm":
-                        formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                        textWidth = full;
-                        break;
-                    default:
-                        formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                        textWidth = full;
-                        break;
-                }
-
-                switch (colour)
-                {
-                    case "red":
-                        textBrush = Brushes.Red;
-                        rectBrush = Brushes.White;
-                        break;
-                    case "black":
-                        textBrush = Brushes.Black;
-                        rectBrush = Brushes.White;
-                        break;
-                    case "white":
-                        textBrush = Brushes.White;
-                        rectBrush = Brushes.Black;
-                        break;
-                    default:
-                        textBrush = Brushes.Black;
-                        rectBrush = Brushes.White;
-                        break;
-                }
-
-
-                int width = imageIn.Width;
-                int height = imageIn.Height;
-                int x = 0;
-                int y = 0;
-
-                switch (position)
-                {
-                    case "tl":
-                        x = 5;
-                        y = 5;
-                        break;
-                    case "tr":
-                        x = width - textWidth;
-                        y = 5;
-                        break;
-                    case "bl":
-                        x = 5;
-                        y = height - 20;
-                        break;
-                    case "br":
-                        x = width - textWidth;
-                        y = height - 20;
-                        break;
-                    default:
-                        x = 5;
-                        y = 5;
-                        break;
-                }
-
-                Graphics graphicsObj;
-                graphicsObj = Graphics.FromImage(imageIn);
-
-                if (backingRectangle)
-                {
-
-                    graphicsObj.FillRectangle(rectBrush, x, y, textWidth, 20);
-
-                }
-
-                //graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), Brushes.Red, new PointF(5, 5));
-                graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
-
-                //graphicsObj.Dispose();
-
-                return imageIn;
-            }
-            catch
-            { return imageIn; }
-        }
 
 
         public static bool ThumbnailCallback()
@@ -4154,7 +4022,7 @@ namespace TeboCam
 
         }
 
-       
+
         public static void shutDown()
         {
 
@@ -4372,6 +4240,36 @@ namespace TeboCam
             return null;
         }
 
+
+        public static Bitmap resizeImage(Bitmap imgToResize, int width, int height)
+        {
+            int sourceWidth = imgToResize.Width;
+            int sourceHeight = imgToResize.Height;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)width / (float)sourceWidth);
+            nPercentH = ((float)height / (float)sourceHeight);
+
+            if (nPercentH < nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((Bitmap)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+
+            return (Bitmap)b;
+        }
 
 
     }

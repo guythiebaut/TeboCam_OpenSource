@@ -11,58 +11,6 @@ using System.ComponentModel;
 
 namespace TeboCam
 {
-    class pre262
-    {
-        public static string friendlyName = "Camera";
-        public static bool alarmActive = false;
-        public static bool publishActive = false;
-        public static bool areaDetection = false;
-        public static bool areaDetectionWithin = false;
-        public static bool areaOffAtMotion = false;
-        public static int rectX = 0;
-        public static int rectY = 0;
-        public static int rectWidth = 0;
-        public static int rectHeight = 0;
-        public static int displayButton = 1;
-        public static double movementVal = 0;
-        public static string fileDirAlertLoc = "";
-        public static bool fileDirAlertCust = false;
-
-        public static bool pubImage = false;
-        public static int pubTime = 2;
-        public static bool pubHours = false;
-        public static bool pubMins = true;
-        public static bool pubSecs = false;
-        public static bool publishWeb = false;
-        public static bool publishLocal = false;
-        public static bool timerOn = false;
-
-        public static string fileURLPubWeb = "";
-        public static string filenamePrefixPubWeb = "webcamPublish";
-        public static int cycleStampCheckedPubWeb = 1;
-        public static int startCyclePubWeb = 1;
-        public static int endCyclePubWeb = 999;
-        public static int currentCyclePubWeb = 1;
-        public static bool stampAppendPubWeb = false;
-
-
-        public static string fileDirPubLoc = "";
-        public static bool fileDirPubCust = false;
-        public static string filenamePrefixPubLoc = "webcamPublish";
-        public static int cycleStampCheckedPubLoc = 1;
-        public static int startCyclePubLoc = 1;
-        public static int endCyclePubLoc = 999;
-        public static int currentCyclePubLoc = 1;
-        public static bool stampAppendPubLoc = false;
-
-
-        public static string ipWebcamAddress = "";
-        public static string ipWebcamUser = "";
-        public static string ipWebcamPassword = "";
-
-
-
-    }
 
     class FileManager
     {
@@ -427,56 +375,10 @@ namespace TeboCam
                             if (configData.LocalName.Equals("profileEnd"))
                             {
 
-                                if (decimal.Parse(profileVer) <= 2.62m)//m forces number to be interpreted as decimal
-                                {
-                                    CameraRig.addInfo("alarmActive", true);
-                                    CameraRig.addInfo("publishActive", true);
-                                    CameraRig.addInfo("areaDetection", pre262.areaDetection);
-                                    CameraRig.addInfo("areaDetectionWithin", pre262.areaDetectionWithin);
-                                    CameraRig.addInfo("areaOffAtMotion", pre262.areaOffAtMotion);
-                                    CameraRig.addInfo("rectX", pre262.rectX);
-                                    CameraRig.addInfo("rectY", pre262.rectY);
-                                    CameraRig.addInfo("rectWidth", pre262.rectWidth);
-                                    CameraRig.addInfo("rectHeight", pre262.rectHeight);
-                                    CameraRig.addInfo("movementVal", pre262.movementVal);
-                                    CameraRig.addInfo("displayButton", pre262.displayButton);
-
-                                    CameraRig.addInfo("pubImage", pre262.pubImage);
-                                    CameraRig.addInfo("pubTime", pre262.pubTime);
-                                    CameraRig.addInfo("pubHours", pre262.pubHours);
-                                    CameraRig.addInfo("pubMins", pre262.pubMins);
-                                    CameraRig.addInfo("pubSecs", pre262.pubSecs);
-                                    CameraRig.addInfo("publishWeb", pre262.publishWeb);
-                                    CameraRig.addInfo("publishLocal", pre262.publishLocal);
-                                    CameraRig.addInfo("timerOn", pre262.timerOn);
-                                    CameraRig.addInfo("fileURLPubWeb", pre262.fileURLPubWeb);
-                                    CameraRig.addInfo("filenamePrefixPubWeb", pre262.filenamePrefixPubWeb);
-                                    CameraRig.addInfo("cycleStampCheckedPubWeb", pre262.cycleStampCheckedPubWeb);
-                                    CameraRig.addInfo("startCyclePubWeb", pre262.startCyclePubWeb);
-                                    CameraRig.addInfo("endCyclePubWeb", pre262.endCyclePubWeb);
-                                    CameraRig.addInfo("currentCyclePubWeb", pre262.currentCyclePubWeb);
-                                    CameraRig.addInfo("stampAppendPubWeb", pre262.stampAppendPubWeb);
-                                    CameraRig.addInfo("fileDirAlertLoc", pre262.fileDirAlertLoc);
-                                    CameraRig.addInfo("fileDirAlertCust", pre262.fileDirAlertCust);
-                                    CameraRig.addInfo("fileDirPubLoc", pre262.fileDirPubLoc);
-                                    CameraRig.addInfo("fileDirPubCust", pre262.fileDirPubCust);
-                                    CameraRig.addInfo("filenamePrefixPubLoc", pre262.filenamePrefixPubLoc);
-                                    CameraRig.addInfo("cycleStampCheckedPubLoc", pre262.cycleStampCheckedPubLoc);
-                                    CameraRig.addInfo("startCyclePubLoc", pre262.startCyclePubLoc);
-                                    CameraRig.addInfo("endCyclePubLoc", pre262.endCyclePubLoc);
-                                    CameraRig.addInfo("currentCyclePubLoc", pre262.currentCyclePubLoc);
-                                    CameraRig.addInfo("stampAppendPubLoc", pre262.stampAppendPubLoc);
-
-                                    CameraRig.addInfo("ipWebcamAddress", pre262.ipWebcamAddress);
-                                    CameraRig.addInfo("ipWebcamUser", pre262.ipWebcamUser);
-                                    CameraRig.addInfo("ipWebcamPassword", pre262.ipWebcamPassword);
-
-
-                                }
-
                                 config.getProfile("##newProf##").profileVersion = profileVer;
                                 config.getProfile("##newProf##").profileName = profileName.ToLower();
                                 firstProfile = false;
+
                             }
                             //profile footer
 
@@ -516,340 +418,172 @@ namespace TeboCam
                                 CameraRig.addInfo("profileName", profileName.ToLower());
                             }
 
-
-                            if (decimal.Parse(profileVer) > 2.62m)//m forces number to be interpreted as decimal
+                            if (configData.LocalName.Equals("alarmActive"))
                             {
-
-                                if (configData.LocalName.Equals("alarmActive"))
-                                {
-                                    CameraRig.addInfo("alarmActive", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("publishActive"))
-                                {
-                                    CameraRig.addInfo("publishActive", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("friendlyName"))
-                                {
-                                    CameraRig.addInfo("friendlyName", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("displayButton"))
-                                {
-                                    CameraRig.addInfo("displayButton", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("areaDetection"))
-                                {
-                                    config.getProfile("##newProf##").areaDetection = Convert.ToBoolean(configData.ReadString());
-                                    CameraRig.addInfo("areaDetection", config.getProfile("##newProf##").areaDetection);
-                                }
-                                if (configData.LocalName.Equals("areaDetectionWithin"))
-                                {
-                                    config.getProfile("##newProf##").areaDetectionWithin = Convert.ToBoolean(configData.ReadString());
-                                    CameraRig.addInfo("areaDetectionWithin", config.getProfile("##newProf##").areaDetectionWithin);
-                                }
-                                if (configData.LocalName.Equals("areaOffAtMotion"))
-                                {
-                                    config.getProfile("##newProf##").areaOffAtMotion = Convert.ToBoolean(configData.ReadString());
-                                    CameraRig.addInfo("areaOffAtMotion", config.getProfile("##newProf##").areaOffAtMotion);
-                                }
-                                if (configData.LocalName.Equals("rectX"))
-                                {
-                                    config.getProfile("##newProf##").rectX = Convert.ToInt32(configData.ReadString());
-                                    CameraRig.addInfo("rectX", config.getProfile("##newProf##").rectX);
-                                }
-                                if (configData.LocalName.Equals("rectY"))
-                                {
-                                    config.getProfile("##newProf##").rectY = Convert.ToInt32(configData.ReadString());
-                                    CameraRig.addInfo("rectY", config.getProfile("##newProf##").rectY);
-                                }
-                                if (configData.LocalName.Equals("rectWidth"))
-                                {
-                                    config.getProfile("##newProf##").rectWidth = Convert.ToInt32(configData.ReadString());
-                                    CameraRig.addInfo("rectWidth", config.getProfile("##newProf##").rectWidth);
-                                }
-                                if (configData.LocalName.Equals("rectHeight"))
-                                {
-                                    config.getProfile("##newProf##").rectHeight = Convert.ToInt32(configData.ReadString());
-                                    CameraRig.addInfo("rectHeight", config.getProfile("##newProf##").rectHeight);
-                                }
-                                if (configData.LocalName.Equals("movementVal"))
-                                {
-                                    config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
-                                    CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
-                                }
-
-
-
-                                if (configData.LocalName.Equals("pubTime"))
-                                {
-                                    CameraRig.addInfo("pubTime", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("pubHours"))
-                                {
-                                    CameraRig.addInfo("pubHours", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("pubMins"))
-                                {
-                                    CameraRig.addInfo("pubMins", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("pubSecs"))
-                                {
-                                    CameraRig.addInfo("pubSecs", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("publishWeb"))
-                                {
-                                    CameraRig.addInfo("publishWeb", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("publishLocal"))
-                                {
-                                    CameraRig.addInfo("publishLocal", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("timerOn"))
-                                {
-                                    CameraRig.addInfo("timerOn", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("fileURLPubWeb"))
-                                {
-                                    CameraRig.addInfo("fileURLPubWeb", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("filenamePrefixPubWeb"))
-                                {
-                                    CameraRig.addInfo("filenamePrefixPubWeb", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
-                                {
-                                    CameraRig.addInfo("cycleStampCheckedPubWeb", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("startCyclePubWeb"))
-                                {
-                                    CameraRig.addInfo("startCyclePubWeb", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("endCyclePubWeb"))
-                                {
-                                    CameraRig.addInfo("endCyclePubWeb", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("currentCyclePubWeb"))
-                                {
-                                    CameraRig.addInfo("currentCyclePubWeb", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("stampAppendPubWeb"))
-                                {
-                                    CameraRig.addInfo("stampAppendPubWeb", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("fileAlertPubLoc"))
-                                {
-                                    CameraRig.addInfo("fileAlertPubLoc", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("fileAlertPubCust"))
-                                {
-                                    CameraRig.addInfo("fileAlertPubCust", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("fileDirPubLoc"))
-                                {
-                                    CameraRig.addInfo("fileDirPubLoc", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("fileDirPubCust"))
-                                {
-                                    CameraRig.addInfo("fileDirPubCust", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("filenamePrefixPubLoc"))
-                                {
-                                    CameraRig.addInfo("filenamePrefixPubLoc", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
-                                {
-                                    CameraRig.addInfo("cycleStampCheckedPubLoc", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("startCyclePubLoc"))
-                                {
-                                    CameraRig.addInfo("startCyclePubLoc", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("endCyclePubLoc"))
-                                {
-                                    CameraRig.addInfo("endCyclePubLoc", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("currentCyclePubLoc"))
-                                {
-                                    CameraRig.addInfo("currentCyclePubLoc", Convert.ToInt32(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("stampAppendPubLoc"))
-                                {
-                                    CameraRig.addInfo("stampAppendPubLoc", Convert.ToBoolean(configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("ipWebcamAddress"))
-                                {
-                                    CameraRig.addInfo("ipWebcamAddress", configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("ipWebcamUser"))
-                                {
-                                    CameraRig.addInfo("ipWebcamUser",decrypt( configData.ReadString()));
-                                }
-                                if (configData.LocalName.Equals("ipWebcamPassword"))
-                                {
-                                    CameraRig.addInfo("ipWebcamPassword", decrypt(configData.ReadString()));
-                                }
-
-
-
-
+                                CameraRig.addInfo("alarmActive", Convert.ToBoolean(configData.ReadString()));
                             }
-                            else
+                            if (configData.LocalName.Equals("publishActive"))
                             {
-                                if (configData.LocalName.Equals("friendlyName"))
-                                {
-                                    pre262.friendlyName = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("areaDetection"))
-                                {
-                                    config.getProfile("##newProf##").areaDetection = Boolean.Parse(configData.ReadString());
-                                    pre262.areaDetection = Convert.ToBoolean(config.getProfile("##newProf##").areaDetection);
-                                }
-                                if (configData.LocalName.Equals("areaDetectionWithin"))
-                                {
-                                    config.getProfile("##newProf##").areaDetectionWithin = Convert.ToBoolean(configData.ReadString());
-                                    pre262.areaDetectionWithin = Convert.ToBoolean(config.getProfile("##newProf##").areaDetectionWithin);
-                                }
-                                if (configData.LocalName.Equals("areaOffAtMotion"))
-                                {
-                                    config.getProfile("##newProf##").areaOffAtMotion = Convert.ToBoolean(configData.ReadString());
-                                    pre262.areaOffAtMotion = Convert.ToBoolean(config.getProfile("##newProf##").areaOffAtMotion);
-                                }
-                                if (configData.LocalName.Equals("rectX"))
-                                {
-                                    config.getProfile("##newProf##").rectX = Convert.ToInt32(configData.ReadString());
-                                    pre262.rectX = Convert.ToInt32(config.getProfile("##newProf##").rectX);
-                                }
-                                if (configData.LocalName.Equals("rectY"))
-                                {
-                                    config.getProfile("##newProf##").rectY = Convert.ToInt32(configData.ReadString());
-                                    pre262.rectY = Convert.ToInt32(config.getProfile("##newProf##").rectY);
-                                }
-                                if (configData.LocalName.Equals("rectWidth"))
-                                {
-                                    config.getProfile("##newProf##").rectWidth = Convert.ToInt32(configData.ReadString());
-                                    pre262.rectWidth = Convert.ToInt32(config.getProfile("##newProf##").rectWidth);
-                                }
-                                if (configData.LocalName.Equals("rectHeight"))
-                                {
-                                    config.getProfile("##newProf##").rectHeight = Convert.ToInt32(configData.ReadString());
-                                    pre262.rectHeight = Convert.ToInt32(config.getProfile("##newProf##").rectHeight);
-                                }
-                                if (configData.LocalName.Equals("movementVal"))
-                                {
-                                    config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
-                                    pre262.movementVal = Convert.ToDouble(config.getProfile("##newProf##").movementVal);
-                                }
+                                CameraRig.addInfo("publishActive", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("friendlyName"))
+                            {
+                                CameraRig.addInfo("friendlyName", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("displayButton"))
+                            {
+                                CameraRig.addInfo("displayButton", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("areaDetection"))
+                            {
+                                config.getProfile("##newProf##").areaDetection = Convert.ToBoolean(configData.ReadString());
+                                CameraRig.addInfo("areaDetection", config.getProfile("##newProf##").areaDetection);
+                            }
+                            if (configData.LocalName.Equals("areaDetectionWithin"))
+                            {
+                                config.getProfile("##newProf##").areaDetectionWithin = Convert.ToBoolean(configData.ReadString());
+                                CameraRig.addInfo("areaDetectionWithin", config.getProfile("##newProf##").areaDetectionWithin);
+                            }
+                            if (configData.LocalName.Equals("areaOffAtMotion"))
+                            {
+                                config.getProfile("##newProf##").areaOffAtMotion = Convert.ToBoolean(configData.ReadString());
+                                CameraRig.addInfo("areaOffAtMotion", config.getProfile("##newProf##").areaOffAtMotion);
+                            }
+                            if (configData.LocalName.Equals("rectX"))
+                            {
+                                config.getProfile("##newProf##").rectX = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("rectX", config.getProfile("##newProf##").rectX);
+                            }
+                            if (configData.LocalName.Equals("rectY"))
+                            {
+                                config.getProfile("##newProf##").rectY = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("rectY", config.getProfile("##newProf##").rectY);
+                            }
+                            if (configData.LocalName.Equals("rectWidth"))
+                            {
+                                config.getProfile("##newProf##").rectWidth = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("rectWidth", config.getProfile("##newProf##").rectWidth);
+                            }
+                            if (configData.LocalName.Equals("rectHeight"))
+                            {
+                                config.getProfile("##newProf##").rectHeight = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("rectHeight", config.getProfile("##newProf##").rectHeight);
+                            }
+                            if (configData.LocalName.Equals("movementVal"))
+                            {
+                                config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
+                                CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
+                            }
 
 
-                                if (configData.LocalName.Equals("pubTime"))
-                                {
-                                    pre262.pubTime = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("pubHours"))
-                                {
-                                    pre262.pubHours = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("pubMins"))
-                                {
-                                    pre262.pubMins = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("pubSecs"))
-                                {
-                                    pre262.pubSecs = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("publishWeb"))
-                                {
-                                    pre262.publishWeb = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("publishLocal"))
-                                {
-                                    pre262.publishLocal = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("timerOn"))
-                                {
-                                    pre262.timerOn = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("fileURLPubWeb"))
-                                {
-                                    pre262.fileURLPubWeb = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("filenamePrefixPubWeb"))
-                                {
-                                    pre262.filenamePrefixPubWeb = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
-                                {
-                                    pre262.cycleStampCheckedPubWeb = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("startCyclePubWeb"))
-                                {
-                                    pre262.startCyclePubWeb = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("endCyclePubWeb"))
-                                {
-                                    pre262.endCyclePubWeb = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("currentCyclePubWeb"))
-                                {
-                                    pre262.currentCyclePubWeb = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("stampAppendPubWeb"))
-                                {
-                                    pre262.stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("fileDirAlertLoc"))
-                                {
-                                    pre262.fileDirAlertLoc = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("fileDirAlertCust"))
-                                {
-                                    pre262.fileDirAlertCust = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("fileDirPubLoc"))
-                                {
-                                    pre262.fileDirPubLoc = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("fileDirPubCust"))
-                                {
-                                    pre262.fileDirPubCust = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("filenamePrefixPubLoc"))
-                                {
-                                    pre262.filenamePrefixPubLoc = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
-                                {
-                                    pre262.cycleStampCheckedPubLoc = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("startCyclePubLoc"))
-                                {
-                                    pre262.startCyclePubLoc = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("endCyclePubLoc"))
-                                {
-                                    pre262.endCyclePubLoc = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("currentCyclePubLoc"))
-                                {
-                                    pre262.currentCyclePubLoc = Convert.ToInt32(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("stampAppendPubLoc"))
-                                {
-                                    pre262.stampAppendPubLoc = Convert.ToBoolean(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("ipWebcamAddress"))
-                                {
-                                    pre262.ipWebcamAddress = configData.ReadString();
-                                }
-                                if (configData.LocalName.Equals("ipWebcamUser"))
-                                {
-                                    pre262.ipWebcamUser = decrypt(configData.ReadString());
-                                }
-                                if (configData.LocalName.Equals("ipWebcamPassword"))
-                                {
-                                    pre262.ipWebcamPassword = decrypt(configData.ReadString());
-                                }
 
-
+                            if (configData.LocalName.Equals("pubTime"))
+                            {
+                                CameraRig.addInfo("pubTime", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("pubHours"))
+                            {
+                                CameraRig.addInfo("pubHours", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("pubMins"))
+                            {
+                                CameraRig.addInfo("pubMins", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("pubSecs"))
+                            {
+                                CameraRig.addInfo("pubSecs", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("publishWeb"))
+                            {
+                                CameraRig.addInfo("publishWeb", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("publishLocal"))
+                            {
+                                CameraRig.addInfo("publishLocal", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("timerOn"))
+                            {
+                                CameraRig.addInfo("timerOn", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("fileURLPubWeb"))
+                            {
+                                CameraRig.addInfo("fileURLPubWeb", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("filenamePrefixPubWeb"))
+                            {
+                                CameraRig.addInfo("filenamePrefixPubWeb", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
+                            {
+                                CameraRig.addInfo("cycleStampCheckedPubWeb", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("startCyclePubWeb"))
+                            {
+                                CameraRig.addInfo("startCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("endCyclePubWeb"))
+                            {
+                                CameraRig.addInfo("endCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("currentCyclePubWeb"))
+                            {
+                                CameraRig.addInfo("currentCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("stampAppendPubWeb"))
+                            {
+                                CameraRig.addInfo("stampAppendPubWeb", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("fileAlertPubLoc"))
+                            {
+                                CameraRig.addInfo("fileAlertPubLoc", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("fileAlertPubCust"))
+                            {
+                                CameraRig.addInfo("fileAlertPubCust", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("fileDirPubLoc"))
+                            {
+                                CameraRig.addInfo("fileDirPubLoc", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("fileDirPubCust"))
+                            {
+                                CameraRig.addInfo("fileDirPubCust", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("filenamePrefixPubLoc"))
+                            {
+                                CameraRig.addInfo("filenamePrefixPubLoc", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
+                            {
+                                CameraRig.addInfo("cycleStampCheckedPubLoc", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("startCyclePubLoc"))
+                            {
+                                CameraRig.addInfo("startCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("endCyclePubLoc"))
+                            {
+                                CameraRig.addInfo("endCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("currentCyclePubLoc"))
+                            {
+                                CameraRig.addInfo("currentCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("stampAppendPubLoc"))
+                            {
+                                CameraRig.addInfo("stampAppendPubLoc", Convert.ToBoolean(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("ipWebcamAddress"))
+                            {
+                                CameraRig.addInfo("ipWebcamAddress", configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("ipWebcamUser"))
+                            {
+                                CameraRig.addInfo("ipWebcamUser", decrypt(configData.ReadString()));
+                            }
+                            if (configData.LocalName.Equals("ipWebcamPassword"))
+                            {
+                                CameraRig.addInfo("ipWebcamPassword", decrypt(configData.ReadString()));
                             }
 
 
@@ -901,6 +635,10 @@ namespace TeboCam
                             if (configData.LocalName.Equals("ping"))
                             {
                                 config.getProfile("##newProf##").ping = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("pingAll"))
+                            {
+                                config.getProfile("##newProf##").pingAll = Convert.ToBoolean(configData.ReadString());
                             }
                             if (configData.LocalName.Equals("pingInterval"))
                             {
@@ -1616,23 +1354,10 @@ namespace TeboCam
 
                     //###
 
-                    configData.WriteStartElement("", "version", "");
-                    configData.WriteString(bubble.version);
-                    configData.WriteEndElement();
-
-                    configData.WriteStartElement("", "profileInUse", "");
-                    configData.WriteString(bubble.profileInUse);
-                    configData.WriteEndElement();
-
-                    configData.WriteStartElement("", "newsSeq", "");
-                    configData.WriteString(bubble.newsSeq.ToString());
-                    configData.WriteEndElement();
-
-                    configData.WriteStartElement("", "mysqlDriver", "");
-                    configData.WriteString(bubble.mysqlDriver);
-                    configData.WriteEndElement();
-
-
+                    writeElement("version", bubble.version, configData);
+                    writeElement("profileInUse", bubble.profileInUse, configData);
+                    writeElement("newsSeq", bubble.newsSeq.ToString(), configData);
+                    writeElement("mysqlDriver", bubble.mysqlDriver, configData);
 
                     config.getFirstProfile();
 
@@ -1641,19 +1366,9 @@ namespace TeboCam
 
                         configData.Indentation = 4;
 
-                        configData.WriteStartElement("", "profileStart", "");
-                        configData.WriteString(config.getProfile().profileName.ToLower());
-                        configData.WriteEndElement();
-
-                        configData.Indentation = 8;
-
-                        configData.WriteStartElement("", "sentByName", "");
-                        configData.WriteString(config.getProfile().sentByName);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingSubject", "");
-                        configData.WriteString(config.getProfile().pingSubject);
-                        configData.WriteEndElement();
+                        writeElement("profileStart", config.getProfile().profileName.ToLower(), configData);
+                        writeElement("sentByName", config.getProfile().sentByName, configData);
+                        writeElement("pingSubject", config.getProfile().pingSubject, configData);
 
                         configData.Indentation = 12;
 
@@ -1666,172 +1381,51 @@ namespace TeboCam
                             if (infoI.profileName.ToLower() == config.getProfile().profileName.ToLower())
                             {
 
-                                configData.WriteStartElement("", "webcam", "");
-                                configData.WriteString(infoI.webcam);
-                                configData.WriteEndElement();
+                                writeElement("webcam", infoI.webcam, configData);
 
                                 configData.Indentation = 16;
 
-                                configData.WriteStartElement("", "friendlyName", "");
-                                configData.WriteString(infoI.friendlyName);
-                                configData.WriteEndElement();
+                                writeElement("friendlyName", infoI.friendlyName, configData);
+                                writeElement("alarmActive", infoI.alarmActive.ToString(), configData);
+                                writeElement("publishActive", infoI.publishActive.ToString(), configData);
+                                writeElement("displayButton", infoI.displayButton.ToString(), configData);
+                                writeElement("areaDetection", infoI.areaDetection.ToString(), configData);
+                                writeElement("areaDetectionWithin", infoI.areaDetectionWithin.ToString(), configData);
+                                writeElement("areaOffAtMotion", infoI.areaOffAtMotion.ToString(), configData);
+                                writeElement("rectX", infoI.rectX.ToString(), configData);
+                                writeElement("rectY", infoI.rectY.ToString(), configData);
+                                writeElement("rectWidth", infoI.rectWidth.ToString(), configData);
+                                writeElement("rectHeight", infoI.rectHeight.ToString(), configData);
+                                writeElement("movementVal", infoI.movementVal.ToString(), configData);
+                                writeElement("pubImage", infoI.pubImage.ToString(), configData);
+                                writeElement("pubTime", infoI.pubTime.ToString(), configData);
+                                writeElement("pubHours", infoI.pubHours.ToString(), configData);
+                                writeElement("pubMins", infoI.pubMins.ToString(), configData);
+                                writeElement("pubSecs", infoI.pubSecs.ToString(), configData);
+                                writeElement("publishWeb", infoI.publishWeb.ToString(), configData);
+                                writeElement("publishLocal", infoI.publishLocal.ToString(), configData);
+                                writeElement("timerOn", infoI.timerOn.ToString(), configData);
+                                writeElement("fileURLPubWeb", infoI.fileURLPubWeb.ToString(), configData);
+                                writeElement("filenamePrefixPubWeb", infoI.filenamePrefixPubWeb.ToString(), configData);
+                                writeElement("cycleStampCheckedPubWeb", infoI.cycleStampCheckedPubWeb.ToString(), configData);
+                                writeElement("startCyclePubWeb", infoI.startCyclePubWeb.ToString(), configData);
+                                writeElement("endCyclePubWeb", infoI.endCyclePubWeb.ToString(), configData);
+                                writeElement("currentCyclePubWeb", infoI.currentCyclePubWeb.ToString(), configData);
+                                writeElement("stampAppendPubWeb", infoI.stampAppendPubWeb.ToString(), configData);
+                                writeElement("fileDirAlertLoc", infoI.fileDirAlertLoc.ToString(), configData);
+                                writeElement("fileDirAlertCust", infoI.fileDirAlertCust.ToString(), configData);
+                                writeElement("fileDirPubLoc", infoI.fileDirPubLoc.ToString(), configData);
+                                writeElement("fileDirPubCust", infoI.fileDirPubCust.ToString(), configData);
+                                writeElement("filenamePrefixPubLoc", infoI.filenamePrefixPubLoc.ToString(), configData);
+                                writeElement("cycleStampCheckedPubLoc", infoI.cycleStampCheckedPubLoc.ToString(), configData);
+                                writeElement("startCyclePubLoc", infoI.startCyclePubLoc.ToString(), configData);
+                                writeElement("endCyclePubLoc", infoI.endCyclePubLoc.ToString(), configData);
+                                writeElement("currentCyclePubLoc", infoI.currentCyclePubLoc.ToString(), configData);
+                                writeElement("stampAppendPubLoc", infoI.stampAppendPubLoc.ToString(), configData);
+                                writeElement("ipWebcamAddress", infoI.ipWebcamAddress.ToString(), configData);
+                                writeElement("ipWebcamUser", encrypt(infoI.ipWebcamUser.ToString()), configData);
+                                writeElement("ipWebcamPassword", encrypt(infoI.ipWebcamPassword.ToString()), configData);
 
-                                configData.WriteStartElement("", "alarmActive", "");
-                                configData.WriteString(infoI.alarmActive.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "publishActive", "");
-                                configData.WriteString(infoI.publishActive.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "displayButton", "");
-                                configData.WriteString(infoI.displayButton.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "areaDetection", "");
-                                configData.WriteString(infoI.areaDetection.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "areaDetectionWithin", "");
-                                configData.WriteString(infoI.areaDetectionWithin.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "areaOffAtMotion", "");
-                                configData.WriteString(infoI.areaOffAtMotion.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "rectX", "");
-                                configData.WriteString(infoI.rectX.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "rectY", "");
-                                configData.WriteString(infoI.rectY.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "rectWidth", "");
-                                configData.WriteString(infoI.rectWidth.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "rectHeight", "");
-                                configData.WriteString(infoI.rectHeight.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "movementVal", "");
-                                configData.WriteString(infoI.movementVal.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "pubImage", "");
-                                configData.WriteString(infoI.pubImage.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "pubTime", "");
-                                configData.WriteString(infoI.pubTime.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "pubHours", "");
-                                configData.WriteString(infoI.pubHours.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "pubMins", "");
-                                configData.WriteString(infoI.pubMins.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "pubSecs", "");
-                                configData.WriteString(infoI.pubSecs.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "publishWeb", "");
-                                configData.WriteString(infoI.publishWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "publishLocal", "");
-                                configData.WriteString(infoI.publishLocal.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "timerOn", "");
-                                configData.WriteString(infoI.timerOn.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "fileURLPubWeb", "");
-                                configData.WriteString(infoI.fileURLPubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "filenamePrefixPubWeb", "");
-                                configData.WriteString(infoI.filenamePrefixPubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "cycleStampCheckedPubWeb", "");
-                                configData.WriteString(infoI.cycleStampCheckedPubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "startCyclePubWeb", "");
-                                configData.WriteString(infoI.startCyclePubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "endCyclePubWeb", "");
-                                configData.WriteString(infoI.endCyclePubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "currentCyclePubWeb", "");
-                                configData.WriteString(infoI.currentCyclePubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "stampAppendPubWeb", "");
-                                configData.WriteString(infoI.stampAppendPubWeb.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "fileDirAlertLoc", "");
-                                configData.WriteString(infoI.fileDirAlertLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "fileDirAlertCust", "");
-                                configData.WriteString(infoI.fileDirAlertCust.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "fileDirPubLoc", "");
-                                configData.WriteString(infoI.fileDirPubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "fileDirPubCust", "");
-                                configData.WriteString(infoI.fileDirPubCust.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "filenamePrefixPubLoc", "");
-                                configData.WriteString(infoI.filenamePrefixPubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "cycleStampCheckedPubLoc", "");
-                                configData.WriteString(infoI.cycleStampCheckedPubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "startCyclePubLoc", "");
-                                configData.WriteString(infoI.startCyclePubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "endCyclePubLoc", "");
-                                configData.WriteString(infoI.endCyclePubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "currentCyclePubLoc", "");
-                                configData.WriteString(infoI.currentCyclePubLoc.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "stampAppendPubLoc", "");
-                                configData.WriteString(infoI.stampAppendPubLoc.ToString());
-                                configData.WriteEndElement();
-                                                                
-                                configData.WriteStartElement("", "ipWebcamAddress", "");
-                                configData.WriteString(infoI.ipWebcamAddress.ToString());
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "ipWebcamUser", "");
-                                configData.WriteString(encrypt(infoI.ipWebcamUser.ToString()));
-                                configData.WriteEndElement();
-
-                                configData.WriteStartElement("", "ipWebcamPassword", "");
-                                configData.WriteString(encrypt(infoI.ipWebcamPassword.ToString()));
-                                configData.WriteEndElement();
-                                
                                 configData.Indentation = 12;
 
                             }
@@ -1844,461 +1438,127 @@ namespace TeboCam
 
                         configData.Indentation = 8;
 
-                        configData.WriteStartElement("", "freezeGuard", "");
-                        configData.WriteString(config.getProfile().freezeGuard.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "freezeGuardWindowShow", "");
-                        configData.WriteString(config.getProfile().freezeGuardWindowShow.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "updatesNotify", "");
-                        configData.WriteString(config.getProfile().updatesNotify.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "countdownNow", "");
-                        configData.WriteString(config.getProfile().countdownNow.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "activatecountdown", "");
-                        configData.WriteString(config.getProfile().activatecountdown.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "activatecountdownTime", "");
-                        configData.WriteString(config.getProfile().activatecountdownTime);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "countdownTime", "");
-                        configData.WriteString(config.getProfile().countdownTime.ToString());
-                        configData.WriteEndElement();
-
-
-                        configData.WriteStartElement("", "alert", "");
-                        configData.WriteString(bubble.Alert.on.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "maxImagesToEmail", "");
-                        configData.WriteString(config.getProfile().maxImagesToEmail.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sendNotifyEmail", "");
-                        configData.WriteString(config.getProfile().sendNotifyEmail.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "ping", "");
-                        configData.WriteString(config.getProfile().ping.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingInterval", "");
-                        configData.WriteString(config.getProfile().pingInterval.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sendFullSizeImages", "");
-                        configData.WriteString(config.getProfile().sendFullSizeImages.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sendThumbnailImages", "");
-                        configData.WriteString(config.getProfile().sendThumbnailImages.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sendMosaicImages", "");
-                        configData.WriteString(config.getProfile().sendMosaicImages.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "mosaicImagesPerRow", "");
-                        configData.WriteString(config.getProfile().mosaicImagesPerRow.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "loadImagesToFtp", "");
-                        configData.WriteString(config.getProfile().loadImagesToFtp.ToString());
-                        configData.WriteEndElement();
+                        writeElement("freezeGuard", config.getProfile().freezeGuard.ToString(), configData);
+                        writeElement("freezeGuardWindowShow", config.getProfile().freezeGuardWindowShow.ToString(), configData);
+                        writeElement("updatesNotify", config.getProfile().updatesNotify.ToString(), configData);
+                        writeElement("countdownNow", config.getProfile().countdownNow.ToString(), configData);
+                        writeElement("activatecountdown", config.getProfile().activatecountdown.ToString(), configData);
+                        writeElement("activatecountdownTime", config.getProfile().activatecountdownTime, configData);
+                        writeElement("countdownTime", config.getProfile().countdownTime.ToString(), configData);
+                        writeElement("alert", bubble.Alert.on.ToString(), configData);
+                        writeElement("maxImagesToEmail", config.getProfile().maxImagesToEmail.ToString(), configData);
+                        writeElement("sendNotifyEmail", config.getProfile().sendNotifyEmail.ToString(), configData);
+                        writeElement("ping", config.getProfile().ping.ToString(), configData);
+                        writeElement("pingAll", config.getProfile().pingAll.ToString(), configData);
+                        writeElement("pingInterval", config.getProfile().pingInterval.ToString(), configData);
+                        writeElement("sendFullSizeImages", config.getProfile().sendFullSizeImages.ToString(), configData);
+                        writeElement("sendThumbnailImages", config.getProfile().sendThumbnailImages.ToString(), configData);
+                        writeElement("sendMosaicImages", config.getProfile().sendMosaicImages.ToString(), configData);
+                        writeElement("mosaicImagesPerRow", config.getProfile().mosaicImagesPerRow.ToString(), configData);
+                        writeElement("loadImagesToFtp", config.getProfile().loadImagesToFtp.ToString(), configData);
                         //###
-                        configData.WriteStartElement("", "baselineVal", "");
-                        configData.WriteString(config.getProfile().baselineVal.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "imageSaveInterval", "");
-                        configData.WriteString(config.getProfile().imageSaveInterval.ToString());
-                        configData.WriteEndElement();
-
-
-                        configData.WriteStartElement("", "filenamePrefix", "");
-                        configData.WriteString(config.getProfile().filenamePrefix);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "cycleStampChecked", "");
-                        configData.WriteString(config.getProfile().cycleStampChecked.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "startCycle", "");
-                        configData.WriteString(config.getProfile().startCycle.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "endCycle", "");
-                        configData.WriteString(config.getProfile().endCycle.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "currentCycle", "");
-                        configData.WriteString(config.getProfile().currentCycle.ToString());
-                        configData.WriteEndElement();
-
-
-                        configData.WriteStartElement("", "emailNotifyInterval", "");
-                        configData.WriteString(config.getProfile().emailNotifyInterval.ToString());
-                        configData.WriteEndElement();
+                        writeElement("baselineVal", config.getProfile().baselineVal.ToString(), configData);
+                        writeElement("imageSaveInterval", config.getProfile().imageSaveInterval.ToString(), configData);
+                        writeElement("filenamePrefix", config.getProfile().filenamePrefix, configData);
+                        writeElement("cycleStampChecked", config.getProfile().cycleStampChecked.ToString(), configData);
+                        writeElement("startCycle", config.getProfile().startCycle.ToString(), configData);
+                        writeElement("endCycle", config.getProfile().endCycle.ToString(), configData);
+                        writeElement("currentCycle", config.getProfile().currentCycle.ToString(), configData);
+                        writeElement("emailNotifyInterval", config.getProfile().emailNotifyInterval.ToString(), configData);
                         //###
-                        configData.WriteStartElement("", "emailUser", "");
-                        configData.WriteString(config.getProfile().emailUser);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "emailPassword", "");
-                        configData.WriteString(encrypt(config.getProfile().emailPass));
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "smtpHost", "");
-                        configData.WriteString(config.getProfile().smtpHost);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "stmpPort", "");
-                        configData.WriteString(config.getProfile().smtpPort.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "ssl", "");
-                        configData.WriteString(config.getProfile().EnableSsl.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sendTo", "");
-                        configData.WriteString(config.getProfile().sendTo);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "replyTo", "");
-                        configData.WriteString(config.getProfile().replyTo);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "sentBy", "");
-                        configData.WriteString(config.getProfile().sentBy);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "mailSubject", "");
-                        configData.WriteString(config.getProfile().mailSubject);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "mailBody", "");
-                        configData.WriteString(config.getProfile().mailBody);
-                        configData.WriteEndElement();
+                        writeElement("emailUser", config.getProfile().emailUser, configData);
+                        writeElement("emailPassword", encrypt(config.getProfile().emailPass), configData);
+                        writeElement("smtpHost", config.getProfile().smtpHost, configData);
+                        writeElement("stmpPort", config.getProfile().smtpPort.ToString(), configData);
+                        writeElement("ssl", config.getProfile().EnableSsl.ToString(), configData);
+                        writeElement("sendTo", config.getProfile().sendTo, configData);
+                        writeElement("replyTo", config.getProfile().replyTo, configData);
+                        writeElement("sentBy", config.getProfile().sentBy, configData);
+                        writeElement("mailSubject", config.getProfile().mailSubject, configData);
+                        writeElement("mailBody", config.getProfile().mailBody, configData);
                         //###
-                        configData.WriteStartElement("", "ftpUser", "");
-                        configData.WriteString(config.getProfile().ftpUser);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "ftpPass", "");
-                        configData.WriteString(encrypt(config.getProfile().ftpPass));
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "ftpRoot", "");
-                        configData.WriteString(config.getProfile().ftpRoot);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pubImage", "");
-                        configData.WriteString(config.getProfile().pubImage.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pubFtpUser", "");
-                        configData.WriteString(config.getProfile().pubFtpUser);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pubFtpPass", "");
-                        configData.WriteString(encrypt(config.getProfile().pubFtpPass));
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pubFtpRoot", "");
-                        configData.WriteString(config.getProfile().pubFtpRoot);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerOn", "");
-                        configData.WriteString(config.getProfile().timerOn.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerStartPub", "");
-                        configData.WriteString(config.getProfile().timerStartPub);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerEndPub", "");
-                        configData.WriteString(config.getProfile().timerEndPub);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerOnMov", "");
-                        configData.WriteString(config.getProfile().timerOnMov.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "scheduleOnAtStart", "");
-                        configData.WriteString(config.getProfile().scheduleOnAtStart.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "activateAtEveryStartup", "");
-                        configData.WriteString(config.getProfile().activateAtEveryStartup.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerStartMov", "");
-                        configData.WriteString(config.getProfile().timerStartMov);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "timerEndMov", "");
-                        configData.WriteString(config.getProfile().timerEndMov);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webUpd", "");
-                        configData.WriteString(config.getProfile().webUpd.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webUser", "");
-                        configData.WriteString(config.getProfile().webUser);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webPass", "");
-                        configData.WriteString(encrypt(config.getProfile().webPass));
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webFtpPass", "");
-                        configData.WriteString(encrypt(config.getProfile().webFtpPass));
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webFtpUser", "");
-                        configData.WriteString(config.getProfile().webFtpUser);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webPoll", "");
-                        configData.WriteString(config.getProfile().webPoll.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webInstance", "");
-                        configData.WriteString(config.getProfile().webInstance.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webImageRoot", "");
-                        configData.WriteString(config.getProfile().webImageRoot.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "webImageFileName", "");
-                        configData.WriteString(config.getProfile().webImageFileName.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "soundAlert", "");
-                        configData.WriteString(config.getProfile().soundAlert);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "soundAlertOn", "");
-                        configData.WriteString(config.getProfile().soundAlertOn.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "logsKeep", "");
-                        configData.WriteString(config.getProfile().logsKeep.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "logsKeepChk", "");
-                        configData.WriteString(config.getProfile().logsKeepChk.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "imageParentFolderCust", "");
-                        configData.WriteString(config.getProfile().imageParentFolderCust);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "imageFolderCust", "");
-                        configData.WriteString(config.getProfile().imageFolderCust);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "thumbFolderCust", "");
-                        configData.WriteString(config.getProfile().thumbFolderCust);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "imageLocCust", "");
-                        configData.WriteString(config.getProfile().imageLocCust.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "startTeboCamMinimized", "");
-                        configData.WriteString(config.getProfile().startTeboCamMinimized.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "internetCheck", "");
-                        configData.WriteString(config.getProfile().internetCheck);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "toolTips", "");
-                        configData.WriteString(config.getProfile().toolTips.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertCompression", "");
-                        configData.WriteString(config.getProfile().alertCompression.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishCompression", "");
-                        configData.WriteString(config.getProfile().publishCompression.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingCompression", "");
-                        configData.WriteString(config.getProfile().pingCompression.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineCompression", "");
-                        configData.WriteString(config.getProfile().onlineCompression.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertTimeStamp", "");
-                        configData.WriteString(config.getProfile().alertTimeStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertTimeStampFormat", "");
-                        configData.WriteString(config.getProfile().alertTimeStampFormat);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertStatsStamp", "");
-                        configData.WriteString(config.getProfile().alertStatsStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertTimeStampColour", "");
-                        configData.WriteString(config.getProfile().alertTimeStampColour);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertTimeStampPosition", "");
-                        configData.WriteString(config.getProfile().alertTimeStampPosition);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "alertTimeStampRect", "");
-                        configData.WriteString(config.getProfile().alertTimeStampRect.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishTimeStamp", "");
-                        configData.WriteString(config.getProfile().publishTimeStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishTimeStampFormat", "");
-                        configData.WriteString(config.getProfile().publishTimeStampFormat);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishStatsStamp", "");
-                        configData.WriteString(config.getProfile().publishStatsStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishTimeStampColour", "");
-                        configData.WriteString(config.getProfile().publishTimeStampColour);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishTimeStampPosition", "");
-                        configData.WriteString(config.getProfile().publishTimeStampPosition);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishTimeStampRect", "");
-                        configData.WriteString(config.getProfile().publishTimeStampRect.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingTimeStamp", "");
-                        configData.WriteString(config.getProfile().pingTimeStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingTimeStampFormat", "");
-                        configData.WriteString(config.getProfile().pingTimeStampFormat);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingStatsStamp", "");
-                        configData.WriteString(config.getProfile().pingStatsStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingTimeStampColour", "");
-                        configData.WriteString(config.getProfile().pingTimeStampColour);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingTimeStampPosition", "");
-                        configData.WriteString(config.getProfile().pingTimeStampPosition);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pingTimeStampRect", "");
-                        configData.WriteString(config.getProfile().pingTimeStampRect.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineTimeStamp", "");
-                        configData.WriteString(config.getProfile().onlineTimeStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineTimeStampFormat", "");
-                        configData.WriteString(config.getProfile().onlineTimeStampFormat);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineStatsStamp", "");
-                        configData.WriteString(config.getProfile().onlineStatsStamp.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineTimeStampColour", "");
-                        configData.WriteString(config.getProfile().onlineTimeStampColour);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineTimeStampPosition", "");
-                        configData.WriteString(config.getProfile().onlineTimeStampPosition);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "onlineTimeStampRect", "");
-                        configData.WriteString(config.getProfile().onlineTimeStampRect.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishLocal", "");
-                        configData.WriteString(config.getProfile().publishLocal.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "publishWeb", "");
-                        configData.WriteString(config.getProfile().publishWeb.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "imageToframe", "");
-                        configData.WriteString(config.getProfile().imageToframe.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "cameraShow", "");
-                        configData.WriteString(config.getProfile().cameraShow.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "motionLevel", "");
-                        configData.WriteString(config.getProfile().motionLevel.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "selectedCam", "");
-                        configData.WriteString(config.getProfile().selectedCam);
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "pulseFreq", "");
-                        configData.WriteString(config.getProfile().pulseFreq.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "EmailIntelOn", "");
-                        configData.WriteString(config.getProfile().EmailIntelOn.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "emailIntelEmails", "");
-                        configData.WriteString(config.getProfile().emailIntelEmails.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "emailIntelMins", "");
-                        configData.WriteString(config.getProfile().emailIntelMins.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "EmailIntelStop", "");
-                        configData.WriteString(config.getProfile().EmailIntelStop.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "disCommOnline", "");
-                        configData.WriteString(config.getProfile().disCommOnline.ToString());
-                        configData.WriteEndElement();
-
-                        configData.WriteStartElement("", "disCommOnlineSecs", "");
-                        configData.WriteString(config.getProfile().disCommOnlineSecs.ToString());
-                        configData.WriteEndElement();
-
+                        writeElement("ftpUser", config.getProfile().ftpUser, configData);
+                        writeElement("ftpPass", encrypt(config.getProfile().ftpPass), configData);
+                        writeElement("ftpRoot", config.getProfile().ftpRoot, configData);
+                        writeElement("pubImage", config.getProfile().pubImage.ToString(), configData);
+                        writeElement("pubFtpUser", config.getProfile().pubFtpUser, configData);
+                        writeElement("pubFtpPass", encrypt(config.getProfile().pubFtpPass), configData);
+                        writeElement("pubFtpRoot", config.getProfile().pubFtpRoot, configData);
+                        writeElement("timerOn", config.getProfile().timerOn.ToString(), configData);
+                        writeElement("timerStartPub", config.getProfile().timerStartPub, configData);
+                        writeElement("timerEndPub", config.getProfile().timerEndPub, configData);
+                        writeElement("timerOnMov", config.getProfile().timerOnMov.ToString(), configData);
+                        writeElement("scheduleOnAtStart", config.getProfile().scheduleOnAtStart.ToString(), configData);
+                        writeElement("activateAtEveryStartup", config.getProfile().activateAtEveryStartup.ToString(), configData);
+                        writeElement("timerStartMov", config.getProfile().timerStartMov, configData);
+                        writeElement("timerEndMov", config.getProfile().timerEndMov, configData);
+                        writeElement("webUpd", config.getProfile().webUpd.ToString(), configData);
+                        writeElement("webUser", config.getProfile().webUser, configData);
+                        writeElement("webPass", encrypt(config.getProfile().webPass), configData);
+                        writeElement("webFtpPass", encrypt(config.getProfile().webFtpPass), configData);
+                        writeElement("webFtpUser", config.getProfile().webFtpUser, configData);
+                        writeElement("webPoll", config.getProfile().webPoll.ToString(), configData);
+                        writeElement("webInstance", config.getProfile().webInstance.ToString(), configData);
+                        writeElement("webImageRoot", config.getProfile().webImageRoot.ToString(), configData);
+                        writeElement("webImageFileName", config.getProfile().webImageFileName.ToString(), configData);
+                        writeElement("soundAlert", config.getProfile().soundAlert, configData);
+                        writeElement("soundAlertOn", config.getProfile().soundAlertOn.ToString(), configData);
+                        writeElement("logsKeep", config.getProfile().logsKeep.ToString(), configData);
+                        writeElement("logsKeepChk", config.getProfile().logsKeepChk.ToString(), configData);
+                        writeElement("imageParentFolderCust", config.getProfile().imageParentFolderCust, configData);
+                        writeElement("imageFolderCust", config.getProfile().imageFolderCust, configData);
+                        writeElement("thumbFolderCust", config.getProfile().thumbFolderCust, configData);
+                        writeElement("imageLocCust", config.getProfile().imageLocCust.ToString(), configData);
+                        writeElement("startTeboCamMinimized", config.getProfile().startTeboCamMinimized.ToString(), configData);
+                        writeElement("internetCheck", config.getProfile().internetCheck, configData);
+                        writeElement("toolTips", config.getProfile().toolTips.ToString(), configData);
+                        writeElement("alertCompression", config.getProfile().alertCompression.ToString(), configData);
+                        writeElement("publishCompression", config.getProfile().publishCompression.ToString(), configData);
+                        writeElement("pingCompression", config.getProfile().pingCompression.ToString(), configData);
+                        writeElement("onlineCompression", config.getProfile().onlineCompression.ToString(), configData);
+                        writeElement("alertTimeStamp", config.getProfile().alertTimeStamp.ToString(), configData);
+                        writeElement("alertTimeStampFormat", config.getProfile().alertTimeStampFormat, configData);
+                        writeElement("alertStatsStamp", config.getProfile().alertStatsStamp.ToString(), configData);
+                        writeElement("alertTimeStampColour", config.getProfile().alertTimeStampColour, configData);
+                        writeElement("alertTimeStampPosition", config.getProfile().alertTimeStampPosition, configData);
+                        writeElement("alertTimeStampRect", config.getProfile().alertTimeStampRect.ToString(), configData);
+                        writeElement("publishTimeStamp", config.getProfile().publishTimeStamp.ToString(), configData);
+                        writeElement("publishTimeStampFormat", config.getProfile().publishTimeStampFormat, configData);
+                        writeElement("publishStatsStamp", config.getProfile().publishStatsStamp.ToString(), configData);
+                        writeElement("publishTimeStampColour", config.getProfile().publishTimeStampColour, configData);
+                        writeElement("publishTimeStampPosition", config.getProfile().publishTimeStampPosition, configData);
+                        writeElement("publishTimeStampRect", config.getProfile().publishTimeStampRect.ToString(), configData);
+                        writeElement("pingTimeStamp", config.getProfile().pingTimeStamp.ToString(), configData);
+                        writeElement("pingTimeStampFormat", config.getProfile().pingTimeStampFormat, configData);
+                        writeElement("pingStatsStamp", config.getProfile().pingStatsStamp.ToString(), configData);
+                        writeElement("pingTimeStampColour", config.getProfile().pingTimeStampColour, configData);
+                        writeElement("pingTimeStampPosition", config.getProfile().pingTimeStampPosition, configData);
+                        writeElement("pingTimeStampRect", config.getProfile().pingTimeStampRect.ToString(), configData);
+                        writeElement("onlineTimeStamp", config.getProfile().onlineTimeStamp.ToString(), configData);
+                        writeElement("onlineTimeStampFormat", config.getProfile().onlineTimeStampFormat, configData);
+                        writeElement("onlineStatsStamp", config.getProfile().onlineStatsStamp.ToString(), configData);
+                        writeElement("onlineTimeStampColour", config.getProfile().onlineTimeStampColour, configData);
+                        writeElement("onlineTimeStampPosition", config.getProfile().onlineTimeStampPosition, configData);
+                        writeElement("onlineTimeStampRect", config.getProfile().onlineTimeStampRect.ToString(), configData);
+                        writeElement("publishLocal", config.getProfile().publishLocal.ToString(), configData);
+                        writeElement("publishWeb", config.getProfile().publishWeb.ToString(), configData);
+                        writeElement("imageToframe", config.getProfile().imageToframe.ToString(), configData);
+                        writeElement("cameraShow", config.getProfile().cameraShow.ToString(), configData);
+                        writeElement("motionLevel", config.getProfile().motionLevel.ToString(), configData);
+                        writeElement("selectedCam", config.getProfile().selectedCam, configData);
+                        writeElement("pulseFreq", config.getProfile().pulseFreq.ToString(), configData);
+                        writeElement("EmailIntelOn", config.getProfile().EmailIntelOn.ToString(), configData);
+                        writeElement("emailIntelEmails", config.getProfile().emailIntelEmails.ToString(), configData);
+                        writeElement("emailIntelMins", config.getProfile().emailIntelMins.ToString(), configData);
+                        writeElement("EmailIntelStop", config.getProfile().EmailIntelStop.ToString(), configData);
+                        writeElement("disCommOnline", config.getProfile().disCommOnline.ToString(), configData);
+                        writeElement("disCommOnlineSecs", config.getProfile().disCommOnlineSecs.ToString(), configData);
 
                         //******************************
                         //Do not put anything after this
                         //******************************
                         configData.Indentation = 4;
-                        configData.WriteStartElement("", "profileEnd", "");
-                        configData.WriteString(config.getProfile().profileName.ToLower());
-                        configData.WriteEndElement();
+                        writeElement("profileEnd", config.getProfile().profileName.ToLower(), configData);
                         //******************************
                         //Do not put anything after this
                         //******************************
@@ -2324,6 +1584,17 @@ namespace TeboCam
 
 
         }
+
+        private static void writeElement(string tag, string element, XmlTextWriter writer)
+        {
+
+            writer.WriteStartElement("", tag, "");
+            writer.WriteString(element);
+            writer.WriteEndElement();
+
+        }
+
+
 
         #endregion
 
