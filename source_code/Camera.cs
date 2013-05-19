@@ -137,6 +137,45 @@ namespace TeboCam
         //private Bitmap lastFrame = null;
         public Bitmap pubFrame = null;
 
+        private bool _detectionOn = false;
+
+
+
+        public bool detectionOn
+        {
+
+            get { return _detectionOn; }
+
+            set
+            {
+
+                if (MotionDetector != null)
+                {
+
+                    MotionDetector.Reset();
+
+                }
+
+
+                if (!value)
+                {
+
+                    MotionLevelArgs a = new MotionLevelArgs();
+                    CamIdArgs b = new CamIdArgs();
+                    a.lvl = 0;
+                    b.cam = cam;
+                    motionLevelEvent(null, a, b);
+
+                }
+
+                _detectionOn = value;
+
+            }
+
+
+        }
+
+
 
         public bool alert = false;
         public bool alarmActive = false;
@@ -153,6 +192,10 @@ namespace TeboCam
         public event motionLevelEventHandler motionLevelEvent;
         public event alarmEventHandler motionAlarm;
         public event EventHandler NewFrame;
+
+
+
+
 
 
         // LastFrame property
@@ -391,6 +434,13 @@ namespace TeboCam
             catch { }
         }
 
+
+
+
+
+
+
+
         // On new frame
         private void video_NewFrame(object sender, NewFrameEventArgs e)
         {
@@ -410,80 +460,217 @@ namespace TeboCam
                 pubFrame = (Bitmap)e.Frame.Clone();
 
 
-                // apply motion detector
-                if (motionDetecotor != null)
+                if (_detectionOn)
                 {
 
 
-
-                    //*************************************
-                    //pre-process bitmap for area detection
-                    //*************************************
-
-                    Bitmap areaDetectionPreparedImage;
-
-                    if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
+                    if ((calibrating && cam == CameraRig.trainCam) || (alarmActive && alert))
                     {
-                        motionDetecotor.Reset();
-                        areaOffAtMotionReset = true;
-                    }
 
-                    if (areaDetection && !areaOffAtMotionTriggered)
-                    {
-                        areaDetectionPreparedImage = selectArea(pubFrame, AreaDetectionWithin, RectWidth, RectHeight, RectX, RectY);
-
-                        if (exposeArea)
-                        {
-                            pubFrame = areaDetectionPreparedImage;
-                        }
-                    }
-                    else
-                    {
-                        areaDetectionPreparedImage = pubFrame;
-                    }
-
-
-                    motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
-
-                    //*************************************
-                    //pre-process bitmap for area detection
-                    //*************************************
-
-
-
-
-
-                    motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
-                    //motionDetecotor.ProcessFrame(ref pubFrame);
-
-
-                    MotionLevelArgs a = new MotionLevelArgs();
-                    CamIdArgs b = new CamIdArgs();
-                    a.lvl = motionDetecotor.MotionDetectionAlgorithm.MotionLevel;
-                    b.cam = cam;
-                    motionLevelEvent(null, a, b);
-
-
-                    // check motion level
-                    if (calibrating && cam == CameraRig.trainCam)
-                    {
-                        bubble.train(motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
-                    }
-                    else
-                    {
-                        if (alarmActive && alert && motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
+                        // apply motion detector
+                        if (motionDetecotor != null)
                         {
 
-                            CamIdArgs c = new CamIdArgs();
-                            c.cam = cam;
-                            LevelArgs l = new LevelArgs();
-                            l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                            //*************************************
+                            //pre-process bitmap for area detection
+                            //*************************************
 
-                            motionAlarm(null, c, l);
+                            Bitmap areaDetectionPreparedImage;
+
+                            if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
+                            {
+                                motionDetecotor.Reset();
+                                areaOffAtMotionReset = true;
+                            }
+
+                            if (areaDetection && !areaOffAtMotionTriggered)
+                            {
+                                areaDetectionPreparedImage = selectArea(pubFrame, AreaDetectionWithin, RectWidth, RectHeight, RectX, RectY);
+
+                                if (exposeArea)
+                                {
+                                    pubFrame = areaDetectionPreparedImage;
+                                }
+                            }
+                            else
+                            {
+                                areaDetectionPreparedImage = pubFrame;
+                            }
+
+
+                            //*************************************
+                            //pre-process bitmap for area detection
+                            //*************************************
+
+
+                            motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
+
+
+                            MotionLevelArgs a = new MotionLevelArgs();
+                            CamIdArgs b = new CamIdArgs();
+                            a.lvl = motionDetecotor.MotionDetectionAlgorithm.MotionLevel;
+                            b.cam = cam;
+                            motionLevelEvent(null, a, b);
+
+                            // check motion level
+                            if (calibrating && cam == CameraRig.trainCam)
+                            {
+                                bubble.train(motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                            }
+                            else
+                            {
+                                if (alarmActive && alert && motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
+                                {
+
+                                    CamIdArgs c = new CamIdArgs();
+                                    c.cam = cam;
+                                    LevelArgs l = new LevelArgs();
+                                    l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+
+                                    motionAlarm(null, c, l);
+
+                                }
+                            }
+
 
                         }
+
+
+                        
                     }
+
+                }//if (_detectionOn)
+
+
+
+                // image dimension
+                width = pubFrame.Width;
+                height = pubFrame.Height;
+
+                //#ref5617
+
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // unlock
+                Monitor.Exit(this);
+            }
+
+            // notify client
+            if (NewFrame != null)
+            {
+                NewFrame(this, new EventArgs());
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        // On new frame
+        private void video_NewFrameOLD(object sender, NewFrameEventArgs e)
+        {
+            try
+            {
+                // lock
+                Monitor.Enter(this);
+
+                // dispose old frame
+                if (pubFrame != null)
+                {
+                    pubFrame.Dispose();
                 }
+
+
+                //lastFrame = (Bitmap)e.Frame.Clone();
+                pubFrame = (Bitmap)e.Frame.Clone();
+
+
+                if (_detectionOn)
+                {
+
+                    // apply motion detector
+                    if (motionDetecotor != null)
+                    {
+
+                        //*************************************
+                        //pre-process bitmap for area detection
+                        //*************************************
+
+                        Bitmap areaDetectionPreparedImage;
+
+                        if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
+                        {
+                            motionDetecotor.Reset();
+                            areaOffAtMotionReset = true;
+                        }
+
+                        if (areaDetection && !areaOffAtMotionTriggered)
+                        {
+                            areaDetectionPreparedImage = selectArea(pubFrame, AreaDetectionWithin, RectWidth, RectHeight, RectX, RectY);
+
+                            if (exposeArea)
+                            {
+                                pubFrame = areaDetectionPreparedImage;
+                            }
+                        }
+                        else
+                        {
+                            areaDetectionPreparedImage = pubFrame;
+                        }
+
+
+                        //*************************************
+                        //pre-process bitmap for area detection
+                        //*************************************
+
+
+                        motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
+
+
+                        MotionLevelArgs a = new MotionLevelArgs();
+                        CamIdArgs b = new CamIdArgs();
+                        a.lvl = motionDetecotor.MotionDetectionAlgorithm.MotionLevel;
+                        b.cam = cam;
+                        motionLevelEvent(null, a, b);
+
+
+                        // check motion level
+                        if (calibrating && cam == CameraRig.trainCam)
+                        {
+                            bubble.train(motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                        }
+                        else
+                        {
+                            if (alarmActive && alert && motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
+                            {
+
+                                CamIdArgs c = new CamIdArgs();
+                                c.cam = cam;
+                                LevelArgs l = new LevelArgs();
+                                l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+
+                                motionAlarm(null, c, l);
+
+                            }
+                        }
+                    }
+
+                }//if (_detectionOn)
+
+
 
                 // image dimension
                 width = pubFrame.Width;

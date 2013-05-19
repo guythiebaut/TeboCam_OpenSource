@@ -4319,17 +4319,23 @@ namespace TeboCam
 
             if (result == 0)
             {
+
                 licence.deselectCam(cam + 1);
                 btn.BackColor = Color.Silver;
                 CameraRig.rig[cam].cam.alarmActive = false;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, "alarmActive", false);
+                CameraRig.rig[cam].cam.detectionOn = false;
+                
             }
             if (result == 1)
             {
+
                 licence.selectCam(cam + 1);
                 btn.BackColor = Color.LawnGreen;
                 CameraRig.rig[cam].cam.alarmActive = true;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, "alarmActive", true);
+                CameraRig.rig[cam].cam.detectionOn = true;
+
             }
 
 

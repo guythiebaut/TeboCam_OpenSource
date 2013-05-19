@@ -252,6 +252,7 @@ namespace TeboCam
             this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(152, 151);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(122, 20);
             this.txtPassword.TabIndex = 16;
             this.toolTip1.SetToolTip(this.txtPassword, "The password for your webcam\r\n\r\nThis will be set or you will have \r\nset this from" +

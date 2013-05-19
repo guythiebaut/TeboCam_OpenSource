@@ -781,6 +781,7 @@ namespace TeboCam
             foreach (rigItem rigI in rig)
             {
                 rigI.cam.alert = alt;
+                rigI.cam.detectionOn = alt;
             }
         }
 
