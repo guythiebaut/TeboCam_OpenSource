@@ -171,120 +171,75 @@ namespace TeboCam
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(7, 39);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Select a usb webcam";
             // 
             // deviceCombo
             // 
             this.deviceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.deviceCombo.Location = new System.Drawing.Point(7, 59);
+            resources.ApplyResources(this.deviceCombo, "deviceCombo");
             this.deviceCombo.Name = "deviceCombo";
-            this.deviceCombo.Size = new System.Drawing.Size(325, 21);
-            this.deviceCombo.TabIndex = 6;
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point(178, 203);
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 9;
-            this.cancelButton.Text = "Cancel";
             // 
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.okButton.Location = new System.Drawing.Point(88, 203);
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 8;
-            this.okButton.Text = "Ok";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // rdUsbCam
             // 
-            this.rdUsbCam.AutoSize = true;
+            resources.ApplyResources(this.rdUsbCam, "rdUsbCam");
             this.rdUsbCam.Checked = true;
-            this.rdUsbCam.Location = new System.Drawing.Point(12, 12);
             this.rdUsbCam.Name = "rdUsbCam";
-            this.rdUsbCam.Size = new System.Drawing.Size(86, 17);
-            this.rdUsbCam.TabIndex = 10;
             this.rdUsbCam.TabStop = true;
-            this.rdUsbCam.Text = "USB Camera";
             this.rdUsbCam.UseVisualStyleBackColor = true;
             this.rdUsbCam.CheckedChanged += new System.EventHandler(this.rdUsbCam_CheckedChanged);
             // 
             // rdIpCam
             // 
-            this.rdIpCam.AutoSize = true;
-            this.rdIpCam.Location = new System.Drawing.Point(103, 12);
+            resources.ApplyResources(this.rdIpCam, "rdIpCam");
             this.rdIpCam.Name = "rdIpCam";
-            this.rdIpCam.Size = new System.Drawing.Size(74, 17);
-            this.rdIpCam.TabIndex = 11;
-            this.rdIpCam.Text = "IP Camera";
             this.rdIpCam.UseVisualStyleBackColor = true;
             // 
             // txtIpAddress
             // 
-            this.txtIpAddress.Enabled = false;
-            this.txtIpAddress.Location = new System.Drawing.Point(7, 108);
+            resources.ApplyResources(this.txtIpAddress, "txtIpAddress");
             this.txtIpAddress.Name = "txtIpAddress";
-            this.txtIpAddress.Size = new System.Drawing.Size(325, 20);
-            this.txtIpAddress.TabIndex = 14;
             this.toolTip1.SetToolTip(this.txtIpAddress, resources.GetString("txtIpAddress.ToolTip"));
             // 
             // label2
             // 
-            this.label2.Enabled = false;
-            this.label2.Location = new System.Drawing.Point(7, 86);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 14);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "IP webcam address(mjpeg stream)";
             // 
             // txtPassword
             // 
-            this.txtPassword.Enabled = false;
-            this.txtPassword.Location = new System.Drawing.Point(152, 151);
+            resources.ApplyResources(this.txtPassword, "txtPassword");
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(122, 20);
-            this.txtPassword.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.txtPassword, "The password for your webcam\r\n\r\nThis will be set or you will have \r\nset this from" +
-        " the IP webcam web page.");
+            this.toolTip1.SetToolTip(this.txtPassword, resources.GetString("txtPassword.ToolTip"));
             // 
             // txtUsername
             // 
-            this.txtUsername.Enabled = false;
-            this.txtUsername.Location = new System.Drawing.Point(7, 151);
+            resources.ApplyResources(this.txtUsername, "txtUsername");
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(122, 20);
-            this.txtUsername.TabIndex = 15;
-            this.toolTip1.SetToolTip(this.txtUsername, "The login for your webcam.\r\n\r\nThis will be set or you will have \r\nset this from t" +
-        "he IP webcam web page.");
+            this.toolTip1.SetToolTip(this.txtUsername, resources.GetString("txtUsername.ToolTip"));
             // 
             // label3
             // 
-            this.label3.Enabled = false;
-            this.label3.Location = new System.Drawing.Point(149, 134);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 14);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Password";
             // 
             // label4
             // 
-            this.label4.Enabled = false;
-            this.label4.Location = new System.Drawing.Point(7, 134);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 14);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Login";
             // 
             // toolTip1
             // 
@@ -297,9 +252,8 @@ namespace TeboCam
             // CaptureDeviceForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            resources.ApplyResources(this, "$this");
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(344, 238);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtUsername);
@@ -313,13 +267,10 @@ namespace TeboCam
             this.Controls.Add(this.deviceCombo);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CaptureDeviceForm";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Open Webcam";
             this.ResumeLayout(false);
             this.PerformLayout();
 

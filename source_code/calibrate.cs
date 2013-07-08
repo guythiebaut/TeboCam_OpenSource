@@ -61,6 +61,10 @@ namespace TeboCam
             int startSecs = time.secondsSinceStart();
             int tm = (int)(Convert.ToDouble(trainVal.Text) * Convert.ToDouble(1000));
 
+            
+
+            CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
+            CameraRig.getCam(CameraRig.trainCam).calibrating = true;
 
             while (bubble.testImagePublish)
             {
@@ -74,6 +78,9 @@ namespace TeboCam
                 bubble.publishTestMotion(tm, cam);
 
             }
+
+            CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
+            CameraRig.getCam(CameraRig.trainCam).calibrating = false;
 
             StreamWriter sw = new StreamWriter(outFile, true);
 

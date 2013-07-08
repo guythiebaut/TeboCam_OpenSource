@@ -57,7 +57,7 @@ namespace TeboCam
             // numericUpDown6
             // 
             this.numericUpDown6.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown6.Location = new System.Drawing.Point(65, 17);
+            resources.ApplyResources(this.numericUpDown6, "numericUpDown6");
             this.numericUpDown6.Maximum = new decimal(new int[] {
             24,
             0,
@@ -69,15 +69,13 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDown6.TabIndex = 62;
-            this.toolTip1.SetToolTip(this.numericUpDown6, "Schedule start time.");
+            this.toolTip1.SetToolTip(this.numericUpDown6, resources.GetString("numericUpDown6.ToolTip"));
             this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
             // 
             // numericUpDown5
             // 
             this.numericUpDown5.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown5.Location = new System.Drawing.Point(119, 17);
+            resources.ApplyResources(this.numericUpDown5, "numericUpDown5");
             this.numericUpDown5.Maximum = new decimal(new int[] {
             60,
             0,
@@ -89,15 +87,13 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown5.TabIndex = 64;
-            this.toolTip1.SetToolTip(this.numericUpDown5, "Schedule start time.");
+            this.toolTip1.SetToolTip(this.numericUpDown5, resources.GetString("numericUpDown5.ToolTip"));
             this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
             // numericUpDown8
             // 
             this.numericUpDown8.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown8.Location = new System.Drawing.Point(65, 44);
+            resources.ApplyResources(this.numericUpDown8, "numericUpDown8");
             this.numericUpDown8.Maximum = new decimal(new int[] {
             24,
             0,
@@ -109,15 +105,13 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDown8.TabIndex = 67;
-            this.toolTip1.SetToolTip(this.numericUpDown8, "Schedule end time.");
+            this.toolTip1.SetToolTip(this.numericUpDown8, resources.GetString("numericUpDown8.ToolTip"));
             this.numericUpDown8.ValueChanged += new System.EventHandler(this.numericUpDown8_ValueChanged);
             // 
             // numericUpDown7
             // 
             this.numericUpDown7.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown7.Location = new System.Drawing.Point(119, 44);
+            resources.ApplyResources(this.numericUpDown7, "numericUpDown7");
             this.numericUpDown7.Maximum = new decimal(new int[] {
             60,
             0,
@@ -129,21 +123,14 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown7.TabIndex = 68;
-            this.toolTip1.SetToolTip(this.numericUpDown7, "Schedule end time.");
+            this.toolTip1.SetToolTip(this.numericUpDown7, resources.GetString("numericUpDown7.ToolTip"));
             this.numericUpDown7.ValueChanged += new System.EventHandler(this.numericUpDown7_ValueChanged);
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblTitle, "lblTitle");
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(21, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(71, 23);
-            this.lblTitle.TabIndex = 71;
-            this.lblTitle.Text = "TITLE";
             // 
             // groupBox18
             // 
@@ -153,48 +140,34 @@ namespace TeboCam
             this.groupBox18.Controls.Add(this.numericUpDown5);
             this.groupBox18.Controls.Add(this.numericUpDown8);
             this.groupBox18.Controls.Add(this.numericUpDown7);
-            this.groupBox18.Location = new System.Drawing.Point(12, 49);
+            resources.ApplyResources(this.groupBox18, "groupBox18");
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(180, 80);
-            this.groupBox18.TabIndex = 80;
             this.groupBox18.TabStop = false;
             // 
             // label49
             // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label49, "label49");
             this.label49.ForeColor = System.Drawing.Color.Black;
-            this.label49.Location = new System.Drawing.Point(6, 46);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(53, 13);
-            this.label49.TabIndex = 70;
-            this.label49.Text = "Stop at";
             // 
             // label48
             // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label48, "label48");
             this.label48.ForeColor = System.Drawing.Color.Black;
-            this.label48.Location = new System.Drawing.Point(6, 17);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(56, 13);
-            this.label48.TabIndex = 69;
-            this.label48.Text = "Start at";
             // 
             // schedule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 143);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "schedule";
-            this.Load += new System.EventHandler(this.schedule_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.schedule_FormClosing);
+            this.Load += new System.EventHandler(this.schedule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();

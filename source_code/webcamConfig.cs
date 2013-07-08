@@ -28,21 +28,8 @@ namespace TeboCam
 
         public static event drawEventHandler drawInitialRectangle;
 
-        delegate void SetTextCallback(TextBox txtBx, string text);
-        public void SetInfo(TextBox txtBx, string text)
-        {
-            if (txtBx.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetInfo);
-                txtBx.Invoke(d, new object[] { txtBx, text });
-            }
-            else
-            {
-                txtBx.Text = text;
-                txtBx.Refresh();
-                Invalidate();
-            }
-        }
+
+
 
         private static string selectedWebcam;
         private static int mainSelectedWebcam;
@@ -389,7 +376,7 @@ namespace TeboCam
             dw.RunWorkerAsync();
 
         }
-
+//
 
         private void trainMovement(object sender, DoWorkEventArgs e)
         {
@@ -410,7 +397,8 @@ namespace TeboCam
 
                 actCount.ForeColor = Color.Blue;
                 txtMess.ForeColor = Color.Blue;
-                SetInfo(txtMess, "Counting Down");
+                txtMess.SynchronisedInvoke(() => txtMess.Text = "Counting Down");
+                //SetInfo(txtMess, "Counting Down");
 
                 while (tmpInt > 0)
                 {
@@ -418,32 +406,37 @@ namespace TeboCam
                     tmpInt = bubble.detectionCountDown + ((int)secondsToTrainStart - time.secondsSinceStart());
                     if (secondsToLast != tmpInt)
                     {
-                        SetInfo(actCount, Convert.ToString(tmpInt));
+                        actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(tmpInt));
+                        //SetInfo(actCount, Convert.ToString(tmpInt));
                     }
                     secondsToLast = tmpInt;
                 }
 
                 tmpInt = bubble.detectionTrain;
                 secondsToTrainStart = time.secondsSinceStart();
+                CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
                 CameraRig.getCam(CameraRig.trainCam).calibrating = true;
                 actCount.ForeColor = Color.Red;
                 txtMess.ForeColor = Color.Red;
 
-                SetInfo(txtMess, "Recording Movement");
+                txtMess.SynchronisedInvoke(() => txtMess.Text = "Recording Movement");
+                //SetInfo(txtMess, "Recording Movement");
 
                 while (tmpInt > 0)
                 {
                     tmpInt = bubble.detectionTrain + (secondsToTrainStart - time.secondsSinceStart());
                     if (secondsToLast != tmpInt)
                     {
-                        SetInfo(actCount, Convert.ToString(tmpInt));
+                        actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(tmpInt));
+                        //SetInfo(actCount, Convert.ToString(tmpInt));
                     }
                     secondsToLast = tmpInt;
                 }
 
                 //calculate average motion sensitivity setting
                 //only calculate average based on non zero values
-                CameraRig.getCam(CameraRig.drawCam).calibrating = false;
+                CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
+                CameraRig.getCam(CameraRig.trainCam).calibrating = false;
                 tmpDbl = 0;
                 tmpInt = 0;
                 foreach (double val in bubble.training)
@@ -462,12 +455,15 @@ namespace TeboCam
                 }
 
                 config.getProfile(bubble.profileInUse).movementVal = tmpVal;
-                SetInfo(txtMov, Convert.ToString((int)Math.Floor(tmpVal * 100)));
+                txtMov.SynchronisedInvoke(() => txtMov.Text = Convert.ToString((int)Math.Floor(tmpVal * 100)));
+                //SetInfo(txtMov, Convert.ToString((int)Math.Floor(tmpVal * 100)));
 
                 actCount.ForeColor = Color.Blue;
                 txtMess.ForeColor = Color.Blue;
-                SetInfo(txtMess, "");
-                SetInfo(actCount, "");
+                txtMov.SynchronisedInvoke(() => txtMov.Text = string.Empty);
+                actCount.SynchronisedInvoke(() => actCount.Text = string.Empty);
+                //SetInfo(txtMess, "");
+                //SetInfo(actCount, "");
                 FileManager.WriteFile("training");
                 bubble.baselineSetting = false;
                 bubble.movementSetting = false;
@@ -498,7 +494,10 @@ namespace TeboCam
                 }
 
                 levelBitmap.Dispose();
-                cameraWindow.Camera = null;
+
+                //20130617 v - noopped as main camera window was showing a blank image
+                //cameraWindow.Camera = null;
+                //20130617 ^ - noopped as main camera window was showing a blank image
 
                 CameraRig.ExposeArea = false;
 

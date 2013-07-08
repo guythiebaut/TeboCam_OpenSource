@@ -24,6 +24,8 @@ using System.Net.NetworkInformation;
 using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
 
+
+
 enum enumCommandLine
 {
     profile = 0,
@@ -35,6 +37,7 @@ enum enumCommandLine
 namespace TeboCam
 {
 
+
     public delegate void formDelegate(ArrayList i);
     public delegate void formDelegateList(List<List<object>> i);
 
@@ -42,6 +45,9 @@ namespace TeboCam
     public partial class preferences : Form
     {
 
+
+        //http://msdn.microsoft.com/en-us/library/aa984408(v=vs.71).aspx
+        System.Resources.ResourceManager resourceManager;
 
         public Pulse pulse;
 
@@ -104,6 +110,8 @@ namespace TeboCam
         {
 
             InitializeComponent();
+
+            resourceManager = new System.Resources.ResourceManager("tebocam.preferences", this.GetType().Assembly);
 
         }
 
@@ -448,7 +456,7 @@ namespace TeboCam
 
             bubble.Loading = false;
 
-            lblCurVer.Text = "This Version: " + bubble.version;
+            lblCurVer.Text += bubble.version;
 
             List<string> updateDat = new List<string>();
 
@@ -497,15 +505,33 @@ namespace TeboCam
                               )
             {
                 string tmpStr = "";
+
+
+                //Name Spaces Required
+                ////http://msdn.microsoft.com/en-us/library/aa984408(v=vs.71).aspx
+                //System.Resources.ResourceManager resourceManager = new System.Resources.ResourceManager("tebocam.preferences", this.GetType().Assembly);
+                //tmpStr = resourceManager.GetString("updateAvailableMessage");
+
+                //You do not have the most recent version available.
+
+
+                //The most recent version can installed automatically
+                //by clicking on the update button at the bottom of the screen 
+                //or on the Admin tab.
+
+                //To stop this message appearing in future uncheck the 
+                //'Notify when updates are available' box in the Admin tab.
+
+
                 tmpStr = "You do not have the most recent version available" + Environment.NewLine + Environment.NewLine;
                 tmpStr += "This version: " + bubble.version + Environment.NewLine;
                 tmpStr += "Most recent version available: " + onlineVersion + Environment.NewLine + Environment.NewLine;
-                tmpStr += "The most recent version can installed automatically" + Environment.NewLine;
+                tmpStr += "The most recent version can be installed automatically" + Environment.NewLine;
                 tmpStr += "by clicking on the update button at the bottom of the screen or on the Admin tab" + Environment.NewLine + Environment.NewLine + Environment.NewLine;
-                tmpStr += "To stop this message appearing in future" + Environment.NewLine;
-                tmpStr += "uncheck the 'Notify when updates are available'" + Environment.NewLine;
-                tmpStr += "box in the Admin tab.";
+                tmpStr += "To stop this message appearing in future - uncheck the" + Environment.NewLine;
+                tmpStr += "'Notify when updates are available' box in the Admin tab.";
                 MessageBox.Show(tmpStr, "Update Available");
+
             }
 
             plSnd.Enabled = config.getProfile(bubble.profileInUse).soundAlert != "";
@@ -1258,7 +1284,8 @@ namespace TeboCam
 
             bubble.webcamAttached = true;
 
-            SetButtonEnabled(button23, CameraRig.camerasAttached());
+            button23.SynchronisedInvoke(() => button23.Enabled = CameraRig.camerasAttached());
+            //SetButtonEnabled(button23, CameraRig.camerasAttached());
 
         }
 
@@ -1398,150 +1425,15 @@ namespace TeboCam
         }
 
 
-        delegate void SetRadioButtonCallback(RadioButton radio, bool btnChecked);
-        public void SetRadioButton(RadioButton radio, bool btnChecked)
-        {
-            if (radio.InvokeRequired)
-            {
-                SetRadioButtonCallback d = new SetRadioButtonCallback(SetRadioButton);
-                radio.Invoke(d, new object[] { radio, btnChecked });
-            }
-            else
-            {
-                radio.Checked = btnChecked;
-                radio.Refresh();
-                Invalidate();
-            }
-        }
-
-
-        delegate void SetButtonEnableCallback(Button button, bool enabled);
-        public void SetButtonEnabled(Button button, bool enabled)
-        {
-            if (button.InvokeRequired)
-            {
-                SetButtonEnableCallback d = new SetButtonEnableCallback(SetButtonEnabled);
-                button.Invoke(d, new object[] { button, enabled });
-            }
-            else
-            {
-                button.Enabled = enabled;
-                button.Refresh();
-                Invalidate();
-            }
-        }
-
-        delegate void SetTextBoxEnableCallback(TextBox textBox, bool enabled);
-        public void SetTextBoxEnabled(TextBox textBox, bool enabled)
-        {
-            if (textBox.InvokeRequired)
-            {
-                SetTextBoxEnableCallback d = new SetTextBoxEnableCallback(SetTextBoxEnabled);
-                textBox.Invoke(d, new object[] { textBox, enabled });
-            }
-            else
-            {
-                textBox.Enabled = enabled;
-                textBox.Refresh();
-                Invalidate();
-            }
-        }
-
-        delegate void SetLabelCallback(Label label, string text);
-        public void SetLabel(Label label, string text)
-        {
-            if (label.InvokeRequired)
-            {
-                SetLabelCallback d = new SetLabelCallback(SetLabel);
-                label.Invoke(d, new object[] { label, text });
-            }
-            else
-            {
-                label.Text = text;
-                label.Refresh();
-                Invalidate();
-            }
-        }
-
-
-        delegate void SetLabelVisibleCallback(Label label, bool visible);
-        public void SetLabelVisible(Label label, bool visible)
-        {
-            if (label.InvokeRequired)
-            {
-                SetLabelVisibleCallback d = new SetLabelVisibleCallback(SetLabelVisible);
-                label.Invoke(d, new object[] { label, visible });
-            }
-            else
-            {
-                label.Visible = visible;
-                label.Refresh();
-                Invalidate();
-            }
-        }
-
-
-
-        delegate void SetTextCallback(TextBox txtBx, string text);
-        public void SetInfo(TextBox txtBx, string text)
-        {
-            if (txtBx.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetInfo);
-                txtBx.Invoke(d, new object[] { txtBx, text });
-            }
-            else
-            {
-                txtBx.Text = text;
-                txtBx.Refresh();
-                Invalidate();
-            }
-        }
-
-        delegate void SetRichTextCallback(RichTextBox txtBx, string text);
-        public void SetRichInfo(RichTextBox txtBx, string text)
-        {
-            if (txtBx.InvokeRequired)
-            {
-                SetRichTextCallback d = new SetRichTextCallback(SetRichInfo);
-                txtBx.Invoke(d, new object[] { txtBx, text });
-            }
-            else
-            {
-                txtBx.Text = text + txtBx.Text;
-                txtBx.Refresh();
-                Invalidate();
-            }
-        }
-
-
-        delegate void SetCheckBoxCallback(CheckBox chkBx, bool val);
-        public void SetCheckBox(CheckBox chkBx, bool val)
-        {
-            if (chkBx.InvokeRequired)
-            {
-                SetCheckBoxCallback d = new SetCheckBoxCallback(SetCheckBox);
-                chkBx.Invoke(d, new object[] { chkBx, val });
-            }
-            else
-            {
-                chkBx.Checked = val;
-                chkBx.Refresh();
-                Invalidate();
-            }
-        }
-
-
-
-
-
+                 
 
 
 
         private void activeCountdown(object sender, DoWorkEventArgs e)
         {
 
-            SetCheckBox(bttnMotionSchedule, false);
+            //SetCheckBox(bttnMotionSchedule, false);
+            bttnMotionSchedule.SynchronisedInvoke(() => bttnMotionSchedule.Checked = false);
 
             bubble.countingdown = true;
             int tmpInt = 0;
@@ -1586,7 +1478,8 @@ namespace TeboCam
             if (bubble.IsNumeric(tmpStr))
             {
                 countdown = Convert.ToInt32(tmpStr);
-                SetInfo(actCount, Convert.ToString(countdown));
+                actCount.SynchronisedInvoke(()=>actCount.Text= Convert.ToString(countdown));
+                //SetInfo(actCount, Convert.ToString(countdown));
             }
 
             tmpInt = countdown;
@@ -1597,7 +1490,8 @@ namespace TeboCam
             if (tmpInt > 0)
             {
                 bubble.logAddLine("Motion countdown started: " + tmpInt.ToString() + " seconds until start.");
-                SetInfo(txtMess, "Counting Down...");
+                txtMess.SynchronisedInvoke(() =>txtMess.Text= "Counting Down...");
+                //SetInfo(txtMess, "Counting Down...");
             }
 
             //This is the loop that checks on the countdown
@@ -1606,14 +1500,16 @@ namespace TeboCam
                 tmpInt = countdown + ((int)secondsToTrainStart - time.secondsSinceStart());
                 if (lastCount != tmpInt)
                 {
-                    SetInfo(actCount, Convert.ToString(tmpInt));
+                    actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(tmpInt));
+                    //SetInfo(actCount, Convert.ToString(tmpInt));
                     lastCount = tmpInt;
                 }
                 Thread.Sleep(500);//20100731 added to free up some processor time
             }
             //This is the loop that checks on the countdown
 
-            SetInfo(actCount, Convert.ToString(""));
+            actCount.SynchronisedInvoke(() => actCount.Text = string.Empty);
+            //SetInfo(actCount, Convert.ToString(""));
             bubble.countingdown = false;
             if (!bubble.countingdownstop)
             {
@@ -1621,7 +1517,8 @@ namespace TeboCam
                 bubble.logAddLine("Motion detection activated");
             }
 
-            SetInfo(txtMess, "");
+            txtMess.SynchronisedInvoke(() => txtMess.Text = string.Empty);
+            //SetInfo(txtMess, "");
             databaseUpdate(false);
 
         }
@@ -1726,7 +1623,8 @@ namespace TeboCam
             else
             {
                 //20130427 restored as the scheduleOnAtStart property now takes care of reactivating at start up
-                if (bttnMotionSchedule.Checked) SetCheckBox(bttnMotionSchedule, false);
+                //if (bttnMotionSchedule.Checked) SetCheckBox(bttnMotionSchedule, false);
+                bttnMotionSchedule.SynchronisedInvoke(() => bttnMotionSchedule.Checked = false);
 
                 bubble.countingdownstop = true;
                 bubble.Alert.on = false;
@@ -1742,7 +1640,9 @@ namespace TeboCam
         // On add to log
         private void log_add(object sender, System.EventArgs e)
         {
-            SetRichInfo(txtLog, bubble.log[bubble.log.Count - 1].ToString() + "\n");
+            //SetRichInfo(txtLog, bubble.log[bubble.log.Count - 1].ToString() + "\n");
+            txtLog.SynchronisedInvoke(() => txtLog.Text = bubble.log[bubble.log.Count - 1].ToString() + "\n");
+
         }
 
 
@@ -2283,7 +2183,9 @@ namespace TeboCam
 
         private void time_change(object sender, System.EventArgs e)
         {
-            SetLabel(lblTime, bubble.lastTime);
+            //SetLabel(lblTime, bubble.lastTime);
+            lblTime.SynchronisedInvoke(() => lblTime.Text = bubble.lastTime);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2879,14 +2781,18 @@ namespace TeboCam
 
             foreach (FileInfo file in logFiles)
             {
+
                 int fileDate = Convert.ToInt32(LeftRightMid.Mid(file.Name, 4, 8));
 
                 if (fileDate < deleteDate)
                 {
+
                     File.Delete(bubble.logFolder + file.Name);
+
                 }
 
             }
+
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -2895,31 +2801,40 @@ namespace TeboCam
 
             if (newProfile.Trim() != "")
             {
+
                 config.addProfile(newProfile);
                 profileListRefresh(bubble.profileInUse);
+
             }
             else
             {
+
                 MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+
             }
 
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+
             string origName = profileList.SelectedItem.ToString();
             string tmpStr = bubble.InputBox("New Profile Name", "Rename Profile", "").Trim().Replace(" ", "");
 
             if (tmpStr.Trim() != "")
             {
+
                 config.renameProfile(origName, tmpStr);
                 CameraRig.renameProfile(origName, tmpStr);
                 bubble.profileInUse = tmpStr;
                 profileListRefresh(bubble.profileInUse);
+
             }
             else
             {
+
                 MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+
             }
 
         }
@@ -2933,18 +2848,23 @@ namespace TeboCam
 
             foreach (string profile in tmpList)
             {
+
                 profileList.Items.Add(profile);
+
             }
 
             profileList.SelectedIndex = 0;
+
         }
 
         private void profileChanged(object sender, EventArgs e)
         {
+
             saveChanges();
             bubble.profileInUse = profileList.SelectedItem.ToString();
             getProfile(bubble.profileInUse);
             cameraNewProfile();
+
         }
 
         private void button10_Click_1(object sender, EventArgs e)
@@ -3412,8 +3332,10 @@ namespace TeboCam
 
         private void publish_switch(object sender, System.EventArgs e)
         {
-            SetCheckBox(pubImage, !bubble.keepPublishing);
-            SetCheckBox(pubTimerOn, true);
+            pubImage.SynchronisedInvoke(()=>pubImage.Checked= !bubble.keepPublishing);
+            pubTimerOn.SynchronisedInvoke(() => pubTimerOn.Checked = true);
+            //SetCheckBox(pubImage, !bubble.keepPublishing);
+            //SetCheckBox(pubTimerOn, true);
         }
 
         private void smtpPort_Leave(object sender, EventArgs e)
@@ -3470,18 +3392,26 @@ namespace TeboCam
         private void motionDetectionActivate(object sender, System.EventArgs e)
         {
             //inactivate motion detection first in case a countdown is taking place
-            SetRadioButton(bttnMotionInactive, true);
-            SetRadioButton(bttnMotionActive, false);
+            bttnMotionInactive.SynchronisedInvoke(() => bttnMotionInactive.Checked = true);
+            bttnMotionActive.SynchronisedInvoke(() => bttnMotionActive.Checked = false);
+            //SetRadioButton(bttnMotionInactive, true);
+            //SetRadioButton(bttnMotionActive, false);
 
             Thread.Sleep(4000);
 
             //now activate motion detection
-            SetRadioButton(bttnNow, true);
-            SetRadioButton(bttnTime, false);
-            SetRadioButton(bttnSeconds, false);
+            bttnNow.SynchronisedInvoke(() => bttnNow.Checked = true);
+            bttnTime.SynchronisedInvoke(() => bttnTime.Checked = false);
+            bttnSeconds.SynchronisedInvoke(() => bttnSeconds.Checked = false);
+            bttnMotionActive.SynchronisedInvoke(() => bttnMotionActive.Checked = true);
+            bttnMotionInactive.SynchronisedInvoke(() => bttnMotionInactive.Checked = false);
 
-            SetRadioButton(bttnMotionActive, true);
-            SetRadioButton(bttnMotionInactive, false);
+            //SetRadioButton(bttnNow, true);
+            //SetRadioButton(bttnTime, false);
+            //SetRadioButton(bttnSeconds, false);
+
+            //SetRadioButton(bttnMotionActive, true);
+            //SetRadioButton(bttnMotionInactive, false);
 
             //state.motionDetectionActive = true;
 
@@ -3491,10 +3421,14 @@ namespace TeboCam
         {
 
             //20130427 restored as the scheduleOnAtStart property now takes care of reactivating at start up
-            if (bttnMotionSchedule.Checked) SetCheckBox(bttnMotionSchedule, false);
+            //if (bttnMotionSchedule.Checked) SetCheckBox(bttnMotionSchedule, false);
+            if (bttnMotionSchedule.Checked) bttnMotionSchedule.SynchronisedInvoke(() => bttnMotionSchedule.Checked = false);
 
-            SetRadioButton(bttnMotionInactive, true);
-            SetRadioButton(bttnMotionActive, false);
+            bttnMotionInactive.SynchronisedInvoke(() => bttnMotionInactive.Checked = true);
+            bttnMotionActive.SynchronisedInvoke(() => bttnMotionActive.Checked = false);
+
+            //SetRadioButton(bttnMotionInactive, true);
+            //SetRadioButton(bttnMotionActive, false);
 
             //state.motionDetectionActive = false;
         }
@@ -3846,25 +3780,30 @@ namespace TeboCam
             if (i[0].ToString() == "Alert")
             {
                 config.getProfile(bubble.profileInUse).alertCompression = Convert.ToInt32(i[1].ToString());
-                SetLabel(alertVal, i[1].ToString());
+                //SetLabel(alertVal, i[1].ToString());
+                alertVal.SynchronisedInvoke(() => alertVal.Text = i[1].ToString());
             }
 
             if (i[0].ToString() == "Publish")
             {
                 config.getProfile(bubble.profileInUse).publishCompression = Convert.ToInt32(i[1].ToString());
-                SetLabel(publishVal, i[1].ToString());
+                //SetLabel(publishVal, i[1].ToString());
+                publishVal.SynchronisedInvoke(() => publishVal.Text = i[1].ToString());
+
             }
 
             if (i[0].ToString() == "Ping")
             {
                 config.getProfile(bubble.profileInUse).pingCompression = Convert.ToInt32(i[1].ToString());
-                SetLabel(pingVal, i[1].ToString());
+                //SetLabel(pingVal, i[1].ToString());
+                pingVal.SynchronisedInvoke(() => pingVal.Text = i[1].ToString());
             }
 
             if (i[0].ToString() == "Online")
             {
                 config.getProfile(bubble.profileInUse).onlineCompression = Convert.ToInt32(i[1].ToString());
-                SetLabel(onlineVal, i[1].ToString());
+                //SetLabel(onlineVal, i[1].ToString());
+                onlineVal.SynchronisedInvoke(() => onlineVal.Text = i[1].ToString());
             }
 
         }
@@ -4286,8 +4225,12 @@ namespace TeboCam
                     CameraRig.rig[camId].cam.MotionDetector.Reset();
                     //set the camerawindow bitmap
                     cameraWindow.Camera = CameraRig.rig[camId].cam;
-                    SetLabelVisible(lblCameraName, CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, "friendlyName").ToString().Trim() != "");
-                    SetLabel(lblCameraName, CameraRig.rig[camId].friendlyName);
+                    //SetLabelVisible(lblCameraName, CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, "friendlyName").ToString().Trim() != "");
+                    lblCameraName.SynchronisedInvoke(() => lblCameraName.Visible = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, "friendlyName").ToString().Trim() != "");
+
+
+                    //SetLabel(lblCameraName, CameraRig.rig[camId].friendlyName);
+                    lblCameraName.SynchronisedInvoke(() =>lblCameraName.Text= CameraRig.rig[camId].friendlyName);
                     config.getProfile(bubble.profileInUse).selectedCam = CameraRig.rig[camId].cameraName;
 
                     if (refresh) cameraWindow.Refresh();
@@ -4325,7 +4268,7 @@ namespace TeboCam
                 CameraRig.rig[cam].cam.alarmActive = false;
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, "alarmActive", false);
                 CameraRig.rig[cam].cam.detectionOn = false;
-                
+
             }
             if (result == 1)
             {
@@ -4574,6 +4517,7 @@ namespace TeboCam
 
         private void button23_Click_1(object sender, EventArgs e)
         {
+
             ArrayList i = new ArrayList();
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
             i.Add(CameraRig.activeCam);
@@ -4592,6 +4536,7 @@ namespace TeboCam
 
 
             webcamConfig.ShowDialog();
+
         }
 
 
@@ -4599,6 +4544,8 @@ namespace TeboCam
         {
 
             System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
+
+            bubble.motionLevelChanged += new EventHandler(drawLevel);
 
             if (CameraRig.cameraCount() > 0)
             {
@@ -4612,7 +4559,7 @@ namespace TeboCam
 
             panel1.AutoScroll = (bool)i[1];
             i.Clear();
-            bubble.motionLevelChanged += new EventHandler(drawLevel);
+            //bubble.motionLevelChanged += new EventHandler(drawLevel);
 
             camButtonSetColours();
 

@@ -60,6 +60,9 @@
       <DependentUpon>CaptureDeviceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxDialog.resx">
+      <DependentUpon>InputBoxDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="schedule.resx">
       <DependentUpon>schedule.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -117,6 +120,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommandLine.cs" />
+    <Compile Include="extensions.cs" />
     <Compile Include="imageFilter.cs" />
     <Compile Include="licence.cs">
       <SubType>Code</SubType>

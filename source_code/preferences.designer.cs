@@ -66,6 +66,7 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -350,7 +351,6 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -438,12 +438,9 @@ namespace TeboCam
             this.tabControl1.Controls.Add(this.Publish);
             this.tabControl1.Controls.Add(this.Online);
             this.tabControl1.Controls.Add(this.Test);
-            this.tabControl1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.Location = new System.Drawing.Point(7, 8);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(952, 595);
-            this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
             // Webcam
@@ -490,12 +487,8 @@ namespace TeboCam
             this.Webcam.Controls.Add(this.groupBox3);
             this.Webcam.Controls.Add(this.MotionAlarm);
             this.Webcam.Controls.Add(this.button4);
-            this.Webcam.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.Webcam.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Webcam, "Webcam");
             this.Webcam.Name = "Webcam";
-            this.Webcam.Size = new System.Drawing.Size(944, 569);
-            this.Webcam.TabIndex = 0;
-            this.Webcam.Text = "Webcam";
             this.Webcam.UseVisualStyleBackColor = true;
             // 
             // pnlStartupOptions
@@ -503,333 +496,198 @@ namespace TeboCam
             this.pnlStartupOptions.Controls.Add(this.label47);
             this.pnlStartupOptions.Controls.Add(this.label62);
             this.pnlStartupOptions.Controls.Add(this.label41);
-            this.pnlStartupOptions.Location = new System.Drawing.Point(389, 325);
+            resources.ApplyResources(this.pnlStartupOptions, "pnlStartupOptions");
             this.pnlStartupOptions.Name = "pnlStartupOptions";
-            this.pnlStartupOptions.Size = new System.Drawing.Size(116, 67);
-            this.pnlStartupOptions.TabIndex = 106;
-            this.pnlStartupOptions.Visible = false;
             // 
             // label47
             // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label47, "label47");
             this.label47.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label47.Location = new System.Drawing.Point(8, 9);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(86, 13);
-            this.label47.TabIndex = 104;
-            this.label47.Text = "Started with";
             // 
             // label62
             // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label62, "label62");
             this.label62.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label62.Location = new System.Drawing.Point(8, 47);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(79, 13);
-            this.label62.TabIndex = 105;
-            this.label62.Text = "options set";
             // 
             // label41
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label41, "label41");
             this.label41.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label41.Location = new System.Drawing.Point(8, 28);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(97, 13);
-            this.label41.TabIndex = 103;
-            this.label41.Text = "command line";
             // 
             // button23
             // 
-            this.button23.Enabled = false;
-            this.button23.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button23.Location = new System.Drawing.Point(230, 11);
+            resources.ApplyResources(this.button23, "button23");
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(155, 25);
-            this.button23.TabIndex = 96;
-            this.button23.Text = "Configure Webcam";
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.button23_Click_1);
             // 
             // lblCamAlert
             // 
-            this.lblCamAlert.AutoSize = true;
-            this.lblCamAlert.Location = new System.Drawing.Point(62, 326);
+            resources.ApplyResources(this.lblCamAlert, "lblCamAlert");
             this.lblCamAlert.Name = "lblCamAlert";
-            this.lblCamAlert.Size = new System.Drawing.Size(60, 13);
-            this.lblCamAlert.TabIndex = 60;
-            this.lblCamAlert.Text = "Alert On";
             // 
             // bttncam9sel
             // 
             this.bttncam9sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam9sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam9sel.Location = new System.Drawing.Point(286, 325);
-            this.bttncam9sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam9sel, "bttncam9sel");
             this.bttncam9sel.Name = "bttncam9sel";
-            this.bttncam9sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam9sel.TabIndex = 94;
-            this.bttncam9sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam9sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam9sel, resources.GetString("bttncam9sel.ToolTip"));
             this.bttncam9sel.UseVisualStyleBackColor = false;
             this.bttncam9sel.Click += new System.EventHandler(this.bttncam9sel_Click);
             // 
             // bttncam9
             // 
             this.bttncam9.BackColor = System.Drawing.Color.Silver;
-            this.bttncam9.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam9.Location = new System.Drawing.Point(286, 304);
-            this.bttncam9.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam9, "bttncam9");
             this.bttncam9.Name = "bttncam9";
-            this.bttncam9.Size = new System.Drawing.Size(20, 20);
-            this.bttncam9.TabIndex = 84;
-            this.bttncam9.Text = "9";
-            this.toolTip1.SetToolTip(this.bttncam9, "Select Camera 9\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam9, resources.GetString("bttncam9.ToolTip"));
             this.bttncam9.UseVisualStyleBackColor = false;
             this.bttncam9.Click += new System.EventHandler(this.bttncam9_Click);
             // 
             // bttncam7sel
             // 
             this.bttncam7sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam7sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam7sel.Location = new System.Drawing.Point(246, 325);
-            this.bttncam7sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam7sel, "bttncam7sel");
             this.bttncam7sel.Name = "bttncam7sel";
-            this.bttncam7sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam7sel.TabIndex = 93;
-            this.bttncam7sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam7sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam7sel, resources.GetString("bttncam7sel.ToolTip"));
             this.bttncam7sel.UseVisualStyleBackColor = false;
             this.bttncam7sel.Click += new System.EventHandler(this.bttncam7sel_Click);
             // 
             // bttncam7
             // 
             this.bttncam7.BackColor = System.Drawing.Color.Silver;
-            this.bttncam7.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam7.Location = new System.Drawing.Point(246, 304);
-            this.bttncam7.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam7, "bttncam7");
             this.bttncam7.Name = "bttncam7";
-            this.bttncam7.Size = new System.Drawing.Size(20, 20);
-            this.bttncam7.TabIndex = 83;
-            this.bttncam7.Text = "7";
-            this.toolTip1.SetToolTip(this.bttncam7, "Select Camera 7\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam7, resources.GetString("bttncam7.ToolTip"));
             this.bttncam7.UseVisualStyleBackColor = false;
             this.bttncam7.Click += new System.EventHandler(this.bttncam7_Click);
             // 
             // bttncam8sel
             // 
             this.bttncam8sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam8sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam8sel.Location = new System.Drawing.Point(266, 325);
-            this.bttncam8sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam8sel, "bttncam8sel");
             this.bttncam8sel.Name = "bttncam8sel";
-            this.bttncam8sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam8sel.TabIndex = 92;
-            this.bttncam8sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam8sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam8sel, resources.GetString("bttncam8sel.ToolTip"));
             this.bttncam8sel.UseVisualStyleBackColor = false;
             this.bttncam8sel.Click += new System.EventHandler(this.bttncam8sel_Click);
             // 
             // bttncam8
             // 
             this.bttncam8.BackColor = System.Drawing.Color.Silver;
-            this.bttncam8.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam8.Location = new System.Drawing.Point(266, 304);
-            this.bttncam8.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam8, "bttncam8");
             this.bttncam8.Name = "bttncam8";
-            this.bttncam8.Size = new System.Drawing.Size(20, 20);
-            this.bttncam8.TabIndex = 82;
-            this.bttncam8.Text = "8";
-            this.toolTip1.SetToolTip(this.bttncam8, "Select Camera 8\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam8, resources.GetString("bttncam8.ToolTip"));
             this.bttncam8.UseVisualStyleBackColor = false;
             this.bttncam8.Click += new System.EventHandler(this.bttncam8_Click);
             // 
             // bttncam6
             // 
             this.bttncam6.BackColor = System.Drawing.Color.Silver;
-            this.bttncam6.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam6.Location = new System.Drawing.Point(226, 304);
-            this.bttncam6.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam6, "bttncam6");
             this.bttncam6.Name = "bttncam6";
-            this.bttncam6.Size = new System.Drawing.Size(20, 20);
-            this.bttncam6.TabIndex = 81;
-            this.bttncam6.Text = "6";
-            this.toolTip1.SetToolTip(this.bttncam6, "Select Camera 6\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam6, resources.GetString("bttncam6.ToolTip"));
             this.bttncam6.UseVisualStyleBackColor = false;
             this.bttncam6.Click += new System.EventHandler(this.bttncam6_Click);
             // 
             // bttncam6sel
             // 
             this.bttncam6sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam6sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam6sel.Location = new System.Drawing.Point(226, 325);
-            this.bttncam6sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam6sel, "bttncam6sel");
             this.bttncam6sel.Name = "bttncam6sel";
-            this.bttncam6sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam6sel.TabIndex = 91;
-            this.bttncam6sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam6sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam6sel, resources.GetString("bttncam6sel.ToolTip"));
             this.bttncam6sel.UseVisualStyleBackColor = false;
             this.bttncam6sel.Click += new System.EventHandler(this.bttncam6sel_Click);
             // 
             // bttncam4
             // 
             this.bttncam4.BackColor = System.Drawing.Color.Silver;
-            this.bttncam4.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam4.Location = new System.Drawing.Point(186, 304);
-            this.bttncam4.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam4, "bttncam4");
             this.bttncam4.Name = "bttncam4";
-            this.bttncam4.Size = new System.Drawing.Size(20, 20);
-            this.bttncam4.TabIndex = 80;
-            this.bttncam4.Text = "4";
-            this.toolTip1.SetToolTip(this.bttncam4, "Select Camera 4\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam4, resources.GetString("bttncam4.ToolTip"));
             this.bttncam4.UseVisualStyleBackColor = false;
             this.bttncam4.Click += new System.EventHandler(this.bttncam4_Click);
             // 
             // bttncam1sel
             // 
             this.bttncam1sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam1sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam1sel.Location = new System.Drawing.Point(126, 325);
-            this.bttncam1sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam1sel, "bttncam1sel");
             this.bttncam1sel.Name = "bttncam1sel";
-            this.bttncam1sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam1sel.TabIndex = 86;
-            this.bttncam1sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam1sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam1sel, resources.GetString("bttncam1sel.ToolTip"));
             this.bttncam1sel.UseVisualStyleBackColor = false;
             this.bttncam1sel.Click += new System.EventHandler(this.bttncam1sel_Click);
             // 
             // bttncam5
             // 
             this.bttncam5.BackColor = System.Drawing.Color.Silver;
-            this.bttncam5.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam5.Location = new System.Drawing.Point(206, 304);
-            this.bttncam5.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam5, "bttncam5");
             this.bttncam5.Name = "bttncam5";
-            this.bttncam5.Size = new System.Drawing.Size(20, 20);
-            this.bttncam5.TabIndex = 79;
-            this.bttncam5.Text = "5";
-            this.toolTip1.SetToolTip(this.bttncam5, "Select Camera 5\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam5, resources.GetString("bttncam5.ToolTip"));
             this.bttncam5.UseVisualStyleBackColor = false;
             this.bttncam5.Click += new System.EventHandler(this.bttncam5_Click);
             // 
             // bttncam4sel
             // 
             this.bttncam4sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam4sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam4sel.Location = new System.Drawing.Point(186, 325);
-            this.bttncam4sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam4sel, "bttncam4sel");
             this.bttncam4sel.Name = "bttncam4sel";
-            this.bttncam4sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam4sel.TabIndex = 90;
-            this.bttncam4sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam4sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam4sel, resources.GetString("bttncam4sel.ToolTip"));
             this.bttncam4sel.UseVisualStyleBackColor = false;
             this.bttncam4sel.Click += new System.EventHandler(this.bttncam4sel_Click);
             // 
             // bttncam2sel
             // 
             this.bttncam2sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam2sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam2sel.Location = new System.Drawing.Point(146, 325);
-            this.bttncam2sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam2sel, "bttncam2sel");
             this.bttncam2sel.Name = "bttncam2sel";
-            this.bttncam2sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam2sel.TabIndex = 87;
-            this.bttncam2sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam2sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam2sel, resources.GetString("bttncam2sel.ToolTip"));
             this.bttncam2sel.UseVisualStyleBackColor = false;
             this.bttncam2sel.Click += new System.EventHandler(this.bttncam2sel_Click);
             // 
             // bttncam3
             // 
             this.bttncam3.BackColor = System.Drawing.Color.Silver;
-            this.bttncam3.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam3.Location = new System.Drawing.Point(166, 304);
-            this.bttncam3.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam3, "bttncam3");
             this.bttncam3.Name = "bttncam3";
-            this.bttncam3.Size = new System.Drawing.Size(20, 20);
-            this.bttncam3.TabIndex = 78;
-            this.bttncam3.Text = "3";
-            this.toolTip1.SetToolTip(this.bttncam3, "Select Camera 3\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam3, resources.GetString("bttncam3.ToolTip"));
             this.bttncam3.UseVisualStyleBackColor = false;
             this.bttncam3.Click += new System.EventHandler(this.bttncam3_Click);
             // 
             // bttncam5sel
             // 
             this.bttncam5sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam5sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam5sel.Location = new System.Drawing.Point(206, 325);
-            this.bttncam5sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam5sel, "bttncam5sel");
             this.bttncam5sel.Name = "bttncam5sel";
-            this.bttncam5sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam5sel.TabIndex = 89;
-            this.bttncam5sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam5sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam5sel, resources.GetString("bttncam5sel.ToolTip"));
             this.bttncam5sel.UseVisualStyleBackColor = false;
             this.bttncam5sel.Click += new System.EventHandler(this.bttncam5sel_Click);
             // 
             // bttncam2
             // 
             this.bttncam2.BackColor = System.Drawing.Color.Silver;
-            this.bttncam2.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam2.Location = new System.Drawing.Point(146, 304);
-            this.bttncam2.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam2, "bttncam2");
             this.bttncam2.Name = "bttncam2";
-            this.bttncam2.Size = new System.Drawing.Size(20, 20);
-            this.bttncam2.TabIndex = 77;
-            this.bttncam2.Text = "2";
-            this.toolTip1.SetToolTip(this.bttncam2, "Select Camera 2\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam2, resources.GetString("bttncam2.ToolTip"));
             this.bttncam2.UseVisualStyleBackColor = false;
             this.bttncam2.Click += new System.EventHandler(this.bttncam2_Click);
             // 
             // bttncam3sel
             // 
             this.bttncam3sel.BackColor = System.Drawing.Color.Silver;
-            this.bttncam3sel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam3sel.Location = new System.Drawing.Point(166, 325);
-            this.bttncam3sel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam3sel, "bttncam3sel");
             this.bttncam3sel.Name = "bttncam3sel";
-            this.bttncam3sel.Size = new System.Drawing.Size(20, 15);
-            this.bttncam3sel.TabIndex = 88;
-            this.bttncam3sel.Text = " ";
-            this.toolTip1.SetToolTip(this.bttncam3sel, "Set camera to be motion sensitive.\r\n\r\nGreen - camera connected and motion sensiti" +
-        "ve\r\nGrey - no camera present/camera not motion sensitive");
+            this.toolTip1.SetToolTip(this.bttncam3sel, resources.GetString("bttncam3sel.ToolTip"));
             this.bttncam3sel.UseVisualStyleBackColor = false;
             this.bttncam3sel.Click += new System.EventHandler(this.bttncam3sel_Click);
             // 
             // bttncam1
             // 
             this.bttncam1.BackColor = System.Drawing.Color.Silver;
-            this.bttncam1.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam1.Location = new System.Drawing.Point(126, 304);
-            this.bttncam1.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam1, "bttncam1");
             this.bttncam1.Name = "bttncam1";
-            this.bttncam1.Size = new System.Drawing.Size(20, 20);
-            this.bttncam1.TabIndex = 76;
-            this.bttncam1.Text = "1";
-            this.toolTip1.SetToolTip(this.bttncam1, "Select Camera 1\r\n\r\nGreen - camera connected and selected\r\nBlue -  camera connecte" +
-        "d\r\nGrey - no camera present");
+            this.toolTip1.SetToolTip(this.bttncam1, resources.GetString("bttncam1.ToolTip"));
             this.bttncam1.UseVisualStyleBackColor = false;
             this.bttncam1.Click += new System.EventHandler(this.bttncam1_Click);
             // 
@@ -837,258 +695,175 @@ namespace TeboCam
             // 
             this.groupBox1.Controls.Add(this.txtMess);
             this.groupBox1.Controls.Add(this.actCount);
-            this.groupBox1.Location = new System.Drawing.Point(44, 344);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(338, 48);
-            this.groupBox1.TabIndex = 74;
             this.groupBox1.TabStop = false;
             // 
             // txtMess
             // 
             this.txtMess.BackColor = System.Drawing.SystemColors.Control;
             this.txtMess.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMess.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.txtMess, "txtMess");
             this.txtMess.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtMess.Location = new System.Drawing.Point(16, 15);
             this.txtMess.Name = "txtMess";
-            this.txtMess.Size = new System.Drawing.Size(198, 19);
-            this.txtMess.TabIndex = 53;
-            this.txtMess.Text = " ";
-            this.txtMess.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // actCount
             // 
             this.actCount.BackColor = System.Drawing.SystemColors.Control;
             this.actCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.actCount.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.actCount, "actCount");
             this.actCount.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.actCount.Location = new System.Drawing.Point(224, 15);
             this.actCount.Name = "actCount";
-            this.actCount.Size = new System.Drawing.Size(97, 19);
-            this.actCount.TabIndex = 39;
-            this.actCount.Text = "00";
-            this.actCount.Visible = false;
             // 
             // levelShow
             // 
-            this.levelShow.Image = ((System.Drawing.Image)(resources.GetObject("levelShow.Image")));
-            this.levelShow.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.levelShow.Location = new System.Drawing.Point(94, 303);
-            this.levelShow.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.levelShow, "levelShow");
             this.levelShow.Name = "levelShow";
-            this.levelShow.Size = new System.Drawing.Size(20, 20);
-            this.levelShow.TabIndex = 72;
-            this.toolTip1.SetToolTip(this.levelShow, "Show/hide motion detection level.");
+            this.toolTip1.SetToolTip(this.levelShow, resources.GetString("levelShow.ToolTip"));
             this.levelShow.UseVisualStyleBackColor = true;
             this.levelShow.Click += new System.EventHandler(this.levelShow_Click);
             // 
             // cameraShow
             // 
-            this.cameraShow.Image = ((System.Drawing.Image)(resources.GetObject("cameraShow.Image")));
-            this.cameraShow.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.cameraShow.Location = new System.Drawing.Point(74, 303);
-            this.cameraShow.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.cameraShow, "cameraShow");
             this.cameraShow.Name = "cameraShow";
-            this.cameraShow.Size = new System.Drawing.Size(20, 20);
-            this.cameraShow.TabIndex = 71;
             this.toolTip1.SetToolTip(this.cameraShow, resources.GetString("cameraShow.ToolTip"));
             this.cameraShow.UseVisualStyleBackColor = true;
             this.cameraShow.Click += new System.EventHandler(this.cameraShow_Click);
             // 
             // imageInFrame
             // 
-            this.imageInFrame.Image = ((System.Drawing.Image)(resources.GetObject("imageInFrame.Image")));
-            this.imageInFrame.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.imageInFrame.Location = new System.Drawing.Point(54, 303);
-            this.imageInFrame.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.imageInFrame, "imageInFrame");
             this.imageInFrame.Name = "imageInFrame";
-            this.imageInFrame.Size = new System.Drawing.Size(20, 20);
-            this.imageInFrame.TabIndex = 70;
-            this.toolTip1.SetToolTip(this.imageInFrame, "Show/Hide webam image scrollbars.");
+            this.toolTip1.SetToolTip(this.imageInFrame, resources.GetString("imageInFrame.ToolTip"));
             this.imageInFrame.UseVisualStyleBackColor = true;
             this.imageInFrame.Click += new System.EventHandler(this.imageInFrame_Click);
             // 
             // startMinimized
             // 
-            this.startMinimized.AutoSize = true;
-            this.startMinimized.Location = new System.Drawing.Point(428, 288);
+            resources.ApplyResources(this.startMinimized, "startMinimized");
             this.startMinimized.Name = "startMinimized";
-            this.startMinimized.Size = new System.Drawing.Size(187, 17);
-            this.startMinimized.TabIndex = 68;
-            this.startMinimized.Text = "Startup TeboCam Hidden";
             this.startMinimized.UseVisualStyleBackColor = true;
             this.startMinimized.CheckedChanged += new System.EventHandler(this.startMinimized_CheckedChanged);
             // 
             // calendar
             // 
             this.calendar.BackColor = System.Drawing.Color.LemonChiffon;
-            this.calendar.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calendar.Location = new System.Drawing.Point(267, 81);
+            resources.ApplyResources(this.calendar, "calendar");
             this.calendar.Name = "calendar";
-            this.calendar.TabIndex = 1;
             this.calendar.TitleBackColor = System.Drawing.Color.DarkBlue;
             this.calendar.TitleForeColor = System.Drawing.Color.White;
-            this.calendar.Visible = false;
             this.calendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendar_DateSelected);
             // 
             // panel1
             // 
-            this.panel1.AutoScroll = true;
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.lblCameraName);
             this.panel1.Controls.Add(this.cameraWindow);
-            this.panel1.Location = new System.Drawing.Point(57, 45);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(338, 255);
-            this.panel1.TabIndex = 67;
             // 
             // lblCameraName
             // 
-            this.lblCameraName.AutoSize = true;
-            this.lblCameraName.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCameraName.Location = new System.Drawing.Point(14, 220);
+            resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
-            this.lblCameraName.Size = new System.Drawing.Size(56, 16);
-            this.lblCameraName.TabIndex = 97;
             this.lblCameraName.Tag = "";
-            this.lblCameraName.Text = "      ";
+            // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
-            this.newsInfo.Location = new System.Drawing.Point(609, 312);
+            resources.ApplyResources(this.newsInfo, "newsInfo");
             this.newsInfo.Name = "newsInfo";
-            this.newsInfo.Size = new System.Drawing.Size(91, 25);
-            this.newsInfo.TabIndex = 66;
-            this.newsInfo.Text = "News/Info";
-            this.toolTip1.SetToolTip(this.newsInfo, "Get the latest news and information on TeboCam");
+            this.toolTip1.SetToolTip(this.newsInfo, resources.GetString("newsInfo.ToolTip"));
             this.newsInfo.UseVisualStyleBackColor = true;
             this.newsInfo.Click += new System.EventHandler(this.newsInfo_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(706, 312);
+            resources.ApplyResources(this.button5, "button5");
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(213, 25);
-            this.button5.TabIndex = 64;
-            this.button5.Text = "Open WebPage Teboweb.Com";
-            this.toolTip1.SetToolTip(this.button5, "Open the TeboWeb.com webpage.");
+            this.toolTip1.SetToolTip(this.button5, resources.GetString("button5.ToolTip"));
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // hideLog
             // 
-            this.hideLog.Location = new System.Drawing.Point(511, 312);
+            resources.ApplyResources(this.hideLog, "hideLog");
             this.hideLog.Name = "hideLog";
-            this.hideLog.Size = new System.Drawing.Size(92, 25);
-            this.hideLog.TabIndex = 63;
-            this.hideLog.Text = "Hide Log";
-            this.toolTip1.SetToolTip(this.hideLog, "Show/hide the log.");
+            this.toolTip1.SetToolTip(this.hideLog, resources.GetString("hideLog.ToolTip"));
             this.hideLog.UseVisualStyleBackColor = true;
             this.hideLog.Click += new System.EventHandler(this.hideLog_Click);
             // 
             // lbl0Perc
             // 
-            this.lbl0Perc.AutoSize = true;
-            this.lbl0Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl0Perc.Location = new System.Drawing.Point(20, 278);
+            resources.ApplyResources(this.lbl0Perc, "lbl0Perc");
             this.lbl0Perc.Name = "lbl0Perc";
-            this.lbl0Perc.Size = new System.Drawing.Size(14, 14);
-            this.lbl0Perc.TabIndex = 47;
-            this.lbl0Perc.Text = "0";
             // 
             // lbl100Perc
             // 
-            this.lbl100Perc.AutoSize = true;
-            this.lbl100Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl100Perc.Location = new System.Drawing.Point(6, 35);
+            resources.ApplyResources(this.lbl100Perc, "lbl100Perc");
             this.lbl100Perc.Name = "lbl100Perc";
-            this.lbl100Perc.Size = new System.Drawing.Size(28, 14);
-            this.lbl100Perc.TabIndex = 46;
-            this.lbl100Perc.Text = "100";
             // 
             // lbl75Perc
             // 
-            this.lbl75Perc.AutoSize = true;
-            this.lbl75Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl75Perc.Location = new System.Drawing.Point(13, 95);
+            resources.ApplyResources(this.lbl75Perc, "lbl75Perc");
             this.lbl75Perc.Name = "lbl75Perc";
-            this.lbl75Perc.Size = new System.Drawing.Size(21, 14);
-            this.lbl75Perc.TabIndex = 45;
-            this.lbl75Perc.Text = "75";
             // 
             // lbl25Perc
             // 
-            this.lbl25Perc.AutoSize = true;
-            this.lbl25Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl25Perc.Location = new System.Drawing.Point(13, 215);
+            resources.ApplyResources(this.lbl25Perc, "lbl25Perc");
             this.lbl25Perc.Name = "lbl25Perc";
-            this.lbl25Perc.Size = new System.Drawing.Size(21, 14);
-            this.lbl25Perc.TabIndex = 44;
-            this.lbl25Perc.Text = "25";
             // 
             // lbl50Perc
             // 
-            this.lbl50Perc.AutoSize = true;
-            this.lbl50Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl50Perc.Location = new System.Drawing.Point(13, 156);
+            resources.ApplyResources(this.lbl50Perc, "lbl50Perc");
             this.lbl50Perc.Name = "lbl50Perc";
-            this.lbl50Perc.Size = new System.Drawing.Size(21, 14);
-            this.lbl50Perc.TabIndex = 43;
-            this.lbl50Perc.Text = "50";
             // 
             // levelbox
             // 
-            this.levelbox.Location = new System.Drawing.Point(36, 45);
+            resources.ApplyResources(this.levelbox, "levelbox");
             this.levelbox.Name = "levelbox";
-            this.levelbox.Size = new System.Drawing.Size(10, 243);
-            this.levelbox.TabIndex = 42;
             this.levelbox.TabStop = false;
-            this.toolTip1.SetToolTip(this.levelbox, "Motion detection level.");
+            this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
             this.levelbox.Paint += new System.Windows.Forms.PaintEventHandler(this.levelbox_Paint);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(431, 11);
+            resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(488, 25);
-            this.button6.TabIndex = 41;
-            this.button6.Text = "Show Calendar";
-            this.toolTip1.SetToolTip(this.button6, "Show/hide the calendar of motion detection.");
+            this.toolTip1.SetToolTip(this.button6, resources.GetString("button6.ToolTip"));
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // txtLog
             // 
             this.txtLog.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtLog.Location = new System.Drawing.Point(511, 343);
+            resources.ApplyResources(this.txtLog, "txtLog");
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(405, 217);
-            this.txtLog.TabIndex = 36;
-            this.txtLog.Text = "";
-            this.toolTip1.SetToolTip(this.txtLog, "This is the current log, of activity, for this session.");
-            this.txtLog.WordWrap = false;
+            this.toolTip1.SetToolTip(this.txtLog, resources.GetString("txtLog.ToolTip"));
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pictureBox1);
-            this.groupBox3.Location = new System.Drawing.Point(431, 39);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(488, 249);
-            this.groupBox3.TabIndex = 35;
             this.groupBox3.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 14);
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(476, 228);
-            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "Graph of activity over 24 hours.\r\nTo see another day open the calendar \r\nby click" +
-        "ing on the show calendar button\r\nabove.");
+            this.toolTip1.SetToolTip(this.pictureBox1, resources.GetString("pictureBox1.ToolTip"));
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
@@ -1100,12 +875,9 @@ namespace TeboCam
             this.MotionAlarm.Controls.Add(this.groupBox5);
             this.MotionAlarm.Controls.Add(this.bttnMotionInactive);
             this.MotionAlarm.Controls.Add(this.bttnMotionActive);
-            this.MotionAlarm.Location = new System.Drawing.Point(6, 398);
+            resources.ApplyResources(this.MotionAlarm, "MotionAlarm");
             this.MotionAlarm.Name = "MotionAlarm";
-            this.MotionAlarm.Size = new System.Drawing.Size(499, 165);
-            this.MotionAlarm.TabIndex = 32;
             this.MotionAlarm.TabStop = false;
-            this.MotionAlarm.Text = "Motion Alarm";
             // 
             // groupBox9
             // 
@@ -1114,93 +886,59 @@ namespace TeboCam
             this.groupBox9.Controls.Add(this.lblstartmov);
             this.groupBox9.Controls.Add(this.lblendmov);
             this.groupBox9.Controls.Add(this.button38);
-            this.groupBox9.Location = new System.Drawing.Point(280, 41);
+            resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(200, 121);
-            this.groupBox9.TabIndex = 104;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Schedule";
             // 
             // bttnMotionScheduleOnAtStart
             // 
-            this.bttnMotionScheduleOnAtStart.AutoSize = true;
-            this.bttnMotionScheduleOnAtStart.Location = new System.Drawing.Point(97, 21);
+            resources.ApplyResources(this.bttnMotionScheduleOnAtStart, "bttnMotionScheduleOnAtStart");
             this.bttnMotionScheduleOnAtStart.Name = "bttnMotionScheduleOnAtStart";
-            this.bttnMotionScheduleOnAtStart.Size = new System.Drawing.Size(95, 17);
-            this.bttnMotionScheduleOnAtStart.TabIndex = 103;
-            this.bttnMotionScheduleOnAtStart.Text = "On at start";
-            this.toolTip1.SetToolTip(this.bttnMotionScheduleOnAtStart, "Activate schedule on start up");
+            this.toolTip1.SetToolTip(this.bttnMotionScheduleOnAtStart, resources.GetString("bttnMotionScheduleOnAtStart.ToolTip"));
             this.bttnMotionScheduleOnAtStart.UseVisualStyleBackColor = true;
             this.bttnMotionScheduleOnAtStart.CheckedChanged += new System.EventHandler(this.bttnMotionScheduleOnAtStart_CheckedChanged);
             // 
             // bttnMotionSchedule
             // 
-            this.bttnMotionSchedule.AutoSize = true;
-            this.bttnMotionSchedule.Location = new System.Drawing.Point(6, 21);
+            resources.ApplyResources(this.bttnMotionSchedule, "bttnMotionSchedule");
             this.bttnMotionSchedule.Name = "bttnMotionSchedule";
-            this.bttnMotionSchedule.Size = new System.Drawing.Size(43, 17);
-            this.bttnMotionSchedule.TabIndex = 97;
-            this.bttnMotionSchedule.Text = "On";
-            this.toolTip1.SetToolTip(this.bttnMotionSchedule, "Activate motion detection based on time schedule.");
+            this.toolTip1.SetToolTip(this.bttnMotionSchedule, resources.GetString("bttnMotionSchedule.ToolTip"));
             this.bttnMotionSchedule.UseVisualStyleBackColor = true;
             this.bttnMotionSchedule.CheckedChanged += new System.EventHandler(this.bttnMotionSchedule_CheckedChanged);
             // 
             // lblstartmov
             // 
-            this.lblstartmov.AutoSize = true;
-            this.lblstartmov.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblstartmov, "lblstartmov");
             this.lblstartmov.ForeColor = System.Drawing.Color.Black;
-            this.lblstartmov.Location = new System.Drawing.Point(3, 75);
             this.lblstartmov.Name = "lblstartmov";
-            this.lblstartmov.Size = new System.Drawing.Size(47, 13);
-            this.lblstartmov.TabIndex = 99;
-            this.lblstartmov.Text = "Start: ";
             // 
             // lblendmov
             // 
-            this.lblendmov.AutoSize = true;
-            this.lblendmov.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblendmov, "lblendmov");
             this.lblendmov.ForeColor = System.Drawing.Color.Black;
-            this.lblendmov.Location = new System.Drawing.Point(3, 96);
             this.lblendmov.Name = "lblendmov";
-            this.lblendmov.Size = new System.Drawing.Size(35, 13);
-            this.lblendmov.TabIndex = 100;
-            this.lblendmov.Text = "End:";
             // 
             // button38
             // 
-            this.button38.Location = new System.Drawing.Point(4, 43);
+            resources.ApplyResources(this.button38, "button38");
             this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(188, 29);
-            this.button38.TabIndex = 101;
-            this.button38.Text = "Set Schedule";
-            this.toolTip1.SetToolTip(this.button38, "Set time schedule for when to start and end\r\nactive motion detection.");
+            this.toolTip1.SetToolTip(this.button38, resources.GetString("button38.ToolTip"));
             this.button38.UseVisualStyleBackColor = true;
             this.button38.Click += new System.EventHandler(this.button38_Click);
             // 
             // bttnActivateAtEveryStartup
             // 
-            this.bttnActivateAtEveryStartup.AutoSize = true;
-            this.bttnActivateAtEveryStartup.Location = new System.Drawing.Point(273, 21);
+            resources.ApplyResources(this.bttnActivateAtEveryStartup, "bttnActivateAtEveryStartup");
             this.bttnActivateAtEveryStartup.Name = "bttnActivateAtEveryStartup";
-            this.bttnActivateAtEveryStartup.Size = new System.Drawing.Size(190, 17);
-            this.bttnActivateAtEveryStartup.TabIndex = 102;
-            this.bttnActivateAtEveryStartup.Text = "Activate at every startup";
-            this.toolTip1.SetToolTip(this.bttnActivateAtEveryStartup, "Activate at every startup: Activate detection at every startup.\r\nIn accordance wi" +
-        "th settings within the \"Activate in/at\" area.");
+            this.toolTip1.SetToolTip(this.bttnActivateAtEveryStartup, resources.GetString("bttnActivateAtEveryStartup.ToolTip"));
             this.bttnActivateAtEveryStartup.UseVisualStyleBackColor = true;
             this.bttnActivateAtEveryStartup.CheckedChanged += new System.EventHandler(this.bttnActivateAtEveryStartup_CheckedChanged);
             // 
             // bttnMotionAtStartup
             // 
-            this.bttnMotionAtStartup.AutoSize = true;
-            this.bttnMotionAtStartup.Location = new System.Drawing.Point(172, 20);
+            resources.ApplyResources(this.bttnMotionAtStartup, "bttnMotionAtStartup");
             this.bttnMotionAtStartup.Name = "bttnMotionAtStartup";
-            this.bttnMotionAtStartup.Size = new System.Drawing.Size(91, 17);
-            this.bttnMotionAtStartup.TabIndex = 59;
-            this.bttnMotionAtStartup.Text = "At Startup";
-            this.toolTip1.SetToolTip(this.bttnMotionAtStartup, "At Startup: Activate motion detection on next TeboCam startup.\r\nIn accordance wit" +
-        "h settings within the \"Activate in/at\" area. ");
+            this.toolTip1.SetToolTip(this.bttnMotionAtStartup, resources.GetString("bttnMotionAtStartup.ToolTip"));
             this.bttnMotionAtStartup.UseVisualStyleBackColor = true;
             // 
             // groupBox5
@@ -1213,66 +951,44 @@ namespace TeboCam
             this.groupBox5.Controls.Add(this.bttnSeconds);
             this.groupBox5.Controls.Add(this.actCountdown);
             this.groupBox5.Controls.Add(this.numericUpDown1);
-            this.groupBox5.Location = new System.Drawing.Point(7, 54);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(265, 100);
-            this.groupBox5.TabIndex = 58;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Activate in/at";
             // 
             // bttnNow
             // 
-            this.bttnNow.AutoSize = true;
-            this.bttnNow.Location = new System.Drawing.Point(6, 21);
+            resources.ApplyResources(this.bttnNow, "bttnNow");
             this.bttnNow.Name = "bttnNow";
-            this.bttnNow.Size = new System.Drawing.Size(52, 17);
-            this.bttnNow.TabIndex = 63;
-            this.bttnNow.Text = "Now";
-            this.toolTip1.SetToolTip(this.bttnNow, "When Active is selected motion detection \r\nis activated immediately.");
+            this.toolTip1.SetToolTip(this.bttnNow, resources.GetString("bttnNow.ToolTip"));
             this.bttnNow.UseVisualStyleBackColor = true;
             this.bttnNow.CheckedChanged += new System.EventHandler(this.bttnNow_CheckedChanged);
             // 
             // lblTime
             // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblTime, "lblTime");
             this.lblTime.ForeColor = System.Drawing.Color.Black;
-            this.lblTime.Location = new System.Drawing.Point(214, 70);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(43, 13);
-            this.lblTime.TabIndex = 58;
-            this.lblTime.Text = "00:00";
             // 
             // label43
             // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label43, "label43");
             this.label43.ForeColor = System.Drawing.Color.Black;
-            this.label43.Location = new System.Drawing.Point(148, 70);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(11, 13);
-            this.label43.TabIndex = 62;
-            this.label43.Text = ":";
             // 
             // bttnTime
             // 
-            this.bttnTime.AutoSize = true;
+            resources.ApplyResources(this.bttnTime, "bttnTime");
             this.bttnTime.Checked = true;
-            this.bttnTime.Location = new System.Drawing.Point(6, 66);
             this.bttnTime.Name = "bttnTime";
-            this.bttnTime.Size = new System.Drawing.Size(57, 17);
-            this.bttnTime.TabIndex = 1;
             this.bttnTime.TabStop = true;
-            this.bttnTime.Text = "Time";
-            this.toolTip1.SetToolTip(this.bttnTime, "When Active is selected motion detection \r\nis activated at the time specified to " +
-        "the right.");
+            this.toolTip1.SetToolTip(this.bttnTime, resources.GetString("bttnTime.ToolTip"));
             this.bttnTime.UseVisualStyleBackColor = true;
             this.bttnTime.CheckedChanged += new System.EventHandler(this.bttnTime_CheckedChanged);
             // 
             // numericUpDown2
             // 
             this.numericUpDown2.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown2.Location = new System.Drawing.Point(165, 68);
+            resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
             this.numericUpDown2.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1284,40 +1000,29 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(43, 21);
-            this.numericUpDown2.TabIndex = 59;
-            this.toolTip1.SetToolTip(this.numericUpDown2, "The time when movement detection \r\nbecomes active.\r\n\r\nThis is useful if you want " +
-        "to schedule TeboCam\r\nto start at a particular time.");
+            this.toolTip1.SetToolTip(this.numericUpDown2, resources.GetString("numericUpDown2.ToolTip"));
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // bttnSeconds
             // 
-            this.bttnSeconds.AutoSize = true;
-            this.bttnSeconds.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.bttnSeconds, "bttnSeconds");
             this.bttnSeconds.Name = "bttnSeconds";
-            this.bttnSeconds.Size = new System.Drawing.Size(79, 17);
-            this.bttnSeconds.TabIndex = 0;
-            this.bttnSeconds.Text = "Seconds";
-            this.toolTip1.SetToolTip(this.bttnSeconds, "When Active is selected motion detection \r\nis activated in the number of\r\nseconds" +
-        " specified to the right.");
+            this.toolTip1.SetToolTip(this.bttnSeconds, resources.GetString("bttnSeconds.ToolTip"));
             this.bttnSeconds.UseVisualStyleBackColor = true;
             // 
             // actCountdown
             // 
             this.actCountdown.BackColor = System.Drawing.Color.LemonChiffon;
-            this.actCountdown.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.actCountdown, "actCountdown");
             this.actCountdown.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.actCountdown.Location = new System.Drawing.Point(94, 41);
             this.actCountdown.Name = "actCountdown";
-            this.actCountdown.Size = new System.Drawing.Size(48, 21);
-            this.actCountdown.TabIndex = 40;
             this.toolTip1.SetToolTip(this.actCountdown, resources.GetString("actCountdown.ToolTip"));
             this.actCountdown.TextChanged += new System.EventHandler(this.actCountdown_TextChanged);
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown1.Location = new System.Drawing.Point(94, 68);
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
             this.numericUpDown1.Maximum = new decimal(new int[] {
             24,
             0,
@@ -1329,57 +1034,39 @@ namespace TeboCam
             0,
             -2147483648});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(48, 21);
-            this.numericUpDown1.TabIndex = 58;
-            this.toolTip1.SetToolTip(this.numericUpDown1, "The time when movement detection \r\nbecomes active.\r\n\r\nThis is useful if you want " +
-        "to schedule TeboCam\r\nto start at a particular time.");
+            this.toolTip1.SetToolTip(this.numericUpDown1, resources.GetString("numericUpDown1.ToolTip"));
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // bttnMotionInactive
             // 
-            this.bttnMotionInactive.AutoSize = true;
+            resources.ApplyResources(this.bttnMotionInactive, "bttnMotionInactive");
             this.bttnMotionInactive.Checked = true;
-            this.bttnMotionInactive.Location = new System.Drawing.Point(89, 20);
             this.bttnMotionInactive.Name = "bttnMotionInactive";
-            this.bttnMotionInactive.Size = new System.Drawing.Size(79, 17);
-            this.bttnMotionInactive.TabIndex = 1;
             this.bttnMotionInactive.TabStop = true;
-            this.bttnMotionInactive.Text = "Inactive";
-            this.toolTip1.SetToolTip(this.bttnMotionInactive, "Inactive: Set motion detection off.");
+            this.toolTip1.SetToolTip(this.bttnMotionInactive, resources.GetString("bttnMotionInactive.ToolTip"));
             this.bttnMotionInactive.UseVisualStyleBackColor = true;
             // 
             // bttnMotionActive
             // 
-            this.bttnMotionActive.AutoSize = true;
-            this.bttnMotionActive.Location = new System.Drawing.Point(17, 20);
+            resources.ApplyResources(this.bttnMotionActive, "bttnMotionActive");
             this.bttnMotionActive.Name = "bttnMotionActive";
-            this.bttnMotionActive.Size = new System.Drawing.Size(66, 17);
-            this.bttnMotionActive.TabIndex = 0;
-            this.bttnMotionActive.Text = "Active";
-            this.toolTip1.SetToolTip(this.bttnMotionActive, "Active: Set motion detection on.\r\nIn accordance with settings within the \"Activat" +
-        "e in/at\" area. ");
+            this.toolTip1.SetToolTip(this.bttnMotionActive, resources.GetString("bttnMotionActive.ToolTip"));
             this.bttnMotionActive.UseVisualStyleBackColor = true;
             this.bttnMotionActive.CheckedChanged += new System.EventHandler(this.bttnMotionActive_CheckedChanged);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(63, 11);
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(155, 25);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Add Webcam USB/IP";
-            this.toolTip1.SetToolTip(this.button4, "Select a webcam from currently\r\nattached webcams.");
+            this.toolTip1.SetToolTip(this.button4, resources.GetString("button4.ToolTip"));
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Images
             // 
             this.Images.Controls.Add(this.groupBox8);
-            this.Images.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Images, "Images");
             this.Images.Name = "Images";
-            this.Images.Size = new System.Drawing.Size(944, 569);
-            this.Images.TabIndex = 4;
-            this.Images.Text = "Images";
             this.Images.UseVisualStyleBackColor = true;
             // 
             // groupBox8
@@ -1417,31 +1104,22 @@ namespace TeboCam
             this.groupBox8.Controls.Add(this.t33);
             this.groupBox8.Controls.Add(this.t34);
             this.groupBox8.Controls.Add(this.t14);
-            this.groupBox8.Location = new System.Drawing.Point(14, 27);
+            resources.ApplyResources(this.groupBox8, "groupBox8");
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(902, 522);
-            this.groupBox8.TabIndex = 20;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "This Session";
             // 
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.button18);
-            this.panel7.Location = new System.Drawing.Point(776, 368);
+            resources.ApplyResources(this.panel7, "panel7");
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(120, 50);
-            this.panel7.TabIndex = 68;
             // 
             // button18
             // 
-            this.button18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(8, 7);
+            resources.ApplyResources(this.button18, "button18");
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(96, 33);
-            this.button18.TabIndex = 67;
-            this.button18.Text = "Time Stamp";
-            this.toolTip1.SetToolTip(this.button18, "Add or remove a time stamp \r\nfrom images.");
+            this.toolTip1.SetToolTip(this.button18, resources.GetString("button18.ToolTip"));
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click_1);
             // 
@@ -1457,103 +1135,61 @@ namespace TeboCam
             this.panel6.Controls.Add(this.rdPublishjpg);
             this.panel6.Controls.Add(this.rdAlertjpg);
             this.panel6.Controls.Add(this.rdPingjpg);
-            this.panel6.Location = new System.Drawing.Point(776, 210);
+            resources.ApplyResources(this.panel6, "panel6");
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(120, 152);
-            this.panel6.TabIndex = 41;
             // 
             // onlineVal
             // 
-            this.onlineVal.AutoSize = true;
-            this.onlineVal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.onlineVal.Location = new System.Drawing.Point(84, 122);
+            resources.ApplyResources(this.onlineVal, "onlineVal");
             this.onlineVal.Name = "onlineVal";
-            this.onlineVal.Size = new System.Drawing.Size(28, 13);
-            this.onlineVal.TabIndex = 72;
-            this.onlineVal.Text = "100";
             // 
             // rdOnlinejpg
             // 
-            this.rdOnlinejpg.AutoSize = true;
-            this.rdOnlinejpg.Location = new System.Drawing.Point(6, 120);
+            resources.ApplyResources(this.rdOnlinejpg, "rdOnlinejpg");
             this.rdOnlinejpg.Name = "rdOnlinejpg";
-            this.rdOnlinejpg.Size = new System.Drawing.Size(66, 17);
-            this.rdOnlinejpg.TabIndex = 71;
-            this.rdOnlinejpg.Text = "Online";
             this.rdOnlinejpg.UseVisualStyleBackColor = true;
             // 
             // publishVal
             // 
-            this.publishVal.AutoSize = true;
-            this.publishVal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.publishVal.Location = new System.Drawing.Point(84, 99);
+            resources.ApplyResources(this.publishVal, "publishVal");
             this.publishVal.Name = "publishVal";
-            this.publishVal.Size = new System.Drawing.Size(28, 13);
-            this.publishVal.TabIndex = 70;
-            this.publishVal.Text = "100";
             // 
             // button16
             // 
-            this.button16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.Location = new System.Drawing.Point(8, 12);
+            resources.ApplyResources(this.button16, "button16");
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(96, 33);
-            this.button16.TabIndex = 67;
-            this.button16.Text = "Jpeg Quality";
-            this.toolTip1.SetToolTip(this.button16, "Specify the image quality.");
+            this.toolTip1.SetToolTip(this.button16, resources.GetString("button16.ToolTip"));
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click_1);
             // 
             // alertVal
             // 
-            this.alertVal.AutoSize = true;
-            this.alertVal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alertVal.Location = new System.Drawing.Point(84, 53);
+            resources.ApplyResources(this.alertVal, "alertVal");
             this.alertVal.Name = "alertVal";
-            this.alertVal.Size = new System.Drawing.Size(28, 13);
-            this.alertVal.TabIndex = 69;
-            this.alertVal.Text = "100";
             // 
             // pingVal
             // 
-            this.pingVal.AutoSize = true;
-            this.pingVal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pingVal.Location = new System.Drawing.Point(84, 78);
+            resources.ApplyResources(this.pingVal, "pingVal");
             this.pingVal.Name = "pingVal";
-            this.pingVal.Size = new System.Drawing.Size(28, 13);
-            this.pingVal.TabIndex = 68;
-            this.pingVal.Text = "100";
             // 
             // rdPublishjpg
             // 
-            this.rdPublishjpg.AutoSize = true;
-            this.rdPublishjpg.Location = new System.Drawing.Point(6, 97);
+            resources.ApplyResources(this.rdPublishjpg, "rdPublishjpg");
             this.rdPublishjpg.Name = "rdPublishjpg";
-            this.rdPublishjpg.Size = new System.Drawing.Size(72, 17);
-            this.rdPublishjpg.TabIndex = 2;
-            this.rdPublishjpg.Text = "Publish";
             this.rdPublishjpg.UseVisualStyleBackColor = true;
             // 
             // rdAlertjpg
             // 
-            this.rdAlertjpg.AutoSize = true;
+            resources.ApplyResources(this.rdAlertjpg, "rdAlertjpg");
             this.rdAlertjpg.Checked = true;
-            this.rdAlertjpg.Location = new System.Drawing.Point(6, 51);
             this.rdAlertjpg.Name = "rdAlertjpg";
-            this.rdAlertjpg.Size = new System.Drawing.Size(57, 17);
-            this.rdAlertjpg.TabIndex = 1;
             this.rdAlertjpg.TabStop = true;
-            this.rdAlertjpg.Text = "Alert";
             this.rdAlertjpg.UseVisualStyleBackColor = true;
             // 
             // rdPingjpg
             // 
-            this.rdPingjpg.AutoSize = true;
-            this.rdPingjpg.Location = new System.Drawing.Point(6, 74);
+            resources.ApplyResources(this.rdPingjpg, "rdPingjpg");
             this.rdPingjpg.Name = "rdPingjpg";
-            this.rdPingjpg.Size = new System.Drawing.Size(53, 17);
-            this.rdPingjpg.TabIndex = 0;
-            this.rdPingjpg.Text = "Ping";
             this.rdPingjpg.UseVisualStyleBackColor = true;
             // 
             // panel5
@@ -1565,347 +1201,257 @@ namespace TeboCam
             this.panel5.Controls.Add(this.lblCountOnComputer);
             this.panel5.Controls.Add(this.clrFtp);
             this.panel5.Controls.Add(this.lblCountOnWeb);
-            this.panel5.Location = new System.Drawing.Point(776, 20);
+            resources.ApplyResources(this.panel5, "panel5");
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(120, 184);
-            this.panel5.TabIndex = 40;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(9, 3);
+            resources.ApplyResources(this.button7, "button7");
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(103, 37);
-            this.button7.TabIndex = 39;
-            this.button7.Text = "Update Information";
-            this.toolTip1.SetToolTip(this.button7, "Update the counts, above, of TeboCam images on your computer \r\nand files on your " +
-        "website.\r\n");
+            this.toolTip1.SetToolTip(this.button7, resources.GetString("button7.ToolTip"));
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // bttnClear
             // 
-            this.bttnClear.Location = new System.Drawing.Point(9, 94);
+            resources.ApplyResources(this.bttnClear, "bttnClear");
             this.bttnClear.Name = "bttnClear";
-            this.bttnClear.Size = new System.Drawing.Size(96, 37);
-            this.bttnClear.TabIndex = 34;
-            this.bttnClear.Text = "Clear Images";
             this.toolTip1.SetToolTip(this.bttnClear, resources.GetString("bttnClear.ToolTip"));
             this.bttnClear.UseVisualStyleBackColor = true;
             this.bttnClear.Click += new System.EventHandler(this.bttnClearAll_Click);
             // 
             // clrImg
             // 
-            this.clrImg.AutoSize = true;
-            this.clrImg.Location = new System.Drawing.Point(6, 137);
+            resources.ApplyResources(this.clrImg, "clrImg");
             this.clrImg.Name = "clrImg";
-            this.clrImg.Size = new System.Drawing.Size(89, 17);
-            this.clrImg.TabIndex = 32;
-            this.clrImg.Text = "Computer";
             this.clrImg.UseVisualStyleBackColor = true;
             // 
             // lblCountOnComputer
             // 
-            this.lblCountOnComputer.AutoSize = true;
-            this.lblCountOnComputer.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblCountOnComputer, "lblCountOnComputer");
             this.lblCountOnComputer.ForeColor = System.Drawing.Color.Black;
-            this.lblCountOnComputer.Location = new System.Drawing.Point(6, 46);
             this.lblCountOnComputer.Name = "lblCountOnComputer";
-            this.lblCountOnComputer.Size = new System.Drawing.Size(78, 13);
-            this.lblCountOnComputer.TabIndex = 36;
-            this.lblCountOnComputer.Text = "Computer: ";
             // 
             // clrFtp
             // 
-            this.clrFtp.AutoSize = true;
-            this.clrFtp.Location = new System.Drawing.Point(6, 160);
+            resources.ApplyResources(this.clrFtp, "clrFtp");
             this.clrFtp.Name = "clrFtp";
-            this.clrFtp.Size = new System.Drawing.Size(54, 17);
-            this.clrFtp.TabIndex = 33;
-            this.clrFtp.Text = "Web";
             this.clrFtp.UseVisualStyleBackColor = true;
             // 
             // lblCountOnWeb
             // 
-            this.lblCountOnWeb.AutoSize = true;
-            this.lblCountOnWeb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblCountOnWeb, "lblCountOnWeb");
             this.lblCountOnWeb.ForeColor = System.Drawing.Color.Black;
-            this.lblCountOnWeb.Location = new System.Drawing.Point(6, 69);
             this.lblCountOnWeb.Name = "lblCountOnWeb";
-            this.lblCountOnWeb.Size = new System.Drawing.Size(43, 13);
-            this.lblCountOnWeb.TabIndex = 37;
-            this.lblCountOnWeb.Text = "Web: ";
             // 
             // lblAdminMes
             // 
-            this.lblAdminMes.AutoSize = true;
-            this.lblAdminMes.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblAdminMes, "lblAdminMes");
             this.lblAdminMes.ForeColor = System.Drawing.Color.Black;
-            this.lblAdminMes.Location = new System.Drawing.Point(555, 442);
             this.lblAdminMes.Name = "lblAdminMes";
-            this.lblAdminMes.Size = new System.Drawing.Size(127, 13);
-            this.lblAdminMes.TabIndex = 38;
-            this.lblAdminMes.Text = "Admin Messages...";
             // 
             // t46
             // 
             this.t46.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t46.Location = new System.Drawing.Point(690, 338);
+            resources.ApplyResources(this.t46, "t46");
             this.t46.Name = "t46";
-            this.t46.Size = new System.Drawing.Size(80, 80);
-            this.t46.TabIndex = 28;
             this.t46.TabStop = false;
             // 
             // t26
             // 
             this.t26.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t26.Location = new System.Drawing.Point(690, 133);
+            resources.ApplyResources(this.t26, "t26");
             this.t26.Name = "t26";
-            this.t26.Size = new System.Drawing.Size(80, 80);
-            this.t26.TabIndex = 26;
             this.t26.TabStop = false;
             // 
             // t36
             // 
             this.t36.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t36.Location = new System.Drawing.Point(690, 230);
+            resources.ApplyResources(this.t36, "t36");
             this.t36.Name = "t36";
-            this.t36.Size = new System.Drawing.Size(80, 80);
-            this.t36.TabIndex = 27;
             this.t36.TabStop = false;
             // 
             // t16
             // 
             this.t16.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t16.Location = new System.Drawing.Point(690, 20);
+            resources.ApplyResources(this.t16, "t16");
             this.t16.Name = "t16";
-            this.t16.Size = new System.Drawing.Size(80, 80);
-            this.t16.TabIndex = 25;
             this.t16.TabStop = false;
             // 
             // t45
             // 
             this.t45.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t45.Location = new System.Drawing.Point(577, 338);
+            resources.ApplyResources(this.t45, "t45");
             this.t45.Name = "t45";
-            this.t45.Size = new System.Drawing.Size(80, 80);
-            this.t45.TabIndex = 24;
             this.t45.TabStop = false;
             // 
             // t25
             // 
             this.t25.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t25.Location = new System.Drawing.Point(577, 133);
+            resources.ApplyResources(this.t25, "t25");
             this.t25.Name = "t25";
-            this.t25.Size = new System.Drawing.Size(80, 80);
-            this.t25.TabIndex = 22;
             this.t25.TabStop = false;
             // 
             // t35
             // 
             this.t35.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t35.Location = new System.Drawing.Point(577, 230);
+            resources.ApplyResources(this.t35, "t35");
             this.t35.Name = "t35";
-            this.t35.Size = new System.Drawing.Size(80, 80);
-            this.t35.TabIndex = 23;
             this.t35.TabStop = false;
             // 
             // t15
             // 
             this.t15.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t15.Location = new System.Drawing.Point(577, 20);
+            resources.ApplyResources(this.t15, "t15");
             this.t15.Name = "t15";
-            this.t15.Size = new System.Drawing.Size(80, 80);
-            this.t15.TabIndex = 21;
             this.t15.TabStop = false;
             // 
             // picWindow
             // 
             this.picWindow.LargeChange = 1;
-            this.picWindow.Location = new System.Drawing.Point(12, 433);
+            resources.ApplyResources(this.picWindow, "picWindow");
             this.picWindow.Maximum = 40;
             this.picWindow.Name = "picWindow";
-            this.picWindow.Size = new System.Drawing.Size(526, 45);
-            this.picWindow.TabIndex = 20;
             this.picWindow.ValueChanged += new System.EventHandler(this.picWindow_ValueChanged);
             // 
             // t44
             // 
             this.t44.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t44.Location = new System.Drawing.Point(464, 338);
+            resources.ApplyResources(this.t44, "t44");
             this.t44.Name = "t44";
-            this.t44.Size = new System.Drawing.Size(80, 80);
-            this.t44.TabIndex = 19;
             this.t44.TabStop = false;
             // 
             // t10
             // 
             this.t10.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t10.Location = new System.Drawing.Point(12, 20);
+            resources.ApplyResources(this.t10, "t10");
             this.t10.Name = "t10";
-            this.t10.Size = new System.Drawing.Size(80, 80);
-            this.t10.TabIndex = 0;
             this.t10.TabStop = false;
             // 
             // t24
             // 
             this.t24.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t24.Location = new System.Drawing.Point(464, 133);
+            resources.ApplyResources(this.t24, "t24");
             this.t24.Name = "t24";
-            this.t24.Size = new System.Drawing.Size(80, 80);
-            this.t24.TabIndex = 9;
             this.t24.TabStop = false;
             // 
             // t43
             // 
             this.t43.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t43.Location = new System.Drawing.Point(351, 338);
+            resources.ApplyResources(this.t43, "t43");
             this.t43.Name = "t43";
-            this.t43.Size = new System.Drawing.Size(80, 80);
-            this.t43.TabIndex = 18;
             this.t43.TabStop = false;
             // 
             // t23
             // 
             this.t23.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t23.Location = new System.Drawing.Point(351, 133);
+            resources.ApplyResources(this.t23, "t23");
             this.t23.Name = "t23";
-            this.t23.Size = new System.Drawing.Size(80, 80);
-            this.t23.TabIndex = 8;
             this.t23.TabStop = false;
             // 
             // t30
             // 
             this.t30.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t30.Location = new System.Drawing.Point(12, 230);
+            resources.ApplyResources(this.t30, "t30");
             this.t30.Name = "t30";
-            this.t30.Size = new System.Drawing.Size(80, 80);
-            this.t30.TabIndex = 10;
             this.t30.TabStop = false;
             // 
             // t42
             // 
             this.t42.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t42.Location = new System.Drawing.Point(238, 338);
+            resources.ApplyResources(this.t42, "t42");
             this.t42.Name = "t42";
-            this.t42.Size = new System.Drawing.Size(80, 80);
-            this.t42.TabIndex = 17;
             this.t42.TabStop = false;
             // 
             // t22
             // 
             this.t22.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t22.Location = new System.Drawing.Point(238, 133);
+            resources.ApplyResources(this.t22, "t22");
             this.t22.Name = "t22";
-            this.t22.Size = new System.Drawing.Size(80, 80);
-            this.t22.TabIndex = 7;
             this.t22.TabStop = false;
             // 
             // t11
             // 
             this.t11.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t11.Location = new System.Drawing.Point(125, 20);
+            resources.ApplyResources(this.t11, "t11");
             this.t11.Name = "t11";
-            this.t11.Size = new System.Drawing.Size(80, 80);
-            this.t11.TabIndex = 1;
             this.t11.TabStop = false;
             // 
             // t31
             // 
             this.t31.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t31.Location = new System.Drawing.Point(125, 230);
+            resources.ApplyResources(this.t31, "t31");
             this.t31.Name = "t31";
-            this.t31.Size = new System.Drawing.Size(80, 80);
-            this.t31.TabIndex = 11;
             this.t31.TabStop = false;
             // 
             // t41
             // 
             this.t41.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t41.Location = new System.Drawing.Point(125, 338);
+            resources.ApplyResources(this.t41, "t41");
             this.t41.Name = "t41";
-            this.t41.Size = new System.Drawing.Size(80, 80);
-            this.t41.TabIndex = 16;
             this.t41.TabStop = false;
             // 
             // t21
             // 
             this.t21.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t21.Location = new System.Drawing.Point(125, 133);
+            resources.ApplyResources(this.t21, "t21");
             this.t21.Name = "t21";
-            this.t21.Size = new System.Drawing.Size(80, 80);
-            this.t21.TabIndex = 6;
             this.t21.TabStop = false;
             // 
             // t12
             // 
             this.t12.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t12.Location = new System.Drawing.Point(238, 20);
+            resources.ApplyResources(this.t12, "t12");
             this.t12.Name = "t12";
-            this.t12.Size = new System.Drawing.Size(80, 80);
-            this.t12.TabIndex = 2;
             this.t12.TabStop = false;
             // 
             // t32
             // 
             this.t32.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t32.Location = new System.Drawing.Point(238, 230);
+            resources.ApplyResources(this.t32, "t32");
             this.t32.Name = "t32";
-            this.t32.Size = new System.Drawing.Size(80, 80);
-            this.t32.TabIndex = 12;
             this.t32.TabStop = false;
             // 
             // t40
             // 
             this.t40.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t40.Location = new System.Drawing.Point(12, 338);
+            resources.ApplyResources(this.t40, "t40");
             this.t40.Name = "t40";
-            this.t40.Size = new System.Drawing.Size(80, 80);
-            this.t40.TabIndex = 15;
             this.t40.TabStop = false;
             // 
             // t20
             // 
             this.t20.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t20.Location = new System.Drawing.Point(12, 133);
+            resources.ApplyResources(this.t20, "t20");
             this.t20.Name = "t20";
-            this.t20.Size = new System.Drawing.Size(80, 80);
-            this.t20.TabIndex = 5;
             this.t20.TabStop = false;
             // 
             // t13
             // 
             this.t13.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t13.Location = new System.Drawing.Point(351, 20);
+            resources.ApplyResources(this.t13, "t13");
             this.t13.Name = "t13";
-            this.t13.Size = new System.Drawing.Size(80, 80);
-            this.t13.TabIndex = 3;
             this.t13.TabStop = false;
             // 
             // t33
             // 
             this.t33.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t33.Location = new System.Drawing.Point(351, 230);
+            resources.ApplyResources(this.t33, "t33");
             this.t33.Name = "t33";
-            this.t33.Size = new System.Drawing.Size(80, 80);
-            this.t33.TabIndex = 13;
             this.t33.TabStop = false;
             // 
             // t34
             // 
             this.t34.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t34.Location = new System.Drawing.Point(464, 230);
+            resources.ApplyResources(this.t34, "t34");
             this.t34.Name = "t34";
-            this.t34.Size = new System.Drawing.Size(80, 80);
-            this.t34.TabIndex = 14;
             this.t34.TabStop = false;
             // 
             // t14
             // 
             this.t14.BackColor = System.Drawing.Color.RoyalBlue;
-            this.t14.Location = new System.Drawing.Point(464, 20);
+            resources.ApplyResources(this.t14, "t14");
             this.t14.Name = "t14";
-            this.t14.Size = new System.Drawing.Size(80, 80);
-            this.t14.TabIndex = 4;
             this.t14.TabStop = false;
             // 
             // Alerts
@@ -1915,13 +1461,8 @@ namespace TeboCam
             this.Alerts.Controls.Add(this.groupBox14);
             this.Alerts.Controls.Add(this.groupBox13);
             this.Alerts.Controls.Add(this.groupBox6);
-            this.Alerts.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.Alerts.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Alerts, "Alerts");
             this.Alerts.Name = "Alerts";
-            this.Alerts.Padding = new System.Windows.Forms.Padding(3);
-            this.Alerts.Size = new System.Drawing.Size(944, 569);
-            this.Alerts.TabIndex = 2;
-            this.Alerts.Text = "Alerts";
             this.Alerts.UseVisualStyleBackColor = true;
             // 
             // groupBox4
@@ -1930,10 +1471,8 @@ namespace TeboCam
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.EmailIntelOff);
             this.groupBox4.Controls.Add(this.EmailIntelOn);
-            this.groupBox4.Location = new System.Drawing.Point(312, 209);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(418, 194);
-            this.groupBox4.TabIndex = 59;
             this.groupBox4.TabStop = false;
             // 
             // emailIntelPanel
@@ -1946,145 +1485,86 @@ namespace TeboCam
             this.emailIntelPanel.Controls.Add(this.emailIntelMins);
             this.emailIntelPanel.Controls.Add(this.label56);
             this.emailIntelPanel.Controls.Add(this.label49);
-            this.emailIntelPanel.Enabled = false;
-            this.emailIntelPanel.Location = new System.Drawing.Point(6, 64);
+            resources.ApplyResources(this.emailIntelPanel, "emailIntelPanel");
             this.emailIntelPanel.Name = "emailIntelPanel";
-            this.emailIntelPanel.Size = new System.Drawing.Size(400, 117);
-            this.emailIntelPanel.TabIndex = 65;
             // 
             // EmailIntelMosaic
             // 
-            this.EmailIntelMosaic.AutoSize = true;
-            this.EmailIntelMosaic.Location = new System.Drawing.Point(15, 91);
+            resources.ApplyResources(this.EmailIntelMosaic, "EmailIntelMosaic");
             this.EmailIntelMosaic.Name = "EmailIntelMosaic";
-            this.EmailIntelMosaic.Size = new System.Drawing.Size(342, 17);
-            this.EmailIntelMosaic.TabIndex = 70;
-            this.EmailIntelMosaic.Text = "Use/Increase Mosaic images to meet rule above";
-            this.toolTip1.SetToolTip(this.EmailIntelMosaic, "When a possibility of over-emailing is detected and the time has passed\r\nsend an " +
-        "initial email with a mosaic for all the unsent images then\r\ncontinue sending ema" +
-        "ils with the selected email settings.");
+            this.toolTip1.SetToolTip(this.EmailIntelMosaic, resources.GetString("EmailIntelMosaic.ToolTip"));
             this.EmailIntelMosaic.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label16, "label16");
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(15, 16);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(89, 13);
-            this.label16.TabIndex = 33;
-            this.label16.Text = "If more than";
             // 
             // emailIntelEmails
             // 
             this.emailIntelEmails.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailIntelEmails.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.emailIntelEmails, "emailIntelEmails");
             this.emailIntelEmails.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailIntelEmails.Location = new System.Drawing.Point(109, 12);
             this.emailIntelEmails.Name = "emailIntelEmails";
-            this.emailIntelEmails.Size = new System.Drawing.Size(38, 21);
-            this.emailIntelEmails.TabIndex = 9;
-            this.emailIntelEmails.Text = "2";
             this.emailIntelEmails.Leave += new System.EventHandler(this.emailIntelEmails_Leave);
             // 
             // EmailIntelStop
             // 
-            this.EmailIntelStop.AutoSize = true;
+            resources.ApplyResources(this.EmailIntelStop, "EmailIntelStop");
             this.EmailIntelStop.Checked = true;
-            this.EmailIntelStop.Location = new System.Drawing.Point(15, 68);
             this.EmailIntelStop.Name = "EmailIntelStop";
-            this.EmailIntelStop.Size = new System.Drawing.Size(373, 17);
-            this.EmailIntelStop.TabIndex = 69;
             this.EmailIntelStop.TabStop = true;
-            this.EmailIntelStop.Text = "Stop sending emails until rule above is no longer met";
-            this.toolTip1.SetToolTip(this.EmailIntelStop, "When a possibility of over-emailing is detected and the time has passed\r\nsend an " +
-        "emails with the selected email settings.");
+            this.toolTip1.SetToolTip(this.EmailIntelStop, resources.GetString("EmailIntelStop.ToolTip"));
             this.EmailIntelStop.UseVisualStyleBackColor = true;
             this.EmailIntelStop.CheckedChanged += new System.EventHandler(this.EmailIntelStop_CheckedChanged);
             // 
             // label48
             // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label48, "label48");
             this.label48.ForeColor = System.Drawing.Color.Black;
-            this.label48.Location = new System.Drawing.Point(153, 16);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(50, 13);
-            this.label48.TabIndex = 42;
-            this.label48.Text = "emails";
             // 
             // emailIntelMins
             // 
             this.emailIntelMins.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailIntelMins.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.emailIntelMins, "emailIntelMins");
             this.emailIntelMins.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailIntelMins.Location = new System.Drawing.Point(161, 35);
             this.emailIntelMins.Name = "emailIntelMins";
-            this.emailIntelMins.Size = new System.Drawing.Size(38, 21);
-            this.emailIntelMins.TabIndex = 43;
-            this.emailIntelMins.Text = "2";
             this.emailIntelMins.Leave += new System.EventHandler(this.emailIntelMins_Leave);
             // 
             // label56
             // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label56, "label56");
             this.label56.ForeColor = System.Drawing.Color.Black;
-            this.label56.Location = new System.Drawing.Point(15, 40);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(140, 13);
-            this.label56.TabIndex = 45;
-            this.label56.Text = "are sent in less than";
             // 
             // label49
             // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label49, "label49");
             this.label49.ForeColor = System.Drawing.Color.Black;
-            this.label49.Location = new System.Drawing.Point(205, 40);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(59, 13);
-            this.label49.TabIndex = 44;
-            this.label49.Text = "minutes";
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label15, "label15");
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(16, 14);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(390, 23);
-            this.label15.TabIndex = 38;
-            this.label15.Text = "Email intelligence/De-spamificator";
             // 
             // EmailIntelOff
             // 
-            this.EmailIntelOff.AutoSize = true;
+            resources.ApplyResources(this.EmailIntelOff, "EmailIntelOff");
             this.EmailIntelOff.Checked = true;
-            this.EmailIntelOff.Location = new System.Drawing.Point(69, 40);
             this.EmailIntelOff.Name = "EmailIntelOff";
-            this.EmailIntelOff.Size = new System.Drawing.Size(44, 17);
-            this.EmailIntelOff.TabIndex = 68;
             this.EmailIntelOff.TabStop = true;
-            this.EmailIntelOff.Text = "Off";
-            this.toolTip1.SetToolTip(this.EmailIntelOff, "The de-spamificator helps prevent you getting multiple emails \r\nover a short time" +
-        " due to movement detection.\r\n\r\nYou get to set the number of emails and time limi" +
-        "t.");
+            this.toolTip1.SetToolTip(this.EmailIntelOff, resources.GetString("EmailIntelOff.ToolTip"));
             this.EmailIntelOff.UseVisualStyleBackColor = true;
             // 
             // EmailIntelOn
             // 
-            this.EmailIntelOn.AutoSize = true;
-            this.EmailIntelOn.Location = new System.Drawing.Point(21, 40);
+            resources.ApplyResources(this.EmailIntelOn, "EmailIntelOn");
             this.EmailIntelOn.Name = "EmailIntelOn";
-            this.EmailIntelOn.Size = new System.Drawing.Size(42, 17);
-            this.EmailIntelOn.TabIndex = 67;
-            this.EmailIntelOn.Text = "On";
-            this.toolTip1.SetToolTip(this.EmailIntelOn, "The de-spamificator helps prevent you getting multiple emails \r\nover a short time" +
-        " due to movement detection.\r\n\r\nYou get to set the number of emails and time limi" +
-        "t.");
+            this.toolTip1.SetToolTip(this.EmailIntelOn, resources.GetString("EmailIntelOn.ToolTip"));
             this.EmailIntelOn.UseVisualStyleBackColor = true;
             this.EmailIntelOn.CheckedChanged += new System.EventHandler(this.EmailIntelOn_CheckedChanged);
             // 
@@ -2093,49 +1573,31 @@ namespace TeboCam
             this.groupBox21.Controls.Add(this.radioButton11);
             this.groupBox21.Controls.Add(this.button21);
             this.groupBox21.Controls.Add(this.radioButton10);
-            this.groupBox21.Location = new System.Drawing.Point(307, 122);
+            resources.ApplyResources(this.groupBox21, "groupBox21");
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(423, 81);
-            this.groupBox21.TabIndex = 64;
             this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Images Saved Folder";
             // 
             // radioButton11
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(15, 46);
+            resources.ApplyResources(this.radioButton11, "radioButton11");
             this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(129, 17);
-            this.radioButton11.TabIndex = 1;
-            this.radioButton11.Text = "Custom location";
-            this.toolTip1.SetToolTip(this.radioButton11, "If you do not have an FTP provider you can use this facility\r\nto save the image f" +
-        "iles in a folder where an application such as\r\nDropbox can store the image files" +
-        " online for you.");
+            this.toolTip1.SetToolTip(this.radioButton11, resources.GetString("radioButton11.ToolTip"));
             this.radioButton11.UseVisualStyleBackColor = true;
             this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
             // 
             // button21
             // 
-            this.button21.Enabled = false;
-            this.button21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.Location = new System.Drawing.Point(156, 46);
+            resources.ApplyResources(this.button21, "button21");
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(102, 21);
-            this.button21.TabIndex = 61;
-            this.button21.Text = "Select folder...";
             this.button21.UseVisualStyleBackColor = true;
             this.button21.Click += new System.EventHandler(this.customImageLocation_Click);
             // 
             // radioButton10
             // 
-            this.radioButton10.AutoSize = true;
+            resources.ApplyResources(this.radioButton10, "radioButton10");
             this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(15, 23);
             this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(128, 17);
-            this.radioButton10.TabIndex = 0;
             this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "Default location";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // groupBox14
@@ -2155,10 +1617,8 @@ namespace TeboCam
             this.groupBox14.Controls.Add(this.label20);
             this.groupBox14.Controls.Add(this.loadToFtp);
             this.groupBox14.Controls.Add(this.label32);
-            this.groupBox14.Location = new System.Drawing.Point(6, 6);
+            resources.ApplyResources(this.groupBox14, "groupBox14");
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(295, 363);
-            this.groupBox14.TabIndex = 59;
             this.groupBox14.TabStop = false;
             // 
             // pingBox
@@ -2168,46 +1628,30 @@ namespace TeboCam
             this.pingBox.Controls.Add(this.ping);
             this.pingBox.Controls.Add(this.pingMins);
             this.pingBox.Controls.Add(this.label40);
-            this.pingBox.Location = new System.Drawing.Point(19, 271);
+            resources.ApplyResources(this.pingBox, "pingBox");
             this.pingBox.Name = "pingBox";
-            this.pingBox.Size = new System.Drawing.Size(251, 86);
-            this.pingBox.TabIndex = 65;
             this.pingBox.TabStop = false;
-            this.pingBox.Text = "Ping";
             // 
             // rdPingActiveCamera
             // 
-            this.rdPingActiveCamera.AutoSize = true;
-            this.rdPingActiveCamera.Location = new System.Drawing.Point(121, 56);
+            resources.ApplyResources(this.rdPingActiveCamera, "rdPingActiveCamera");
             this.rdPingActiveCamera.Name = "rdPingActiveCamera";
-            this.rdPingActiveCamera.Size = new System.Drawing.Size(120, 17);
-            this.rdPingActiveCamera.TabIndex = 53;
-            this.rdPingActiveCamera.Text = "Active Camera";
             this.rdPingActiveCamera.UseVisualStyleBackColor = true;
             // 
             // rdPingAllCameras
             // 
-            this.rdPingAllCameras.AutoSize = true;
+            resources.ApplyResources(this.rdPingAllCameras, "rdPingAllCameras");
             this.rdPingAllCameras.Checked = true;
-            this.rdPingAllCameras.Location = new System.Drawing.Point(6, 56);
             this.rdPingAllCameras.Name = "rdPingAllCameras";
-            this.rdPingAllCameras.Size = new System.Drawing.Size(103, 17);
-            this.rdPingAllCameras.TabIndex = 52;
             this.rdPingAllCameras.TabStop = true;
-            this.rdPingAllCameras.Text = "All Cameras";
             this.rdPingAllCameras.UseVisualStyleBackColor = true;
             this.rdPingAllCameras.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // ping
             // 
-            this.ping.AutoSize = true;
+            resources.ApplyResources(this.ping, "ping");
             this.ping.BackColor = System.Drawing.SystemColors.Control;
-            this.ping.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ping.Location = new System.Drawing.Point(6, 24);
             this.ping.Name = "ping";
-            this.ping.Size = new System.Drawing.Size(96, 17);
-            this.ping.TabIndex = 49;
-            this.ping.Text = "Ping Every";
             this.toolTip1.SetToolTip(this.ping, resources.GetString("ping.ToolTip"));
             this.ping.UseVisualStyleBackColor = false;
             this.ping.CheckedChanged += new System.EventHandler(this.ping_CheckedChanged);
@@ -2215,211 +1659,128 @@ namespace TeboCam
             // pingMins
             // 
             this.pingMins.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pingMins.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pingMins, "pingMins");
             this.pingMins.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pingMins.Location = new System.Drawing.Point(110, 22);
             this.pingMins.Name = "pingMins";
-            this.pingMins.Size = new System.Drawing.Size(48, 21);
-            this.pingMins.TabIndex = 50;
-            this.toolTip1.SetToolTip(this.pingMins, "The interval in minutes for sending a\r\n\'ping\' email.");
+            this.toolTip1.SetToolTip(this.pingMins, resources.GetString("pingMins.ToolTip"));
             this.pingMins.Leave += new System.EventHandler(this.pingMins_Leave);
             // 
             // label40
             // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label40, "label40");
             this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(164, 28);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(57, 13);
-            this.label40.TabIndex = 51;
-            this.label40.Text = "Minutes";
             // 
             // mosaicImagesPerRow
             // 
             this.mosaicImagesPerRow.BackColor = System.Drawing.Color.LemonChiffon;
-            this.mosaicImagesPerRow.Enabled = false;
-            this.mosaicImagesPerRow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.mosaicImagesPerRow, "mosaicImagesPerRow");
             this.mosaicImagesPerRow.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.mosaicImagesPerRow.Location = new System.Drawing.Point(162, 132);
             this.mosaicImagesPerRow.Name = "mosaicImagesPerRow";
-            this.mosaicImagesPerRow.Size = new System.Drawing.Size(48, 21);
-            this.mosaicImagesPerRow.TabIndex = 62;
-            this.mosaicImagesPerRow.Text = "10";
             this.toolTip1.SetToolTip(this.mosaicImagesPerRow, resources.GetString("mosaicImagesPerRow.ToolTip"));
             this.mosaicImagesPerRow.Leave += new System.EventHandler(this.mosaicImagesPerRow_Leave);
             // 
             // sendMosaic
             // 
-            this.sendMosaic.AutoSize = true;
+            resources.ApplyResources(this.sendMosaic, "sendMosaic");
             this.sendMosaic.BackColor = System.Drawing.SystemColors.Control;
-            this.sendMosaic.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.sendMosaic.Location = new System.Drawing.Point(19, 133);
             this.sendMosaic.Name = "sendMosaic";
-            this.sendMosaic.Size = new System.Drawing.Size(110, 17);
-            this.sendMosaic.TabIndex = 61;
-            this.sendMosaic.Text = "Email Mosaic";
-            this.toolTip1.SetToolTip(this.sendMosaic, "Receive emails with a mosaic of images.\r\nImages are patched into one image from l" +
-        "eft to right.\r\nThe number of images per row is specified in the \r\nbox on the rig" +
-        "ht.");
+            this.toolTip1.SetToolTip(this.sendMosaic, resources.GetString("sendMosaic.ToolTip"));
             this.sendMosaic.UseVisualStyleBackColor = false;
             this.sendMosaic.CheckedChanged += new System.EventHandler(this.sendMosaic_CheckedChanged);
             // 
             // sndTest
             // 
-            this.sndTest.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sndTest.Location = new System.Drawing.Point(242, 181);
+            resources.ApplyResources(this.sndTest, "sndTest");
             this.sndTest.Name = "sndTest";
-            this.sndTest.Size = new System.Drawing.Size(42, 21);
-            this.sndTest.TabIndex = 60;
-            this.sndTest.Text = "Test";
-            this.toolTip1.SetToolTip(this.sndTest, "Play the selected sound.");
+            this.toolTip1.SetToolTip(this.sndTest, resources.GetString("sndTest.ToolTip"));
             this.sndTest.UseVisualStyleBackColor = true;
             this.sndTest.Click += new System.EventHandler(this.sndTest_Click);
             // 
             // button13
             // 
-            this.button13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Location = new System.Drawing.Point(123, 181);
+            resources.ApplyResources(this.button13, "button13");
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(113, 21);
-            this.button13.TabIndex = 59;
-            this.button13.Text = "Select Sound...";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // plSnd
             // 
-            this.plSnd.AutoSize = true;
+            resources.ApplyResources(this.plSnd, "plSnd");
             this.plSnd.BackColor = System.Drawing.SystemColors.Control;
-            this.plSnd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.plSnd.Location = new System.Drawing.Point(20, 184);
             this.plSnd.Name = "plSnd";
-            this.plSnd.Size = new System.Drawing.Size(98, 17);
-            this.plSnd.TabIndex = 58;
-            this.plSnd.Text = "Play Sound";
-            this.toolTip1.SetToolTip(this.plSnd, "Tick this box to play a sound when movement is detected.\r\n\r\nPress the select soun" +
-        "d button to select a wav file to play.");
+            this.toolTip1.SetToolTip(this.plSnd, resources.GetString("plSnd.ToolTip"));
             this.plSnd.UseVisualStyleBackColor = false;
             this.plSnd.CheckedChanged += new System.EventHandler(this.plSnd_CheckedChanged);
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label33, "label33");
             this.label33.ForeColor = System.Drawing.Color.Black;
-            this.label33.Location = new System.Drawing.Point(53, 36);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(161, 13);
-            this.label33.TabIndex = 48;
-            this.label33.Text = "On Movement Detection";
             // 
             // sendEmail
             // 
-            this.sendEmail.AutoSize = true;
+            resources.ApplyResources(this.sendEmail, "sendEmail");
             this.sendEmail.BackColor = System.Drawing.SystemColors.Control;
-            this.sendEmail.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.sendEmail.Location = new System.Drawing.Point(20, 64);
             this.sendEmail.Name = "sendEmail";
-            this.sendEmail.Size = new System.Drawing.Size(177, 17);
-            this.sendEmail.TabIndex = 0;
-            this.sendEmail.Text = "Send Notification Email";
-            this.toolTip1.SetToolTip(this.sendEmail, "On movement send email to the \'Send Email To\' \r\nemail address in the \'Email and F" +
-        "tp\' tab.");
+            this.toolTip1.SetToolTip(this.sendEmail, resources.GetString("sendEmail.ToolTip"));
             this.sendEmail.UseVisualStyleBackColor = false;
             this.sendEmail.CheckedChanged += new System.EventHandler(this.sendEmail_CheckedChanged);
             // 
             // maxImagesToEmail
             // 
             this.maxImagesToEmail.BackColor = System.Drawing.Color.LemonChiffon;
-            this.maxImagesToEmail.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.maxImagesToEmail, "maxImagesToEmail");
             this.maxImagesToEmail.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.maxImagesToEmail.Location = new System.Drawing.Point(22, 243);
             this.maxImagesToEmail.Name = "maxImagesToEmail";
-            this.maxImagesToEmail.Size = new System.Drawing.Size(65, 21);
-            this.maxImagesToEmail.TabIndex = 55;
-            this.maxImagesToEmail.Text = "10";
-            this.toolTip1.SetToolTip(this.maxImagesToEmail, "The maximum number of movement images\r\nto include in each email.\r\n");
+            this.toolTip1.SetToolTip(this.maxImagesToEmail, resources.GetString("maxImagesToEmail.ToolTip"));
             this.maxImagesToEmail.Leave += new System.EventHandler(this.maxImagesToEmail_Leave);
             // 
             // sendFullSize
             // 
-            this.sendFullSize.AutoSize = true;
+            resources.ApplyResources(this.sendFullSize, "sendFullSize");
             this.sendFullSize.BackColor = System.Drawing.SystemColors.Control;
-            this.sendFullSize.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.sendFullSize.Location = new System.Drawing.Point(20, 87);
             this.sendFullSize.Name = "sendFullSize";
-            this.sendFullSize.Size = new System.Drawing.Size(182, 17);
-            this.sendFullSize.TabIndex = 1;
-            this.sendFullSize.Text = "Email Full Sized Images";
             this.toolTip1.SetToolTip(this.sendFullSize, resources.GetString("sendFullSize.ToolTip"));
             this.sendFullSize.UseVisualStyleBackColor = false;
             this.sendFullSize.CheckedChanged += new System.EventHandler(this.sendFullSize_CheckedChanged);
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label19, "label19");
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(19, 227);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(142, 13);
-            this.label19.TabIndex = 57;
-            this.label19.Text = "To send in one email";
             // 
             // sendThumb
             // 
-            this.sendThumb.AutoSize = true;
+            resources.ApplyResources(this.sendThumb, "sendThumb");
             this.sendThumb.BackColor = System.Drawing.SystemColors.Control;
-            this.sendThumb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.sendThumb.Location = new System.Drawing.Point(20, 110);
             this.sendThumb.Name = "sendThumb";
-            this.sendThumb.Size = new System.Drawing.Size(141, 17);
-            this.sendThumb.TabIndex = 2;
-            this.sendThumb.Text = "Email Thumbnails";
-            this.toolTip1.SetToolTip(this.sendThumb, "On movement send thumbnail images to the \r\n\'Send Email To\' email address in the \'" +
-        "Email and Ftp\' tab.\r\n\r\nImages are captured every x second(s) specified in \r\nthe " +
-        "\'Frequency of image\' field to the left.");
+            this.toolTip1.SetToolTip(this.sendThumb, resources.GetString("sendThumb.ToolTip"));
             this.sendThumb.UseVisualStyleBackColor = false;
             this.sendThumb.CheckedChanged += new System.EventHandler(this.sendThumb_CheckedChanged);
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label20, "label20");
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(19, 214);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(191, 13);
-            this.label20.TabIndex = 56;
-            this.label20.Text = "Maximum number of images";
             // 
             // loadToFtp
             // 
-            this.loadToFtp.AutoSize = true;
+            resources.ApplyResources(this.loadToFtp, "loadToFtp");
             this.loadToFtp.BackColor = System.Drawing.SystemColors.Control;
-            this.loadToFtp.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.loadToFtp.Location = new System.Drawing.Point(20, 159);
             this.loadToFtp.Name = "loadToFtp";
-            this.loadToFtp.Size = new System.Drawing.Size(186, 17);
-            this.loadToFtp.TabIndex = 3;
-            this.loadToFtp.Text = "Load Images To Website";
-            this.toolTip1.SetToolTip(this.loadToFtp, "On movement load images to the ftp site specified\r\nin the \'Email and Ftp\' tab.\r\n\r" +
-        "\nImages are captured every second(s) specified in \r\nthe \'Frequency of image\' fie" +
-        "ld to the left.");
+            this.toolTip1.SetToolTip(this.loadToFtp, resources.GetString("loadToFtp.ToolTip"));
             this.loadToFtp.UseVisualStyleBackColor = false;
             this.loadToFtp.CheckedChanged += new System.EventHandler(this.loadToFtp_CheckedChanged);
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label32, "label32");
             this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(16, 13);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(234, 23);
-            this.label32.TabIndex = 47;
-            this.label32.Text = "Notification Settings";
             // 
             // groupBox13
             // 
@@ -2430,138 +1791,86 @@ namespace TeboCam
             this.groupBox13.Controls.Add(this.label27);
             this.groupBox13.Controls.Add(this.label26);
             this.groupBox13.Controls.Add(this.imageFileInterval);
-            this.groupBox13.Location = new System.Drawing.Point(6, 362);
+            resources.ApplyResources(this.groupBox13, "groupBox13");
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(295, 200);
-            this.groupBox13.TabIndex = 58;
             this.groupBox13.TabStop = false;
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label21, "label21");
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(16, 17);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(220, 23);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "Alert Time Settings";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label17, "label17");
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(29, 53);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(137, 13);
-            this.label17.TabIndex = 33;
-            this.label17.Text = "Frequency of email ";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label18, "label18");
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(28, 70);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(161, 13);
-            this.label18.TabIndex = 34;
-            this.label18.Text = "notifications in seconds";
             // 
             // emailNotifInterval
             // 
             this.emailNotifInterval.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailNotifInterval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.emailNotifInterval, "emailNotifInterval");
             this.emailNotifInterval.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailNotifInterval.Location = new System.Drawing.Point(31, 92);
             this.emailNotifInterval.Name = "emailNotifInterval";
-            this.emailNotifInterval.Size = new System.Drawing.Size(65, 21);
-            this.emailNotifInterval.TabIndex = 9;
-            this.emailNotifInterval.Text = "2";
-            this.toolTip1.SetToolTip(this.emailNotifInterval, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
-        "tions in seconds. \r\n");
+            this.toolTip1.SetToolTip(this.emailNotifInterval, resources.GetString("emailNotifInterval.ToolTip"));
             this.emailNotifInterval.Leave += new System.EventHandler(this.emailNotifInterval_Leave);
             // 
             // label27
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label27, "label27");
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(28, 126);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(137, 13);
-            this.label27.TabIndex = 40;
-            this.label27.Text = "Frequency of image";
             // 
             // label26
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label26, "label26");
             this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(28, 143);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(221, 13);
-            this.label26.TabIndex = 41;
-            this.label26.Text = "file updates in seconds (e.g. 0.5)";
             // 
             // imageFileInterval
             // 
             this.imageFileInterval.BackColor = System.Drawing.Color.LemonChiffon;
-            this.imageFileInterval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.imageFileInterval, "imageFileInterval");
             this.imageFileInterval.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.imageFileInterval.Location = new System.Drawing.Point(32, 165);
             this.imageFileInterval.Name = "imageFileInterval";
-            this.imageFileInterval.Size = new System.Drawing.Size(65, 21);
-            this.imageFileInterval.TabIndex = 10;
-            this.imageFileInterval.Text = "2";
-            this.toolTip1.SetToolTip(this.imageFileInterval, "Once movement is detected this determines how \r\nfrequently to create images from " +
-        "the webcam in seconds. \r\n\r\n");
+            this.toolTip1.SetToolTip(this.imageFileInterval, resources.GetString("imageFileInterval.ToolTip"));
             this.imageFileInterval.Leave += new System.EventHandler(this.imageFileInterval_Leave);
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.button35);
             this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Location = new System.Drawing.Point(307, 6);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(423, 110);
-            this.groupBox6.TabIndex = 53;
             this.groupBox6.TabStop = false;
             // 
             // button35
             // 
-            this.button35.Location = new System.Drawing.Point(31, 49);
+            resources.ApplyResources(this.button35, "button35");
             this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(256, 44);
-            this.button35.TabIndex = 95;
-            this.button35.Text = "Set Alert File Name";
             this.button35.UseVisualStyleBackColor = true;
             this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label12, "label12");
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(21, 17);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(266, 23);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Alert Filename Settings";
             // 
             // Email_Ftp
             // 
             this.Email_Ftp.Controls.Add(this.panel4);
             this.Email_Ftp.Controls.Add(this.panel3);
             this.Email_Ftp.Controls.Add(this.panel2);
-            this.Email_Ftp.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.Email_Ftp.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Email_Ftp, "Email_Ftp");
             this.Email_Ftp.Name = "Email_Ftp";
-            this.Email_Ftp.Padding = new System.Windows.Forms.Padding(3);
-            this.Email_Ftp.Size = new System.Drawing.Size(944, 569);
-            this.Email_Ftp.TabIndex = 1;
-            this.Email_Ftp.Text = "Email and Ftp";
             this.Email_Ftp.UseVisualStyleBackColor = true;
             this.Email_Ftp.Click += new System.EventHandler(this.Email_Click);
             // 
@@ -2583,188 +1892,120 @@ namespace TeboCam
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.sentBy);
             this.panel4.Controls.Add(this.mailSubject);
-            this.panel4.Location = new System.Drawing.Point(376, 12);
+            resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(443, 527);
-            this.panel4.TabIndex = 63;
             // 
             // label42
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label42, "label42");
             this.label42.ForeColor = System.Drawing.Color.Black;
-            this.label42.Location = new System.Drawing.Point(9, 341);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(88, 13);
-            this.label42.TabIndex = 60;
-            this.label42.Text = "Ping Subject";
             // 
             // pingSubject
             // 
             this.pingSubject.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pingSubject.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pingSubject, "pingSubject");
             this.pingSubject.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pingSubject.Location = new System.Drawing.Point(12, 365);
             this.pingSubject.Name = "pingSubject";
-            this.pingSubject.Size = new System.Drawing.Size(405, 21);
-            this.pingSubject.TabIndex = 59;
-            this.toolTip1.SetToolTip(this.pingSubject, "This is what will appear in the subject\r\nline  of the ping email.");
+            this.toolTip1.SetToolTip(this.pingSubject, resources.GetString("pingSubject.ToolTip"));
             this.pingSubject.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label36
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label36, "label36");
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(11, 222);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(97, 13);
-            this.label36.TabIndex = 58;
-            this.label36.Text = "Sent By Name";
             // 
             // sentByName
             // 
             this.sentByName.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sentByName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.sentByName, "sentByName");
             this.sentByName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sentByName.Location = new System.Drawing.Point(14, 246);
             this.sentByName.Name = "sentByName";
-            this.sentByName.Size = new System.Drawing.Size(405, 21);
-            this.sentByName.TabIndex = 57;
-            this.toolTip1.SetToolTip(this.sentByName, "What will show as the sentby email\r\nname in the warning and ping email.\r\n\r\nSet th" +
-        "is to something like Home_Computer \r\nor Office_Computer.");
+            this.toolTip1.SetToolTip(this.sentByName, resources.GetString("sentByName.ToolTip"));
             this.sentByName.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label11, "label11");
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(8, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(167, 23);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Email Settings";
             // 
             // mailBody
             // 
             this.mailBody.BackColor = System.Drawing.Color.LemonChiffon;
-            this.mailBody.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.mailBody.Location = new System.Drawing.Point(12, 424);
+            resources.ApplyResources(this.mailBody, "mailBody");
             this.mailBody.Name = "mailBody";
-            this.mailBody.Size = new System.Drawing.Size(405, 75);
-            this.mailBody.TabIndex = 12;
-            this.mailBody.Text = "";
-            this.toolTip1.SetToolTip(this.mailBody, "This is what will appear in the body\r\n of the warning email.");
+            this.toolTip1.SetToolTip(this.mailBody, resources.GetString("mailBody.ToolTip"));
             this.mailBody.TextChanged += new System.EventHandler(this.mailBody_TextChanged);
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label5, "label5");
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(9, 56);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Send Email To";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label7, "label7");
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(9, 168);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Sent By";
             // 
             // replyTo
             // 
             this.replyTo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.replyTo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.replyTo, "replyTo");
             this.replyTo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.replyTo.Location = new System.Drawing.Point(12, 136);
             this.replyTo.Name = "replyTo";
-            this.replyTo.Size = new System.Drawing.Size(405, 21);
-            this.replyTo.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.replyTo, "What will show as the reply to email\r\naddress in the warning email.\r\n");
+            this.toolTip1.SetToolTip(this.replyTo, resources.GetString("replyTo.ToolTip"));
             this.replyTo.TextChanged += new System.EventHandler(this.replyTo_TextChanged);
             this.replyTo.Leave += new System.EventHandler(this.replyTo_Leave);
             // 
             // sendTo
             // 
             this.sendTo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sendTo.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.sendTo, "sendTo");
             this.sendTo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sendTo.Location = new System.Drawing.Point(12, 80);
             this.sendTo.Name = "sendTo";
-            this.sendTo.Size = new System.Drawing.Size(405, 21);
-            this.sendTo.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.sendTo, "The email address the warning email message is to be sent to.\r\n\r\nSeparate multipl" +
-        "e email addresses by a ; e.g. \r\nanyone@gmail.com;anyone@yahoo.com;anyone@ibm.com" +
-        "");
+            this.toolTip1.SetToolTip(this.sendTo, resources.GetString("sendTo.ToolTip"));
             this.sendTo.TextChanged += new System.EventHandler(this.sendTo_TextChanged);
             this.sendTo.Leave += new System.EventHandler(this.sendTo_Leave);
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label9, "label9");
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(9, 407);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Mail Body";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label8, "label8");
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(9, 278);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Mail Subject";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label6, "label6");
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(9, 112);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Reply To";
             // 
             // sentBy
             // 
             this.sentBy.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sentBy.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.sentBy, "sentBy");
             this.sentBy.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.sentBy.Location = new System.Drawing.Point(12, 189);
             this.sentBy.Name = "sentBy";
-            this.sentBy.Size = new System.Drawing.Size(405, 21);
-            this.sentBy.TabIndex = 10;
-            this.toolTip1.SetToolTip(this.sentBy, "What will show as the sentby email\r\naddress in the warning email.\r\n\r\nUsually the " +
-        "same as the replyto email.");
+            this.toolTip1.SetToolTip(this.sentBy, resources.GetString("sentBy.ToolTip"));
             this.sentBy.TextChanged += new System.EventHandler(this.sentBy_TextChanged);
             this.sentBy.Leave += new System.EventHandler(this.sentBy_Leave);
             // 
             // mailSubject
             // 
             this.mailSubject.BackColor = System.Drawing.Color.LemonChiffon;
-            this.mailSubject.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.mailSubject, "mailSubject");
             this.mailSubject.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.mailSubject.Location = new System.Drawing.Point(12, 302);
             this.mailSubject.Name = "mailSubject";
-            this.mailSubject.Size = new System.Drawing.Size(405, 21);
-            this.mailSubject.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.mailSubject, "This is what will appear in the subject\r\nline  of the warning email.");
+            this.toolTip1.SetToolTip(this.mailSubject, resources.GetString("mailSubject.ToolTip"));
             this.mailSubject.TextChanged += new System.EventHandler(this.mailSubject_TextChanged);
             // 
             // panel3
@@ -2781,142 +2022,92 @@ namespace TeboCam
             this.panel3.Controls.Add(this.smtpPort);
             this.panel3.Controls.Add(this.emailPass);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Location = new System.Drawing.Point(23, 10);
+            resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(338, 286);
-            this.panel3.TabIndex = 62;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(241, 13);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 23);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "Test";
-            this.toolTip1.SetToolTip(this.button1, "Click here once you have setup the\r\nEmail Host Settings.\r\n\r\nA test will be perfor" +
-        "med and you will\r\nbe informed if it was successful.");
+            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label10, "label10");
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(12, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(223, 23);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Email Host Settings";
             // 
             // SSL
             // 
-            this.SSL.AutoSize = true;
+            resources.ApplyResources(this.SSL, "SSL");
             this.SSL.BackColor = System.Drawing.SystemColors.Control;
-            this.SSL.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.SSL.Location = new System.Drawing.Point(112, 249);
             this.SSL.Name = "SSL";
-            this.SSL.Size = new System.Drawing.Size(49, 17);
-            this.SSL.TabIndex = 4;
-            this.SSL.Text = "SSL";
-            this.toolTip1.SetToolTip(this.SSL, "SSL: \r\nConsult your email provider instructions.\r\n\r\nIf SSL is required tick this " +
-        "box.");
+            this.toolTip1.SetToolTip(this.SSL, resources.GetString("SSL.ToolTip"));
             this.SSL.UseVisualStyleBackColor = false;
             this.SSL.CheckedChanged += new System.EventHandler(this.SSL_CheckedChanged);
             // 
             // emailUser
             // 
             this.emailUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailUser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.emailUser, "emailUser");
             this.emailUser.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailUser.Location = new System.Drawing.Point(16, 82);
             this.emailUser.Name = "emailUser";
-            this.emailUser.Size = new System.Drawing.Size(294, 21);
-            this.emailUser.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.emailUser, "Email User: \r\nConsult your email provider instructions.\r\n\r\n");
+            this.toolTip1.SetToolTip(this.emailUser, resources.GetString("emailUser.ToolTip"));
             this.emailUser.TextChanged += new System.EventHandler(this.emailUser_TextChanged);
             this.emailUser.Leave += new System.EventHandler(this.emailUser_Leave);
             // 
             // smtpHost
             // 
             this.smtpHost.BackColor = System.Drawing.Color.LemonChiffon;
-            this.smtpHost.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.smtpHost, "smtpHost");
             this.smtpHost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.smtpHost.Location = new System.Drawing.Point(16, 192);
             this.smtpHost.Name = "smtpHost";
-            this.smtpHost.Size = new System.Drawing.Size(294, 21);
-            this.smtpHost.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.smtpHost, "SMTP Host: \r\nConsult your email provider instructions.\r\n");
+            this.toolTip1.SetToolTip(this.smtpHost, resources.GetString("smtpHost.ToolTip"));
             this.smtpHost.TextChanged += new System.EventHandler(this.smtpHost_TextChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label1, "label1");
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(13, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Email User";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label3, "label3");
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(13, 168);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "SMTP Host";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label2, "label2");
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(13, 114);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Email Password";
             // 
             // smtpPort
             // 
             this.smtpPort.BackColor = System.Drawing.Color.LemonChiffon;
-            this.smtpPort.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.smtpPort, "smtpPort");
             this.smtpPort.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.smtpPort.Location = new System.Drawing.Point(16, 249);
             this.smtpPort.Name = "smtpPort";
-            this.smtpPort.Size = new System.Drawing.Size(80, 21);
-            this.smtpPort.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.smtpPort, "SMTP Port:\r\nConsult your email provider instructions.");
+            this.toolTip1.SetToolTip(this.smtpPort, resources.GetString("smtpPort.ToolTip"));
             this.smtpPort.Leave += new System.EventHandler(this.smtpPort_Leave);
             // 
             // emailPass
             // 
             this.emailPass.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailPass.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.emailPass, "emailPass");
             this.emailPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailPass.Location = new System.Drawing.Point(16, 138);
             this.emailPass.Name = "emailPass";
-            this.emailPass.PasswordChar = '*';
-            this.emailPass.Size = new System.Drawing.Size(294, 21);
-            this.emailPass.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.emailPass, "Password: \r\nConsult your email provider instructions.\r\n");
+            this.toolTip1.SetToolTip(this.emailPass, resources.GetString("emailPass.ToolTip"));
             this.emailPass.TextChanged += new System.EventHandler(this.emailPass_TextChanged);
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label4, "label4");
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(13, 224);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "SMTP Port";
             // 
             // panel2
             // 
@@ -2929,102 +2120,66 @@ namespace TeboCam
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label24);
             this.panel2.Controls.Add(this.ftpRoot);
-            this.panel2.Location = new System.Drawing.Point(23, 302);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(338, 238);
-            this.panel2.TabIndex = 61;
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label25, "label25");
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(12, 24);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(141, 23);
-            this.label25.TabIndex = 31;
-            this.label25.Text = "Ftp Settings";
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label22, "label22");
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(16, 63);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(62, 13);
-            this.label22.TabIndex = 26;
-            this.label22.Text = "Ftp User";
             // 
             // ftpUser
             // 
             this.ftpUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ftpUser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.ftpUser, "ftpUser");
             this.ftpUser.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ftpUser.Location = new System.Drawing.Point(16, 88);
             this.ftpUser.Name = "ftpUser";
-            this.ftpUser.Size = new System.Drawing.Size(294, 21);
-            this.ftpUser.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.ftpUser, "Ftp User: \r\nConsult your ISP instructions.\r\n");
+            this.toolTip1.SetToolTip(this.ftpUser, resources.GetString("ftpUser.ToolTip"));
             this.ftpUser.TextChanged += new System.EventHandler(this.ftpUser_TextChanged);
             // 
             // label23
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label23, "label23");
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(16, 118);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(94, 13);
-            this.label23.TabIndex = 28;
-            this.label23.Text = "Ftp Password";
             // 
             // ftpPass
             // 
             this.ftpPass.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ftpPass.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.ftpPass, "ftpPass");
             this.ftpPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ftpPass.Location = new System.Drawing.Point(16, 140);
             this.ftpPass.Name = "ftpPass";
-            this.ftpPass.PasswordChar = '*';
-            this.ftpPass.Size = new System.Drawing.Size(294, 21);
-            this.ftpPass.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.ftpPass, "Ftp Password: \r\nConsult your ISP instructions.\r\n\r\n");
+            this.toolTip1.SetToolTip(this.ftpPass, resources.GetString("ftpPass.ToolTip"));
             this.ftpPass.TextChanged += new System.EventHandler(this.ftpPass_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(159, 24);
+            resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 23);
-            this.button2.TabIndex = 56;
-            this.button2.Text = "Test";
-            this.toolTip1.SetToolTip(this.button2, "Click here once you have setup them\r\nFtp Settings.\r\n\r\nA test will be performed an" +
-        "d you will\r\nbe informed if it was successful.");
+            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label24
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label24, "label24");
             this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(16, 170);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(126, 13);
-            this.label24.TabIndex = 30;
-            this.label24.Text = "Ftp Root Directory";
             // 
             // ftpRoot
             // 
             this.ftpRoot.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ftpRoot.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.ftpRoot, "ftpRoot");
             this.ftpRoot.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ftpRoot.Location = new System.Drawing.Point(16, 192);
             this.ftpRoot.Name = "ftpRoot";
-            this.ftpRoot.Size = new System.Drawing.Size(294, 21);
-            this.ftpRoot.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.ftpRoot, "Ftp Root Directory: \r\nConsult your ISP instructions.\r\n");
+            this.toolTip1.SetToolTip(this.ftpRoot, resources.GetString("ftpRoot.ToolTip"));
             this.ftpRoot.TextChanged += new System.EventHandler(this.ftpRoot_TextChanged);
             // 
             // Admin
@@ -3039,22 +2194,14 @@ namespace TeboCam
             this.Admin.Controls.Add(this.groupBox10);
             this.Admin.Controls.Add(this.groupBox7);
             this.Admin.Controls.Add(this.label35);
-            this.Admin.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Admin, "Admin");
             this.Admin.Name = "Admin";
-            this.Admin.Size = new System.Drawing.Size(944, 569);
-            this.Admin.TabIndex = 3;
-            this.Admin.Text = "Admin";
-            this.Admin.ToolTipText = "Useful for support of issues - events will be written to debug.txt file.";
             this.Admin.UseVisualStyleBackColor = true;
             // 
             // infoMode
             // 
-            this.infoMode.AutoSize = true;
-            this.infoMode.Location = new System.Drawing.Point(29, 524);
+            resources.ApplyResources(this.infoMode, "infoMode");
             this.infoMode.Name = "infoMode";
-            this.infoMode.Size = new System.Drawing.Size(236, 17);
-            this.infoMode.TabIndex = 71;
-            this.infoMode.Text = "Capture live system information";
             this.infoMode.UseVisualStyleBackColor = true;
             this.infoMode.CheckedChanged += new System.EventHandler(this.infoMode_CheckedChanged);
             // 
@@ -3067,94 +2214,60 @@ namespace TeboCam
             this.groupBox2.Controls.Add(this.button15);
             this.groupBox2.Controls.Add(this.freezeGuardOff);
             this.groupBox2.Controls.Add(this.freezeGuardOn);
-            this.groupBox2.Location = new System.Drawing.Point(524, 209);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(353, 155);
-            this.groupBox2.TabIndex = 70;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "FreezeGuard  Protection";
             // 
             // freezeGuardWindow
             // 
-            this.freezeGuardWindow.AutoSize = true;
-            this.freezeGuardWindow.Location = new System.Drawing.Point(11, 115);
+            resources.ApplyResources(this.freezeGuardWindow, "freezeGuardWindow");
             this.freezeGuardWindow.Name = "freezeGuardWindow";
-            this.freezeGuardWindow.Size = new System.Drawing.Size(202, 17);
-            this.freezeGuardWindow.TabIndex = 72;
-            this.freezeGuardWindow.Text = "Show FreezeGuard Window";
-            this.toolTip1.SetToolTip(this.freezeGuardWindow, "Show/Hide the FreezeGuard window.\r\n\r\nThis option requires a restart of TeboCam\r\ni" +
-        "n order to show or hide the FreezeGuard window.");
+            this.toolTip1.SetToolTip(this.freezeGuardWindow, resources.GetString("freezeGuardWindow.ToolTip"));
             this.freezeGuardWindow.UseVisualStyleBackColor = true;
             this.freezeGuardWindow.CheckedChanged += new System.EventHandler(this.freezeGuardWindow_CheckedChanged);
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label14, "label14");
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(12, 83);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(326, 13);
-            this.label14.TabIndex = 74;
-            this.label14.Text = "(TeboCam needs to be re-started for this to be applied)";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label13, "label13");
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(10, 63);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(198, 13);
-            this.label13.TabIndex = 73;
-            this.label13.Text = "Pulse Frequency(per minute)";
             // 
             // pulseFreq
             // 
             this.pulseFreq.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pulseFreq.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pulseFreq, "pulseFreq");
             this.pulseFreq.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pulseFreq.Location = new System.Drawing.Point(208, 60);
             this.pulseFreq.Name = "pulseFreq";
-            this.pulseFreq.Size = new System.Drawing.Size(48, 21);
-            this.pulseFreq.TabIndex = 72;
-            this.toolTip1.SetToolTip(this.pulseFreq, "The frequency of pulses in values up to 1.\r\n\r\nThe frequency relates to pulses per" +
-        " minute so 0.5 will\r\npulse every 2 minutes and 0.25 will pulse every 4 minutes.\r" +
-        "\n\r\nThe recommended value is 0.5\r\n");
+            this.toolTip1.SetToolTip(this.pulseFreq, resources.GetString("pulseFreq.ToolTip"));
             this.pulseFreq.Leave += new System.EventHandler(this.pulseFreq_Leave);
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(179, 14);
+            resources.ApplyResources(this.button15, "button15");
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(160, 37);
-            this.button15.TabIndex = 71;
-            this.button15.Text = "Test FreezeGuard";
             this.toolTip1.SetToolTip(this.button15, resources.GetString("button15.ToolTip"));
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // freezeGuardOff
             // 
-            this.freezeGuardOff.AutoSize = true;
+            resources.ApplyResources(this.freezeGuardOff, "freezeGuardOff");
             this.freezeGuardOff.Checked = true;
-            this.freezeGuardOff.Location = new System.Drawing.Point(69, 28);
             this.freezeGuardOff.Name = "freezeGuardOff";
-            this.freezeGuardOff.Size = new System.Drawing.Size(44, 17);
-            this.freezeGuardOff.TabIndex = 1;
             this.freezeGuardOff.TabStop = true;
-            this.freezeGuardOff.Text = "Off";
             this.toolTip1.SetToolTip(this.freezeGuardOff, resources.GetString("freezeGuardOff.ToolTip"));
             this.freezeGuardOff.UseVisualStyleBackColor = true;
             // 
             // freezeGuardOn
             // 
-            this.freezeGuardOn.AutoSize = true;
-            this.freezeGuardOn.Location = new System.Drawing.Point(11, 28);
+            resources.ApplyResources(this.freezeGuardOn, "freezeGuardOn");
             this.freezeGuardOn.Name = "freezeGuardOn";
-            this.freezeGuardOn.Size = new System.Drawing.Size(42, 17);
-            this.freezeGuardOn.TabIndex = 0;
-            this.freezeGuardOn.Text = "On";
             this.toolTip1.SetToolTip(this.freezeGuardOn, resources.GetString("freezeGuardOn.ToolTip"));
             this.freezeGuardOn.UseVisualStyleBackColor = true;
             this.freezeGuardOn.CheckedChanged += new System.EventHandler(this.freezeGuardOn_CheckedChanged);
@@ -3162,73 +2275,49 @@ namespace TeboCam
             // groupBox22
             // 
             this.groupBox22.Controls.Add(this.txtInternetConnection);
-            this.groupBox22.Location = new System.Drawing.Point(35, 304);
+            resources.ApplyResources(this.groupBox22, "groupBox22");
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(483, 60);
-            this.groupBox22.TabIndex = 69;
             this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "Internet Connection Check";
             // 
             // txtInternetConnection
             // 
             this.txtInternetConnection.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtInternetConnection.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.txtInternetConnection, "txtInternetConnection");
             this.txtInternetConnection.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtInternetConnection.Location = new System.Drawing.Point(6, 20);
             this.txtInternetConnection.Name = "txtInternetConnection";
-            this.txtInternetConnection.Size = new System.Drawing.Size(471, 21);
-            this.txtInternetConnection.TabIndex = 67;
-            this.toolTip1.SetToolTip(this.txtInternetConnection, "The website or IP address to check\r\nfor an internet connection. \r\nMust be a valid" +
-        " address in order not to \r\nreturn a \'false positive\'.");
+            this.toolTip1.SetToolTip(this.txtInternetConnection, resources.GetString("txtInternetConnection.ToolTip"));
             this.txtInternetConnection.Leave += new System.EventHandler(this.txtInternetConnection_Leave);
             // 
             // groupBox19
             // 
             this.groupBox19.Controls.Add(this.logsKeep);
             this.groupBox19.Controls.Add(this.logsKeepChk);
-            this.groupBox19.Location = new System.Drawing.Point(35, 209);
+            resources.ApplyResources(this.groupBox19, "groupBox19");
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(483, 89);
-            this.groupBox19.TabIndex = 66;
             this.groupBox19.TabStop = false;
-            this.groupBox19.Text = "Logs file management";
             // 
             // logsKeep
             // 
             this.logsKeep.BackColor = System.Drawing.Color.LemonChiffon;
-            this.logsKeep.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.logsKeep, "logsKeep");
             this.logsKeep.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.logsKeep.Location = new System.Drawing.Point(6, 55);
             this.logsKeep.Name = "logsKeep";
-            this.logsKeep.Size = new System.Drawing.Size(65, 21);
-            this.logsKeep.TabIndex = 58;
-            this.logsKeep.Text = "30";
-            this.toolTip1.SetToolTip(this.logsKeep, "Number of days of log files to keep.\r\n30 is the suggested value.");
+            this.toolTip1.SetToolTip(this.logsKeep, resources.GetString("logsKeep.ToolTip"));
             this.logsKeep.Leave += new System.EventHandler(this.logsKeep_Leave);
             // 
             // logsKeepChk
             // 
-            this.logsKeepChk.AutoSize = true;
-            this.logsKeepChk.Location = new System.Drawing.Point(6, 29);
+            resources.ApplyResources(this.logsKeepChk, "logsKeepChk");
             this.logsKeepChk.Name = "logsKeepChk";
-            this.logsKeepChk.Size = new System.Drawing.Size(326, 17);
-            this.logsKeepChk.TabIndex = 1;
-            this.logsKeepChk.Text = "Only keep logs for last N days specified below";
-            this.toolTip1.SetToolTip(this.logsKeepChk, "Delete log files that are older than N days.\r\nOn startup TeboCam will delete log " +
-        "files older \r\nthan the days specified below if this box is checked.");
+            this.toolTip1.SetToolTip(this.logsKeepChk, resources.GetString("logsKeepChk.ToolTip"));
             this.logsKeepChk.UseVisualStyleBackColor = true;
             this.logsKeepChk.CheckedChanged += new System.EventHandler(this.logsKeepChk_CheckedChanged_1);
             // 
             // label44
             // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label44, "label44");
             this.label44.ForeColor = System.Drawing.Color.Black;
-            this.label44.Location = new System.Drawing.Point(975, 791);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(150, 13);
-            this.label44.TabIndex = 64;
-            this.label44.Text = "Images on computer: ";
             // 
             // groupBox15
             // 
@@ -3240,65 +2329,43 @@ namespace TeboCam
             this.groupBox15.Controls.Add(this.profileList);
             this.groupBox15.Controls.Add(this.button11);
             this.groupBox15.Controls.Add(this.btnrenameProfile);
-            this.groupBox15.Location = new System.Drawing.Point(524, 62);
+            resources.ApplyResources(this.groupBox15, "groupBox15");
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(353, 141);
-            this.groupBox15.TabIndex = 63;
             this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Profiles";
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(96, 52);
+            resources.ApplyResources(this.button22, "button22");
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(77, 37);
-            this.button22.TabIndex = 67;
-            this.button22.Text = "Restore Profiles";
-            this.toolTip1.SetToolTip(this.button22, "Restore your vaulted profiles.");
+            this.toolTip1.SetToolTip(this.button22, resources.GetString("button22.ToolTip"));
             this.button22.UseVisualStyleBackColor = true;
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(13, 52);
+            resources.ApplyResources(this.button19, "button19");
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(77, 37);
-            this.button19.TabIndex = 66;
-            this.button19.Text = "Vault Profiles";
             this.toolTip1.SetToolTip(this.button19, resources.GetString("button19.ToolTip"));
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.button19_Click_1);
             // 
             // label45
             // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label45, "label45");
             this.label45.ForeColor = System.Drawing.Color.Black;
-            this.label45.Location = new System.Drawing.Point(10, 28);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(103, 13);
-            this.label45.TabIndex = 65;
-            this.label45.Text = "Current profile";
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(96, 89);
+            resources.ApplyResources(this.button10, "button10");
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(77, 37);
-            this.button10.TabIndex = 38;
-            this.button10.Text = "Copy Profile";
-            this.toolTip1.SetToolTip(this.button10, "Copy an already existing profile to create a new profile.\r\nThis is the best manne" +
-        "r to create a new profile as your settings\r\nwill be copied across to the new pro" +
-        "file.\r\n");
+            this.toolTip1.SetToolTip(this.button10, resources.GetString("button10.ToolTip"));
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click_1);
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(13, 89);
+            resources.ApplyResources(this.button12, "button12");
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(77, 37);
-            this.button12.TabIndex = 37;
-            this.button12.Text = "New Profile";
             this.toolTip1.SetToolTip(this.button12, resources.GetString("button12.ToolTip"));
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
@@ -3308,33 +2375,24 @@ namespace TeboCam
             this.profileList.BackColor = System.Drawing.Color.LemonChiffon;
             this.profileList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.profileList.FormattingEnabled = true;
-            this.profileList.Location = new System.Drawing.Point(119, 24);
+            resources.ApplyResources(this.profileList, "profileList");
             this.profileList.Name = "profileList";
-            this.profileList.Size = new System.Drawing.Size(209, 21);
-            this.profileList.TabIndex = 36;
             this.toolTip1.SetToolTip(this.profileList, resources.GetString("profileList.ToolTip"));
             this.profileList.SelectedIndexChanged += new System.EventHandler(this.profileChanged);
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(262, 89);
+            resources.ApplyResources(this.button11, "button11");
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(77, 37);
-            this.button11.TabIndex = 35;
-            this.button11.Text = "Delete Profile";
-            this.toolTip1.SetToolTip(this.button11, "Delete the current profile.\r\nAs a profile must always exist you cannot delete the" +
-        " profile\r\nif it is the only one in existence.");
+            this.toolTip1.SetToolTip(this.button11, resources.GetString("button11.ToolTip"));
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // btnrenameProfile
             // 
-            this.btnrenameProfile.Location = new System.Drawing.Point(179, 89);
+            resources.ApplyResources(this.btnrenameProfile, "btnrenameProfile");
             this.btnrenameProfile.Name = "btnrenameProfile";
-            this.btnrenameProfile.Size = new System.Drawing.Size(77, 37);
-            this.btnrenameProfile.TabIndex = 34;
-            this.btnrenameProfile.Text = "Rename Profile";
-            this.toolTip1.SetToolTip(this.btnrenameProfile, "Rename the current profile.");
+            this.toolTip1.SetToolTip(this.btnrenameProfile, resources.GetString("btnrenameProfile.ToolTip"));
             this.btnrenameProfile.UseVisualStyleBackColor = true;
             this.btnrenameProfile.Click += new System.EventHandler(this.button10_Click);
             // 
@@ -3346,39 +2404,26 @@ namespace TeboCam
             this.groupBox10.Controls.Add(this.lblImgPref);
             this.groupBox10.Controls.Add(this.numericUpDown3);
             this.groupBox10.Controls.Add(this.button9);
-            this.groupBox10.Location = new System.Drawing.Point(35, 62);
+            resources.ApplyResources(this.groupBox10, "groupBox10");
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(483, 141);
-            this.groupBox10.TabIndex = 62;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Generate WebPage";
             // 
             // label34
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label34, "label34");
             this.label34.ForeColor = System.Drawing.Color.Black;
-            this.label34.Location = new System.Drawing.Point(117, 55);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(23, 13);
-            this.label34.TabIndex = 62;
-            this.label34.Text = "To";
             // 
             // label28
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label28, "label28");
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(3, 55);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(41, 13);
-            this.label28.TabIndex = 61;
-            this.label28.Text = "From";
             // 
             // numericUpDown4
             // 
             this.numericUpDown4.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown4.Location = new System.Drawing.Point(146, 53);
+            resources.ApplyResources(this.numericUpDown4, "numericUpDown4");
             this.numericUpDown4.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -3390,10 +2435,7 @@ namespace TeboCam
             0,
             0});
             this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(61, 21);
-            this.numericUpDown4.TabIndex = 60;
-            this.toolTip1.SetToolTip(this.numericUpDown4, "The time when movement detection \r\nbecomes active.\r\n\r\nThis is useful if you want " +
-        "to schedule TeboCam\r\nto start at a particular time.");
+            this.toolTip1.SetToolTip(this.numericUpDown4, resources.GetString("numericUpDown4.ToolTip"));
             this.numericUpDown4.Value = new decimal(new int[] {
             100,
             0,
@@ -3403,19 +2445,14 @@ namespace TeboCam
             // 
             // lblImgPref
             // 
-            this.lblImgPref.AutoSize = true;
-            this.lblImgPref.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblImgPref, "lblImgPref");
             this.lblImgPref.ForeColor = System.Drawing.Color.Black;
-            this.lblImgPref.Location = new System.Drawing.Point(3, 28);
             this.lblImgPref.Name = "lblImgPref";
-            this.lblImgPref.Size = new System.Drawing.Size(100, 13);
-            this.lblImgPref.TabIndex = 36;
-            this.lblImgPref.Text = "Image Prefix: ";
             // 
             // numericUpDown3
             // 
             this.numericUpDown3.BackColor = System.Drawing.Color.LemonChiffon;
-            this.numericUpDown3.Location = new System.Drawing.Point(50, 53);
+            resources.ApplyResources(this.numericUpDown3, "numericUpDown3");
             this.numericUpDown3.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -3427,10 +2464,7 @@ namespace TeboCam
             0,
             0});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(61, 21);
-            this.numericUpDown3.TabIndex = 59;
-            this.toolTip1.SetToolTip(this.numericUpDown3, "The time when movement detection \r\nbecomes active.\r\n\r\nThis is useful if you want " +
-        "to schedule TeboCam\r\nto start at a particular time.");
+            this.toolTip1.SetToolTip(this.numericUpDown3, resources.GetString("numericUpDown3.ToolTip"));
             this.numericUpDown3.Value = new decimal(new int[] {
             1,
             0,
@@ -3440,11 +2474,8 @@ namespace TeboCam
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(6, 80);
+            resources.ApplyResources(this.button9, "button9");
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(181, 37);
-            this.button9.TabIndex = 34;
-            this.button9.Text = "Generate Webpage";
             this.toolTip1.SetToolTip(this.button9, resources.GetString("button9.ToolTip"));
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
@@ -3455,12 +2486,9 @@ namespace TeboCam
             this.groupBox7.Controls.Add(this.lblVerAvail);
             this.groupBox7.Controls.Add(this.lblCurVer);
             this.groupBox7.Controls.Add(this.updateNotify);
-            this.groupBox7.Location = new System.Drawing.Point(29, 370);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(483, 137);
-            this.groupBox7.TabIndex = 61;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Update Options";
             // 
             // bttInstallUpdateAdmin
             // 
@@ -3469,72 +2497,46 @@ namespace TeboCam
             this.bttInstallUpdateAdmin.cuteColor2 = System.Drawing.Color.Red;
             this.bttInstallUpdateAdmin.cuteTransparent1 = 100;
             this.bttInstallUpdateAdmin.cuteTransparent2 = 100;
-            this.bttInstallUpdateAdmin.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.bttInstallUpdateAdmin, "bttInstallUpdateAdmin");
             this.bttInstallUpdateAdmin.ForeColor = System.Drawing.Color.Black;
-            this.bttInstallUpdateAdmin.Location = new System.Drawing.Point(6, 99);
             this.bttInstallUpdateAdmin.Name = "bttInstallUpdateAdmin";
-            this.bttInstallUpdateAdmin.Size = new System.Drawing.Size(249, 31);
-            this.bttInstallUpdateAdmin.TabIndex = 67;
-            this.bttInstallUpdateAdmin.Text = "Download And Install Update";
             this.toolTip1.SetToolTip(this.bttInstallUpdateAdmin, resources.GetString("bttInstallUpdateAdmin.ToolTip"));
             this.bttInstallUpdateAdmin.UseVisualStyleBackColor = false;
             this.bttInstallUpdateAdmin.Click += new System.EventHandler(this.bttInstallUpdateAdmin_Click);
             // 
             // lblVerAvail
             // 
-            this.lblVerAvail.AutoSize = true;
-            this.lblVerAvail.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblVerAvail, "lblVerAvail");
             this.lblVerAvail.ForeColor = System.Drawing.Color.Black;
-            this.lblVerAvail.Location = new System.Drawing.Point(6, 71);
             this.lblVerAvail.Name = "lblVerAvail";
-            this.lblVerAvail.Size = new System.Drawing.Size(129, 13);
-            this.lblVerAvail.TabIndex = 13;
-            this.lblVerAvail.Text = "Available Version: ";
             // 
             // lblCurVer
             // 
-            this.lblCurVer.AutoSize = true;
-            this.lblCurVer.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblCurVer, "lblCurVer");
             this.lblCurVer.ForeColor = System.Drawing.Color.Black;
-            this.lblCurVer.Location = new System.Drawing.Point(6, 49);
             this.lblCurVer.Name = "lblCurVer";
-            this.lblCurVer.Size = new System.Drawing.Size(117, 13);
-            this.lblCurVer.TabIndex = 12;
-            this.lblCurVer.Text = "Current Version: ";
             // 
             // updateNotify
             // 
-            this.updateNotify.AutoSize = true;
+            resources.ApplyResources(this.updateNotify, "updateNotify");
             this.updateNotify.Checked = true;
             this.updateNotify.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.updateNotify.Location = new System.Drawing.Point(6, 20);
             this.updateNotify.Name = "updateNotify";
-            this.updateNotify.Size = new System.Drawing.Size(249, 17);
-            this.updateNotify.TabIndex = 0;
-            this.updateNotify.Text = "Notify when updates are available";
             this.toolTip1.SetToolTip(this.updateNotify, resources.GetString("updateNotify.ToolTip"));
             this.updateNotify.UseVisualStyleBackColor = true;
             this.updateNotify.CheckedChanged += new System.EventHandler(this.updateNotify_CheckedChanged);
             // 
             // label35
             // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label35, "label35");
             this.label35.ForeColor = System.Drawing.Color.Black;
-            this.label35.Location = new System.Drawing.Point(31, 23);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(191, 23);
-            this.label35.TabIndex = 32;
-            this.label35.Text = "Admin Functions";
             // 
             // Publish
             // 
             this.Publish.Controls.Add(this.groupBox17);
-            this.Publish.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Publish, "Publish");
             this.Publish.Name = "Publish";
-            this.Publish.Size = new System.Drawing.Size(944, 569);
-            this.Publish.TabIndex = 5;
-            this.Publish.Text = "Publish Settings";
             this.Publish.UseVisualStyleBackColor = true;
             // 
             // groupBox17
@@ -3569,405 +2571,257 @@ namespace TeboCam
             this.groupBox17.Controls.Add(this.pubFtpUser);
             this.groupBox17.Controls.Add(this.label61);
             this.groupBox17.Controls.Add(this.pubImage);
-            this.groupBox17.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.groupBox17, "groupBox17");
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(375, 439);
-            this.groupBox17.TabIndex = 61;
             this.groupBox17.TabStop = false;
             // 
             // lblendpub
             // 
-            this.lblendpub.AutoSize = true;
-            this.lblendpub.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblendpub, "lblendpub");
             this.lblendpub.ForeColor = System.Drawing.Color.Black;
-            this.lblendpub.Location = new System.Drawing.Point(171, 178);
             this.lblendpub.Name = "lblendpub";
-            this.lblendpub.Size = new System.Drawing.Size(106, 13);
-            this.lblendpub.TabIndex = 98;
-            this.lblendpub.Text = "Scheduled end:";
             // 
             // lblstartpub
             // 
-            this.lblstartpub.AutoSize = true;
-            this.lblstartpub.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.lblstartpub, "lblstartpub");
             this.lblstartpub.ForeColor = System.Drawing.Color.Black;
-            this.lblstartpub.Location = new System.Drawing.Point(8, 178);
             this.lblstartpub.Name = "lblstartpub";
-            this.lblstartpub.Size = new System.Drawing.Size(117, 13);
-            this.lblstartpub.TabIndex = 97;
-            this.lblstartpub.Text = "Scheduled start: ";
             // 
             // button37
             // 
-            this.button37.Location = new System.Drawing.Point(5, 201);
+            resources.ApplyResources(this.button37, "button37");
             this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(345, 26);
-            this.button37.TabIndex = 96;
-            this.button37.Text = "Set Publish Schedule";
-            this.toolTip1.SetToolTip(this.button37, "Set time schedule for when to start and end\r\npublishing of images.");
+            this.toolTip1.SetToolTip(this.button37, resources.GetString("button37.ToolTip"));
             this.button37.UseVisualStyleBackColor = true;
             this.button37.Click += new System.EventHandler(this.button37_Click);
             // 
             // button36
             // 
-            this.button36.Location = new System.Drawing.Point(132, 124);
+            resources.ApplyResources(this.button36, "button36");
             this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(152, 23);
-            this.button36.TabIndex = 95;
-            this.button36.Text = "Set Local File Name";
             this.button36.UseVisualStyleBackColor = true;
             this.button36.Click += new System.EventHandler(this.button36_Click);
             // 
             // bttnSetPrefixPublish
             // 
-            this.bttnSetPrefixPublish.Location = new System.Drawing.Point(132, 97);
+            resources.ApplyResources(this.bttnSetPrefixPublish, "bttnSetPrefixPublish");
             this.bttnSetPrefixPublish.Name = "bttnSetPrefixPublish";
-            this.bttnSetPrefixPublish.Size = new System.Drawing.Size(152, 23);
-            this.bttnSetPrefixPublish.TabIndex = 94;
-            this.bttnSetPrefixPublish.Text = "Set Web File Name";
             this.bttnSetPrefixPublish.UseVisualStyleBackColor = true;
             this.bttnSetPrefixPublish.Click += new System.EventHandler(this.bttnSetPrefixPublish_Click);
             // 
             // bttncam9pub
             // 
             this.bttncam9pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam9pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam9pub.Location = new System.Drawing.Point(165, 17);
-            this.bttncam9pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam9pub, "bttncam9pub");
             this.bttncam9pub.Name = "bttncam9pub";
-            this.bttncam9pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam9pub.TabIndex = 93;
-            this.bttncam9pub.Text = "9";
-            this.toolTip1.SetToolTip(this.bttncam9pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam9pub, resources.GetString("bttncam9pub.ToolTip"));
             this.bttncam9pub.UseVisualStyleBackColor = false;
             this.bttncam9pub.Click += new System.EventHandler(this.bttncam9pub_Click);
             // 
             // bttncam7pub
             // 
             this.bttncam7pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam7pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam7pub.Location = new System.Drawing.Point(125, 17);
-            this.bttncam7pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam7pub, "bttncam7pub");
             this.bttncam7pub.Name = "bttncam7pub";
-            this.bttncam7pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam7pub.TabIndex = 92;
-            this.bttncam7pub.Text = "7";
-            this.toolTip1.SetToolTip(this.bttncam7pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam7pub, resources.GetString("bttncam7pub.ToolTip"));
             this.bttncam7pub.UseVisualStyleBackColor = false;
             this.bttncam7pub.Click += new System.EventHandler(this.bttncam7pub_Click);
             // 
             // pubToWeb
             // 
-            this.pubToWeb.AutoSize = true;
+            resources.ApplyResources(this.pubToWeb, "pubToWeb");
             this.pubToWeb.BackColor = System.Drawing.SystemColors.Control;
-            this.pubToWeb.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.pubToWeb.Location = new System.Drawing.Point(6, 98);
             this.pubToWeb.Name = "pubToWeb";
-            this.pubToWeb.Size = new System.Drawing.Size(120, 17);
-            this.pubToWeb.TabIndex = 70;
-            this.pubToWeb.Text = "Publish to web";
-            this.toolTip1.SetToolTip(this.pubToWeb, "Publish images to webpage.");
+            this.toolTip1.SetToolTip(this.pubToWeb, resources.GetString("pubToWeb.ToolTip"));
             this.pubToWeb.UseVisualStyleBackColor = false;
             this.pubToWeb.CheckedChanged += new System.EventHandler(this.pubWeb_CheckedChanged);
             // 
             // bttncam8pub
             // 
             this.bttncam8pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam8pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam8pub.Location = new System.Drawing.Point(145, 17);
-            this.bttncam8pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam8pub, "bttncam8pub");
             this.bttncam8pub.Name = "bttncam8pub";
-            this.bttncam8pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam8pub.TabIndex = 91;
-            this.bttncam8pub.Text = "8";
-            this.toolTip1.SetToolTip(this.bttncam8pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam8pub, resources.GetString("bttncam8pub.ToolTip"));
             this.bttncam8pub.UseVisualStyleBackColor = false;
             this.bttncam8pub.Click += new System.EventHandler(this.bttncam8pub_Click);
             // 
             // pubToLocal
             // 
-            this.pubToLocal.AutoSize = true;
+            resources.ApplyResources(this.pubToLocal, "pubToLocal");
             this.pubToLocal.BackColor = System.Drawing.SystemColors.Control;
-            this.pubToLocal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.pubToLocal.Location = new System.Drawing.Point(6, 126);
             this.pubToLocal.Name = "pubToLocal";
-            this.pubToLocal.Size = new System.Drawing.Size(120, 17);
-            this.pubToLocal.TabIndex = 69;
-            this.pubToLocal.Text = "Publish locally";
-            this.toolTip1.SetToolTip(this.pubToLocal, "Publish images to fullSize folder within the images folder.");
+            this.toolTip1.SetToolTip(this.pubToLocal, resources.GetString("pubToLocal.ToolTip"));
             this.pubToLocal.UseVisualStyleBackColor = false;
             this.pubToLocal.CheckedChanged += new System.EventHandler(this.pubLocal_CheckedChanged);
             // 
             // bttncam6pub
             // 
             this.bttncam6pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam6pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam6pub.Location = new System.Drawing.Point(105, 17);
-            this.bttncam6pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam6pub, "bttncam6pub");
             this.bttncam6pub.Name = "bttncam6pub";
-            this.bttncam6pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam6pub.TabIndex = 90;
-            this.bttncam6pub.Text = "6";
-            this.toolTip1.SetToolTip(this.bttncam6pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam6pub, resources.GetString("bttncam6pub.ToolTip"));
             this.bttncam6pub.UseVisualStyleBackColor = false;
             this.bttncam6pub.Click += new System.EventHandler(this.bttncam6pub_Click);
             // 
             // pubTimerOn
             // 
-            this.pubTimerOn.AutoSize = true;
+            resources.ApplyResources(this.pubTimerOn, "pubTimerOn");
             this.pubTimerOn.BackColor = System.Drawing.SystemColors.Control;
-            this.pubTimerOn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.pubTimerOn.Location = new System.Drawing.Point(6, 153);
             this.pubTimerOn.Name = "pubTimerOn";
-            this.pubTimerOn.Size = new System.Drawing.Size(301, 17);
-            this.pubTimerOn.TabIndex = 67;
-            this.pubTimerOn.Text = "Switch on/off publishing at time set below";
-            this.toolTip1.SetToolTip(this.pubTimerOn, "Enable/disable webcam image publishing at scheduled time.");
+            this.toolTip1.SetToolTip(this.pubTimerOn, resources.GetString("pubTimerOn.ToolTip"));
             this.pubTimerOn.UseVisualStyleBackColor = false;
             this.pubTimerOn.CheckedChanged += new System.EventHandler(this.pubTimerOn_CheckedChanged);
             // 
             // bttncam4pub
             // 
             this.bttncam4pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam4pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam4pub.Location = new System.Drawing.Point(65, 17);
-            this.bttncam4pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam4pub, "bttncam4pub");
             this.bttncam4pub.Name = "bttncam4pub";
-            this.bttncam4pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam4pub.TabIndex = 89;
-            this.bttncam4pub.Text = "4";
-            this.toolTip1.SetToolTip(this.bttncam4pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam4pub, resources.GetString("bttncam4pub.ToolTip"));
             this.bttncam4pub.UseVisualStyleBackColor = false;
             this.bttncam4pub.Click += new System.EventHandler(this.bttncam4pub_Click);
             // 
             // bttncam5pub
             // 
             this.bttncam5pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam5pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam5pub.Location = new System.Drawing.Point(85, 17);
-            this.bttncam5pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam5pub, "bttncam5pub");
             this.bttncam5pub.Name = "bttncam5pub";
-            this.bttncam5pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam5pub.TabIndex = 88;
-            this.bttncam5pub.Text = "5";
-            this.toolTip1.SetToolTip(this.bttncam5pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam5pub, resources.GetString("bttncam5pub.ToolTip"));
             this.bttncam5pub.UseVisualStyleBackColor = false;
             this.bttncam5pub.Click += new System.EventHandler(this.bttncam5pub_Click);
             // 
             // bttncam3pub
             // 
             this.bttncam3pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam3pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam3pub.Location = new System.Drawing.Point(45, 17);
-            this.bttncam3pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam3pub, "bttncam3pub");
             this.bttncam3pub.Name = "bttncam3pub";
-            this.bttncam3pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam3pub.TabIndex = 87;
-            this.bttncam3pub.Text = "3";
-            this.toolTip1.SetToolTip(this.bttncam3pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam3pub, resources.GetString("bttncam3pub.ToolTip"));
             this.bttncam3pub.UseVisualStyleBackColor = false;
             this.bttncam3pub.Click += new System.EventHandler(this.bttncam3pub_Click);
             // 
             // bttncam2pub
             // 
             this.bttncam2pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam2pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam2pub.Location = new System.Drawing.Point(25, 17);
-            this.bttncam2pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam2pub, "bttncam2pub");
             this.bttncam2pub.Name = "bttncam2pub";
-            this.bttncam2pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam2pub.TabIndex = 86;
-            this.bttncam2pub.Text = "2";
-            this.toolTip1.SetToolTip(this.bttncam2pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam2pub, resources.GetString("bttncam2pub.ToolTip"));
             this.bttncam2pub.UseVisualStyleBackColor = false;
             this.bttncam2pub.Click += new System.EventHandler(this.bttncam2pub_Click);
             // 
             // bttncam1pub
             // 
             this.bttncam1pub.BackColor = System.Drawing.Color.Silver;
-            this.bttncam1pub.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.bttncam1pub.Location = new System.Drawing.Point(5, 17);
-            this.bttncam1pub.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.bttncam1pub, "bttncam1pub");
             this.bttncam1pub.Name = "bttncam1pub";
-            this.bttncam1pub.Size = new System.Drawing.Size(20, 20);
-            this.bttncam1pub.TabIndex = 85;
-            this.bttncam1pub.Text = "1";
-            this.toolTip1.SetToolTip(this.bttncam1pub, "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-        "om one selected camera.");
+            this.toolTip1.SetToolTip(this.bttncam1pub, resources.GetString("bttncam1pub.ToolTip"));
             this.bttncam1pub.UseVisualStyleBackColor = false;
             this.bttncam1pub.Click += new System.EventHandler(this.bttncam1pub_Click);
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(6, 236);
+            resources.ApplyResources(this.button14, "button14");
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(344, 25);
-            this.button14.TabIndex = 62;
-            this.button14.Text = "Copy FTP Settings from Email and Ftp";
-            this.toolTip1.SetToolTip(this.button14, "Copy the FTP settings from the \'Email and Ftp\' tab.");
+            this.toolTip1.SetToolTip(this.button14, resources.GetString("button14.ToolTip"));
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.pubFtpCopy);
             // 
             // label55
             // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label55, "label55");
             this.label55.ForeColor = System.Drawing.Color.Black;
-            this.label55.Location = new System.Drawing.Point(11, 75);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(45, 13);
-            this.label55.TabIndex = 61;
-            this.label55.Text = "Every";
             // 
             // pubTime
             // 
             this.pubTime.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pubTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pubTime, "pubTime");
             this.pubTime.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pubTime.Location = new System.Drawing.Point(66, 72);
             this.pubTime.Name = "pubTime";
-            this.pubTime.Size = new System.Drawing.Size(65, 21);
-            this.pubTime.TabIndex = 57;
-            this.pubTime.Text = "2";
-            this.toolTip1.SetToolTip(this.pubTime, "Frequency of publishing of webcam image to webpage\r\nin hours, minutes or seconds." +
-        "");
+            this.toolTip1.SetToolTip(this.pubTime, resources.GetString("pubTime.ToolTip"));
             this.pubTime.Leave += new System.EventHandler(this.pubTime_Leave);
             // 
             // pubSecs
             // 
-            this.pubSecs.AutoSize = true;
-            this.pubSecs.Location = new System.Drawing.Point(287, 75);
+            resources.ApplyResources(this.pubSecs, "pubSecs");
             this.pubSecs.Name = "pubSecs";
-            this.pubSecs.Size = new System.Drawing.Size(55, 17);
-            this.pubSecs.TabIndex = 56;
-            this.pubSecs.Text = "Secs";
             this.pubSecs.UseVisualStyleBackColor = true;
             this.pubSecs.CheckedChanged += new System.EventHandler(this.pubSecs_CheckedChanged);
             // 
             // pubMins
             // 
-            this.pubMins.AutoSize = true;
+            resources.ApplyResources(this.pubMins, "pubMins");
             this.pubMins.Checked = true;
-            this.pubMins.Location = new System.Drawing.Point(215, 75);
             this.pubMins.Name = "pubMins";
-            this.pubMins.Size = new System.Drawing.Size(54, 17);
-            this.pubMins.TabIndex = 55;
             this.pubMins.TabStop = true;
-            this.pubMins.Text = "Mins";
             this.pubMins.UseVisualStyleBackColor = true;
             this.pubMins.CheckedChanged += new System.EventHandler(this.pubMins_CheckedChanged);
             // 
             // pubHours
             // 
-            this.pubHours.AutoSize = true;
-            this.pubHours.Location = new System.Drawing.Point(144, 75);
+            resources.ApplyResources(this.pubHours, "pubHours");
             this.pubHours.Name = "pubHours";
-            this.pubHours.Size = new System.Drawing.Size(63, 17);
-            this.pubHours.TabIndex = 54;
-            this.pubHours.Text = "Hours";
             this.pubHours.UseVisualStyleBackColor = true;
             this.pubHours.CheckedChanged += new System.EventHandler(this.pubHours_CheckedChanged);
             // 
             // pubFtpRoot
             // 
             this.pubFtpRoot.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pubFtpRoot.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pubFtpRoot, "pubFtpRoot");
             this.pubFtpRoot.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pubFtpRoot.Location = new System.Drawing.Point(6, 377);
             this.pubFtpRoot.Name = "pubFtpRoot";
-            this.pubFtpRoot.Size = new System.Drawing.Size(344, 21);
-            this.pubFtpRoot.TabIndex = 33;
-            this.toolTip1.SetToolTip(this.pubFtpRoot, "Ftp Root Directory: \r\nConsult your ISP instructions.\r\n");
+            this.toolTip1.SetToolTip(this.pubFtpRoot, resources.GetString("pubFtpRoot.ToolTip"));
             this.pubFtpRoot.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // label59
             // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label59, "label59");
             this.label59.ForeColor = System.Drawing.Color.Black;
-            this.label59.Location = new System.Drawing.Point(2, 361);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(126, 13);
-            this.label59.TabIndex = 36;
-            this.label59.Text = "Ftp Root Directory";
             // 
             // pubFtpPass
             // 
             this.pubFtpPass.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pubFtpPass.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pubFtpPass, "pubFtpPass");
             this.pubFtpPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pubFtpPass.Location = new System.Drawing.Point(6, 330);
             this.pubFtpPass.Name = "pubFtpPass";
-            this.pubFtpPass.PasswordChar = '*';
-            this.pubFtpPass.Size = new System.Drawing.Size(344, 21);
-            this.pubFtpPass.TabIndex = 32;
-            this.toolTip1.SetToolTip(this.pubFtpPass, "Ftp Password: \r\nConsult your ISP instructions.\r\n\r\n");
+            this.toolTip1.SetToolTip(this.pubFtpPass, resources.GetString("pubFtpPass.ToolTip"));
             this.pubFtpPass.TextChanged += new System.EventHandler(this.pubFtpPass_TextChanged);
             // 
             // label60
             // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label60, "label60");
             this.label60.ForeColor = System.Drawing.Color.Black;
-            this.label60.Location = new System.Drawing.Point(2, 314);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(94, 13);
-            this.label60.TabIndex = 35;
-            this.label60.Text = "Ftp Password";
             // 
             // pubFtpUser
             // 
             this.pubFtpUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.pubFtpUser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.pubFtpUser, "pubFtpUser");
             this.pubFtpUser.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.pubFtpUser.Location = new System.Drawing.Point(6, 290);
             this.pubFtpUser.Name = "pubFtpUser";
-            this.pubFtpUser.Size = new System.Drawing.Size(344, 21);
-            this.pubFtpUser.TabIndex = 31;
-            this.toolTip1.SetToolTip(this.pubFtpUser, "Ftp User: \r\nConsult your ISP instructions.\r\n");
+            this.toolTip1.SetToolTip(this.pubFtpUser, resources.GetString("pubFtpUser.ToolTip"));
             this.pubFtpUser.TextChanged += new System.EventHandler(this.pubFtpUser_TextChanged);
             // 
             // label61
             // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label61, "label61");
             this.label61.ForeColor = System.Drawing.Color.Black;
-            this.label61.Location = new System.Drawing.Point(2, 264);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(62, 13);
-            this.label61.TabIndex = 34;
-            this.label61.Text = "Ftp User";
             // 
             // pubImage
             // 
-            this.pubImage.AutoSize = true;
+            resources.ApplyResources(this.pubImage, "pubImage");
             this.pubImage.BackColor = System.Drawing.SystemColors.Control;
-            this.pubImage.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.pubImage.Location = new System.Drawing.Point(5, 49);
             this.pubImage.Name = "pubImage";
-            this.pubImage.Size = new System.Drawing.Size(178, 17);
-            this.pubImage.TabIndex = 1;
-            this.pubImage.Text = "Publish Webcam Image";
-            this.toolTip1.SetToolTip(this.pubImage, "Enable or disable webcam image publishing to webpage.");
+            this.toolTip1.SetToolTip(this.pubImage, resources.GetString("pubImage.ToolTip"));
             this.pubImage.UseVisualStyleBackColor = false;
             this.pubImage.CheckedChanged += new System.EventHandler(this.pubImage_CheckedChanged);
             // 
             // Online
             // 
             this.Online.Controls.Add(this.groupBox20);
-            this.Online.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Online, "Online");
             this.Online.Name = "Online";
-            this.Online.Size = new System.Drawing.Size(944, 569);
-            this.Online.TabIndex = 6;
-            this.Online.Text = "Online";
             this.Online.UseVisualStyleBackColor = true;
             // 
             // groupBox20
@@ -3994,253 +2848,165 @@ namespace TeboCam
             this.groupBox20.Controls.Add(this.label53);
             this.groupBox20.Controls.Add(this.sqlImageFilename);
             this.groupBox20.Controls.Add(this.sqlImageRoot);
-            this.groupBox20.Location = new System.Drawing.Point(12, 14);
+            resources.ApplyResources(this.groupBox20, "groupBox20");
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(391, 539);
-            this.groupBox20.TabIndex = 78;
             this.groupBox20.TabStop = false;
             // 
             // label39
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(87, 383);
+            resources.ApplyResources(this.label39, "label39");
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(61, 13);
-            this.label39.TabIndex = 87;
-            this.label39.Text = "Seconds";
             // 
             // disCommOnlineSecs
             // 
             this.disCommOnlineSecs.BackColor = System.Drawing.Color.LemonChiffon;
-            this.disCommOnlineSecs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.disCommOnlineSecs, "disCommOnlineSecs");
             this.disCommOnlineSecs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.disCommOnlineSecs.Location = new System.Drawing.Point(16, 375);
             this.disCommOnlineSecs.Name = "disCommOnlineSecs";
-            this.disCommOnlineSecs.Size = new System.Drawing.Size(65, 21);
-            this.disCommOnlineSecs.TabIndex = 86;
-            this.disCommOnlineSecs.Text = "10";
-            this.toolTip1.SetToolTip(this.disCommOnlineSecs, "The maximum number of movement images\r\nto include in each email.\r\n");
+            this.toolTip1.SetToolTip(this.disCommOnlineSecs, resources.GetString("disCommOnlineSecs.ToolTip"));
             this.disCommOnlineSecs.Leave += new System.EventHandler(this.disCommOnlineSecs_Leave);
             // 
             // disCommOnline
             // 
-            this.disCommOnline.AutoSize = true;
+            resources.ApplyResources(this.disCommOnline, "disCommOnline");
             this.disCommOnline.BackColor = System.Drawing.SystemColors.Control;
-            this.disCommOnline.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.disCommOnline.Location = new System.Drawing.Point(16, 352);
             this.disCommOnline.Name = "disCommOnline";
-            this.disCommOnline.Size = new System.Drawing.Size(236, 17);
-            this.disCommOnline.TabIndex = 85;
-            this.disCommOnline.Text = "Disregard Commands older than";
-            this.toolTip1.SetToolTip(this.disCommOnline, "Enable or disable webcam image publishing to webpage.");
+            this.toolTip1.SetToolTip(this.disCommOnline, resources.GetString("disCommOnline.ToolTip"));
             this.disCommOnline.UseVisualStyleBackColor = false;
             this.disCommOnline.CheckedChanged += new System.EventHandler(this.disCommOnline_CheckedChanged);
             // 
             // label51
             // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label51, "label51");
             this.label51.ForeColor = System.Drawing.Color.Black;
-            this.label51.Location = new System.Drawing.Point(20, 282);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(126, 13);
-            this.label51.TabIndex = 84;
-            this.label51.Text = "Ftp Root Directory";
             // 
             // label58
             // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label58, "label58");
             this.label58.ForeColor = System.Drawing.Color.Black;
-            this.label58.Location = new System.Drawing.Point(20, 252);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(94, 13);
-            this.label58.TabIndex = 83;
-            this.label58.Text = "Ftp Password";
             // 
             // label63
             // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label63, "label63");
             this.label63.ForeColor = System.Drawing.Color.Black;
-            this.label63.Location = new System.Drawing.Point(20, 220);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(62, 13);
-            this.label63.TabIndex = 82;
-            this.label63.Text = "Ftp User";
             // 
             // SqlFtpUser
             // 
             this.SqlFtpUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.SqlFtpUser.Location = new System.Drawing.Point(149, 217);
+            resources.ApplyResources(this.SqlFtpUser, "SqlFtpUser");
             this.SqlFtpUser.Name = "SqlFtpUser";
-            this.SqlFtpUser.Size = new System.Drawing.Size(226, 21);
-            this.SqlFtpUser.TabIndex = 81;
             this.SqlFtpUser.Leave += new System.EventHandler(this.SqlFtpUser_Leave);
             // 
             // SqlFtpPwd
             // 
             this.SqlFtpPwd.BackColor = System.Drawing.Color.LemonChiffon;
-            this.SqlFtpPwd.Location = new System.Drawing.Point(149, 244);
+            resources.ApplyResources(this.SqlFtpPwd, "SqlFtpPwd");
             this.SqlFtpPwd.Name = "SqlFtpPwd";
-            this.SqlFtpPwd.PasswordChar = '*';
-            this.SqlFtpPwd.Size = new System.Drawing.Size(226, 21);
-            this.SqlFtpPwd.TabIndex = 79;
             this.SqlFtpPwd.Leave += new System.EventHandler(this.SqlFtpPwd_Leave);
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(23, 176);
+            resources.ApplyResources(this.button20, "button20");
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(352, 25);
-            this.button20.TabIndex = 78;
-            this.button20.Text = "Copy FTP Settings from Email and Ftp";
-            this.toolTip1.SetToolTip(this.button20, "Copy the FTP settings from the \'Email and Ftp\' tab.");
+            this.toolTip1.SetToolTip(this.button20, resources.GetString("button20.ToolTip"));
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // webUpd
             // 
-            this.webUpd.AutoSize = true;
+            resources.ApplyResources(this.webUpd, "webUpd");
             this.webUpd.BackColor = System.Drawing.SystemColors.Control;
-            this.webUpd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.webUpd.Location = new System.Drawing.Point(16, 29);
             this.webUpd.Name = "webUpd";
-            this.webUpd.Size = new System.Drawing.Size(104, 17);
-            this.webUpd.TabIndex = 69;
-            this.webUpd.Text = "Web Update";
-            this.toolTip1.SetToolTip(this.webUpd, "Enable or disable webcam image publishing to webpage.");
+            this.toolTip1.SetToolTip(this.webUpd, resources.GetString("webUpd.ToolTip"));
             this.webUpd.UseVisualStyleBackColor = false;
             this.webUpd.CheckedChanged += new System.EventHandler(this.webUpd_CheckedChanged);
             // 
             // label57
             // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(13, 116);
+            resources.ApplyResources(this.label57, "label57");
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(64, 13);
-            this.label57.TabIndex = 77;
-            this.label57.Text = "Instance";
             // 
             // sqlUser
             // 
             this.sqlUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlUser.Location = new System.Drawing.Point(131, 54);
+            resources.ApplyResources(this.sqlUser, "sqlUser");
             this.sqlUser.Name = "sqlUser";
-            this.sqlUser.Size = new System.Drawing.Size(125, 21);
-            this.sqlUser.TabIndex = 0;
             this.sqlUser.Leave += new System.EventHandler(this.sqlUser_Leave);
             // 
             // sqlInstance
             // 
             this.sqlInstance.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlInstance.Enabled = false;
-            this.sqlInstance.Location = new System.Drawing.Point(131, 108);
+            resources.ApplyResources(this.sqlInstance, "sqlInstance");
             this.sqlInstance.Name = "sqlInstance";
-            this.sqlInstance.Size = new System.Drawing.Size(125, 21);
-            this.sqlInstance.TabIndex = 76;
             this.sqlInstance.Leave += new System.EventHandler(this.sqlInstance_Leave);
             // 
             // label46
             // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(13, 62);
+            resources.ApplyResources(this.label46, "label46");
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(37, 13);
-            this.label46.TabIndex = 5;
-            this.label46.Text = "User";
             // 
             // sqlPwd
             // 
             this.sqlPwd.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlPwd.Location = new System.Drawing.Point(131, 81);
+            resources.ApplyResources(this.sqlPwd, "sqlPwd");
             this.sqlPwd.Name = "sqlPwd";
-            this.sqlPwd.PasswordChar = '*';
-            this.sqlPwd.Size = new System.Drawing.Size(125, 21);
-            this.sqlPwd.TabIndex = 1;
             this.sqlPwd.Leave += new System.EventHandler(this.sqlPwd_Leave);
             // 
             // label54
             // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(262, 146);
+            resources.ApplyResources(this.label54, "label54");
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(72, 13);
-            this.label54.TabIndex = 74;
-            this.label54.Text = "(seconds)";
             // 
             // label52
             // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(13, 89);
+            resources.ApplyResources(this.label52, "label52");
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(69, 13);
-            this.label52.TabIndex = 11;
-            this.label52.Text = "Password";
             // 
             // sqlPoll
             // 
             this.sqlPoll.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlPoll.Location = new System.Drawing.Point(131, 138);
+            resources.ApplyResources(this.sqlPoll, "sqlPoll");
             this.sqlPoll.Name = "sqlPoll";
-            this.sqlPoll.Size = new System.Drawing.Size(125, 21);
-            this.sqlPoll.TabIndex = 12;
             this.sqlPoll.Leave += new System.EventHandler(this.sqlPoll_Leave);
             // 
             // label50
             // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(16, 309);
+            resources.ApplyResources(this.label50, "label50");
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(113, 13);
-            this.label50.TabIndex = 72;
-            this.label50.Text = "Image Filename";
             // 
             // label53
             // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(13, 146);
+            resources.ApplyResources(this.label53, "label53");
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(118, 13);
-            this.label53.TabIndex = 13;
-            this.label53.Text = "Poll Online Every";
             // 
             // sqlImageFilename
             // 
             this.sqlImageFilename.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlImageFilename.Location = new System.Drawing.Point(149, 301);
+            resources.ApplyResources(this.sqlImageFilename, "sqlImageFilename");
             this.sqlImageFilename.Name = "sqlImageFilename";
-            this.sqlImageFilename.Size = new System.Drawing.Size(226, 21);
-            this.sqlImageFilename.TabIndex = 71;
             this.sqlImageFilename.Leave += new System.EventHandler(this.sqlImageFilename_Leave);
             // 
             // sqlImageRoot
             // 
             this.sqlImageRoot.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlImageRoot.Location = new System.Drawing.Point(149, 274);
+            resources.ApplyResources(this.sqlImageRoot, "sqlImageRoot");
             this.sqlImageRoot.Name = "sqlImageRoot";
-            this.sqlImageRoot.Size = new System.Drawing.Size(226, 21);
-            this.sqlImageRoot.TabIndex = 70;
             this.sqlImageRoot.Leave += new System.EventHandler(this.sqlImageRoot_Leave);
             // 
             // Test
             // 
-            this.Test.Location = new System.Drawing.Point(4, 22);
+            resources.ApplyResources(this.Test, "Test");
             this.Test.Name = "Test";
-            this.Test.Size = new System.Drawing.Size(944, 569);
-            this.Test.TabIndex = 7;
-            this.Test.Text = "Test";
             this.Test.UseVisualStyleBackColor = true;
             // 
             // bttnToolTips
             // 
-            this.bttnToolTips.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttnToolTips.Location = new System.Drawing.Point(685, 609);
+            resources.ApplyResources(this.bttnToolTips, "bttnToolTips");
             this.bttnToolTips.Name = "bttnToolTips";
-            this.bttnToolTips.Size = new System.Drawing.Size(129, 28);
-            this.bttnToolTips.TabIndex = 63;
-            this.bttnToolTips.Text = "Turn OFF Tool Tips";
-            this.toolTip1.SetToolTip(this.bttnToolTips, "Click this button to turn on and off these \r\nballoons which contain tips.");
+            this.toolTip1.SetToolTip(this.bttnToolTips, resources.GetString("bttnToolTips.ToolTip"));
             this.bttnToolTips.UseVisualStyleBackColor = true;
             this.bttnToolTips.Click += new System.EventHandler(this.bttnToolTips_Click_1);
             // 
@@ -4255,29 +3021,18 @@ namespace TeboCam
             // 
             // button24
             // 
-            this.button24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button24.Location = new System.Drawing.Point(820, 609);
+            resources.ApplyResources(this.button24, "button24");
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(129, 28);
-            this.button24.TabIndex = 62;
-            this.button24.Text = "Save Changes";
-            this.toolTip1.SetToolTip(this.button24, "Save changes made.\r\n\r\nChanges are also saved automatically on exit.");
+            this.toolTip1.SetToolTip(this.button24, resources.GetString("button24.ToolTip"));
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // notConnected
             // 
-            this.notConnected.AutoSize = true;
-            this.notConnected.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.notConnected, "notConnected");
             this.notConnected.ForeColor = System.Drawing.Color.Red;
-            this.notConnected.Location = new System.Drawing.Point(12, 609);
             this.notConnected.Name = "notConnected";
-            this.notConnected.Size = new System.Drawing.Size(320, 24);
-            this.notConnected.TabIndex = 63;
-            this.notConnected.Text = "Internet Connection Not Detected";
-            this.toolTip1.SetToolTip(this.notConnected, "Verify the \'Internet Connection Check\'  box in the Admin tab\r\nif you this is disp" +
-        "layed and you know you are connected.");
-            this.notConnected.Visible = false;
+            this.toolTip1.SetToolTip(this.notConnected, resources.GetString("notConnected.ToolTip"));
             // 
             // bttnUpdateFooter
             // 
@@ -4286,13 +3041,9 @@ namespace TeboCam
             this.bttnUpdateFooter.cuteColor2 = System.Drawing.Color.Red;
             this.bttnUpdateFooter.cuteTransparent1 = 100;
             this.bttnUpdateFooter.cuteTransparent2 = 100;
-            this.bttnUpdateFooter.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.bttnUpdateFooter, "bttnUpdateFooter");
             this.bttnUpdateFooter.ForeColor = System.Drawing.Color.Black;
-            this.bttnUpdateFooter.Location = new System.Drawing.Point(550, 609);
             this.bttnUpdateFooter.Name = "bttnUpdateFooter";
-            this.bttnUpdateFooter.Size = new System.Drawing.Size(129, 28);
-            this.bttnUpdateFooter.TabIndex = 66;
-            this.bttnUpdateFooter.Text = "UPDATE";
             this.toolTip1.SetToolTip(this.bttnUpdateFooter, resources.GetString("bttnUpdateFooter.ToolTip"));
             this.bttnUpdateFooter.UseVisualStyleBackColor = false;
             this.bttnUpdateFooter.Click += new System.EventHandler(this.bttnUpdateFooter_Click);
@@ -4307,30 +3058,24 @@ namespace TeboCam
             this.statusStrip.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 640);
+            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(964, 22);
             this.statusStrip.SizingGrip = false;
-            this.statusStrip.TabIndex = 1;
             // 
             // StripStatusLabel
             // 
             this.StripStatusLabel.Name = "StripStatusLabel";
-            this.StripStatusLabel.Size = new System.Drawing.Size(118, 17);
-            this.StripStatusLabel.Text = "toolStripStatusLabel1";
+            resources.ApplyResources(this.StripStatusLabel, "StripStatusLabel");
             // 
             // StatusStripLabel
             // 
             this.StatusStripLabel.Name = "StatusStripLabel";
-            this.StatusStripLabel.Size = new System.Drawing.Size(109, 17);
-            this.StatusStripLabel.Text = "toolStripStatusLabel1";
+            resources.ApplyResources(this.StatusStripLabel, "StatusStripLabel");
             // 
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "TeboCam";
-            this.notifyIcon1.Visible = true;
+            resources.ApplyResources(this.notifyIcon1, "notifyIcon1");
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
             // contextMenuStrip1
@@ -4343,71 +3088,49 @@ namespace TeboCam
             this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 114);
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem2.Text = "Hide";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem1.Text = "Show";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem5.Text = "Activate Detection";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem4.Text = "Inactivate Detection";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(154, 22);
-            this.toolStripMenuItem3.Text = "Exit";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
-            this.cameraWindow.Name = "cameraWindow";
-            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
-            this.cameraWindow.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // preferences
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(964, 662);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bttnToolTips);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.notConnected);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.bttnUpdateFooter);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(980, 700);
             this.Name = "preferences";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TeboCam";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.preferences_FormClosing);
             this.Load += new System.EventHandler(this.preferences_Load);
             this.Shown += new System.EventHandler(this.preferences_Loaded);

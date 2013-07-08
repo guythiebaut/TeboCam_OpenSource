@@ -63,64 +63,41 @@ namespace TeboCam
         ///
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputBoxDialog));
             this.lblPrompt = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            //
+            // 
             // lblPrompt
-            //
-            this.lblPrompt.Anchor =
-              ((System.Windows.Forms.AnchorStyles)
-              ((((System.Windows.Forms.AnchorStyles.Top |
-              System.Windows.Forms.AnchorStyles.Bottom)
-              | System.Windows.Forms.AnchorStyles.Left)
-              | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            resources.ApplyResources(this.lblPrompt, "lblPrompt");
             this.lblPrompt.BackColor = System.Drawing.SystemColors.Control;
-            this.lblPrompt.Font =
-              new System.Drawing.Font("Microsoft Sans Serif", 9.75F,
-              System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point,
-              ((System.Byte)(0)));
-            this.lblPrompt.Location = new System.Drawing.Point(12, 9);
             this.lblPrompt.Name = "lblPrompt";
-            this.lblPrompt.Size = new System.Drawing.Size(302, 82);
-            this.lblPrompt.TabIndex = 3;
-            //
+            // 
             // btnOK
-            //
+            // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOK.Location = new System.Drawing.Point(326, 24);
+            resources.ApplyResources(this.btnOK, "btnOK");
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(64, 24);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "&OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            //
+            // 
             // button1
-            //
+            // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(326, 56);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 24);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "&Cancel";
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            //
+            // 
             // txtInput
-            //
-            this.txtInput.Location = new System.Drawing.Point(8, 100);
+            // 
+            resources.ApplyResources(this.txtInput, "txtInput");
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(379, 20);
-            this.txtInput.TabIndex = 0;
-            this.txtInput.Text = "";
-            //
+            // 
             // InputBoxDialog
-            //
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(398, 128);
+            // 
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOK);
@@ -129,10 +106,9 @@ namespace TeboCam
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InputBoxDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InputBox";
             this.Load += new System.EventHandler(this.InputBox_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion

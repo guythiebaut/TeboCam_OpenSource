@@ -56,36 +56,23 @@ namespace TeboCam
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label32, "label32");
             this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(10, 9);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(139, 23);
-            this.label32.TabIndex = 48;
-            this.label32.Text = "Time Stamp";
             // 
             // apply
             // 
-            this.apply.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apply.Location = new System.Drawing.Point(171, 191);
+            resources.ApplyResources(this.apply, "apply");
             this.apply.Name = "apply";
-            this.apply.Size = new System.Drawing.Size(132, 32);
-            this.apply.TabIndex = 64;
-            this.apply.Text = "Apply";
-            this.toolTip1.SetToolTip(this.apply, "Apply the changes");
+            this.toolTip1.SetToolTip(this.apply, resources.GetString("apply.ToolTip"));
             this.apply.UseVisualStyleBackColor = true;
             this.apply.Click += new System.EventHandler(this.apply_Click);
             // 
             // cancel
             // 
-            this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel.Location = new System.Drawing.Point(316, 191);
+            resources.ApplyResources(this.cancel, "cancel");
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(142, 32);
-            this.cancel.TabIndex = 65;
-            this.cancel.Text = "Cancel";
-            this.toolTip1.SetToolTip(this.cancel, "Do not apply the changes");
+            this.toolTip1.SetToolTip(this.cancel, resources.GetString("cancel.ToolTip"));
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
@@ -99,79 +86,54 @@ namespace TeboCam
             // 
             // addStamp
             // 
-            this.addStamp.AutoSize = true;
+            resources.ApplyResources(this.addStamp, "addStamp");
             this.addStamp.BackColor = System.Drawing.SystemColors.Control;
-            this.addStamp.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.addStamp.Location = new System.Drawing.Point(12, 44);
             this.addStamp.Name = "addStamp";
-            this.addStamp.Size = new System.Drawing.Size(226, 17);
-            this.addStamp.TabIndex = 69;
-            this.addStamp.Text = "Add date/time stamp to image";
-            this.toolTip1.SetToolTip(this.addStamp, "Enable or disable webcam image publishing to webpage.");
+            this.toolTip1.SetToolTip(this.addStamp, resources.GetString("addStamp.ToolTip"));
             this.addStamp.UseVisualStyleBackColor = false;
             this.addStamp.CheckedChanged += new System.EventHandler(this.addStamp_CheckedChanged);
             // 
             // br
             // 
-            this.br.AutoSize = true;
-            this.br.Location = new System.Drawing.Point(89, 75);
+            resources.ApplyResources(this.br, "br");
             this.br.Name = "br";
-            this.br.Size = new System.Drawing.Size(14, 13);
-            this.br.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.br, "Text at lower right");
+            this.toolTip1.SetToolTip(this.br, resources.GetString("br.ToolTip"));
             this.br.UseVisualStyleBackColor = true;
             // 
             // bl
             // 
-            this.bl.AutoSize = true;
-            this.bl.Location = new System.Drawing.Point(21, 75);
+            resources.ApplyResources(this.bl, "bl");
             this.bl.Name = "bl";
-            this.bl.Size = new System.Drawing.Size(14, 13);
-            this.bl.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.bl, "Text at lower left");
+            this.toolTip1.SetToolTip(this.bl, resources.GetString("bl.ToolTip"));
             this.bl.UseVisualStyleBackColor = true;
             // 
             // tr
             // 
-            this.tr.AutoSize = true;
-            this.tr.Location = new System.Drawing.Point(89, 36);
+            resources.ApplyResources(this.tr, "tr");
             this.tr.Name = "tr";
-            this.tr.Size = new System.Drawing.Size(14, 13);
-            this.tr.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.tr, "Text at top right");
+            this.toolTip1.SetToolTip(this.tr, resources.GetString("tr.ToolTip"));
             this.tr.UseVisualStyleBackColor = true;
             // 
             // tl
             // 
-            this.tl.AutoSize = true;
+            resources.ApplyResources(this.tl, "tl");
             this.tl.Checked = true;
-            this.tl.Location = new System.Drawing.Point(21, 36);
             this.tl.Name = "tl";
-            this.tl.Size = new System.Drawing.Size(14, 13);
-            this.tl.TabIndex = 0;
             this.tl.TabStop = true;
-            this.toolTip1.SetToolTip(this.tl, "Text at top left");
+            this.toolTip1.SetToolTip(this.tl, resources.GetString("tl.ToolTip"));
             this.tl.UseVisualStyleBackColor = true;
             // 
             // drawRect
             // 
-            this.drawRect.AutoSize = true;
-            this.drawRect.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.drawRect, "drawRect");
             this.drawRect.Name = "drawRect";
-            this.drawRect.Size = new System.Drawing.Size(64, 17);
-            this.drawRect.TabIndex = 72;
-            this.drawRect.Text = "Opaque";
-            this.toolTip1.SetToolTip(this.drawRect, "Show an opaque box behind the text or clock.");
+            this.toolTip1.SetToolTip(this.drawRect, resources.GetString("drawRect.ToolTip"));
             this.drawRect.UseVisualStyleBackColor = true;
             // 
             // statsChk
             // 
-            this.statsChk.AutoSize = true;
-            this.statsChk.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.statsChk, "statsChk");
             this.statsChk.Name = "statsChk";
-            this.statsChk.Size = new System.Drawing.Size(106, 17);
-            this.statsChk.TabIndex = 72;
-            this.statsChk.Text = "Include Statistics";
             this.toolTip1.SetToolTip(this.statsChk, resources.GetString("statsChk.ToolTip"));
             this.statsChk.UseVisualStyleBackColor = true;
             // 
@@ -181,101 +143,74 @@ namespace TeboCam
             this.groupBox1.Controls.Add(this.bl);
             this.groupBox1.Controls.Add(this.tr);
             this.groupBox1.Controls.Add(this.tl);
-            this.groupBox1.Location = new System.Drawing.Point(319, 77);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(141, 102);
-            this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Time Stamp Position";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.drawRect);
-            this.groupBox3.Location = new System.Drawing.Point(168, 78);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(145, 48);
-            this.groupBox3.TabIndex = 71;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Time Stamp Background";
             // 
             // statsBox
             // 
             this.statsBox.Controls.Add(this.statsChk);
-            this.statsBox.Location = new System.Drawing.Point(168, 132);
+            resources.ApplyResources(this.statsBox, "statsBox");
             this.statsBox.Name = "statsBox";
-            this.statsBox.Size = new System.Drawing.Size(145, 48);
-            this.statsBox.TabIndex = 73;
             this.statsBox.TabStop = false;
-            this.statsBox.Text = "Publish timestamp Stats";
             // 
             // stampType
             // 
             this.stampType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stampType.Items.AddRange(new object[] {
-            "dd-mm-yy",
-            "hh:mm:ss",
-            "dd-mmm-yy hh:mm:ss",
-            "Analogue Clock",
-            "Analogue Clock + date"});
-            this.stampType.Location = new System.Drawing.Point(9, 98);
+            resources.GetString("stampType.Items"),
+            resources.GetString("stampType.Items1"),
+            resources.GetString("stampType.Items2"),
+            resources.GetString("stampType.Items3"),
+            resources.GetString("stampType.Items4")});
+            resources.ApplyResources(this.stampType, "stampType");
             this.stampType.Name = "stampType";
-            this.stampType.Size = new System.Drawing.Size(145, 21);
-            this.stampType.TabIndex = 74;
             // 
             // stampColour
             // 
             this.stampColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stampColour.Items.AddRange(new object[] {
-            "Red",
-            "Black",
-            "White"});
-            this.stampColour.Location = new System.Drawing.Point(9, 157);
+            resources.GetString("stampColour.Items"),
+            resources.GetString("stampColour.Items1"),
+            resources.GetString("stampColour.Items2")});
+            resources.ApplyResources(this.stampColour, "stampColour");
             this.stampColour.Name = "stampColour";
-            this.stampColour.Size = new System.Drawing.Size(145, 21);
-            this.stampColour.TabIndex = 75;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label2, "label2");
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(6, 77);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 76;
-            this.label2.Text = "Time Stamp";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label3, "label3");
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(6, 137);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 13);
-            this.label3.TabIndex = 77;
-            this.label3.Text = "Time Stamp Colour";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Items.AddRange(new object[] {
-            "Alert",
-            "Ping",
-            "Publish",
-            "Online"});
-            this.comboBox1.Location = new System.Drawing.Point(155, 11);
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3")});
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(267, 28);
-            this.comboBox1.TabIndex = 78;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // timestamp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 233);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -289,7 +224,6 @@ namespace TeboCam
             this.Controls.Add(this.apply);
             this.Controls.Add(this.label32);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "timestamp";

@@ -460,6 +460,37 @@ namespace TeboCam
                 pubFrame = (Bitmap)e.Frame.Clone();
 
 
+                ////*************************************
+                ////pre-process bitmap for area detection
+                ////*************************************
+
+                //Bitmap areaDetectionPreparedImage;
+
+                //if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
+                //{
+                //    motionDetecotor.Reset();
+                //    areaOffAtMotionReset = true;
+                //}
+
+                //if (areaDetection && !areaOffAtMotionTriggered)
+                //{
+                //    areaDetectionPreparedImage = selectArea(pubFrame, AreaDetectionWithin, RectWidth, RectHeight, RectX, RectY);
+
+                //    if (exposeArea)
+                //    {
+                //        pubFrame = areaDetectionPreparedImage;
+                //    }
+                //}
+                //else
+                //{
+                //    areaDetectionPreparedImage = pubFrame;
+                //}
+
+
+                ////*************************************
+                ////pre-process bitmap for area detection
+                ////*************************************
+
                 if (_detectionOn)
                 {
 
@@ -470,6 +501,7 @@ namespace TeboCam
                         // apply motion detector
                         if (motionDetecotor != null)
                         {
+
 
                             //*************************************
                             //pre-process bitmap for area detection
@@ -501,6 +533,7 @@ namespace TeboCam
                             //*************************************
                             //pre-process bitmap for area detection
                             //*************************************
+
 
 
                             motionDetecotor.ProcessFrame(areaDetectionPreparedImage);

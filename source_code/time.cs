@@ -85,7 +85,7 @@ namespace TeboCam
             return result;
         }
 
-        public static int millisecondsSinceStart()
+        public static Int64 millisecondsSinceStart()
         {
 
             if (startday == 0) setStart();
@@ -94,8 +94,9 @@ namespace TeboCam
             int daysSinceStart = Math.Abs(thisday - startday);
 
 
-            int result = (daysSinceStart * millisecsInDay) - (starttime * millisecsInSecond) + millisecondsSinceMidnight();
+            Int64 result = (daysSinceStart * millisecsInDay) - (starttime * millisecsInSecond) + millisecondsSinceMidnight();
             return result;
+
         }
 
         public static int timeInSeconds(string time)

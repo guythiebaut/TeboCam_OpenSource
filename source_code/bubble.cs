@@ -47,13 +47,23 @@ namespace TeboCam
 
             public int cameraId;
             public int motionLevel;
-            public int secondsSinceStart;
+            public Int64 milliSecondsSinceStart;
             public string profile;
+            public DateTime dateTime;
             public bool statReturnedPing;
             public bool statReturnedPublish;
             public bool statReturnedOnline;
             public bool statReturnedAlert;
 
+        }
+
+        private class LastMovement
+        {
+
+            public int cameraId;
+            public int motionLevel;
+            public Int64 milliSecondsSinceStart;
+            public string profile;
 
         }
 
@@ -66,26 +76,80 @@ namespace TeboCam
 
         }
 
-        private static List<movement> statList = new List<movement>();
 
-        public static void add(int icameraId, int imotionLevel, int isecondsSinceStart, string iprofile)
+        private static List<movement> statList = new List<movement>();
+        private static List<LastMovement> lastMovementList = new List<LastMovement>();
+
+        public static void add(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
         {
 
-            movement mv = new movement();
-            mv.cameraId = icameraId;
-            mv.motionLevel = imotionLevel;
-            mv.secondsSinceStart = isecondsSinceStart;
-            mv.profile = iprofile;
-
-            statList.Add(mv);
+            updateIfValueChanged(p_cameraId, p_motionLevel, p_milliSsecondsSinceStart, p_profile);
 
         }
+
 
         public static void clear()
         {
 
             statList.Clear();
         }
+
+
+        private static void updateIfValueChanged(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
+        {
+
+
+            bool found = false;
+
+
+            foreach (LastMovement item in lastMovementList)
+            {
+
+                if (item.cameraId == p_cameraId && item.profile == p_profile)
+                {
+
+                    found = true;
+                    if (item.motionLevel != p_motionLevel)
+                    {
+
+                        item.milliSecondsSinceStart = p_milliSsecondsSinceStart;
+                        item.motionLevel = p_motionLevel;
+
+                        movement mv = new movement();
+                        mv.cameraId = p_cameraId;
+                        mv.motionLevel = p_motionLevel;
+                        mv.milliSecondsSinceStart = p_milliSsecondsSinceStart;
+                        mv.dateTime = DateTime.Now;
+                        mv.profile = p_profile;
+
+                        statList.Add(mv);
+
+                    }
+
+                    break;
+
+                }
+
+            }
+
+
+            if (!found)
+            {
+
+
+                LastMovement mov = new LastMovement();
+                mov.cameraId = p_cameraId;
+                mov.milliSecondsSinceStart = p_milliSsecondsSinceStart;
+                mov.motionLevel = p_motionLevel;
+                mov.profile = p_profile;
+                lastMovementList.Add(mov);
+
+
+            }
+
+
+        }
+
 
         public static movementResults statsForCam(int icameraId, string iprofile, string imageType)
         {
@@ -178,6 +242,10 @@ namespace TeboCam
             movementResults mvR = new movementResults();
             mvR.avgMvLast = (int)Math.Floor((double)lastSum / (double)lastCount);
             mvR.avgMvStart = (int)Math.Floor((double)firstSum / (double)firstCount);
+
+            mvR.avgMvLast = mvR.avgMvLast > 0 ? mvR.avgMvLast : 0;
+            mvR.avgMvStart = mvR.avgMvStart > 0 ? mvR.avgMvStart : 0;
+
             mvR.mvNow = currMv;
 
             return mvR;
@@ -1753,7 +1821,7 @@ namespace TeboCam
         public static bool testImagePublish = false;
         public static int testImagePublishCount = 0;
         public static bool testImagePublishFirst = false;
-        public static int testImagePublishLast = 0;
+        public static Int64 testImagePublishLast = 0;
         public static ArrayList testImagePublishData = new ArrayList();
 
 
@@ -1787,7 +1855,7 @@ namespace TeboCam
 
         public static string graphCurrentDate;
         public static bool attachments = false;
-        public static int imageLastSaved = 0;
+        public static Int64 imageLastSaved = 0;
         public static long notificationLastSent;
         public static int lastPublished = 0;
 
@@ -2834,7 +2902,13 @@ namespace TeboCam
                 try { pubPicture(null, a); }
                 catch { }
                 testImagePublishData.Add(testImagePublishCount);
-                testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100)));
+
+
+                int motLevel = Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100));
+                int reportLevel = motLevel >= 0 ? motLevel : 0;
+
+                testImagePublishData.Add(reportLevel);
+                //testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100)));
 
 
                 testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
@@ -3305,13 +3379,13 @@ namespace TeboCam
         public static void motionEvent(object sender, MotionLevelArgs a, CamIdArgs b)
         {
             levelLine(a, b);
-            motionStats(a, b);
+            RecordMotionStats(a, b);
         }
 
-        public static void motionStats(MotionLevelArgs a, CamIdArgs b)
+        public static void RecordMotionStats(MotionLevelArgs a, CamIdArgs b)
         {
 
-            statistics.add(b.cam, Convert.ToInt32((int)Math.Floor(a.lvl * 100)), time.secondsSinceStart(), bubble.profileInUse);
+            statistics.add(b.cam, Convert.ToInt32((int)Math.Floor(a.lvl * 100)), time.millisecondsSinceStart(), bubble.profileInUse);
 
         }
 
@@ -3702,6 +3776,7 @@ namespace TeboCam
                                         imageIn.Width,
                                         imageIn.Height,
                                         backingRectangle,
+                                        false,
                                         opaqueBrush);
 
                 }
@@ -3786,20 +3861,21 @@ namespace TeboCam
 
 
         private static Bitmap drawClock(Bitmap p_clockBitmap,
-                          Color p_hourColour,
-                          Color p_minuteColour,
-                          Color p_secondColour,
-                          Color p_tickColour,
-                          Color p_innerDotColour,
-                          bool p_Draw5MinuteTicks,
-                          bool p_Draw1MinuteTicks,
-                          int p_xStart,
-                          int p_yStart,
-                          int p_radius,
-                          int p_width,
-                          int p_height,
-                          bool p_opaque,
-                          Brush p_opaqueBrush)
+                                        Color p_hourColour,
+                                        Color p_minuteColour,
+                                        Color p_secondColour,
+                                        Color p_tickColour,
+                                        Color p_innerDotColour,
+                                        bool p_Draw5MinuteTicks,
+                                        bool p_Draw1MinuteTicks,
+                                        int p_xStart,
+                                        int p_yStart,
+                                        int p_radius,
+                                        int p_width,
+                                        int p_height,
+                                        bool p_opaque,
+                                        bool p_secondHand,
+                                        Brush p_opaqueBrush)
         {
 
             try
@@ -3818,10 +3894,7 @@ namespace TeboCam
                 float fSecLength;
 
                 float fCenterCircleRadius;
-                float fRadius;
                 float fTicksThickness = 1;
-                bool bDraw5MinuteTicks = p_Draw5MinuteTicks;
-                bool bDraw1MinuteTicks = p_Draw1MinuteTicks;
 
                 DateTime dateTime;
 
@@ -3839,10 +3912,9 @@ namespace TeboCam
                 fHourThickness = (float)p_radius * 2 / 100;
                 fMinThickness = (float)p_radius * 2 / 100;
                 fSecThickness = (float)p_radius * 2 / 100;
-                fCenterX = (float)p_xStart;// +(float)p_radius;
-                fCenterY = (float)p_yStart;// -(float)p_radius;
+                fCenterX = (float)p_xStart;
+                fCenterY = (float)p_yStart;
                 fCenterCircleRadius = (fCenterY) / 150;
-                fRadius = p_radius;
 
                 clockObj.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 clockObj.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -3851,7 +3923,7 @@ namespace TeboCam
                 if (p_opaque)
                 {
 
-                    clockObj.FillEllipse(p_opaqueBrush, fCenterX - (fRadius / 1.40F), fCenterY - (fRadius / 1.40F), (fRadius / 1.40F) * 2F, (fRadius / 1.40F) * 2F);
+                    clockObj.FillEllipse(p_opaqueBrush, fCenterX - (p_radius / 1.40F), fCenterY - (p_radius / 1.40F), (p_radius / 1.40F) * 2F, (p_radius / 1.40F) * 2F);
 
                 }
 
@@ -3865,25 +3937,31 @@ namespace TeboCam
                 clockObj.RotateTransform(dateTime.Minute * 6 + dateTime.Second / 10F);
                 DrawPolygon(fMinThickness, fMinLength, p_minuteColour, clockObj);
 
-                clockObj.Transform = m;
-                clockObj.RotateTransform(dateTime.Second * 6);
-                clockObj.DrawLine(new Pen(p_secondColour, fSecThickness), 0, fSecLength / 9, 0, -fSecLength);
+                if (p_secondHand)
+                {
+
+                    clockObj.Transform = m;
+                    clockObj.RotateTransform(dateTime.Second * 6);
+                    clockObj.DrawLine(new Pen(p_secondColour, fSecThickness), 0, fSecLength / 9, 0, -fSecLength);
+
+                }
+
 
                 for (int i = 0; i < 60; i++)
                 {
                     clockObj.Transform = m;
                     clockObj.RotateTransform(i * 6);
-                    if (bDraw5MinuteTicks == true && i % 5 == 0) // Draw 5 minute ticks
+                    if (p_Draw5MinuteTicks == true && i % 5 == 0) // Draw 5 minute ticks
                     {
                         clockObj.DrawLine(new Pen(p_tickColour, fTicksThickness),
-                            0, -fRadius / 1.50F,
-                            0, -fRadius / 1.65F);
+                            0, -p_radius / 1.50F,
+                            0, -p_radius / 1.65F);
                     }
-                    else if (bDraw1MinuteTicks == true) // draw 1 minute ticks
+                    else if (p_Draw1MinuteTicks == true) // draw 1 minute ticks
                     {
                         clockObj.DrawLine(new Pen(p_tickColour, fTicksThickness),
-                              0, -fRadius / 1.50F,
-                              0, -fRadius / 1.55F);
+                              0, -p_radius / 1.50F,
+                              0, -p_radius / 1.55F);
                     }
                 }
 
@@ -3900,6 +3978,7 @@ namespace TeboCam
             }
 
         }
+
 
 
 
