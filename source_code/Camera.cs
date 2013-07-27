@@ -190,6 +190,7 @@ namespace TeboCam
         //public int timeSpike = 0;
         //public int toleranceSpike = 0;
         public bool triggeredBySpike = false;
+        public bool certifiedTriggeredByNonSpike = true;
 
 
 
@@ -573,10 +574,13 @@ namespace TeboCam
                                 else
                                 {
 
+                                    certifiedTriggeredByNonSpike = false;
                                     triggeredBySpike = false;
 
                                 }
                             }
+
+                            //System.Diagnostics.Debug.Print(triggeredBySpike.ToString());
 
 
                         }

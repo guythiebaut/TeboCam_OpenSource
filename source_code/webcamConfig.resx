@@ -1563,7 +1563,7 @@ Grey - no camera present</value>
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.15190, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.29895, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -2089,6 +2089,9 @@ Grey - no camera present</value>
   </data>
   <data name="rdSpikeOff.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rdSpikeOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rdSpikeOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>95, 20</value>

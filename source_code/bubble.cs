@@ -39,7 +39,7 @@ namespace TeboCam
     }
 
 
-  
+
 
 
 
@@ -1367,8 +1367,8 @@ namespace TeboCam
             mailSubject = "Webcam Warning From TeboCam";
             maxImagesToEmail = 10;
             movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
-            timeSpike = 500;
-            toleranceSpike = 0;
+            timeSpike = 100;
+            toleranceSpike = 50;
             ping = false;
             pingAll = true;
             pingInterval = 120;
@@ -2744,37 +2744,38 @@ namespace TeboCam
             List<object> results = new List<object>();
 
             int perc = new int();
-            bool result = false;
+            bool spike = false;
 
             //are we filtering light spikes?
-            if (!CameraRig.rig[p_cam].cam.triggeredBySpike
-                && (bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
+            //if (!CameraRig.rig[p_cam].cam.triggeredBySpike
+            //    && (bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
+            //{
+
+            int lowVal = statistics.lowestValTime(p_cam, p_millisecs, p_profile);
+            int difference = p_mov - lowVal;
+
+            if (difference > 0)
             {
 
-                int lowVal = statistics.lowestValTime(p_cam, p_millisecs, p_profile);
-                int difference = p_mov - lowVal;
+                //is average change within tolerance percentage?
+                perc = (int)Math.Floor(((double)difference / (double)p_mov) * (double)100);
+                spike = perc > p_tolerance;
 
-                if (difference > 0)
-                {
+                //if (spike)
+                //{
 
-                    //is average change within tolerance percentage?
-                    perc = (int)Math.Floor(((double)difference / (double)p_mov) * (double)100);
-                    result = perc > p_tolerance;
+                //    CameraRig.rig[p_cam].cam.triggeredBySpike = spike;
 
-                    CameraRig.rig[p_cam].cam.triggeredBySpike = true;
+                //}
 
-                    //if (result)
-                    //{
 
-                    //CameraRig.rig[p_cam].cam.MotionDetector.Reset();
 
-                    //}
-
-                }
 
             }
 
-            results.Add(result);
+            //}
+
+            results.Add(spike);
             results.Add(perc);
             return results;
 
@@ -3244,8 +3245,10 @@ namespace TeboCam
 
         public static void motionEvent(object sender, MotionLevelArgs a, CamIdArgs b)
         {
+
             levelLine(a, b);
             RecordMotionStats(a, b);
+
         }
 
         public static void RecordMotionStats(MotionLevelArgs a, CamIdArgs b)
@@ -4012,14 +4015,46 @@ namespace TeboCam
 
             List<object> lightSpikeResults;
 
-            lightSpikeResults = lightSpikeDetected(e.cam, l.lvl,
-                config.getProfile(bubble.profileInUse).timeSpike,
-                config.getProfile(bubble.profileInUse).toleranceSpike,
-                bubble.profileInUse);
+            bool spike = new bool();
+            spike = false;
+            int spikePerc = new int();
 
-            if (!(bool)lightSpikeResults[0])
+            //are we filtering light spikes?
+            if (!CameraRig.rig[e.cam].cam.triggeredBySpike
+                //&& !CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike
+                && (bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
             {
 
+
+                lightSpikeResults = lightSpikeDetected(e.cam, l.lvl,
+                                                       config.getProfile(bubble.profileInUse).timeSpike,
+                                                       config.getProfile(bubble.profileInUse).toleranceSpike,
+                                                       bubble.profileInUse);
+
+
+                spike = (bool)lightSpikeResults[0];
+                spikePerc = (int)lightSpikeResults[1];
+               // CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = !spike;
+
+            }
+
+            if (!(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+            {
+
+               // CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = true;
+
+            }
+
+
+            //movement alarm was not previously triggered by a light spike
+            //and a light spike has not been detected with the current alarm inducing movement  
+            //or we are not concerned about light spikes
+            if ((!CameraRig.rig[e.cam].cam.triggeredBySpike && !spike)
+                || CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike
+                || !(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+            {
+
+                CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = true;
 
                 if (config.getProfile(bubble.profileInUse).areaOffAtMotion && !CameraRig.AreaOffAtMotionIsTriggeredCam(e.cam))
                 {
@@ -4076,7 +4111,7 @@ namespace TeboCam
 
                         moveStatsAdd(time.currentTime());
                         logAddLine("Movement detected");
-                        logAddLine("Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString((int)lightSpikeResults[1]));
+                        logAddLine("Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString(spikePerc));
                         logAddLine("Image saved: " + fName);
 
                     }
@@ -4089,6 +4124,18 @@ namespace TeboCam
                     }
                 }
 
+
+            }
+            else
+            {
+
+                //a light spike caused this alarm and we are catching light spikes
+                if ((bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+                {
+
+                    CameraRig.rig[e.cam].cam.triggeredBySpike = true;
+                    
+                }
 
             }
 

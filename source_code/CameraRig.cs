@@ -37,8 +37,8 @@ namespace TeboCam
         public int rectHeight = 80;
         public int displayButton = 1;
         public double movementVal = 0.99;
-        public int timeSpike = 500;
-        public int toleranceSpike = 0;
+        public int timeSpike = 100;
+        public int toleranceSpike = 50;
         public bool lightSpike = false;
 
 

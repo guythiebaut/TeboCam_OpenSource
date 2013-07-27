@@ -86,10 +86,10 @@ namespace TeboCam
             this.trkTimeSpike = new System.Windows.Forms.TrackBar();
             this.trkToleranceSpike = new System.Windows.Forms.TrackBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rdSpikeOff = new System.Windows.Forms.RadioButton();
             this.rdSpikeOn = new System.Windows.Forms.RadioButton();
+            this.rdSpikeOff = new System.Windows.Forms.RadioButton();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.pnlSelection.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -550,7 +550,7 @@ namespace TeboCam
             resources.ApplyResources(this.trkTimeSpike, "trkTimeSpike");
             this.trkTimeSpike.LargeChange = 1000;
             this.trkTimeSpike.Maximum = 10000;
-            this.trkTimeSpike.Minimum = 500;
+            this.trkTimeSpike.Minimum = 100;
             this.trkTimeSpike.Name = "trkTimeSpike";
             this.trkTimeSpike.SmallChange = 500;
             this.trkTimeSpike.TickFrequency = 500;
@@ -575,13 +575,6 @@ namespace TeboCam
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.rdSpikeOn);
@@ -589,6 +582,13 @@ namespace TeboCam
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // rdSpikeOn
+            // 
+            resources.ApplyResources(this.rdSpikeOn, "rdSpikeOn");
+            this.rdSpikeOn.Name = "rdSpikeOn";
+            this.rdSpikeOn.UseVisualStyleBackColor = true;
+            this.rdSpikeOn.CheckedChanged += new System.EventHandler(this.rdSpikeOn_CheckedChanged);
             // 
             // rdSpikeOff
             // 
@@ -598,12 +598,12 @@ namespace TeboCam
             this.rdSpikeOff.TabStop = true;
             this.rdSpikeOff.UseVisualStyleBackColor = true;
             // 
-            // rdSpikeOn
+            // cameraWindow
             // 
-            resources.ApplyResources(this.rdSpikeOn, "rdSpikeOn");
-            this.rdSpikeOn.Name = "rdSpikeOn";
-            this.rdSpikeOn.UseVisualStyleBackColor = true;
-            this.rdSpikeOn.CheckedChanged += new System.EventHandler(this.rdSpikeOn_CheckedChanged);
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
             // 
             // webcamConfig
             // 

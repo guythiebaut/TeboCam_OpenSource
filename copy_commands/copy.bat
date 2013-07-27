@@ -48,6 +48,7 @@ copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\MotionDetector4.cs" "E:\Vis
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\preferences.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\preferences.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\preferences.designer.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\preferences.designer.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\preferences.resx" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\preferences.resx"
+copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\statistics.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\statistics.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\Pulse.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\Pulse.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\regex.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\regex.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\schedule.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\schedule.cs"
