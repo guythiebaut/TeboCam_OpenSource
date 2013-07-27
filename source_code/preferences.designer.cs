@@ -1308,8 +1308,8 @@ namespace TeboCam
             // 
             // picWindow
             // 
-            this.picWindow.LargeChange = 1;
             resources.ApplyResources(this.picWindow, "picWindow");
+            this.picWindow.LargeChange = 1;
             this.picWindow.Maximum = 40;
             this.picWindow.Name = "picWindow";
             this.picWindow.ValueChanged += new System.EventHandler(this.picWindow_ValueChanged);

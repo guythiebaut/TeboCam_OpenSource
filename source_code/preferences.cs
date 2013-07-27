@@ -1204,7 +1204,8 @@ namespace TeboCam
             rig_item.cameraName = camSource;//source.Source;
             rig_item.cam = camera;
             rig_item.cam.cam = CameraRig.cameraCount();
-            CameraRig.addCamera(rig_item);
+            //CameraRig.addCamera(rig_item);
+            CameraRig.rig.Add(rig_item);
             int curCam = CameraRig.cameraCount() - 1;
             CameraRig.activeCam = curCam;
 
@@ -1425,7 +1426,7 @@ namespace TeboCam
         }
 
 
-                 
+
 
 
 
@@ -1478,7 +1479,7 @@ namespace TeboCam
             if (bubble.IsNumeric(tmpStr))
             {
                 countdown = Convert.ToInt32(tmpStr);
-                actCount.SynchronisedInvoke(()=>actCount.Text= Convert.ToString(countdown));
+                actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(countdown));
                 //SetInfo(actCount, Convert.ToString(countdown));
             }
 
@@ -1490,7 +1491,7 @@ namespace TeboCam
             if (tmpInt > 0)
             {
                 bubble.logAddLine("Motion countdown started: " + tmpInt.ToString() + " seconds until start.");
-                txtMess.SynchronisedInvoke(() =>txtMess.Text= "Counting Down...");
+                txtMess.SynchronisedInvoke(() => txtMess.Text = "Counting Down...");
                 //SetInfo(txtMess, "Counting Down...");
             }
 
@@ -1641,7 +1642,7 @@ namespace TeboCam
         private void log_add(object sender, System.EventArgs e)
         {
             //SetRichInfo(txtLog, bubble.log[bubble.log.Count - 1].ToString() + "\n");
-            txtLog.SynchronisedInvoke(() => txtLog.Text = bubble.log[bubble.log.Count - 1].ToString() + "\n");
+            txtLog.SynchronisedInvoke(() => txtLog.Text = bubble.log[bubble.log.Count - 1].ToString() + "\n" + txtLog.Text);
 
         }
 
@@ -3332,7 +3333,7 @@ namespace TeboCam
 
         private void publish_switch(object sender, System.EventArgs e)
         {
-            pubImage.SynchronisedInvoke(()=>pubImage.Checked= !bubble.keepPublishing);
+            pubImage.SynchronisedInvoke(() => pubImage.Checked = !bubble.keepPublishing);
             pubTimerOn.SynchronisedInvoke(() => pubTimerOn.Checked = true);
             //SetCheckBox(pubImage, !bubble.keepPublishing);
             //SetCheckBox(pubTimerOn, true);
@@ -4230,7 +4231,7 @@ namespace TeboCam
 
 
                     //SetLabel(lblCameraName, CameraRig.rig[camId].friendlyName);
-                    lblCameraName.SynchronisedInvoke(() =>lblCameraName.Text= CameraRig.rig[camId].friendlyName);
+                    lblCameraName.SynchronisedInvoke(() => lblCameraName.Text = CameraRig.rig[camId].friendlyName);
                     config.getProfile(bubble.profileInUse).selectedCam = CameraRig.rig[camId].cameraName;
 
                     if (refresh) cameraWindow.Refresh();
@@ -4998,6 +4999,7 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
 
 
 

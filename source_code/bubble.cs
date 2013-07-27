@@ -39,223 +39,7 @@ namespace TeboCam
     }
 
 
-    public class statistics
-    {
-
-        private class movement
-        {
-
-            public int cameraId;
-            public int motionLevel;
-            public Int64 milliSecondsSinceStart;
-            public string profile;
-            public DateTime dateTime;
-            public bool statReturnedPing;
-            public bool statReturnedPublish;
-            public bool statReturnedOnline;
-            public bool statReturnedAlert;
-
-        }
-
-        private class LastMovement
-        {
-
-            public int cameraId;
-            public int motionLevel;
-            public Int64 milliSecondsSinceStart;
-            public string profile;
-
-        }
-
-        public class movementResults
-        {
-
-            public int avgMvStart;
-            public int avgMvLast;
-            public int mvNow;
-
-        }
-
-
-        private static List<movement> statList = new List<movement>();
-        private static List<LastMovement> lastMovementList = new List<LastMovement>();
-
-        public static void add(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
-        {
-
-            updateIfValueChanged(p_cameraId, p_motionLevel, p_milliSsecondsSinceStart, p_profile);
-
-        }
-
-
-        public static void clear()
-        {
-
-            statList.Clear();
-        }
-
-
-        private static void updateIfValueChanged(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
-        {
-
-
-            bool found = false;
-
-
-            foreach (LastMovement item in lastMovementList)
-            {
-
-                if (item.cameraId == p_cameraId && item.profile == p_profile)
-                {
-
-                    found = true;
-                    if (item.motionLevel != p_motionLevel)
-                    {
-
-                        item.milliSecondsSinceStart = p_milliSsecondsSinceStart;
-                        item.motionLevel = p_motionLevel;
-
-                        movement mv = new movement();
-                        mv.cameraId = p_cameraId;
-                        mv.motionLevel = p_motionLevel;
-                        mv.milliSecondsSinceStart = p_milliSsecondsSinceStart;
-                        mv.dateTime = DateTime.Now;
-                        mv.profile = p_profile;
-
-                        statList.Add(mv);
-
-                    }
-
-                    break;
-
-                }
-
-            }
-
-
-            if (!found)
-            {
-
-
-                LastMovement mov = new LastMovement();
-                mov.cameraId = p_cameraId;
-                mov.milliSecondsSinceStart = p_milliSsecondsSinceStart;
-                mov.motionLevel = p_motionLevel;
-                mov.profile = p_profile;
-                lastMovementList.Add(mov);
-
-
-            }
-
-
-        }
-
-
-        public static movementResults statsForCam(int icameraId, string iprofile, string imageType)
-        {
-
-            int firstCount = new int();
-            int firstSum = new int();
-            int lastCount = new int();
-            int lastSum = new int();
-            int currMv = new int();
-
-            firstCount = 0;
-            firstSum = 0;
-            lastCount = 0;
-            lastSum = 0;
-            currMv = 0;
-
-
-            foreach (movement mv in statList)
-            {
-
-                if (mv.cameraId == icameraId && mv.profile == iprofile)
-                {
-
-                    bool statsReturned = new bool();
-
-                    switch (imageType)
-                    {
-                        case "Publish":
-                            statsReturned = mv.statReturnedPublish;
-                            break;
-                        case "Online":
-                            statsReturned = mv.statReturnedOnline;
-                            break;
-                        case "Ping":
-                            statsReturned = mv.statReturnedPing;
-                            break;
-                        case "Alert":
-                            statsReturned = mv.statReturnedAlert;
-                            break;
-                        default:
-                            statsReturned = mv.statReturnedPublish;
-                            break;
-                    }
-
-                    if (statsReturned)
-                    {
-
-                        firstCount++;
-                        firstSum += mv.motionLevel;
-
-                    }
-                    else
-                    {
-
-                        firstCount++;
-                        firstSum += mv.motionLevel;
-                        lastCount++;
-                        lastSum += mv.motionLevel;
-
-                    }
-
-                    currMv = mv.motionLevel;
-
-                    switch (imageType)
-                    {
-                        case "Publish":
-                            mv.statReturnedPublish = true;
-                            break;
-                        case "Online":
-                            mv.statReturnedOnline = true;
-                            break;
-                        case "Ping":
-                            mv.statReturnedPing = true;
-                            break;
-                        case "Alert":
-                            mv.statReturnedAlert = true;
-                            break;
-                        default:
-                            mv.statReturnedPublish = true;
-                            break;
-                    }
-
-
-
-
-                }
-
-            }
-
-            movementResults mvR = new movementResults();
-            mvR.avgMvLast = (int)Math.Floor((double)lastSum / (double)lastCount);
-            mvR.avgMvStart = (int)Math.Floor((double)firstSum / (double)firstCount);
-
-            mvR.avgMvLast = mvR.avgMvLast > 0 ? mvR.avgMvLast : 0;
-            mvR.avgMvStart = mvR.avgMvStart > 0 ? mvR.avgMvStart : 0;
-
-            mvR.mvNow = currMv;
-
-            return mvR;
-
-        }
-
-
-
-
-    }
+  
 
 
 
@@ -1410,6 +1194,9 @@ namespace TeboCam
         public string mailSubject;
         public long maxImagesToEmail;
         public double movementVal;
+        public int timeSpike;
+        public int toleranceSpike;
+        public bool lightSpike;
         public bool ping;
         public bool pingAll;
         public int pingInterval;
@@ -1580,6 +1367,8 @@ namespace TeboCam
             mailSubject = "Webcam Warning From TeboCam";
             maxImagesToEmail = 10;
             movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
+            timeSpike = 500;
+            toleranceSpike = 0;
             ping = false;
             pingAll = true;
             pingInterval = 120;
@@ -2910,14 +2699,91 @@ namespace TeboCam
                 testImagePublishData.Add(reportLevel);
                 //testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100)));
 
+                testImagePublishData.Add(statistics.lowestValTime(cam, 2000, bubble.profileInUse));
 
                 testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
                 testImagePublishFirst = false;
                 testImagePublishLast = time.millisecondsSinceStart();
+
+
             }
 
 
         }
+
+        //public static bool lightSpikeDetected(int p_cam, int p_mov, int p_millisecs, int p_tolerance, string p_profile)
+        //{
+
+        //    bool result = false;
+
+        //    //are we filtering light spikes?
+        //    if ((bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
+        //    {
+
+        //        int avg = statistics.changeOverTime(p_cam, p_millisecs, p_profile);
+        //        int difference = p_mov - avg;
+
+        //        if (difference > 0)
+        //        {
+
+        //            //is average change within tolerance percentage?
+        //            return (difference / p_mov) * 100 > p_tolerance;
+
+        //        }
+
+        //    }
+
+        //    return result;
+
+        //}
+
+
+        public static List<object> lightSpikeDetected(int p_cam, int p_mov, int p_millisecs, int p_tolerance, string p_profile)
+        {
+
+            List<object> results = new List<object>();
+
+            int perc = new int();
+            bool result = false;
+
+            //are we filtering light spikes?
+            if (!CameraRig.rig[p_cam].cam.triggeredBySpike
+                && (bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
+            {
+
+                int lowVal = statistics.lowestValTime(p_cam, p_millisecs, p_profile);
+                int difference = p_mov - lowVal;
+
+                if (difference > 0)
+                {
+
+                    //is average change within tolerance percentage?
+                    perc = (int)Math.Floor(((double)difference / (double)p_mov) * (double)100);
+                    result = perc > p_tolerance;
+
+                    CameraRig.rig[p_cam].cam.triggeredBySpike = true;
+
+                    //if (result)
+                    //{
+
+                    //CameraRig.rig[p_cam].cam.MotionDetector.Reset();
+
+                    //}
+
+                }
+
+            }
+
+            results.Add(result);
+            results.Add(perc);
+            return results;
+
+
+
+        }
+
+
+
 
 
         public static void publishImage()
@@ -3397,7 +3263,7 @@ namespace TeboCam
             {
                 motionLevel = Convert.ToInt32((int)Math.Floor(a.lvl * 100));
 
-                if (motionLevel != motionLevelprevious)
+                if (motionLevelChanged != null && motionLevel != motionLevelprevious)
                 {
                     motionLevelprevious = motionLevel;
                     motionLevelChanged(null, new EventArgs());
@@ -4144,72 +4010,86 @@ namespace TeboCam
         public static void camera_Alarm(object sender, CamIdArgs e, LevelArgs l)
         {
 
-            if (config.getProfile(bubble.profileInUse).areaOffAtMotion && !CameraRig.AreaOffAtMotionIsTriggeredCam(e.cam))
+            List<object> lightSpikeResults;
+
+            lightSpikeResults = lightSpikeDetected(e.cam, l.lvl,
+                config.getProfile(bubble.profileInUse).timeSpike,
+                config.getProfile(bubble.profileInUse).toleranceSpike,
+                bubble.profileInUse);
+
+            if (!(bool)lightSpikeResults[0])
             {
 
-                CameraRig.AreaOffAtMotionTrigger(e.cam);
-                bubble.areaOffAtMotionTriggered = true;
 
-            }
-
-            if (bubble.Alert.on && bubble.imageSaveTime(true))
-            {
-
-                try
+                if (config.getProfile(bubble.profileInUse).areaOffAtMotion && !CameraRig.AreaOffAtMotionIsTriggeredCam(e.cam))
                 {
 
-                    string fName = fileNameSet(config.getProfile(bubble.profileInUse).filenamePrefix,
-                                               config.getProfile(bubble.profileInUse).cycleStampChecked,
-                                               config.getProfile(bubble.profileInUse).startCycle,
-                                               config.getProfile(bubble.profileInUse).endCycle,
-                                               ref config.getProfile(bubble.profileInUse).currentCycle,
-                                               true);
+                    CameraRig.AreaOffAtMotionTrigger(e.cam);
+                    bubble.areaOffAtMotionTriggered = true;
 
-                    Bitmap saveBmp = null;
+                }
 
-                    imageText stampArgs = new imageText();
-                    stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
-                    stampArgs.type = "Alert";
-                    stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
+                if (bubble.Alert.on && bubble.imageSaveTime(true))
+                {
 
-                    saveBmp = timeStampImage(stampArgs);
-
-                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
-                    System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
-                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
-                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, config.getProfile(profileInUse).alertCompression);
-                    myEncoderParameters.Param[0] = myEncoderParameter;
-                    saveBmp.Save(bubble.imageFolder + fName, jgpEncoder, myEncoderParameters);
-
-                    Bitmap thumb = GetThumb(saveBmp);
-                    thumb.Save(thumbFolder + tmbPrefix + fName, ImageFormat.Jpeg);
-                    ImageThumbs.addThumbToPictureBox(thumbFolder + tmbPrefix + fName);
-                    saveBmp.Dispose();
-                    thumb.Dispose();
-                    ImageSavedArgs a = new ImageSavedArgs();
-                    a.image = fName;
-                    ImageSaved(null, a);
-
-                    updateSeq++;
-
-                    if (updateSeq > 9999)
+                    try
                     {
-                        updateSeq = 1;
+
+                        string fName = fileNameSet(config.getProfile(bubble.profileInUse).filenamePrefix,
+                                                   config.getProfile(bubble.profileInUse).cycleStampChecked,
+                                                   config.getProfile(bubble.profileInUse).startCycle,
+                                                   config.getProfile(bubble.profileInUse).endCycle,
+                                                   ref config.getProfile(bubble.profileInUse).currentCycle,
+                                                   true);
+
+                        Bitmap saveBmp = null;
+
+                        imageText stampArgs = new imageText();
+                        stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
+                        stampArgs.type = "Alert";
+                        stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
+
+                        saveBmp = timeStampImage(stampArgs);
+
+                        ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                        System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                        EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                        EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, config.getProfile(profileInUse).alertCompression);
+                        myEncoderParameters.Param[0] = myEncoderParameter;
+                        saveBmp.Save(bubble.imageFolder + fName, jgpEncoder, myEncoderParameters);
+
+                        Bitmap thumb = GetThumb(saveBmp);
+                        thumb.Save(thumbFolder + tmbPrefix + fName, ImageFormat.Jpeg);
+                        ImageThumbs.addThumbToPictureBox(thumbFolder + tmbPrefix + fName);
+                        saveBmp.Dispose();
+                        thumb.Dispose();
+                        ImageSavedArgs a = new ImageSavedArgs();
+                        a.image = fName;
+                        ImageSaved(null, a);
+
+                        updateSeq++;
+
+                        if (updateSeq > 9999)
+                        {
+                            updateSeq = 1;
+                        }
+
+                        moveStatsAdd(time.currentTime());
+                        logAddLine("Movement detected");
+                        logAddLine("Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString((int)lightSpikeResults[1]));
+                        logAddLine("Image saved: " + fName);
+
                     }
+                    catch (Exception)
+                    {
 
-                    moveStatsAdd(time.currentTime());
-                    logAddLine("Movement detected");
-                    logAddLine("Movement level: " + l.lvl.ToString());
-                    logAddLine("Image saved: " + fName);
+                        logAddLine("Error in saving movement image.");
+                        updateSeq++;
 
+                    }
                 }
-                catch (Exception)
-                {
 
-                    logAddLine("Error in saving movement image.");
-                    updateSeq++;
 
-                }
             }
 
         }

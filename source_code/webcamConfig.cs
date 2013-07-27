@@ -376,7 +376,7 @@ namespace TeboCam
             dw.RunWorkerAsync();
 
         }
-//
+        //
 
         private void trainMovement(object sender, DoWorkEventArgs e)
         {
@@ -686,6 +686,13 @@ namespace TeboCam
                     radioButton1.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, "areaDetectionWithin"));
                     radioButton2.Checked = !radioButton1.Checked;
 
+
+                    trkTimeSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, "timeSpike"));
+                    trkToleranceSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, "toleranceSpike"));
+                    rdSpikeOn.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, "lightSpike"));
+                    lblTimeSpike.Text = trkTimeSpike.Value.ToString();
+                    lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
+
                     cameraWindow.Camera = null;
                     cameraWindow.Camera = CameraRig.getCam(camId); //CameraRig.rig[0].cam;
 
@@ -906,6 +913,32 @@ namespace TeboCam
                 button5.Enabled = false;
                 button5.BackColor = System.Drawing.SystemColors.Control;
             }
+
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+
+            lblTimeSpike.Text = trkTimeSpike.Value.ToString();
+            config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "timeSpike", trkTimeSpike.Value);
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+            lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
+            config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "toleranceSpike", trkToleranceSpike.Value);
+
+        }
+
+        private void rdSpikeOn_CheckedChanged(object sender, EventArgs e)
+        {
+
+            grpSpikeSettings.Enabled = rdSpikeOn.Checked;
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, "lightSpike", grpSpikeSettings.Enabled);
 
         }
 

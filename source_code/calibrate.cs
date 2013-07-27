@@ -61,7 +61,7 @@ namespace TeboCam
             int startSecs = time.secondsSinceStart();
             int tm = (int)(Convert.ToDouble(trainVal.Text) * Convert.ToDouble(1000));
 
-            
+
 
             CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
             CameraRig.getCam(CameraRig.trainCam).calibrating = true;
@@ -84,13 +84,16 @@ namespace TeboCam
 
             StreamWriter sw = new StreamWriter(outFile, true);
 
-            sw.WriteLine("Sequence,Motion_Level,Image_File");
+            sw.WriteLine("Sequence,Motion_Level,lowestValueOverTime,Image_File");
 
             for (int i = 0; i < bubble.testImagePublishData.Count; i++)
             {
 
-                sw.WriteLine(string.Concat(bubble.testImagePublishData[i], ",", bubble.testImagePublishData[i + 1], ",", bubble.testImagePublishData[i + 2]));
-                i = i + 2;
+                sw.WriteLine(string.Concat(bubble.testImagePublishData[i], ",",
+                             bubble.testImagePublishData[i + 1], ",",
+                             bubble.testImagePublishData[i + 2], ",",
+                             bubble.testImagePublishData[i + 3]));
+                i = i + 3;
             }
 
 

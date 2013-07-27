@@ -474,7 +474,21 @@ namespace TeboCam
                                 config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
                                 CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
                             }
-
+                            if (configData.LocalName.Equals("timeSpike"))
+                            {
+                                config.getProfile("##newProf##").timeSpike = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("timeSpike", config.getProfile("##newProf##").timeSpike);
+                            }
+                            if (configData.LocalName.Equals("toleranceSpike"))
+                            {
+                                config.getProfile("##newProf##").toleranceSpike = Convert.ToInt32(configData.ReadString());
+                                CameraRig.addInfo("toleranceSpike", config.getProfile("##newProf##").toleranceSpike);
+                            }
+                            if (configData.LocalName.Equals("lightSpike"))
+                            {
+                                config.getProfile("##newProf##").lightSpike = Convert.ToBoolean(configData.ReadString());
+                                CameraRig.addInfo("lightSpike", config.getProfile("##newProf##").lightSpike);
+                            }
 
 
                             if (configData.LocalName.Equals("pubTime"))
@@ -1397,6 +1411,9 @@ namespace TeboCam
                                 writeElement("rectWidth", infoI.rectWidth.ToString(), configData);
                                 writeElement("rectHeight", infoI.rectHeight.ToString(), configData);
                                 writeElement("movementVal", infoI.movementVal.ToString(), configData);
+                                writeElement("timeSpike", infoI.timeSpike.ToString(), configData);
+                                writeElement("toleranceSpike", infoI.toleranceSpike.ToString(), configData);
+                                writeElement("lightSpike", infoI.lightSpike.ToString(), configData);
                                 writeElement("pubImage", infoI.pubImage.ToString(), configData);
                                 writeElement("pubTime", infoI.pubTime.ToString(), configData);
                                 writeElement("pubHours", infoI.pubHours.ToString(), configData);

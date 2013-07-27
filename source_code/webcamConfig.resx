@@ -124,6 +124,10 @@
   <data name="bttnCamProp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bttnCamProp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnCamProp.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 28</value>
   </data>
@@ -192,7 +196,7 @@ the slide bar above.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtMov.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="pnlSelection.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -205,6 +209,9 @@ the slide bar above.</value>
   </metadata>
   <data name="radioButton2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="radioButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="radioButton2.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 43</value>
@@ -239,6 +246,9 @@ the slide bar above.</value>
   <data name="radioButton1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radioButton1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radioButton1.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
   </data>
@@ -270,7 +280,7 @@ the slide bar above.</value>
     <value>13, 168</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 65</value>
+    <value>325, 65</value>
   </data>
   <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
@@ -298,6 +308,9 @@ the slide bar above.</value>
   </metadata>
   <data name="areaOffAtMotion.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="areaOffAtMotion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="areaOffAtMotion.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 21</value>
@@ -339,6 +352,9 @@ want to monitor movement in the entire image captured.</value>
   <data name="radioButton3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radioButton3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radioButton3.Location" type="System.Drawing.Point, System.Drawing">
     <value>55, 20</value>
   </data>
@@ -372,6 +388,9 @@ want to monitor movement in the entire image captured.</value>
   <data name="radioButton4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radioButton4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radioButton4.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
   </data>
@@ -404,7 +423,7 @@ movement detection..</value>
     <value>13, 70</value>
   </data>
   <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 46</value>
+    <value>325, 46</value>
   </data>
   <data name="groupBox11.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>
@@ -430,6 +449,9 @@ movement detection..</value>
   <metadata name="button15.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button15.Location" type="System.Drawing.Point, System.Drawing">
     <value>154, 14</value>
   </data>
@@ -466,6 +488,9 @@ and cannot find it.</value>
   <data name="drawModeOff.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="drawModeOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="drawModeOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>55, 20</value>
   </data>
@@ -495,6 +520,9 @@ and cannot find it.</value>
   </metadata>
   <data name="drawModeOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="drawModeOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="drawModeOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
@@ -530,7 +558,7 @@ area of the screen.</value>
     <value>13, 19</value>
   </data>
   <data name="groupBox12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 44</value>
+    <value>325, 44</value>
   </data>
   <data name="groupBox12.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
@@ -558,6 +586,9 @@ area of the screen.</value>
   </metadata>
   <data name="radioButton7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="radioButton7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="radioButton7.Location" type="System.Drawing.Point, System.Drawing">
     <value>55, 20</value>
@@ -588,6 +619,9 @@ area of the screen.</value>
   </metadata>
   <data name="radioButton8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="radioButton8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="radioButton8.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
@@ -621,7 +655,7 @@ This is purely a visual check and does not affect motion deteciton.</value>
     <value>10, 122</value>
   </data>
   <data name="showSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 40</value>
+    <value>328, 40</value>
   </data>
   <data name="showSelection.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
@@ -660,7 +694,7 @@ This is purely a visual check and does not affect motion deteciton.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlSelection.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <metadata name="label33.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -670,6 +704,9 @@ This is purely a visual check and does not affect motion deteciton.</value>
   </data>
   <data name="label33.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label33.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 60</value>
@@ -698,14 +735,11 @@ This is purely a visual check and does not affect motion deteciton.</value>
   <metadata name="groupBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="txtMess.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="txtMess.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 12pt, style=Bold</value>
   </data>
   <data name="txtMess.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 22</value>
+    <value>16, 15</value>
   </data>
   <data name="txtMess.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 19</value>
@@ -716,7 +750,6 @@ This is purely a visual check and does not affect motion deteciton.</value>
   <data name="txtMess.Text" xml:space="preserve">
     <value> </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtMess.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -732,14 +765,11 @@ This is purely a visual check and does not affect motion deteciton.</value>
   <data name="&gt;&gt;txtMess.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="actCount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="actCount.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 12pt, style=Bold</value>
   </data>
   <data name="actCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 22</value>
+    <value>224, 15</value>
   </data>
   <data name="actCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 19</value>
@@ -766,10 +796,10 @@ This is purely a visual check and does not affect motion deteciton.</value>
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>460, 317</value>
+    <value>460, 310</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>338, 51</value>
+    <value>338, 41</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>109</value>
@@ -784,7 +814,7 @@ This is purely a visual check and does not affect motion deteciton.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="calibrate.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -795,8 +825,11 @@ This is purely a visual check and does not affect motion deteciton.</value>
   <data name="calibrate.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="calibrate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="calibrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>565, 288</value>
+    <value>565, 281</value>
   </data>
   <data name="calibrate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -829,7 +862,7 @@ The text file can be imported into a spreadhseet to graph and analyse movement d
     <value>$this</value>
   </data>
   <data name="&gt;&gt;calibrate.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="button8.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -837,8 +870,11 @@ The text file can be imported into a spreadhseet to graph and analyse movement d
   <data name="button8.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="button8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 288</value>
+    <value>476, 281</value>
   </data>
   <data name="button8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -876,7 +912,7 @@ Once the recording stage has finished a sensitivity value will automatically be 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button8.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="camName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -917,6 +953,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   <data name="button5.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
     <value>295, 5</value>
   </data>
@@ -947,6 +986,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   <metadata name="button4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 5</value>
   </data>
@@ -977,6 +1019,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   <metadata name="button3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 28</value>
   </data>
@@ -1012,6 +1057,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   </data>
   <data name="button2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 28</value>
@@ -1052,6 +1100,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   <data name="button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>169, 28</value>
   </data>
@@ -1087,6 +1138,9 @@ Once the recording stage has finished a sensitivity value will automatically be 
   </metadata>
   <data name="bttncam9.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam9.Location" type="System.Drawing.Point, System.Drawing">
     <value>169, 5</value>
@@ -1128,6 +1182,9 @@ Grey - no camera present</value>
   <data name="bttncam7.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam7.Location" type="System.Drawing.Point, System.Drawing">
     <value>129, 5</value>
   </data>
@@ -1167,6 +1224,9 @@ Grey - no camera present</value>
   </metadata>
   <data name="bttncam8.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam8.Location" type="System.Drawing.Point, System.Drawing">
     <value>149, 5</value>
@@ -1208,6 +1268,9 @@ Grey - no camera present</value>
   <data name="bttncam6.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam6.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 5</value>
   </data>
@@ -1247,6 +1310,9 @@ Grey - no camera present</value>
   </metadata>
   <data name="bttncam1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam1.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 5</value>
@@ -1288,6 +1354,9 @@ Grey - no camera present</value>
   <data name="bttncam4.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam4.Location" type="System.Drawing.Point, System.Drawing">
     <value>69, 5</value>
   </data>
@@ -1327,6 +1396,9 @@ Grey - no camera present</value>
   </metadata>
   <data name="bttncam2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam2.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 5</value>
@@ -1368,6 +1440,9 @@ Grey - no camera present</value>
   <data name="bttncam5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam5.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 5</value>
   </data>
@@ -1407,6 +1482,9 @@ Grey - no camera present</value>
   </metadata>
   <data name="bttncam3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam3.Location" type="System.Drawing.Point, System.Drawing">
     <value>49, 5</value>
@@ -1461,7 +1539,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <metadata name="panel3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1485,7 +1563,7 @@ Grey - no camera present</value>
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.36427, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.15190, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1512,11 +1590,14 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <metadata name="levelbox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="levelbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="levelbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>447, 28</value>
   </data>
@@ -1539,7 +1620,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;levelbox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <metadata name="label38.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1549,6 +1630,9 @@ Grey - no camera present</value>
   </data>
   <data name="label38.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="label38.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
     <value>431, 261</value>
@@ -1572,7 +1656,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label38.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="label37.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1582,6 +1666,9 @@ Grey - no camera present</value>
   </data>
   <data name="label37.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="label37.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
     <value>417, 18</value>
@@ -1605,7 +1692,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label37.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="label31.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1615,6 +1702,9 @@ Grey - no camera present</value>
   </data>
   <data name="label31.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="label31.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
     <value>424, 78</value>
@@ -1638,7 +1728,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="label30.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1648,6 +1738,9 @@ Grey - no camera present</value>
   </data>
   <data name="label30.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="label30.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
     <value>424, 198</value>
@@ -1671,7 +1764,7 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="label29.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1681,6 +1774,9 @@ Grey - no camera present</value>
   </data>
   <data name="label29.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="label29.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
     <value>424, 139</value>
@@ -1704,11 +1800,14 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <metadata name="trkMov.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="trkMov.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="trkMov.Location" type="System.Drawing.Point, System.Drawing">
     <value>390, 17</value>
   </data>
@@ -1734,7 +1833,331 @@ Grey - no camera present</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;trkMov.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
+  </data>
+  <data name="lblToleranceSpike.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblToleranceSpike.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblToleranceSpike.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblToleranceSpike.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 85</value>
+  </data>
+  <data name="lblToleranceSpike.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="lblToleranceSpike.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="lblToleranceSpike.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Name" xml:space="preserve">
+    <value>lblToleranceSpike</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblTimeSpike.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTimeSpike.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblTimeSpike.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTimeSpike.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 33</value>
+  </data>
+  <data name="lblTimeSpike.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="lblTimeSpike.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="lblTimeSpike.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Name" xml:space="preserve">
+    <value>lblTimeSpike</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 85</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Tolerance</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="label2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 33</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="trkTimeSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="trkTimeSpike.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="trkTimeSpike.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 19</value>
+  </data>
+  <data name="trkTimeSpike.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 45</value>
+  </data>
+  <data name="trkTimeSpike.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Name" xml:space="preserve">
+    <value>trkTimeSpike</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="trkToleranceSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="trkToleranceSpike.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="trkToleranceSpike.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 70</value>
+  </data>
+  <data name="trkToleranceSpike.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 45</value>
+  </data>
+  <data name="trkToleranceSpike.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Name" xml:space="preserve">
+    <value>trkToleranceSpike</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpSpikeSettings.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="grpSpikeSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 53</value>
+  </data>
+  <data name="grpSpikeSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 127</value>
+  </data>
+  <data name="grpSpikeSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>116</value>
+  </data>
+  <data name="grpSpikeSettings.Text" xml:space="preserve">
+    <value>Light Spike Settings</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Name" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="rdSpikeOn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdSpikeOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rdSpikeOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 20</value>
+  </data>
+  <data name="rdSpikeOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 17</value>
+  </data>
+  <data name="rdSpikeOn.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rdSpikeOn.Text" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOn.Name" xml:space="preserve">
+    <value>rdSpikeOn</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOn.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rdSpikeOff.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rdSpikeOff.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 20</value>
+  </data>
+  <data name="rdSpikeOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 17</value>
+  </data>
+  <data name="rdSpikeOff.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rdSpikeOff.Text" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOff.Name" xml:space="preserve">
+    <value>rdSpikeOff</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOff.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOff.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;rdSpikeOff.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 3</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 45</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>118</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Light Spike Protection</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 357</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 187</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>117</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1746,7 +2169,7 @@ Grey - no camera present</value>
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>830, 409</value>
+    <value>830, 547</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6776,8 +7199,11 @@ Grey - no camera present</value>
         AADAAwAAgAEAAMADAADAAwAAwAMAAOAHAADgBwAA8A8AAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>850, 450</value>
+    <value>850, 585</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

@@ -131,6 +131,10 @@
   <data name="label47.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold, Italic</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label47.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 9</value>
   </data>
@@ -164,6 +168,9 @@
   <data name="label62.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold, Italic</value>
   </data>
+  <data name="label62.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 47</value>
   </data>
@@ -196,6 +203,9 @@
   </data>
   <data name="label41.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold, Italic</value>
+  </data>
+  <data name="label41.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 28</value>
@@ -251,6 +261,9 @@
   <data name="button23.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="button23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button23.Location" type="System.Drawing.Point, System.Drawing">
     <value>243, 11</value>
   </data>
@@ -280,6 +293,9 @@
   </metadata>
   <data name="lblCamAlert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblCamAlert.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblCamAlert.Location" type="System.Drawing.Point, System.Drawing">
     <value>62, 326</value>
@@ -311,10 +327,12 @@
   <data name="bttncam9sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam9sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam9sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>286, 325</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bttncam9sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
@@ -353,6 +371,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam9.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam9.Location" type="System.Drawing.Point, System.Drawing">
     <value>286, 304</value>
@@ -394,6 +415,9 @@ Grey - no camera present</value>
   <data name="bttncam7sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam7sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam7sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>246, 325</value>
   </data>
@@ -432,6 +456,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam7.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam7.Location" type="System.Drawing.Point, System.Drawing">
     <value>246, 304</value>
@@ -473,6 +500,9 @@ Grey - no camera present</value>
   <data name="bttncam8sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam8sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam8sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 325</value>
   </data>
@@ -511,6 +541,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam8.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam8.Location" type="System.Drawing.Point, System.Drawing">
     <value>266, 304</value>
@@ -552,6 +585,9 @@ Grey - no camera present</value>
   <data name="bttncam6.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam6.Location" type="System.Drawing.Point, System.Drawing">
     <value>226, 304</value>
   </data>
@@ -592,6 +628,9 @@ Grey - no camera present</value>
   <data name="bttncam6sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam6sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam6sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>226, 325</value>
   </data>
@@ -630,6 +669,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam4.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam4.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 304</value>
@@ -671,6 +713,9 @@ Grey - no camera present</value>
   <data name="bttncam1sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam1sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam1sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 325</value>
   </data>
@@ -709,6 +754,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam5.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 304</value>
@@ -750,6 +798,9 @@ Grey - no camera present</value>
   <data name="bttncam4sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam4sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam4sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 325</value>
   </data>
@@ -789,6 +840,9 @@ Grey - no camera present/camera not motion sensitive</value>
   <data name="bttncam2sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam2sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam2sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>146, 325</value>
   </data>
@@ -827,6 +881,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam3.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 304</value>
@@ -868,6 +925,9 @@ Grey - no camera present</value>
   <data name="bttncam5sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam5sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam5sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 325</value>
   </data>
@@ -906,6 +966,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam2.Location" type="System.Drawing.Point, System.Drawing">
     <value>146, 304</value>
@@ -947,6 +1010,9 @@ Grey - no camera present</value>
   <data name="bttncam3sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam3sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam3sel.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 325</value>
   </data>
@@ -985,6 +1051,9 @@ Grey - no camera present/camera not motion sensitive</value>
   </metadata>
   <data name="bttncam1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam1.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 304</value>
@@ -1130,6 +1199,9 @@ Grey - no camera present</value>
   <data name="levelShow.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="levelShow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="levelShow.Location" type="System.Drawing.Point, System.Drawing">
     <value>94, 303</value>
   </data>
@@ -1179,6 +1251,9 @@ Grey - no camera present</value>
   </data>
   <data name="cameraShow.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="cameraShow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cameraShow.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 303</value>
@@ -1237,6 +1312,9 @@ or any other function in TeboCam.
   <data name="imageInFrame.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="imageInFrame.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="imageInFrame.Location" type="System.Drawing.Point, System.Drawing">
     <value>54, 303</value>
   </data>
@@ -1270,6 +1348,9 @@ or any other function in TeboCam.
   <data name="startMinimized.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="startMinimized.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="startMinimized.Location" type="System.Drawing.Point, System.Drawing">
     <value>428, 288</value>
   </data>
@@ -1299,6 +1380,9 @@ or any other function in TeboCam.
   </metadata>
   <data name="calendar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="calendar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="calendar.Location" type="System.Drawing.Point, System.Drawing">
     <value>267, 81</value>
@@ -1335,6 +1419,9 @@ or any other function in TeboCam.
   </data>
   <data name="lblCameraName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 9.75pt, style=Bold</value>
+  </data>
+  <data name="lblCameraName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblCameraName.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 220</value>
@@ -1379,7 +1466,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.32208, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.30199, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1411,6 +1498,9 @@ or any other function in TeboCam.
   <metadata name="newsInfo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="newsInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="newsInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>609, 312</value>
   </data>
@@ -1441,6 +1531,9 @@ or any other function in TeboCam.
   <metadata name="button5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
     <value>706, 312</value>
   </data>
@@ -1471,6 +1564,9 @@ or any other function in TeboCam.
   <metadata name="hideLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="hideLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="hideLog.Location" type="System.Drawing.Point, System.Drawing">
     <value>511, 312</value>
   </data>
@@ -1507,6 +1603,9 @@ or any other function in TeboCam.
   <data name="lbl0Perc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
   </data>
+  <data name="lbl0Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbl0Perc.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 278</value>
   </data>
@@ -1539,6 +1638,9 @@ or any other function in TeboCam.
   </data>
   <data name="lbl100Perc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="lbl100Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbl100Perc.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 35</value>
@@ -1573,6 +1675,9 @@ or any other function in TeboCam.
   <data name="lbl75Perc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
   </data>
+  <data name="lbl75Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbl75Perc.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 95</value>
   </data>
@@ -1605,6 +1710,9 @@ or any other function in TeboCam.
   </data>
   <data name="lbl25Perc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
+  </data>
+  <data name="lbl25Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbl25Perc.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 215</value>
@@ -1639,6 +1747,9 @@ or any other function in TeboCam.
   <data name="lbl50Perc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt</value>
   </data>
+  <data name="lbl50Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lbl50Perc.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 156</value>
   </data>
@@ -1666,6 +1777,9 @@ or any other function in TeboCam.
   <metadata name="levelbox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="levelbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="levelbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>36, 45</value>
   </data>
@@ -1693,6 +1807,9 @@ or any other function in TeboCam.
   <metadata name="button6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
     <value>431, 11</value>
   </data>
@@ -1759,6 +1876,9 @@ or any other function in TeboCam.
   <metadata name="pictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 14</value>
   </data>
@@ -1822,6 +1942,9 @@ above.</value>
   <data name="bttnMotionScheduleOnAtStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="bttnMotionScheduleOnAtStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnMotionScheduleOnAtStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 21</value>
   </data>
@@ -1854,6 +1977,9 @@ above.</value>
   </metadata>
   <data name="bttnMotionSchedule.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="bttnMotionSchedule.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnMotionSchedule.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 21</value>
@@ -1891,6 +2017,9 @@ above.</value>
   <data name="lblstartmov.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblstartmov.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblstartmov.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 75</value>
   </data>
@@ -1924,6 +2053,9 @@ above.</value>
   <data name="lblendmov.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblendmov.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblendmov.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 96</value>
   </data>
@@ -1951,6 +2083,9 @@ above.</value>
   <metadata name="button38.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button38.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button38.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 43</value>
   </data>
@@ -2009,6 +2144,9 @@ active motion detection.</value>
   <data name="bttnActivateAtEveryStartup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="bttnActivateAtEveryStartup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnActivateAtEveryStartup.Location" type="System.Drawing.Point, System.Drawing">
     <value>273, 21</value>
   </data>
@@ -2042,6 +2180,9 @@ In accordance with settings within the "Activate in/at" area.</value>
   </metadata>
   <data name="bttnMotionAtStartup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="bttnMotionAtStartup.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnMotionAtStartup.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 20</value>
@@ -2080,6 +2221,9 @@ In accordance with settings within the "Activate in/at" area. </value>
   <data name="bttnNow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="bttnNow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnNow.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 21</value>
   </data>
@@ -2114,6 +2258,9 @@ is activated immediately.</value>
   <data name="lblTime.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>214, 70</value>
   </data>
@@ -2147,6 +2294,9 @@ is activated immediately.</value>
   <data name="label43.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label43.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 70</value>
   </data>
@@ -2176,6 +2326,9 @@ is activated immediately.</value>
   </metadata>
   <data name="bttnTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="bttnTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 66</value>
@@ -2241,6 +2394,9 @@ to start at a particular time.</value>
   </metadata>
   <data name="bttnSeconds.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="bttnSeconds.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnSeconds.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
@@ -2371,6 +2527,9 @@ to start at a particular time.</value>
   <data name="bttnMotionInactive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="bttnMotionInactive.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnMotionInactive.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 20</value>
   </data>
@@ -2403,6 +2562,9 @@ to start at a particular time.</value>
   </metadata>
   <data name="bttnMotionActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="bttnMotionActive.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnMotionActive.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 20</value>
@@ -2455,6 +2617,9 @@ In accordance with settings within the "Activate in/at" area. </value>
   </data>
   <data name="&gt;&gt;MotionAlarm.ZOrder" xml:space="preserve">
     <value>40</value>
+  </data>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
     <value>57, 11</value>
@@ -2523,6 +2688,9 @@ attached webcams.</value>
   <data name="button18.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="button18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button18.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 7</value>
   </data>
@@ -2584,6 +2752,9 @@ from images.</value>
   <data name="onlineVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="onlineVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="onlineVal.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 122</value>
   </data>
@@ -2613,6 +2784,9 @@ from images.</value>
   </metadata>
   <data name="rdOnlinejpg.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rdOnlinejpg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rdOnlinejpg.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 120</value>
@@ -2647,6 +2821,9 @@ from images.</value>
   <data name="publishVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="publishVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="publishVal.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 99</value>
   </data>
@@ -2676,6 +2853,9 @@ from images.</value>
   </metadata>
   <data name="button16.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="button16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="button16.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 12</value>
@@ -2713,6 +2893,9 @@ from images.</value>
   <data name="alertVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="alertVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="alertVal.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 53</value>
   </data>
@@ -2746,6 +2929,9 @@ from images.</value>
   <data name="pingVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="pingVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pingVal.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 78</value>
   </data>
@@ -2775,6 +2961,9 @@ from images.</value>
   </metadata>
   <data name="rdPublishjpg.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rdPublishjpg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rdPublishjpg.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 97</value>
@@ -2806,6 +2995,9 @@ from images.</value>
   <data name="rdAlertjpg.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="rdAlertjpg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="rdAlertjpg.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 51</value>
   </data>
@@ -2835,6 +3027,9 @@ from images.</value>
   </metadata>
   <data name="rdPingjpg.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rdPingjpg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rdPingjpg.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 74</value>
@@ -2887,6 +3082,9 @@ from images.</value>
   <metadata name="button7.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 3</value>
   </data>
@@ -2919,6 +3117,9 @@ and files on your website.
   <metadata name="bttnClear.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="bttnClear.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 94</value>
   </data>
@@ -2958,6 +3159,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <data name="clrImg.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="clrImg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="clrImg.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 137</value>
   </data>
@@ -2991,6 +3195,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <data name="lblCountOnComputer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblCountOnComputer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblCountOnComputer.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 46</value>
   </data>
@@ -3020,6 +3227,9 @@ Warning once you delete the image files you cannot recover them!</value>
   </metadata>
   <data name="clrFtp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="clrFtp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="clrFtp.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 160</value>
@@ -3053,6 +3263,9 @@ Warning once you delete the image files you cannot recover them!</value>
   </data>
   <data name="lblCountOnWeb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblCountOnWeb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblCountOnWeb.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 69</value>
@@ -3105,6 +3318,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <data name="lblAdminMes.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblAdminMes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblAdminMes.Location" type="System.Drawing.Point, System.Drawing">
     <value>555, 442</value>
   </data>
@@ -3132,6 +3348,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t46.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t46.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t46.Location" type="System.Drawing.Point, System.Drawing">
     <value>690, 338</value>
   </data>
@@ -3156,6 +3375,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t26.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t26.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t26.Location" type="System.Drawing.Point, System.Drawing">
     <value>690, 133</value>
   </data>
@@ -3180,6 +3402,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t36.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t36.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t36.Location" type="System.Drawing.Point, System.Drawing">
     <value>690, 230</value>
   </data>
@@ -3204,6 +3429,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t16.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t16.Location" type="System.Drawing.Point, System.Drawing">
     <value>690, 20</value>
   </data>
@@ -3228,6 +3456,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t45.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t45.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t45.Location" type="System.Drawing.Point, System.Drawing">
     <value>577, 338</value>
   </data>
@@ -3252,6 +3483,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t25.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t25.Location" type="System.Drawing.Point, System.Drawing">
     <value>577, 133</value>
   </data>
@@ -3276,6 +3510,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t35.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t35.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t35.Location" type="System.Drawing.Point, System.Drawing">
     <value>577, 230</value>
   </data>
@@ -3300,6 +3537,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t15.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t15.Location" type="System.Drawing.Point, System.Drawing">
     <value>577, 20</value>
   </data>
@@ -3320,6 +3560,9 @@ Warning once you delete the image files you cannot recover them!</value>
   </data>
   <data name="&gt;&gt;t15.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="picWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="picWindow.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 433</value>
@@ -3345,6 +3588,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t44.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t44.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t44.Location" type="System.Drawing.Point, System.Drawing">
     <value>464, 338</value>
   </data>
@@ -3369,6 +3615,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t10.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t10.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 20</value>
   </data>
@@ -3393,6 +3642,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t24.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t24.Location" type="System.Drawing.Point, System.Drawing">
     <value>464, 133</value>
   </data>
@@ -3417,6 +3669,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t43.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t43.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t43.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 338</value>
   </data>
@@ -3441,6 +3696,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t23.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t23.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 133</value>
   </data>
@@ -3465,6 +3723,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t30.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t30.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t30.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 230</value>
   </data>
@@ -3489,6 +3750,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t42.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t42.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t42.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 338</value>
   </data>
@@ -3513,6 +3777,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t22.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t22.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 133</value>
   </data>
@@ -3537,6 +3804,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t11.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t11.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 20</value>
   </data>
@@ -3561,6 +3831,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t31.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t31.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t31.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 230</value>
   </data>
@@ -3585,6 +3858,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t41.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t41.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t41.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 338</value>
   </data>
@@ -3609,6 +3885,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t21.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t21.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 133</value>
   </data>
@@ -3633,6 +3912,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t12.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t12.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 20</value>
   </data>
@@ -3657,6 +3939,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t32.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t32.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t32.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 230</value>
   </data>
@@ -3681,6 +3966,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t40.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t40.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t40.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 338</value>
   </data>
@@ -3705,6 +3993,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t20.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t20.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 133</value>
   </data>
@@ -3729,6 +4020,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t13.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t13.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 20</value>
   </data>
@@ -3753,6 +4047,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t33.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t33.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t33.Location" type="System.Drawing.Point, System.Drawing">
     <value>351, 230</value>
   </data>
@@ -3777,6 +4074,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t34.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t34.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t34.Location" type="System.Drawing.Point, System.Drawing">
     <value>464, 230</value>
   </data>
@@ -3801,6 +4101,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <metadata name="t14.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="t14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="t14.Location" type="System.Drawing.Point, System.Drawing">
     <value>464, 20</value>
   </data>
@@ -3876,6 +4179,9 @@ Warning once you delete the image files you cannot recover them!</value>
   <data name="EmailIntelMosaic.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="EmailIntelMosaic.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="EmailIntelMosaic.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 91</value>
   </data>
@@ -3913,6 +4219,9 @@ continue sending emails with the selected email settings.</value>
   </data>
   <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 16</value>
@@ -3974,6 +4283,9 @@ continue sending emails with the selected email settings.</value>
   <data name="EmailIntelStop.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="EmailIntelStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="EmailIntelStop.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 68</value>
   </data>
@@ -4010,6 +4322,9 @@ send an emails with the selected email settings.</value>
   </data>
   <data name="label48.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label48.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
     <value>153, 16</value>
@@ -4074,6 +4389,9 @@ send an emails with the selected email settings.</value>
   <data name="label56.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label56.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 40</value>
   </data>
@@ -4106,6 +4424,9 @@ send an emails with the selected email settings.</value>
   </data>
   <data name="label49.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label49.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 40</value>
@@ -4164,6 +4485,9 @@ send an emails with the selected email settings.</value>
   <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 14</value>
   </data>
@@ -4193,6 +4517,9 @@ send an emails with the selected email settings.</value>
   </metadata>
   <data name="EmailIntelOff.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="EmailIntelOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="EmailIntelOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>69, 40</value>
@@ -4229,6 +4556,9 @@ You get to set the number of emails and time limit.</value>
   </metadata>
   <data name="EmailIntelOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="EmailIntelOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="EmailIntelOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 40</value>
@@ -4287,6 +4617,9 @@ You get to set the number of emails and time limit.</value>
   <data name="radioButton11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="radioButton11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="radioButton11.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 46</value>
   </data>
@@ -4325,6 +4658,9 @@ Dropbox can store the image files online for you.</value>
   <data name="button21.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="button21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button21.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 46</value>
   </data>
@@ -4354,6 +4690,9 @@ Dropbox can store the image files online for you.</value>
   </metadata>
   <data name="radioButton10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="radioButton10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="radioButton10.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 23</value>
@@ -4412,6 +4751,9 @@ Dropbox can store the image files online for you.</value>
   <data name="rdPingActiveCamera.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="rdPingActiveCamera.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="rdPingActiveCamera.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 56</value>
   </data>
@@ -4441,6 +4783,9 @@ Dropbox can store the image files online for you.</value>
   </metadata>
   <data name="rdPingAllCameras.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rdPingAllCameras.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rdPingAllCameras.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 56</value>
@@ -4474,6 +4819,9 @@ Dropbox can store the image files online for you.</value>
   </data>
   <data name="ping.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="ping.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="ping.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 24</value>
@@ -4554,6 +4902,9 @@ button on the webcam tab.</value>
   </data>
   <data name="label40.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label40.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 28</value>
@@ -4653,6 +5004,9 @@ affect the size of the mosaic)</value>
   <data name="sendMosaic.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="sendMosaic.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="sendMosaic.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 133</value>
   </data>
@@ -4689,6 +5043,9 @@ box on the right.</value>
   <data name="sndTest.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="sndTest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="sndTest.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 181</value>
   </data>
@@ -4722,6 +5079,9 @@ box on the right.</value>
   <data name="button13.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="button13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button13.Location" type="System.Drawing.Point, System.Drawing">
     <value>123, 181</value>
   </data>
@@ -4754,6 +5114,9 @@ box on the right.</value>
   </data>
   <data name="plSnd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="plSnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="plSnd.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 184</value>
@@ -4793,6 +5156,9 @@ Press the select sound button to select a wav file to play.</value>
   <data name="label33.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label33.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
     <value>53, 36</value>
   </data>
@@ -4825,6 +5191,9 @@ Press the select sound button to select a wav file to play.</value>
   </data>
   <data name="sendEmail.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="sendEmail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="sendEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 64</value>
@@ -4898,6 +5267,9 @@ to include in each email.
   <data name="sendFullSize.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="sendFullSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="sendFullSize.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 87</value>
   </data>
@@ -4938,6 +5310,9 @@ the 'Frequency of image' field to the left.</value>
   <data name="label19.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 227</value>
   </data>
@@ -4970,6 +5345,9 @@ the 'Frequency of image' field to the left.</value>
   </data>
   <data name="sendThumb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="sendThumb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="sendThumb.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 110</value>
@@ -5011,6 +5389,9 @@ the 'Frequency of image' field to the left.</value>
   <data name="label20.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 214</value>
   </data>
@@ -5043,6 +5424,9 @@ the 'Frequency of image' field to the left.</value>
   </data>
   <data name="loadToFtp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="loadToFtp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="loadToFtp.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 159</value>
@@ -5083,6 +5467,9 @@ the 'Frequency of image' field to the left.</value>
   </data>
   <data name="label32.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
+  </data>
+  <data name="label32.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 13</value>
@@ -5138,6 +5525,9 @@ the 'Frequency of image' field to the left.</value>
   <data name="label21.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 17</value>
   </data>
@@ -5171,6 +5561,9 @@ the 'Frequency of image' field to the left.</value>
   <data name="label17.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 53</value>
   </data>
@@ -5203,6 +5596,9 @@ the 'Frequency of image' field to the left.</value>
   </data>
   <data name="label18.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 70</value>
@@ -5272,6 +5668,9 @@ frequently to send email notifications in seconds.
   <data name="label27.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label27.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 126</value>
   </data>
@@ -5304,6 +5703,9 @@ frequently to send email notifications in seconds.
   </data>
   <data name="label26.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label26.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
     <value>28, 143</value>
@@ -5389,6 +5791,9 @@ frequently to create images from the webcam in seconds.
   <metadata name="button35.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button35.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button35.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 49</value>
   </data>
@@ -5421,6 +5826,9 @@ frequently to create images from the webcam in seconds.
   </data>
   <data name="label12.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 17</value>
@@ -5503,6 +5911,9 @@ frequently to create images from the webcam in seconds.
   <data name="label42.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label42.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 341</value>
   </data>
@@ -5560,6 +5971,9 @@ line  of the ping email.</value>
   </data>
   <data name="label36.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label36.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 222</value>
@@ -5622,6 +6036,9 @@ or Office_Computer.</value>
   <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 11</value>
   </data>
@@ -5683,6 +6100,9 @@ or Office_Computer.</value>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 56</value>
   </data>
@@ -5712,6 +6132,9 @@ or Office_Computer.</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 168</value>
@@ -5802,6 +6225,9 @@ anyone@gmail.com;anyone@yahoo.com;anyone@ibm.com</value>
   <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 407</value>
   </data>
@@ -5832,6 +6258,9 @@ anyone@gmail.com;anyone@yahoo.com;anyone@ibm.com</value>
   <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 278</value>
   </data>
@@ -5861,6 +6290,9 @@ anyone@gmail.com;anyone@yahoo.com;anyone@ibm.com</value>
   </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 112</value>
@@ -5965,6 +6397,9 @@ line  of the warning email.</value>
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>241, 13</value>
   </data>
@@ -6002,6 +6437,9 @@ be informed if it was successful.</value>
   <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 13</value>
   </data>
@@ -6031,6 +6469,9 @@ be informed if it was successful.</value>
   </data>
   <data name="SSL.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="SSL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="SSL.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 249</value>
@@ -6127,6 +6568,9 @@ Consult your email provider instructions.
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 58</value>
   </data>
@@ -6157,6 +6601,9 @@ Consult your email provider instructions.
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 168</value>
   </data>
@@ -6186,6 +6633,9 @@ Consult your email provider instructions.
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 114</value>
@@ -6277,6 +6727,9 @@ Consult your email provider instructions.
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 224</value>
   </data>
@@ -6328,6 +6781,9 @@ Consult your email provider instructions.
   <data name="label25.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label25.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 24</value>
   </data>
@@ -6357,6 +6813,9 @@ Consult your email provider instructions.
   </data>
   <data name="label22.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 63</value>
@@ -6417,6 +6876,9 @@ Consult your ISP instructions.
   <data name="label23.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label23.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 118</value>
   </data>
@@ -6474,6 +6936,9 @@ Consult your ISP instructions.
   <data name="&gt;&gt;ftpPass.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 24</value>
   </data>
@@ -6510,6 +6975,9 @@ be informed if it was successful.</value>
   </data>
   <data name="label24.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 170</value>
@@ -6618,6 +7086,9 @@ Consult your ISP instructions.
   <data name="infoMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="infoMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="infoMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 524</value>
   </data>
@@ -6647,6 +7118,9 @@ Consult your ISP instructions.
   </metadata>
   <data name="freezeGuardWindow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="freezeGuardWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="freezeGuardWindow.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 115</value>
@@ -6684,6 +7158,9 @@ in order to show or hide the FreezeGuard window.</value>
   <data name="label14.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt</value>
   </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 83</value>
   </data>
@@ -6713,6 +7190,9 @@ in order to show or hide the FreezeGuard window.</value>
   </data>
   <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 63</value>
@@ -6771,6 +7251,9 @@ The recommended value is 0.5
   <data name="&gt;&gt;pulseFreq.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="button15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button15.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 14</value>
   </data>
@@ -6809,6 +7292,9 @@ clicking this button you can click on it again to restart the pulse.
   </data>
   <data name="freezeGuardOff.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="freezeGuardOff.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="freezeGuardOff.Location" type="System.Drawing.Point, System.Drawing">
     <value>69, 28</value>
@@ -6850,6 +7336,9 @@ TeboCam if it does not hear the pulse for a specified time period.</value>
   </data>
   <data name="freezeGuardOn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="freezeGuardOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="freezeGuardOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 28</value>
@@ -7016,6 +7505,9 @@ return a 'false positive'.</value>
   <data name="logsKeepChk.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="logsKeepChk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="logsKeepChk.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 29</value>
   </data>
@@ -7075,6 +7567,9 @@ than the days specified below if this box is checked.</value>
   <data name="label44.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label44.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
     <value>975, 791</value>
   </data>
@@ -7105,6 +7600,9 @@ than the days specified below if this box is checked.</value>
   <metadata name="button22.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button22.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 52</value>
   </data>
@@ -7135,6 +7633,9 @@ than the days specified below if this box is checked.</value>
   <metadata name="button19.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button19.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 52</value>
   </data>
@@ -7180,6 +7681,9 @@ You can recover the vaulted version at any point by clicking on the "Restore Pro
   <data name="label45.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label45.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 28</value>
   </data>
@@ -7207,6 +7711,9 @@ You can recover the vaulted version at any point by clicking on the "Restore Pro
   <metadata name="button10.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button10.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 89</value>
   </data>
@@ -7240,6 +7747,9 @@ will be copied across to the new profile.
   <metadata name="button12.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button12.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 89</value>
   </data>
@@ -7305,6 +7815,9 @@ and a nighttime profile that has a very sensitive movement setting.</value>
   <metadata name="button11.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button11.Location" type="System.Drawing.Point, System.Drawing">
     <value>262, 89</value>
   </data>
@@ -7337,6 +7850,9 @@ if it is the only one in existence.</value>
   <metadata name="btnrenameProfile.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="btnrenameProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnrenameProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>179, 89</value>
   </data>
@@ -7400,6 +7916,9 @@ if it is the only one in existence.</value>
   <data name="label34.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label34.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
     <value>117, 55</value>
   </data>
@@ -7432,6 +7951,9 @@ if it is the only one in existence.</value>
   </data>
   <data name="label28.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label28.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 55</value>
@@ -7497,6 +8019,9 @@ to start at a particular time.</value>
   <data name="lblImgPref.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblImgPref.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblImgPref.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 28</value>
   </data>
@@ -7555,6 +8080,9 @@ to start at a particular time.</value>
   <metadata name="button9.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button9.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 80</value>
   </data>
@@ -7623,6 +8151,9 @@ Go on... give it a go and see what happens!
   <data name="bttInstallUpdateAdmin.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="bttInstallUpdateAdmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttInstallUpdateAdmin.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 99</value>
   </data>
@@ -7664,6 +8195,9 @@ This usually takes less than 1 minute.</value>
   <data name="lblVerAvail.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblVerAvail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblVerAvail.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 71</value>
   </data>
@@ -7697,6 +8231,9 @@ This usually takes less than 1 minute.</value>
   <data name="lblCurVer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblCurVer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblCurVer.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 49</value>
   </data>
@@ -7726,6 +8263,9 @@ This usually takes less than 1 minute.</value>
   </metadata>
   <data name="updateNotify.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="updateNotify.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="updateNotify.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
@@ -7792,6 +8332,9 @@ or if this box is not checked.</value>
   <data name="label35.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 14.25pt, style=Bold</value>
   </data>
+  <data name="label35.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 23</value>
   </data>
@@ -7852,6 +8395,9 @@ or if this box is not checked.</value>
   <data name="lblendpub.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblendpub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblendpub.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 178</value>
   </data>
@@ -7885,6 +8431,9 @@ or if this box is not checked.</value>
   <data name="lblstartpub.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="lblstartpub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblstartpub.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 178</value>
   </data>
@@ -7912,6 +8461,9 @@ or if this box is not checked.</value>
   <metadata name="button37.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button37.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button37.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 201</value>
   </data>
@@ -7943,6 +8495,9 @@ publishing of images.</value>
   <metadata name="button36.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button36.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button36.Location" type="System.Drawing.Point, System.Drawing">
     <value>132, 124</value>
   </data>
@@ -7970,6 +8525,9 @@ publishing of images.</value>
   <metadata name="bttnSetPrefixPublish.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="bttnSetPrefixPublish.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnSetPrefixPublish.Location" type="System.Drawing.Point, System.Drawing">
     <value>132, 97</value>
   </data>
@@ -7999,6 +8557,9 @@ publishing of images.</value>
   </metadata>
   <data name="bttncam9pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam9pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam9pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 17</value>
@@ -8037,6 +8598,9 @@ At present you may only publish from one selected camera.</value>
   </metadata>
   <data name="bttncam7pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam7pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam7pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 17</value>
@@ -8079,6 +8643,9 @@ At present you may only publish from one selected camera.</value>
   <data name="pubToWeb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="pubToWeb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pubToWeb.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 98</value>
   </data>
@@ -8111,6 +8678,9 @@ At present you may only publish from one selected camera.</value>
   </metadata>
   <data name="bttncam8pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam8pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam8pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 17</value>
@@ -8153,6 +8723,9 @@ At present you may only publish from one selected camera.</value>
   <data name="pubToLocal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="pubToLocal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pubToLocal.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 126</value>
   </data>
@@ -8185,6 +8758,9 @@ At present you may only publish from one selected camera.</value>
   </metadata>
   <data name="bttncam6pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam6pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam6pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>105, 17</value>
@@ -8227,6 +8803,9 @@ At present you may only publish from one selected camera.</value>
   <data name="pubTimerOn.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="pubTimerOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pubTimerOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 153</value>
   </data>
@@ -8259,6 +8838,9 @@ At present you may only publish from one selected camera.</value>
   </metadata>
   <data name="bttncam4pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam4pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam4pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>65, 17</value>
@@ -8298,6 +8880,9 @@ At present you may only publish from one selected camera.</value>
   <data name="bttncam5pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam5pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam5pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 17</value>
   </data>
@@ -8335,6 +8920,9 @@ At present you may only publish from one selected camera.</value>
   </metadata>
   <data name="bttncam3pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
+  </data>
+  <data name="bttncam3pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttncam3pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 17</value>
@@ -8374,6 +8962,9 @@ At present you may only publish from one selected camera.</value>
   <data name="bttncam2pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam2pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam2pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 17</value>
   </data>
@@ -8412,6 +9003,9 @@ At present you may only publish from one selected camera.</value>
   <data name="bttncam1pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="bttncam1pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttncam1pub.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 17</value>
   </data>
@@ -8447,6 +9041,9 @@ At present you may only publish from one selected camera.</value>
   <metadata name="button14.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button14.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 236</value>
   </data>
@@ -8482,6 +9079,9 @@ At present you may only publish from one selected camera.</value>
   </data>
   <data name="label55.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label55.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 75</value>
@@ -8547,6 +9147,9 @@ in hours, minutes or seconds.</value>
   <data name="pubSecs.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="pubSecs.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pubSecs.Location" type="System.Drawing.Point, System.Drawing">
     <value>287, 75</value>
   </data>
@@ -8577,6 +9180,9 @@ in hours, minutes or seconds.</value>
   <data name="pubMins.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="pubMins.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pubMins.Location" type="System.Drawing.Point, System.Drawing">
     <value>215, 75</value>
   </data>
@@ -8606,6 +9212,9 @@ in hours, minutes or seconds.</value>
   </metadata>
   <data name="pubHours.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="pubHours.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pubHours.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 75</value>
@@ -8671,6 +9280,9 @@ Consult your ISP instructions.
   </data>
   <data name="label59.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label59.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label59.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 361</value>
@@ -8741,6 +9353,9 @@ Consult your ISP instructions.
   <data name="label60.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label60.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label60.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 314</value>
   </data>
@@ -8806,6 +9421,9 @@ Consult your ISP instructions.
   <data name="label61.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label61.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label61.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 264</value>
   </data>
@@ -8838,6 +9456,9 @@ Consult your ISP instructions.
   </data>
   <data name="pubImage.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="pubImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pubImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 49</value>
@@ -8914,6 +9535,9 @@ Consult your ISP instructions.
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label39.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 383</value>
   </data>
@@ -8976,6 +9600,9 @@ to include in each email.
   <data name="disCommOnline.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="disCommOnline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="disCommOnline.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 352</value>
   </data>
@@ -9009,6 +9636,9 @@ to include in each email.
   <data name="label51.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label51.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 282</value>
   </data>
@@ -9039,6 +9669,9 @@ to include in each email.
   <data name="label58.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="label58.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 252</value>
   </data>
@@ -9068,6 +9701,9 @@ to include in each email.
   </data>
   <data name="label63.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label63.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 220</value>
@@ -9138,6 +9774,9 @@ to include in each email.
   <data name="&gt;&gt;SqlFtpPwd.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="button20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button20.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 176</value>
   </data>
@@ -9171,6 +9810,9 @@ to include in each email.
   <data name="webUpd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
+  <data name="webUpd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="webUpd.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 29</value>
   </data>
@@ -9200,6 +9842,9 @@ to include in each email.
   </data>
   <data name="label57.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label57.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 116</value>
@@ -9273,6 +9918,9 @@ to include in each email.
   <data name="label46.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label46.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 62</value>
   </data>
@@ -9324,6 +9972,9 @@ to include in each email.
   <data name="label54.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label54.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
     <value>262, 146</value>
   </data>
@@ -9350,6 +10001,9 @@ to include in each email.
   </data>
   <data name="label52.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label52.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 89</value>
@@ -9399,6 +10053,9 @@ to include in each email.
   <data name="label50.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label50.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label50.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 309</value>
   </data>
@@ -9425,6 +10082,9 @@ to include in each email.
   </data>
   <data name="label53.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label53.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label53.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 146</value>
@@ -9591,6 +10251,9 @@ to include in each email.
   <data name="bttnToolTips.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
+  <data name="bttnToolTips.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="bttnToolTips.Location" type="System.Drawing.Point, System.Drawing">
     <value>685, 609</value>
   </data>
@@ -9624,6 +10287,9 @@ balloons which contain tips.</value>
   </metadata>
   <data name="button24.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="button24.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="button24.Location" type="System.Drawing.Point, System.Drawing">
     <value>820, 609</value>
@@ -9663,6 +10329,9 @@ Changes are also saved automatically on exit.</value>
   <data name="notConnected.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 14.25pt, style=Bold</value>
   </data>
+  <data name="notConnected.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="notConnected.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 609</value>
   </data>
@@ -9699,6 +10368,9 @@ if you this is displayed and you know you are connected.</value>
   </metadata>
   <data name="bttnUpdateFooter.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 12pt, style=Bold</value>
+  </data>
+  <data name="bttnUpdateFooter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="bttnUpdateFooter.Location" type="System.Drawing.Point, System.Drawing">
     <value>550, 609</value>

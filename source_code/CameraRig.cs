@@ -37,6 +37,10 @@ namespace TeboCam
         public int rectHeight = 80;
         public int displayButton = 1;
         public double movementVal = 0.99;
+        public int timeSpike = 500;
+        public int toleranceSpike = 0;
+        public bool lightSpike = false;
+
 
         public bool pubImage = false;
         public int pubTime = 2;
@@ -166,7 +170,7 @@ namespace TeboCam
 
         }
 
-        public static List<string> cameraCredentials(string profileName,string webcam )
+        public static List<string> cameraCredentials(string profileName, string webcam)
         {
 
             List<string> lst = new List<string>();
@@ -174,9 +178,9 @@ namespace TeboCam
             foreach (info infoI in camInfo)
             {
 
-                if (infoI.profileName == profileName && infoI.webcam==webcam)
+                if (infoI.profileName == profileName && infoI.webcam == webcam)
                 {
-                    
+
                     lst.Add(infoI.webcam);
                     lst.Add(infoI.ipWebcamAddress);
                     lst.Add(infoI.ipWebcamUser);
@@ -230,6 +234,9 @@ namespace TeboCam
                         if (infoType == "rectWidth") { infoI.rectWidth = (int)val; }
                         if (infoType == "rectHeight") { infoI.rectHeight = (int)val; }
                         if (infoType == "movementVal") { infoI.movementVal = (double)val; }
+                        if (infoType == "timeSpike") { infoI.timeSpike = (int)val; }
+                        if (infoType == "toleranceSpike") { infoI.toleranceSpike = (int)val; }
+                        if (infoType == "lightSpike") { infoI.lightSpike = (bool)val; }
                         if (infoType == "displayButton") { infoI.displayButton = (int)val; }
 
                         if (infoType == "pubImage") { infoI.pubImage = (bool)val; }
@@ -300,6 +307,9 @@ namespace TeboCam
                         if (infoType == "rectWidth") { infoI.rectWidth = (int)val; }
                         if (infoType == "rectHeight") { infoI.rectHeight = (int)val; }
                         if (infoType == "movementVal") { infoI.movementVal = (double)val; }
+                        if (infoType == "timeSpike") { infoI.timeSpike = (int)val; }
+                        if (infoType == "toleranceSpike") { infoI.toleranceSpike = (int)val; }
+                        if (infoType == "lightSpike") { infoI.lightSpike = (bool)val; }
                         if (infoType == "displayButton") { infoI.displayButton = (int)val; }
 
 
@@ -380,6 +390,9 @@ namespace TeboCam
                 if (infoType == "rectWidth") { camInfo[infoIdx].rectWidth = (int)val; }
                 if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
                 if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
+                if (infoType == "timeSpike") { camInfo[infoIdx].timeSpike = (int)val; }
+                if (infoType == "toleranceSpike") { camInfo[infoIdx].toleranceSpike = (int)val; }
+                if (infoType == "lightSpike") { camInfo[infoIdx].lightSpike = (bool)val; }
                 if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
 
 
@@ -551,6 +564,8 @@ namespace TeboCam
                     rig[id].cam.rectWidth = infoI.rectWidth;
 
                     rig[id].cam.movementVal = infoI.movementVal;
+                    //rig[id].cam.timeSpike = infoI.timeSpike;
+                    //rig[id].cam.toleranceSpike = infoI.toleranceSpike;
 
 
 
@@ -586,6 +601,8 @@ namespace TeboCam
 
 
                 rig[id].cam.movementVal = infoI.movementVal;
+                //rig[id].cam.timeSpike = infoI.timeSpike;
+                //rig[id].cam.toleranceSpike = infoI.toleranceSpike;
 
 
             }
@@ -614,6 +631,9 @@ namespace TeboCam
                     if (property == "rectWidth") return infoI.rectWidth;
                     if (property == "rectHeight") return infoI.rectHeight;
                     if (property == "movementVal") return infoI.movementVal;
+                    if (property == "timeSpike") return infoI.timeSpike;
+                    if (property == "toleranceSpike") return infoI.toleranceSpike;
+                    if (property == "lightSpike") return infoI.lightSpike;
                     if (property == "alarmActive") return infoI.alarmActive;
                     if (property == "publishActive") return infoI.publishActive;
 
@@ -675,6 +695,9 @@ namespace TeboCam
                     if (property == "rectWidth") return infoI.rectWidth;
                     if (property == "rectHeight") return infoI.rectHeight;
                     if (property == "movementVal") return infoI.movementVal;
+                    if (property == "timeSpike") return infoI.timeSpike;
+                    if (property == "toleranceSpike") return infoI.toleranceSpike;
+                    if (property == "lightSpike") return infoI.lightSpike;
                     if (property == "alarmActive") return infoI.alarmActive;
                     if (property == "publishActive") return infoI.publishActive;
 
@@ -738,13 +761,15 @@ namespace TeboCam
             return CameraRig.rig[cam].cam;
         }
 
-        public static void addCamera(rigItem p_cam)
-        {
-            rigItem r_item = new rigItem();
-            r_item = p_cam;
+        //public static void addCamera(rigItem p_cam)
+        //{
+                        
+        //    rigItem r_item = new rigItem();
+        //    r_item = p_cam;
+        //    rig.Add(r_item);
+            
 
-            rig.Add(r_item);
-        }
+        //}
 
         public static bool camerasAttached()
         {

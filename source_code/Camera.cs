@@ -187,6 +187,11 @@ namespace TeboCam
         // alarm level
         public int cam = 0;
         public double movementVal = 1;
+        //public int timeSpike = 0;
+        //public int toleranceSpike = 0;
+        public bool triggeredBySpike = false;
+
+
 
         //
         public event motionLevelEventHandler motionLevelEvent;
@@ -552,9 +557,11 @@ namespace TeboCam
                             }
                             else
                             {
-                                if (alarmActive && alert && motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
+                                if (alarmActive &&
+                                    alert &&
+                                    motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal
+                                    && motionAlarm != null)
                                 {
-
                                     CamIdArgs c = new CamIdArgs();
                                     c.cam = cam;
                                     LevelArgs l = new LevelArgs();
@@ -563,13 +570,19 @@ namespace TeboCam
                                     motionAlarm(null, c, l);
 
                                 }
+                                else
+                                {
+
+                                    triggeredBySpike = false;
+
+                                }
                             }
 
 
                         }
 
 
-                        
+
                     }
 
                 }//if (_detectionOn)
