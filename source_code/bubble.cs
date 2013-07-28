@@ -2697,11 +2697,19 @@ namespace TeboCam
                 int reportLevel = motLevel >= 0 ? motLevel : 0;
 
                 testImagePublishData.Add(reportLevel);
-                //testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100)));
-
                 testImagePublishData.Add(statistics.lowestValTime(cam, 2000, bubble.profileInUse));
-
                 testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
+
+                //todo
+
+                //lightSpikeDetected(cam,motLevel,time.millisecondsSinceStart(),CameraRig.getCam(cam).
+                    //CameraRig.getCam(cam)
+
+                //lightSpikeDetected
+                //zxczxc
+
+
+
                 testImagePublishFirst = false;
                 testImagePublishLast = time.millisecondsSinceStart();
 
@@ -2746,10 +2754,6 @@ namespace TeboCam
             int perc = new int();
             bool spike = false;
 
-            //are we filtering light spikes?
-            //if (!CameraRig.rig[p_cam].cam.triggeredBySpike
-            //    && (bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
-            //{
 
             int lowVal = statistics.lowestValTime(p_cam, p_millisecs, p_profile);
             int difference = p_mov - lowVal;
@@ -2761,25 +2765,12 @@ namespace TeboCam
                 perc = (int)Math.Floor(((double)difference / (double)p_mov) * (double)100);
                 spike = perc > p_tolerance;
 
-                //if (spike)
-                //{
-
-                //    CameraRig.rig[p_cam].cam.triggeredBySpike = spike;
-
-                //}
-
-
-
-
             }
 
-            //}
 
             results.Add(spike);
             results.Add(perc);
             return results;
-
-
 
         }
 
@@ -2796,8 +2787,8 @@ namespace TeboCam
                 foreach (rigItem item in CameraRig.rig)
                 {
 
-                    bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString());
-                    bool pubToLocal = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString());
+                    bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.publishWeb).ToString());
+                    bool pubToLocal = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.publishLocal).ToString());
                     bool pubThisOne = true;
 
                     //publish from this camera
@@ -2806,25 +2797,25 @@ namespace TeboCam
 
                         int timeMultiplier = 0;
                         int PubInterval = 0;
-                        bool secs = (bool)CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubSecs");
-                        bool mins = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubMins").ToString());
-                        bool hrs = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubHours").ToString());
+                        bool secs = (bool)CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubSecs);
+                        bool mins = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubMins).ToString());
+                        bool hrs = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubHours).ToString());
 
                         if (secs) timeMultiplier = 1;
                         if (mins) timeMultiplier = 60;
                         if (hrs) timeMultiplier = 3600;
 
-                        PubInterval = timeMultiplier * Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString());
+                        PubInterval = timeMultiplier * Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubTime).ToString());
 
                         if (
-                            Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishFirst").ToString())
-                            || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "lastPublished").ToString())) >= PubInterval
+                            Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.publishFirst).ToString())
+                            || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.lastPublished).ToString())) >= PubInterval
                             )
                         {
 
                             pulseEvent(null, new EventArgs());
 
-                            CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "publishFirst", false);
+                            CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.publishFirst, false);
 
                             List<string> lst = new List<string>();
 
@@ -2842,16 +2833,16 @@ namespace TeboCam
                                 switch (timeMultiplier)
                                 {
                                     case 1:
-                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Secs");
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubTime).ToString() + " Secs");
                                         break;
                                     case 60:
-                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Mins");
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubTime).ToString() + " Mins");
                                         break;
                                     case 3600:
-                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Hours");
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubTime).ToString() + " Hours");
                                         break;
                                     default:
-                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Secs");
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.pubTime).ToString() + " Secs");
                                         break;
                                 }
 
@@ -2885,9 +2876,9 @@ namespace TeboCam
                                         string locFile = "";
 
                                         long tmpCycleLoc = new long();
-                                        tmpCycleLoc = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubLoc").ToString());
+                                        tmpCycleLoc = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.currentCyclePubLoc).ToString());
 
-                                        string cameraPubLoc = CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "fileDirPubLoc").ToString();
+                                        string cameraPubLoc = CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.fileDirPubLoc).ToString();
                                         if (!Directory.Exists(cameraPubLoc))
                                         {
                                             Directory.CreateDirectory(cameraPubLoc);
@@ -2896,15 +2887,15 @@ namespace TeboCam
 
                                         //locFile = bubble.imageFolder +
                                         locFile = cameraPubLoc +
-                                                  fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubLoc").ToString(),
-                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubLoc").ToString()),
-                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubLoc").ToString()),
-                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubLoc").ToString()),
+                                                  fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.filenamePrefixPubLoc).ToString(),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.cycleStampCheckedPubLoc).ToString()),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.startCyclePubLoc).ToString()),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.endCyclePubLoc).ToString()),
                                                                                    ref tmpCycleLoc,
-                                                                                   Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubLoc").ToString()));
+                                                                                   Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.stampAppendPubLoc).ToString()));
 
 
-                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubLoc", Convert.ToInt32(tmpCycleLoc));
+                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.currentCyclePubLoc, Convert.ToInt32(tmpCycleLoc));
 
                                         teboDebug.writeline(teboDebug.publishImageVal + 5);
                                         File.Copy(tmpFolder + "pubPicture.jpg", locFile, true);
@@ -2919,17 +2910,17 @@ namespace TeboCam
                                         string webFile = "";
 
                                         long tmpCycleWeb = new long();
-                                        tmpCycleWeb = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubWeb").ToString());
+                                        tmpCycleWeb = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.currentCyclePubWeb).ToString());
 
-                                        webFile = fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubWeb").ToString(),
-                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubWeb").ToString()),
-                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubWeb").ToString()),
-                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubWeb").ToString()),
+                                        webFile = fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.filenamePrefixPubWeb).ToString(),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.cycleStampCheckedPubWeb).ToString()),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.startCyclePubWeb).ToString()),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.endCyclePubWeb).ToString()),
                                                               ref tmpCycleWeb,
-                                                              Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubWeb").ToString()));
+                                                              Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoItem.stampAppendPubWeb).ToString()));
 
 
-                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubWeb", Convert.ToInt32(tmpCycleWeb));
+                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.currentCyclePubWeb, Convert.ToInt32(tmpCycleWeb));
 
                                         File.Copy(tmpFolder + "pubPicture.jpg", tmpFolder + webFile, true);
                                         ftp.DeleteFTP(webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
@@ -2940,7 +2931,7 @@ namespace TeboCam
 
                                     teboDebug.writeline(teboDebug.publishImageVal + 7);
                                     File.Delete(tmpFolder + "pubPicture.jpg");
-                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "lastPublished", time.secondsSinceStart());
+                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.lastPublished, time.secondsSinceStart());
                                     logAddLine("Webcam image " + pubFile + " published.");
 
                                     pulseEvent(null, new EventArgs());
@@ -2952,7 +2943,7 @@ namespace TeboCam
                                 catch
                                 {
                                     teboDebug.writeline(teboDebug.publishImageVal + 8);
-                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "lastPublished", time.secondsSinceStart());
+                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.lastPublished, time.secondsSinceStart());
                                 }
 
 
@@ -4021,8 +4012,7 @@ namespace TeboCam
 
             //are we filtering light spikes?
             if (!CameraRig.rig[e.cam].cam.triggeredBySpike
-                //&& !CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike
-                && (bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+                && (bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoItem.lightSpike)))
             {
 
 
@@ -4034,14 +4024,6 @@ namespace TeboCam
 
                 spike = (bool)lightSpikeResults[0];
                 spikePerc = (int)lightSpikeResults[1];
-               // CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = !spike;
-
-            }
-
-            if (!(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
-            {
-
-               // CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = true;
 
             }
 
@@ -4051,7 +4033,7 @@ namespace TeboCam
             //or we are not concerned about light spikes
             if ((!CameraRig.rig[e.cam].cam.triggeredBySpike && !spike)
                 || CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike
-                || !(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+                || !(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoItem.lightSpike)))
             {
 
                 CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = true;
@@ -4130,11 +4112,11 @@ namespace TeboCam
             {
 
                 //a light spike caused this alarm and we are catching light spikes
-                if ((bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, "lightSpike")))
+                if ((bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoItem.lightSpike)))
                 {
 
                     CameraRig.rig[e.cam].cam.triggeredBySpike = true;
-                    
+
                 }
 
             }

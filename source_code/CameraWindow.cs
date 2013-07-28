@@ -432,7 +432,7 @@ namespace TeboCam
                     lst.Add(stats.avgMvStart.ToString());
                     lst.Add(stats.avgMvLast.ToString());
                     lst.Add(stats.mvNow.ToString());
-                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[CameraRig.activeCam].cameraName, "alarmActive")) ? "On" : "Off");
+                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[CameraRig.activeCam].cameraName, CameraRig.infoItem.alarmActive)) ? "On" : "Off");
                     lst.Add(config.getProfile(bubble.profileInUse).pingInterval.ToString() + " Mins");
 
                 }
@@ -814,13 +814,13 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).rectHeight = height;
 
                 CameraRig.rig[CameraRig.drawCam].cam.rectX = topLeftX;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectX", topLeftX);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoItem.rectX, topLeftX);
                 CameraRig.rig[CameraRig.drawCam].cam.rectY = topLeftY;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectY", topLeftY);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoItem.rectY, topLeftY);
                 CameraRig.rig[CameraRig.drawCam].cam.rectWidth = width;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectWidth", width);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoItem.rectWidth, width);
                 CameraRig.rig[CameraRig.drawCam].cam.rectHeight = height;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, "rectHeight", height);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoItem.rectHeight, height);
 
                 CameraRig.rig[CameraRig.drawCam].cam.Lock();
                 CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.Reset();
