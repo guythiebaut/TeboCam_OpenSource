@@ -16,6 +16,7 @@ namespace TeboCam
 
         public string cam;
         public long time;
+        public Color borderColour;
 
         public analysePictureControl()
         {
@@ -25,25 +26,28 @@ namespace TeboCam
         }
 
 
-        public analysePictureControl(Bitmap p_picture, string p_name, long p_time)
+        public analysePictureControl(Bitmap p_picture, string p_name, long p_time,Color p_borderColour)
         {
 
             InitializeComponent();
 
-            imageBox.Image = resizeImage(p_picture, this.imageBox.Width, this.imageBox.Height);
+            imageBox.Image = resizeImage(p_picture, imageBox.Width, imageBox.Height);
             cam = p_name;
             time = p_time;
+            borderColour = p_borderColour;
 
         }
 
 
 
 
-
-        public static void setborder(Color colour)
+        public void setborder(Color colour)
         {
 
-
+            Graphics border = this.imageBorder.CreateGraphics();
+            border.FillRectangle(new SolidBrush(colour), 0, 0, imageBorder.Width, imageBorder.Height);
+            //imageBorder.SynchronisedInvoke(() => imageBorder.CreateGraphics().FillRectangle(new SolidBrush(Color.Red), 0, 0, imageBorder.Width, imageBorder.Height));
+            //border.Dispose();
 
         }
 
@@ -77,6 +81,14 @@ namespace TeboCam
             g.Dispose();
 
             return (Bitmap)b;
+        }
+
+        private void imageBorder_Paint(object sender, PaintEventArgs e)
+        {
+
+            e.Graphics.FillRectangle(new SolidBrush(borderColour), new Rectangle(0, 0, imageBorder.Width, imageBorder.Height));
+                
+
         }
 
 

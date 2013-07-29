@@ -40,19 +40,19 @@ namespace TeboCam
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pnlControls = new System.Windows.Forms.Panel();
             this.grpSpikeSettings = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblSensitivity = new System.Windows.Forms.Label();
             this.lblToleranceSpike = new System.Windows.Forms.Label();
+            this.trkMov = new System.Windows.Forms.TrackBar();
             this.lblTimeSpike = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.trkTimeSpike = new System.Windows.Forms.TrackBar();
             this.trkToleranceSpike = new System.Windows.Forms.TrackBar();
-            this.trkMov = new System.Windows.Forms.TrackBar();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.grpSpikeSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkToleranceSpike)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -120,7 +120,7 @@ namespace TeboCam
             // grpSpikeSettings
             // 
             this.grpSpikeSettings.Controls.Add(this.label6);
-            this.grpSpikeSettings.Controls.Add(this.label5);
+            this.grpSpikeSettings.Controls.Add(this.lblSensitivity);
             this.grpSpikeSettings.Controls.Add(this.lblToleranceSpike);
             this.grpSpikeSettings.Controls.Add(this.trkMov);
             this.grpSpikeSettings.Controls.Add(this.lblTimeSpike);
@@ -132,11 +132,33 @@ namespace TeboCam
             this.grpSpikeSettings.Name = "grpSpikeSettings";
             this.grpSpikeSettings.TabStop = false;
             // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Name = "label6";
+            // 
+            // lblSensitivity
+            // 
+            resources.ApplyResources(this.lblSensitivity, "lblSensitivity");
+            this.lblSensitivity.ForeColor = System.Drawing.Color.Black;
+            this.lblSensitivity.Name = "lblSensitivity";
+            // 
             // lblToleranceSpike
             // 
             resources.ApplyResources(this.lblToleranceSpike, "lblToleranceSpike");
             this.lblToleranceSpike.ForeColor = System.Drawing.Color.Black;
             this.lblToleranceSpike.Name = "lblToleranceSpike";
+            // 
+            // trkMov
+            // 
+            resources.ApplyResources(this.trkMov, "trkMov");
+            this.trkMov.Maximum = 100;
+            this.trkMov.Minimum = 1;
+            this.trkMov.Name = "trkMov";
+            this.trkMov.TickFrequency = 10;
+            this.trkMov.Value = 1;
+            this.trkMov.Scroll += new System.EventHandler(this.trkMov_Scroll);
             // 
             // lblTimeSpike
             // 
@@ -155,7 +177,6 @@ namespace TeboCam
             resources.ApplyResources(this.label4, "label4");
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Name = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // trkTimeSpike
             // 
@@ -167,6 +188,7 @@ namespace TeboCam
             this.trkTimeSpike.SmallChange = 500;
             this.trkTimeSpike.TickFrequency = 500;
             this.trkTimeSpike.Value = 500;
+            this.trkTimeSpike.Scroll += new System.EventHandler(this.trkTimeSpike_Scroll);
             // 
             // trkToleranceSpike
             // 
@@ -175,28 +197,8 @@ namespace TeboCam
             this.trkToleranceSpike.Maximum = 100;
             this.trkToleranceSpike.Name = "trkToleranceSpike";
             this.trkToleranceSpike.SmallChange = 2;
-            this.trkToleranceSpike.TickFrequency = 2;
-            // 
-            // trkMov
-            // 
-            resources.ApplyResources(this.trkMov, "trkMov");
-            this.trkMov.Maximum = 100;
-            this.trkMov.Minimum = 1;
-            this.trkMov.Name = "trkMov";
-            this.trkMov.TickFrequency = 10;
-            this.trkMov.Value = 1;
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Name = "label5";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Name = "label6";
+            this.trkToleranceSpike.TickFrequency = 10;
+            this.trkToleranceSpike.Scroll += new System.EventHandler(this.trkToleranceSpike_Scroll);
             // 
             // calibrate
             // 
@@ -219,9 +221,9 @@ namespace TeboCam
             this.Load += new System.EventHandler(this.calibrate_Load);
             this.grpSpikeSettings.ResumeLayout(false);
             this.grpSpikeSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkToleranceSpike)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,6 +249,6 @@ namespace TeboCam
         private System.Windows.Forms.TrackBar trkToleranceSpike;
         private System.Windows.Forms.TrackBar trkMov;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSensitivity;
     }
 }

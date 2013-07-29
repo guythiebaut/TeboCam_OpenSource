@@ -103,7 +103,8 @@ namespace TeboCam
 
                 analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
                                            (string)bubble.testImagePublishData[i + 4],
-                                           (long)bubble.testImagePublishData[i + 5]);
+                                           (long)bubble.testImagePublishData[i + 5],
+                                           Color.DarkOrange);
 
                 i = i + 5;
 
@@ -163,6 +164,7 @@ namespace TeboCam
 
 
                 pnlControls.SynchronisedInvoke(() => pnlControls.Controls.Add(item));
+                item.SynchronisedInvoke(() =>item.setborder(Color.BlueViolet));
 
 
                 if (lastX + item.Width + item.Width + 5 > pnlControls.Width)
@@ -173,11 +175,11 @@ namespace TeboCam
 
                     lastX = xPos;
                     lastY = yPos;
-                                        
-                    
 
-                    item.SynchronisedInvoke(()=>item.Left = xPos);
-                    item.SynchronisedInvoke(()=>item.Top = yPos);
+
+
+                    item.SynchronisedInvoke(() => item.Left = xPos);
+                    item.SynchronisedInvoke(() => item.Top = yPos);
 
                 }
                 else
@@ -201,10 +203,10 @@ namespace TeboCam
                     lastX = xPos;
 
 
-                    item.SynchronisedInvoke(()=>item.Left = xPos);
-                    item.SynchronisedInvoke(()=>item.Top = lastY);
+                    item.SynchronisedInvoke(() => item.Left = xPos);
+                    item.SynchronisedInvoke(() => item.Top = lastY);
 
-                                      
+
 
                 }
 
@@ -214,8 +216,26 @@ namespace TeboCam
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+
+        private void trkMov_Scroll(object sender, EventArgs e)
         {
+
+            lblSensitivity.Text = trkMov.Value.ToString();
+
+        }
+
+
+        private void trkTimeSpike_Scroll(object sender, EventArgs e)
+        {
+
+            lblTimeSpike.Text = trkTimeSpike.Value.ToString();
+
+        }
+
+        private void trkToleranceSpike_Scroll(object sender, EventArgs e)
+        {
+
+            lblToleranceSpike.Text = trkToleranceSpike.Value.ToString();
 
         }
 
