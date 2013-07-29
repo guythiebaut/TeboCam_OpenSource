@@ -17,6 +17,10 @@ namespace TeboCam
         private static bool toolTip;
         private static int cam;
 
+
+        public analyse analysis = new analyse();
+
+
         public calibrate(formDelegate sender, ArrayList from)
         {
             InitializeComponent();
@@ -82,8 +86,11 @@ namespace TeboCam
             CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
             CameraRig.getCam(CameraRig.trainCam).calibrating = false;
 
-            StreamWriter sw = new StreamWriter(outFile, true);
 
+            //analyse analysis = new analyse();
+
+
+            StreamWriter sw = new StreamWriter(outFile, true);
             sw.WriteLine("Sequence,Motion_Level,lowestValueOverTime,Image_File");
 
             for (int i = 0; i < bubble.testImagePublishData.Count; i++)
@@ -93,12 +100,27 @@ namespace TeboCam
                              bubble.testImagePublishData[i + 1], ",",
                              bubble.testImagePublishData[i + 2], ",",
                              bubble.testImagePublishData[i + 3]));
-                i = i + 3;
+
+                analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
+                                           (string)bubble.testImagePublishData[i + 4],
+                                           (long)bubble.testImagePublishData[i + 5]);
+
+                i = i + 5;
+
             }
 
 
             sw.Close();
             tw.Dispose();
+
+
+            populate();
+
+
+            //b            analyseMovement analysisForm = new analyseMovement(analysis);
+            //            analysisForm.ShowDialog();
+
+
 
         }
 
@@ -127,6 +149,76 @@ namespace TeboCam
         {
             bubble.testImagePublish = false;
         }
+
+
+        private void populate()
+        {
+
+            int lastX = new int();
+            int lastY = new int();
+
+
+            foreach (analysePictureControl item in analysis.images)
+            {
+
+
+                pnlControls.SynchronisedInvoke(() => pnlControls.Controls.Add(item));
+
+
+                if (lastX + item.Width + item.Width + 5 > pnlControls.Width)
+                {
+
+                    int xPos = 5;
+                    int yPos = lastY + item.Height + 5;
+
+                    lastX = xPos;
+                    lastY = yPos;
+                                        
+                    
+
+                    item.SynchronisedInvoke(()=>item.Left = xPos);
+                    item.SynchronisedInvoke(()=>item.Top = yPos);
+
+                }
+                else
+                {
+
+                    int xPos;
+
+                    if (lastX == 0)
+                    {
+
+                        xPos = 5;
+
+                    }
+                    else
+                    {
+
+                        xPos = lastX + item.Width + 5;
+
+                    }
+
+                    lastX = xPos;
+
+
+                    item.SynchronisedInvoke(()=>item.Left = xPos);
+                    item.SynchronisedInvoke(()=>item.Top = lastY);
+
+                                      
+
+                }
+
+
+            }
+
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

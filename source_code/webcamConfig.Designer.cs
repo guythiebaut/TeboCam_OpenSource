@@ -70,8 +70,8 @@ namespace TeboCam
             this.bttncam5 = new System.Windows.Forms.Button();
             this.bttncam3 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.levelbox = new System.Windows.Forms.PictureBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -89,7 +89,7 @@ namespace TeboCam
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdSpikeOn = new System.Windows.Forms.RadioButton();
             this.rdSpikeOff = new System.Windows.Forms.RadioButton();
-            this.cameraWindow = new TeboCam.CameraWindow();
+            this.levelbox = new System.Windows.Forms.PictureBox();
             this.pnlSelection.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox11.SuspendLayout();
@@ -98,13 +98,13 @@ namespace TeboCam
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             this.grpSpikeSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkToleranceSpike)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).BeginInit();
             this.SuspendLayout();
             // 
             // bttnCamProp
@@ -458,6 +458,13 @@ namespace TeboCam
             this.panel3.Controls.Add(this.cameraWindow);
             this.panel3.Name = "panel3";
             // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            // 
             // toolTip1
             // 
             this.toolTip1.AutoPopDelay = 20000;
@@ -465,14 +472,6 @@ namespace TeboCam
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ReshowDelay = 100;
             this.toolTip1.ToolTipTitle = "Tip";
-            // 
-            // levelbox
-            // 
-            resources.ApplyResources(this.levelbox, "levelbox");
-            this.levelbox.Name = "levelbox";
-            this.levelbox.TabStop = false;
-            this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
-            this.levelbox.Paint += new System.Windows.Forms.PaintEventHandler(this.levelbox_Paint);
             // 
             // label38
             // 
@@ -520,6 +519,7 @@ namespace TeboCam
             resources.ApplyResources(this.grpSpikeSettings, "grpSpikeSettings");
             this.grpSpikeSettings.Name = "grpSpikeSettings";
             this.grpSpikeSettings.TabStop = false;
+            this.grpSpikeSettings.Enter += new System.EventHandler(this.grpSpikeSettings_Enter);
             // 
             // lblToleranceSpike
             // 
@@ -532,6 +532,7 @@ namespace TeboCam
             resources.ApplyResources(this.lblTimeSpike, "lblTimeSpike");
             this.lblTimeSpike.ForeColor = System.Drawing.Color.Black;
             this.lblTimeSpike.Name = "lblTimeSpike";
+            this.lblTimeSpike.Click += new System.EventHandler(this.lblTimeSpike_Click);
             // 
             // label1
             // 
@@ -598,12 +599,13 @@ namespace TeboCam
             this.rdSpikeOff.TabStop = true;
             this.rdSpikeOff.UseVisualStyleBackColor = true;
             // 
-            // cameraWindow
+            // levelbox
             // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
+            resources.ApplyResources(this.levelbox, "levelbox");
+            this.levelbox.Name = "levelbox";
+            this.levelbox.TabStop = false;
+            this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
+            this.levelbox.Paint += new System.Windows.Forms.PaintEventHandler(this.levelbox_Paint);
             // 
             // webcamConfig
             // 
@@ -641,7 +643,6 @@ namespace TeboCam
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkMov)).EndInit();
             this.grpSpikeSettings.ResumeLayout(false);
             this.grpSpikeSettings.PerformLayout();
@@ -650,6 +651,7 @@ namespace TeboCam
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

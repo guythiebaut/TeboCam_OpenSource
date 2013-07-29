@@ -1466,7 +1466,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.30199, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.36234, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -9532,6 +9532,57 @@ Consult your ISP instructions.
   <data name="&gt;&gt;Publish.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="sqlConString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 169</value>
+  </data>
+  <data name="sqlConString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 21</value>
+  </data>
+  <data name="sqlConString.TabIndex" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <data name="&gt;&gt;sqlConString.Name" xml:space="preserve">
+    <value>sqlConString</value>
+  </data>
+  <data name="&gt;&gt;sqlConString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sqlConString.Parent" xml:space="preserve">
+    <value>groupBox20</value>
+  </data>
+  <data name="&gt;&gt;sqlConString.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label30.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label30.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 177</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="label30.TabIndex" type="System.Int32, mscorlib">
+    <value>89</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Con. String</value>
+  </data>
+  <data name="&gt;&gt;label30.Name" xml:space="preserve">
+    <value>label30</value>
+  </data>
+  <data name="&gt;&gt;label30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
+    <value>groupBox20</value>
+  </data>
+  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -9539,7 +9590,7 @@ Consult your ISP instructions.
     <value>NoControl</value>
   </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 383</value>
+    <value>87, 458</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>
@@ -9560,13 +9611,13 @@ Consult your ISP instructions.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="disCommOnlineSecs.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
   </data>
   <data name="disCommOnlineSecs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 375</value>
+    <value>16, 450</value>
   </data>
   <data name="disCommOnlineSecs.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 21</value>
@@ -9592,7 +9643,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;disCommOnlineSecs.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="disCommOnline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9604,7 +9655,7 @@ to include in each email.
     <value>NoControl</value>
   </data>
   <data name="disCommOnline.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 352</value>
+    <value>16, 427</value>
   </data>
   <data name="disCommOnline.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 17</value>
@@ -9628,7 +9679,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;disCommOnline.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label51.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9640,7 +9691,7 @@ to include in each email.
     <value>NoControl</value>
   </data>
   <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 282</value>
+    <value>20, 336</value>
   </data>
   <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 13</value>
@@ -9661,7 +9712,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label51.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label58.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9673,7 +9724,7 @@ to include in each email.
     <value>NoControl</value>
   </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 252</value>
+    <value>20, 306</value>
   </data>
   <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 13</value>
@@ -9694,7 +9745,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label58.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="label63.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9706,7 +9757,7 @@ to include in each email.
     <value>NoControl</value>
   </data>
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 220</value>
+    <value>20, 274</value>
   </data>
   <data name="label63.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 13</value>
@@ -9727,10 +9778,10 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label63.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="SqlFtpUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 217</value>
+    <value>149, 271</value>
   </data>
   <data name="SqlFtpUser.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 21</value>
@@ -9748,10 +9799,10 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;SqlFtpUser.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="SqlFtpPwd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 244</value>
+    <value>149, 298</value>
   </data>
   <data name="SqlFtpPwd.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
@@ -9772,13 +9823,13 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;SqlFtpPwd.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="button20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="button20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 176</value>
+    <value>23, 230</value>
   </data>
   <data name="button20.Size" type="System.Drawing.Size, System.Drawing">
     <value>352, 25</value>
@@ -9802,7 +9853,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;button20.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="webUpd.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9838,7 +9889,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;webUpd.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label57.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9868,7 +9919,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label57.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="sqlUser.Location" type="System.Drawing.Point, System.Drawing">
     <value>131, 54</value>
@@ -9889,7 +9940,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlUser.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="sqlInstance.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -9913,7 +9964,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlInstance.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="label46.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9943,7 +9994,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label46.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="sqlPwd.Location" type="System.Drawing.Point, System.Drawing">
     <value>131, 81</value>
@@ -9967,7 +10018,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlPwd.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="label54.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9997,7 +10048,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label54.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="label52.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -10027,7 +10078,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label52.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="sqlPoll.Location" type="System.Drawing.Point, System.Drawing">
     <value>131, 138</value>
@@ -10048,7 +10099,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlPoll.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="label50.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -10057,7 +10108,7 @@ to include in each email.
     <value>NoControl</value>
   </data>
   <data name="label50.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 309</value>
+    <value>16, 363</value>
   </data>
   <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 13</value>
@@ -10078,7 +10129,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label50.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="label53.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -10108,10 +10159,10 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label53.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="sqlImageFilename.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 301</value>
+    <value>149, 355</value>
   </data>
   <data name="sqlImageFilename.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 21</value>
@@ -10129,10 +10180,10 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlImageFilename.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="sqlImageRoot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 274</value>
+    <value>149, 328</value>
   </data>
   <data name="sqlImageRoot.Size" type="System.Drawing.Size, System.Drawing">
     <value>226, 21</value>
@@ -10150,7 +10201,7 @@ to include in each email.
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;sqlImageRoot.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="groupBox20.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 14</value>

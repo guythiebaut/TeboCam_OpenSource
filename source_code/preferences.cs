@@ -1070,12 +1070,12 @@ namespace TeboCam
 
         private void button4_Click(object sender, EventArgs e)
         {
-            openCamera();
+            openNewCamera();
         }
 
 
 
-        private void openCamera()
+        private void openNewCamera()
         {
 
             string tmpStr = config.getProfile(bubble.profileInUse).webcam;
@@ -1102,7 +1102,7 @@ namespace TeboCam
                         if (reply.Status == IPStatus.Success)
                         {
 
-                            CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoItem.ipWebcamAddress, form.Device.address);
+                            CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoEnum.ipWebcamAddress, form.Device.address);
 
                             AForge.Video.MJPEGStream stream = new AForge.Video.MJPEGStream(form.Device.address);
 
@@ -1112,8 +1112,8 @@ namespace TeboCam
                                 stream.Login = form.Device.user;
                                 stream.Password = form.Device.password;
 
-                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoItem.ipWebcamUser, form.Device.user);
-                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoItem.ipWebcamPassword, form.Device.password);
+                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoEnum.ipWebcamUser, form.Device.user);
+                                CameraRig.updateInfo(bubble.profileInUse, form.Device.address, CameraRig.infoEnum.ipWebcamPassword, form.Device.password);
 
                             }
 
@@ -1229,7 +1229,7 @@ namespace TeboCam
             }
 
             //update info for camera
-            CameraRig.updateInfo(bubble.profileInUse, config.getProfile(bubble.profileInUse).webcam, CameraRig.infoItem.displayButton, camButton);
+            CameraRig.updateInfo(bubble.profileInUse, config.getProfile(bubble.profileInUse).webcam, CameraRig.infoEnum.displayButton, camButton);
 
             if (config.getProfile(bubble.profileInUse).selectedCam == "")
             {
@@ -2660,6 +2660,7 @@ namespace TeboCam
             sqlUser.Text = data.webUser;
             sqlPwd.Text = data.webPass;
             sqlPoll.Text = data.webPoll.ToString();
+            sqlConString.Text = bubble.mysqlDriver;
             sqlInstance.Text = data.webInstance;
             sqlImageRoot.Text = data.webImageRoot;
             sqlImageFilename.Text = data.webImageFileName;
@@ -2983,8 +2984,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubTime, Convert.ToInt32(pubTime.Text));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubTime, Convert.ToInt32(pubTime.Text));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
 
 
@@ -2996,8 +2997,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubHours, pubHours.Checked);
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubHours, pubHours.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
 
         }
@@ -3008,8 +3009,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubMins, pubMins.Checked);
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubMins, pubMins.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
 
         }
@@ -3020,8 +3021,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubSecs, pubSecs.Checked);
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubSecs, pubSecs.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
 
         }
@@ -3032,8 +3033,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishLocal, pubToLocal.Checked);
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishLocal, pubToLocal.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
         }
 
@@ -3044,8 +3045,8 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishWeb, pubToWeb.Checked);
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishWeb, pubToWeb.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
             }
 
         }
@@ -3104,7 +3105,7 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName,CameraRig.infoItem.timerOn, pubTimerOn.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.timerOn, pubTimerOn.Checked);
             }
 
             if (pubTimerOn.Checked)
@@ -3472,6 +3473,12 @@ namespace TeboCam
 
         }
 
+        private void sqlConString_Leave(object sender, EventArgs e)
+        {
+
+            bubble.mysqlDriver = sqlConString.Text;
+
+        }
 
         private void webUpd_CheckedChanged(object sender, EventArgs e)
         {
@@ -4227,7 +4234,7 @@ namespace TeboCam
                     //set the camerawindow bitmap
                     cameraWindow.Camera = CameraRig.rig[camId].cam;
                     //SetLabelVisible(lblCameraName, CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, "friendlyName").ToString().Trim() != "");
-                    lblCameraName.SynchronisedInvoke(() => lblCameraName.Visible = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, CameraRig.infoItem.friendlyName).ToString().Trim() != "");
+                    lblCameraName.SynchronisedInvoke(() => lblCameraName.Visible = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[camId].cameraName, CameraRig.infoEnum.friendlyName).ToString().Trim() != "");
 
 
                     //SetLabel(lblCameraName, CameraRig.rig[camId].friendlyName);
@@ -4267,7 +4274,7 @@ namespace TeboCam
                 licence.deselectCam(cam + 1);
                 btn.BackColor = Color.Silver;
                 CameraRig.rig[cam].cam.alarmActive = false;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoItem.alarmActive, false);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoEnum.alarmActive, false);
                 CameraRig.rig[cam].cam.detectionOn = false;
 
             }
@@ -4277,7 +4284,7 @@ namespace TeboCam
                 licence.selectCam(cam + 1);
                 btn.BackColor = Color.LawnGreen;
                 CameraRig.rig[cam].cam.alarmActive = true;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoItem.alarmActive, true);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoEnum.alarmActive, true);
                 CameraRig.rig[cam].cam.detectionOn = true;
 
             }
@@ -4291,13 +4298,13 @@ namespace TeboCam
 
             int pubButton = CameraRig.idxFromButton(button);
 
-            pubTime.Text = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubTime).ToString();
-            pubHours.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubHours);
-            pubMins.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubMins);
-            pubSecs.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.pubSecs);
-            pubToWeb.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishWeb);
-            pubToLocal.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishLocal);
-            pubTimerOn.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.timerOn);
+            pubTime.Text = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubTime).ToString();
+            pubHours.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubHours);
+            pubMins.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubMins);
+            pubSecs.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.pubSecs);
+            pubToWeb.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishWeb);
+            pubToLocal.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishLocal);
+            pubTimerOn.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.timerOn);
 
         }
 
@@ -4318,7 +4325,7 @@ namespace TeboCam
                     {
 
                         item.cam.publishActive = false;
-                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoItem.publishActive, false);
+                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoEnum.publishActive, false);
 
                     }
 
@@ -4331,13 +4338,13 @@ namespace TeboCam
                 {
                     btn.BackColor = Color.Silver;
                     CameraRig.rig[cam].cam.publishActive = false;
-                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoItem.publishActive, false);
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoEnum.publishActive, false);
                 }
                 if (result == 1)
                 {
                     btn.BackColor = Color.LawnGreen;
                     CameraRig.rig[cam].cam.publishActive = true;
-                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoItem.publishActive, true);
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[cam].cameraName, CameraRig.infoEnum.publishActive, true);
                 }
 
 
@@ -4679,12 +4686,12 @@ namespace TeboCam
 
                 i.Add("Publish Web");
                 i.Add(config.getProfile(bubble.profileInUse).toolTips);
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.filenamePrefixPubWeb));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.cycleStampCheckedPubWeb));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.startCyclePubWeb));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.endCyclePubWeb));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.currentCyclePubWeb));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.stampAppendPubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.startCyclePubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.endCyclePubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubWeb));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubWeb));
                 i.Add(true);
                 i.Add("");
                 i.Add("");
@@ -4711,31 +4718,31 @@ namespace TeboCam
 
             int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
 
-            CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.publishFirst, true);
+            CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
 
             if (i[0].ToString() == "Publish Web")
             {
 
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.filenamePrefixPubWeb, i[1].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.cycleStampCheckedPubWeb, Convert.ToInt32(i[2]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.startCyclePubWeb, Convert.ToInt32(i[3]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.endCyclePubWeb, Convert.ToInt32(i[4]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.currentCyclePubWeb, Convert.ToInt32(i[5]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.stampAppendPubWeb, Convert.ToBoolean(i[6]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubWeb, i[1].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubWeb, Convert.ToInt32(i[2]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.startCyclePubWeb, Convert.ToInt32(i[3]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.endCyclePubWeb, Convert.ToInt32(i[4]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubWeb, Convert.ToInt32(i[5]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubWeb, Convert.ToBoolean(i[6]));
 
             }
 
             if (i[0].ToString() == "Publish Local")
             {
 
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.filenamePrefixPubLoc, i[1].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.cycleStampCheckedPubLoc, Convert.ToInt32(i[2]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.startCyclePubLoc, Convert.ToInt32(i[3]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.endCyclePubLoc, Convert.ToInt32(i[4]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.currentCyclePubLoc, Convert.ToInt32(i[5]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.stampAppendPubLoc, Convert.ToBoolean(i[6]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.fileDirPubLoc, i[7].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.fileDirPubCust, Convert.ToBoolean(i[8]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubLoc, i[1].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubLoc, Convert.ToInt32(i[2]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.startCyclePubLoc, Convert.ToInt32(i[3]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.endCyclePubLoc, Convert.ToInt32(i[4]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubLoc, Convert.ToInt32(i[5]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubLoc, Convert.ToBoolean(i[6]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.fileDirPubLoc, i[7].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.fileDirPubCust, Convert.ToBoolean(i[8]));
 
 
             }
@@ -4768,16 +4775,16 @@ namespace TeboCam
 
                 i.Add("Publish Local");
                 i.Add(config.getProfile(bubble.profileInUse).toolTips);
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.filenamePrefixPubLoc));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.cycleStampCheckedPubLoc));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.startCyclePubLoc));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.endCyclePubLoc));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.currentCyclePubLoc));
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.stampAppendPubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.startCyclePubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.endCyclePubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubLoc));
                 i.Add(true);
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.fileDirPubLoc));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.fileDirPubLoc));
                 i.Add(bubble.imageFolder);
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoItem.fileDirPubCust));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, CameraRig.infoEnum.fileDirPubCust));
                 i.Add(true);
 
 
@@ -4807,9 +4814,9 @@ namespace TeboCam
             i.Add(config.getProfile(bubble.profileInUse).currentCycle);
             i.Add(true);
             i.Add(true);
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, CameraRig.infoItem.fileDirAlertLoc));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, CameraRig.infoEnum.fileDirAlertLoc));
             i.Add(bubble.imageFolder);
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, CameraRig.infoItem.fileDirAlertCust));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, CameraRig.infoEnum.fileDirAlertCust));
             i.Add(true);
 
             fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
@@ -4999,6 +5006,8 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
+
 
 
 

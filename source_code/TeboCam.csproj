@@ -48,6 +48,12 @@
   </Target>
   -->
   <ItemGroup>
+    <EmbeddedResource Include="analyseMovement.resx">
+      <DependentUpon>analyseMovement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="analysePictureControl.resx">
+      <DependentUpon>analysePictureControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="calibrate.resx">
       <SubType>Designer</SubType>
       <DependentUpon>calibrate.cs</DependentUpon>
@@ -102,6 +108,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="analyse.cs" />
+    <Compile Include="analyseMovement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="analyseMovement.Designer.cs">
+      <DependentUpon>analyseMovement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="analysePictureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="analysePictureControl.Designer.cs">
+      <DependentUpon>analysePictureControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="bubble.cs">
     </Compile>

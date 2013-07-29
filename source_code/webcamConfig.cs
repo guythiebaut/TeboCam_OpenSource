@@ -65,7 +65,7 @@ namespace TeboCam
         private void camName_TextChanged(object sender, EventArgs e)
         {
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.friendlyName, camName.Text);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.friendlyName, camName.Text);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
 
         }
@@ -122,7 +122,7 @@ namespace TeboCam
             if (drawModeOff.Checked)
             {
 
-                CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaDetection, radioButton4.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetection, radioButton4.Checked);
                 CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
 
                 CameraRig.getCam(selectedWebcam).MotionDetector.Reset();
@@ -145,7 +145,7 @@ namespace TeboCam
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaDetectionWithin, radioButton1.Checked);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetectionWithin, radioButton1.Checked);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
             config.getProfile(bubble.profileInUse).areaDetectionWithin = radioButton1.Checked;
             CameraRig.AreaDetectionWithin = radioButton1.Checked;
@@ -155,7 +155,7 @@ namespace TeboCam
         private void areaOffAtMotion_CheckedChanged(object sender, EventArgs e)
         {
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaOffAtMotion, areaOffAtMotion.Checked);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion, areaOffAtMotion.Checked);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
             CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionTriggered = false;
             CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionReset = false;
@@ -256,10 +256,10 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).rectWidth = 80;
             config.getProfile(bubble.profileInUse).rectHeight = 80;
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.rectX, 20);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.rectY, 20);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.rectWidth, 80);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.rectHeight, 80);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectX, 20);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectY, 20);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectWidth, 80);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectHeight, 80);
 
             CameraRig.getCam(selectedWebcam).rectX = 20;
             CameraRig.getCam(selectedWebcam).rectY = 20;
@@ -323,7 +323,7 @@ namespace TeboCam
 
             trkMov.Value = Convert.ToInt32(txtMov.Text);
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.movementVal, Convert.ToDouble(txtMov.Text) / 100);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
             CameraRig.rig[CameraRig.drawCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
 
@@ -352,7 +352,7 @@ namespace TeboCam
                 txtMov.Text = trkMov.Value.ToString();
             }
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam,CameraRig.infoItem.movementVal, Convert.ToDouble(txtMov.Text) / 100);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam,CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
 
         }
@@ -674,22 +674,22 @@ namespace TeboCam
                     CameraRig.drawCam = camId;
                     CameraRig.getCam(camId).MotionDetector.Reset();
 
-                    camName.Text = (string)CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.friendlyName);
+                    camName.Text = (string)CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.friendlyName);
                     drawModeOn.Checked = false;
                     drawModeOff.Checked = true;
-                    txtMov.Text = Convert.ToString((double)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.movementVal)) * 100);
-                    radioButton4.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaDetection));
+                    txtMov.Text = Convert.ToString((double)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal)) * 100);
+                    radioButton4.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetection));
                     radioButton3.Checked = !radioButton4.Checked;
-                    areaOffAtMotion.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaOffAtMotion));
+                    areaOffAtMotion.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion));
                     radioButton8.Checked = false;
                     radioButton7.Checked = true;
-                    radioButton1.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.areaDetectionWithin));
+                    radioButton1.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetectionWithin));
                     radioButton2.Checked = !radioButton1.Checked;
 
 
-                    trkTimeSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.timeSpike));
-                    trkToleranceSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.toleranceSpike));
-                    rdSpikeOn.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.lightSpike));
+                    trkTimeSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike));
+                    trkToleranceSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike));
+                    rdSpikeOn.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.lightSpike));
                     lblTimeSpike.Text = trkTimeSpike.Value.ToString();
                     lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
 
@@ -921,7 +921,7 @@ namespace TeboCam
 
             lblTimeSpike.Text = trkTimeSpike.Value.ToString();
             config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.timeSpike, trkTimeSpike.Value);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike, trkTimeSpike.Value);
 
         }
 
@@ -930,7 +930,7 @@ namespace TeboCam
 
             lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
             config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.toleranceSpike, trkToleranceSpike.Value);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike, trkToleranceSpike.Value);
 
         }
 
@@ -938,7 +938,17 @@ namespace TeboCam
         {
 
             grpSpikeSettings.Enabled = rdSpikeOn.Checked;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoItem.lightSpike, grpSpikeSettings.Enabled);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.lightSpike, grpSpikeSettings.Enabled);
+
+        }
+
+        private void grpSpikeSettings_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTimeSpike_Click(object sender, EventArgs e)
+        {
 
         }
 

@@ -411,193 +411,193 @@ namespace TeboCam
                             //Webcam individual settings
                             //!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                            if (configData.LocalName.Equals(CameraRig.infoItem.webcam.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.webcam.ToString()))
                             {
                                 config.getProfile("##newProf##").webcam = configData.ReadString();
-                                CameraRig.addInfo(CameraRig.infoItem.webcam, config.getProfile("##newProf##").webcam);
-                                CameraRig.addInfo(CameraRig.infoItem.profileName, profileName.ToLower());
+                                CameraRig.addInfo(CameraRig.infoEnum.webcam, config.getProfile("##newProf##").webcam);
+                                CameraRig.addInfo(CameraRig.infoEnum.profileName, profileName.ToLower());
                             }
 
-                            if (configData.LocalName.Equals(CameraRig.infoItem.alarmActive.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.alarmActive.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.alarmActive, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.alarmActive, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.publishActive.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.publishActive.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.publishActive, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.publishActive, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.friendlyName.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.friendlyName.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.friendlyName, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.friendlyName, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.displayButton.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.displayButton.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.displayButton, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.displayButton, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.areaDetection.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.areaDetection.ToString()))
                             {
                                 config.getProfile("##newProf##").areaDetection = Convert.ToBoolean(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.areaDetection, config.getProfile("##newProf##").areaDetection);
+                                CameraRig.addInfo(CameraRig.infoEnum.areaDetection, config.getProfile("##newProf##").areaDetection);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.areaDetectionWithin.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.areaDetectionWithin.ToString()))
                             {
                                 config.getProfile("##newProf##").areaDetectionWithin = Convert.ToBoolean(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.areaDetectionWithin, config.getProfile("##newProf##").areaDetectionWithin);
+                                CameraRig.addInfo(CameraRig.infoEnum.areaDetectionWithin, config.getProfile("##newProf##").areaDetectionWithin);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.areaOffAtMotion.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.areaOffAtMotion.ToString()))
                             {
                                 config.getProfile("##newProf##").areaOffAtMotion = Convert.ToBoolean(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.areaOffAtMotion, config.getProfile("##newProf##").areaOffAtMotion);
+                                CameraRig.addInfo(CameraRig.infoEnum.areaOffAtMotion, config.getProfile("##newProf##").areaOffAtMotion);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.rectX.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.rectX.ToString()))
                             {
                                 config.getProfile("##newProf##").rectX = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.rectX, config.getProfile("##newProf##").rectX);
+                                CameraRig.addInfo(CameraRig.infoEnum.rectX, config.getProfile("##newProf##").rectX);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.rectY.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.rectY.ToString()))
                             {
                                 config.getProfile("##newProf##").rectY = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.rectY, config.getProfile("##newProf##").rectY);
+                                CameraRig.addInfo(CameraRig.infoEnum.rectY, config.getProfile("##newProf##").rectY);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.rectWidth.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.rectWidth.ToString()))
                             {
                                 config.getProfile("##newProf##").rectWidth = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.rectWidth, config.getProfile("##newProf##").rectWidth);
+                                CameraRig.addInfo(CameraRig.infoEnum.rectWidth, config.getProfile("##newProf##").rectWidth);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.rectHeight.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.rectHeight.ToString()))
                             {
                                 config.getProfile("##newProf##").rectHeight = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.rectHeight, config.getProfile("##newProf##").rectHeight);
+                                CameraRig.addInfo(CameraRig.infoEnum.rectHeight, config.getProfile("##newProf##").rectHeight);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.movementVal.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.movementVal.ToString()))
                             {
                                 config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.movementVal, config.getProfile("##newProf##").movementVal);
+                                CameraRig.addInfo(CameraRig.infoEnum.movementVal, config.getProfile("##newProf##").movementVal);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.timeSpike.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.timeSpike.ToString()))
                             {
                                 config.getProfile("##newProf##").timeSpike = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.timeSpike, config.getProfile("##newProf##").timeSpike);
+                                CameraRig.addInfo(CameraRig.infoEnum.timeSpike, config.getProfile("##newProf##").timeSpike);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.toleranceSpike.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.toleranceSpike.ToString()))
                             {
                                 config.getProfile("##newProf##").toleranceSpike = Convert.ToInt32(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.toleranceSpike, config.getProfile("##newProf##").toleranceSpike);
+                                CameraRig.addInfo(CameraRig.infoEnum.toleranceSpike, config.getProfile("##newProf##").toleranceSpike);
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.lightSpike.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.lightSpike.ToString()))
                             {
                                 config.getProfile("##newProf##").lightSpike = Convert.ToBoolean(configData.ReadString());
-                                CameraRig.addInfo(CameraRig.infoItem.lightSpike, config.getProfile("##newProf##").lightSpike);
+                                CameraRig.addInfo(CameraRig.infoEnum.lightSpike, config.getProfile("##newProf##").lightSpike);
                             }
 
 
-                            if (configData.LocalName.Equals(CameraRig.infoItem.pubTime.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.pubTime.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.pubTime, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.pubTime, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.pubHours.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.pubHours.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.pubHours, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.pubHours, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.pubMins.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.pubMins.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.pubMins, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.pubMins, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.pubSecs.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.pubSecs.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.pubSecs, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.pubSecs, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.publishWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.publishWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.publishWeb, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.publishWeb, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.publishLocal.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.publishLocal.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.publishLocal, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.publishLocal, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.timerOn.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.timerOn.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.timerOn, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.timerOn, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.fileURLPubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.fileURLPubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.fileURLPubWeb, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.fileURLPubWeb, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.filenamePrefixPubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.filenamePrefixPubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.filenamePrefixPubWeb, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.filenamePrefixPubWeb, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.cycleStampCheckedPubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.cycleStampCheckedPubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.cycleStampCheckedPubWeb, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.cycleStampCheckedPubWeb, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.startCyclePubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.startCyclePubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.startCyclePubWeb, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.startCyclePubWeb, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.endCyclePubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.endCyclePubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.endCyclePubWeb, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.endCyclePubWeb, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.currentCyclePubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.currentCyclePubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.currentCyclePubWeb, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.currentCyclePubWeb, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.stampAppendPubWeb.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.stampAppendPubWeb.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.stampAppendPubWeb, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.stampAppendPubWeb, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.fileAlertPubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.fileAlertPubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.fileAlertPubLoc, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.fileAlertPubLoc, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.fileAlertPubCust.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.fileAlertPubCust.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.fileAlertPubCust, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.fileAlertPubCust, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.fileDirPubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.fileDirPubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.fileDirPubLoc, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.fileDirPubLoc, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.fileDirPubCust.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.fileDirPubCust.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.fileDirPubCust, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.fileDirPubCust, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.filenamePrefixPubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.filenamePrefixPubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.filenamePrefixPubLoc, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.filenamePrefixPubLoc, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.cycleStampCheckedPubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.cycleStampCheckedPubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.cycleStampCheckedPubLoc, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.cycleStampCheckedPubLoc, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.startCyclePubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.startCyclePubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.startCyclePubLoc, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.startCyclePubLoc, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.endCyclePubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.endCyclePubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.endCyclePubLoc, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.endCyclePubLoc, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.currentCyclePubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.currentCyclePubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.currentCyclePubLoc, Convert.ToInt32(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.currentCyclePubLoc, Convert.ToInt32(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.stampAppendPubLoc.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.stampAppendPubLoc.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.stampAppendPubLoc, Convert.ToBoolean(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.stampAppendPubLoc, Convert.ToBoolean(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.ipWebcamAddress.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.ipWebcamAddress.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.ipWebcamAddress, configData.ReadString());
+                                CameraRig.addInfo(CameraRig.infoEnum.ipWebcamAddress, configData.ReadString());
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.ipWebcamUser.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.ipWebcamUser.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.ipWebcamUser, decrypt(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.ipWebcamUser, decrypt(configData.ReadString()));
                             }
-                            if (configData.LocalName.Equals(CameraRig.infoItem.ipWebcamPassword.ToString()))
+                            if (configData.LocalName.Equals(CameraRig.infoEnum.ipWebcamPassword.ToString()))
                             {
-                                CameraRig.addInfo(CameraRig.infoItem.ipWebcamPassword, decrypt(configData.ReadString()));
+                                CameraRig.addInfo(CameraRig.infoEnum.ipWebcamPassword, decrypt(configData.ReadString()));
                             }
 
 

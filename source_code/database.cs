@@ -14,7 +14,7 @@ namespace TeboCam
         private const string uid = sensitiveInfo.uid;
         private const string pwd = sensitiveInfo.pwd;
 
-        public static int database_update_data(string driver,string user, string instance, string option, string value)
+        public static int database_update_data(string driver, string user, string instance, string option, string value)
         {
             string update = "";
             string cmd = "";
@@ -83,7 +83,7 @@ namespace TeboCam
                 return dr.RecordsAffected;
 
             }
-            catch 
+            catch
             {
                 return 0;
             }
@@ -95,13 +95,14 @@ namespace TeboCam
             crypt crypt = new crypt();
             string encPass = crypt.HashString(password);
 
-            OdbcConnection con = new OdbcConnection("Driver=" + driver + ";Server=" + server + ";Database=" + dbase + ";UID=" + uid + ";PWD=" + crypt.DecryptString(pwd) + ";OPTION=3");
-
-
-            OdbcCommand com = new OdbcCommand("SELECT user FROM users where user = '" + user + "' and password = '" + encPass + "'", con);
-
             try
             {
+
+                OdbcConnection con = new OdbcConnection("Driver=" + driver + ";Server=" + server + ";Database=" + dbase + ";UID=" + uid + ";PWD=" + crypt.DecryptString(pwd) + ";OPTION=3");
+
+
+                OdbcCommand com = new OdbcCommand("SELECT user FROM users where user = '" + user + "' and password = '" + encPass + "'", con);
+
                 con.Open();
                 OdbcDataReader dr = com.ExecuteReader();
 

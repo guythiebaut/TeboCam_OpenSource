@@ -312,6 +312,8 @@ namespace TeboCam
             this.pubImage = new System.Windows.Forms.CheckBox();
             this.Online = new System.Windows.Forms.TabPage();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.sqlConString = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.disCommOnlineSecs = new System.Windows.Forms.TextBox();
             this.disCommOnline = new System.Windows.Forms.CheckBox();
@@ -2826,6 +2828,8 @@ namespace TeboCam
             // 
             // groupBox20
             // 
+            this.groupBox20.Controls.Add(this.sqlConString);
+            this.groupBox20.Controls.Add(this.label30);
             this.groupBox20.Controls.Add(this.label39);
             this.groupBox20.Controls.Add(this.disCommOnlineSecs);
             this.groupBox20.Controls.Add(this.disCommOnline);
@@ -2851,6 +2855,18 @@ namespace TeboCam
             resources.ApplyResources(this.groupBox20, "groupBox20");
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.TabStop = false;
+            // 
+            // sqlConString
+            // 
+            this.sqlConString.BackColor = System.Drawing.Color.LemonChiffon;
+            resources.ApplyResources(this.sqlConString, "sqlConString");
+            this.sqlConString.Name = "sqlConString";
+            this.sqlConString.Leave += new System.EventHandler(this.sqlConString_Leave);
+            // 
+            // label30
+            // 
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
             // 
             // label39
             // 
@@ -3568,5 +3584,7 @@ namespace TeboCam
         private System.Windows.Forms.GroupBox pingBox;
         private System.Windows.Forms.RadioButton rdPingActiveCamera;
         private System.Windows.Forms.RadioButton rdPingAllCameras;
+        private System.Windows.Forms.TextBox sqlConString;
+        private System.Windows.Forms.Label label30;
     }
 }

@@ -55,7 +55,35 @@ namespace TeboCam
 
         }
 
-        public static int lowestValTime(int p_cameraId, int p_milliseconds, string p_profile)
+        public static List<object> lightSpikeDetected(int p_cam, int p_mov, int p_millisecs, int p_tolerance, string p_profile, long p_atTime)
+        {
+
+            List<object> results = new List<object>();
+
+            int perc = new int();
+            bool spike = false;
+
+
+            int lowVal = statistics.lowestValTime(p_cam, p_millisecs, p_profile, p_atTime);
+            int difference = p_mov - lowVal;
+
+            if (difference > 0)
+            {
+
+                //is average change within tolerance percentage?
+                perc = (int)Math.Floor(((double)difference / (double)p_mov) * (double)100);
+                spike = perc > p_tolerance;
+
+            }
+
+
+            results.Add(spike);
+            results.Add(perc);
+            return results;
+
+        }
+
+        public static int lowestValTime(int p_cameraId, int p_milliseconds, string p_profile, long p_atTime)
         {
 
             int lowestVal = 100;
@@ -67,7 +95,9 @@ namespace TeboCam
             {
 
                 //we have a match on camera and profile
-                if (statList[i].cameraId == p_cameraId && statList[i].profile == p_profile)
+                if (statList[i].cameraId == p_cameraId
+                    && statList[i].profile == p_profile
+                    && statList[i].milliSecondsSinceStart <= p_atTime)
                 {
 
 

@@ -32,13 +32,27 @@ namespace TeboCam
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(calibrate));
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.cancel = new System.Windows.Forms.Button();
             this.startCountdown = new System.Windows.Forms.Button();
             this.trainVal = new System.Windows.Forms.TextBox();
             this.countVal = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlControls = new System.Windows.Forms.Panel();
+            this.grpSpikeSettings = new System.Windows.Forms.GroupBox();
+            this.lblToleranceSpike = new System.Windows.Forms.Label();
+            this.lblTimeSpike = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.trkTimeSpike = new System.Windows.Forms.TrackBar();
+            this.trkToleranceSpike = new System.Windows.Forms.TrackBar();
+            this.trkMov = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.grpSpikeSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkToleranceSpike)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -52,12 +66,6 @@ namespace TeboCam
             resources.ApplyResources(this.label2, "label2");
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Name = "label2";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Name = "label1";
             // 
             // label32
             // 
@@ -104,13 +112,100 @@ namespace TeboCam
             this.toolTip1.ReshowDelay = 100;
             this.toolTip1.ToolTipTitle = "Tip";
             // 
+            // pnlControls
+            // 
+            resources.ApplyResources(this.pnlControls, "pnlControls");
+            this.pnlControls.Name = "pnlControls";
+            // 
+            // grpSpikeSettings
+            // 
+            this.grpSpikeSettings.Controls.Add(this.label6);
+            this.grpSpikeSettings.Controls.Add(this.label5);
+            this.grpSpikeSettings.Controls.Add(this.lblToleranceSpike);
+            this.grpSpikeSettings.Controls.Add(this.trkMov);
+            this.grpSpikeSettings.Controls.Add(this.lblTimeSpike);
+            this.grpSpikeSettings.Controls.Add(this.label1);
+            this.grpSpikeSettings.Controls.Add(this.label4);
+            this.grpSpikeSettings.Controls.Add(this.trkTimeSpike);
+            this.grpSpikeSettings.Controls.Add(this.trkToleranceSpike);
+            resources.ApplyResources(this.grpSpikeSettings, "grpSpikeSettings");
+            this.grpSpikeSettings.Name = "grpSpikeSettings";
+            this.grpSpikeSettings.TabStop = false;
+            // 
+            // lblToleranceSpike
+            // 
+            resources.ApplyResources(this.lblToleranceSpike, "lblToleranceSpike");
+            this.lblToleranceSpike.ForeColor = System.Drawing.Color.Black;
+            this.lblToleranceSpike.Name = "lblToleranceSpike";
+            // 
+            // lblTimeSpike
+            // 
+            resources.ApplyResources(this.lblTimeSpike, "lblTimeSpike");
+            this.lblTimeSpike.ForeColor = System.Drawing.Color.Black;
+            this.lblTimeSpike.Name = "lblTimeSpike";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Name = "label1";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Name = "label4";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // trkTimeSpike
+            // 
+            resources.ApplyResources(this.trkTimeSpike, "trkTimeSpike");
+            this.trkTimeSpike.LargeChange = 1000;
+            this.trkTimeSpike.Maximum = 10000;
+            this.trkTimeSpike.Minimum = 100;
+            this.trkTimeSpike.Name = "trkTimeSpike";
+            this.trkTimeSpike.SmallChange = 500;
+            this.trkTimeSpike.TickFrequency = 500;
+            this.trkTimeSpike.Value = 500;
+            // 
+            // trkToleranceSpike
+            // 
+            resources.ApplyResources(this.trkToleranceSpike, "trkToleranceSpike");
+            this.trkToleranceSpike.LargeChange = 20;
+            this.trkToleranceSpike.Maximum = 100;
+            this.trkToleranceSpike.Name = "trkToleranceSpike";
+            this.trkToleranceSpike.SmallChange = 2;
+            this.trkToleranceSpike.TickFrequency = 2;
+            // 
+            // trkMov
+            // 
+            resources.ApplyResources(this.trkMov, "trkMov");
+            this.trkMov.Maximum = 100;
+            this.trkMov.Minimum = 1;
+            this.trkMov.Name = "trkMov";
+            this.trkMov.TickFrequency = 10;
+            this.trkMov.Value = 1;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Name = "label5";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Name = "label6";
+            // 
             // calibrate
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpSpikeSettings);
+            this.Controls.Add(this.pnlControls);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.startCountdown);
@@ -122,6 +217,11 @@ namespace TeboCam
             this.Name = "calibrate";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.calibrate_FormClosing);
             this.Load += new System.EventHandler(this.calibrate_Load);
+            this.grpSpikeSettings.ResumeLayout(false);
+            this.grpSpikeSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkToleranceSpike)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkMov)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,12 +231,22 @@ namespace TeboCam
 
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Button startCountdown;
         private System.Windows.Forms.TextBox trainVal;
         private System.Windows.Forms.TextBox countVal;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel pnlControls;
+        private System.Windows.Forms.GroupBox grpSpikeSettings;
+        private System.Windows.Forms.Label lblToleranceSpike;
+        private System.Windows.Forms.Label lblTimeSpike;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TrackBar trkTimeSpike;
+        private System.Windows.Forms.TrackBar trkToleranceSpike;
+        private System.Windows.Forms.TrackBar trkMov;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
