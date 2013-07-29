@@ -104,7 +104,8 @@ namespace TeboCam
                 analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
                                            (string)bubble.testImagePublishData[i + 4],
                                            (long)bubble.testImagePublishData[i + 5],
-                                           Color.DarkOrange);
+                                           Color.DarkOrange,
+                                           (int)bubble.testImagePublishData[i + 1]);
 
                 i = i + 5;
 
@@ -114,12 +115,7 @@ namespace TeboCam
             sw.Close();
             tw.Dispose();
 
-
             populate();
-
-
-            //b            analyseMovement analysisForm = new analyseMovement(analysis);
-            //            analysisForm.ShowDialog();
 
 
 
@@ -164,7 +160,6 @@ namespace TeboCam
 
 
                 pnlControls.SynchronisedInvoke(() => pnlControls.Controls.Add(item));
-                item.SynchronisedInvoke(() =>item.setborder(Color.BlueViolet));
 
 
                 if (lastX + item.Width + item.Width + 5 > pnlControls.Width)
@@ -217,10 +212,89 @@ namespace TeboCam
         }
 
 
+        private void analyseResults()
+        {
+
+            bool alarmed = new bool();
+
+
+            foreach (analysePictureControl item in analysis.images)
+            {
+
+                alarmed = false;
+
+                if (Convert.ToInt32(lblTimeSpike.Text) == 0 || Convert.ToInt32(lblToleranceSpike.Text) == 0)
+                {
+
+                    if (item.movLevel >= Convert.ToInt32(lblSensitivity.Text))
+                    {
+
+                        alarmed = true;
+                        item.borderColour = Color.Red;
+                        item.Refresh();
+
+                    }
+
+
+                }
+                else
+                {
+
+                    if (item.movLevel >= trkMov.Value)
+                    {
+
+                        List<object> lightSpikeResults;
+
+                        bool spike = new bool();
+                        spike = false;
+                        int spikePerc = new int();
+
+
+                        lightSpikeResults = statistics.lightSpikeDetected(CameraRig.getCam(item.cam).cam,
+                                                                          item.movLevel,
+                                                                          trkTimeSpike.Value,
+                                                                          trkToleranceSpike.Value,
+                                                                          bubble.profileInUse,
+                                                                          item.time);
+
+                        spike = (bool)lightSpikeResults[0];
+                        spikePerc = (int)lightSpikeResults[1];
+
+                        if (!spike)
+                        {
+
+                            alarmed = true;
+                            item.borderColour = Color.Red;
+                            item.Refresh();
+
+                        }
+
+
+                    }
+
+                }
+
+
+                if (!alarmed)
+                {
+
+                    item.borderColour = Color.Empty;
+                    item.Refresh();
+
+                }
+
+            }
+
+        }
+
+
+
+
         private void trkMov_Scroll(object sender, EventArgs e)
         {
 
             lblSensitivity.Text = trkMov.Value.ToString();
+            analyseResults();
 
         }
 
@@ -229,6 +303,7 @@ namespace TeboCam
         {
 
             lblTimeSpike.Text = trkTimeSpike.Value.ToString();
+            analyseResults();
 
         }
 
@@ -236,8 +311,10 @@ namespace TeboCam
         {
 
             lblToleranceSpike.Text = trkToleranceSpike.Value.ToString();
+            analyseResults();
 
         }
+
 
 
 

@@ -55,7 +55,12 @@ namespace TeboCam
 
         }
 
-        public static List<object> lightSpikeDetected(int p_cam, int p_mov, int p_millisecs, int p_tolerance, string p_profile, long p_atTime)
+        public static List<object> lightSpikeDetected(int p_cam,
+                                                      int p_mov,
+                                                      int p_millisecs,
+                                                      int p_tolerance,
+                                                      string p_profile,
+                                                      long p_atTime)
         {
 
             List<object> results = new List<object>();
@@ -123,14 +128,14 @@ namespace TeboCam
                             lowestVal = statList[i].motionLevel;
                             lastMilli = statList[i].milliSecondsSinceStart;
 
-                            System.Diagnostics.Debug.Print(lowestVal.ToString());
+                            //System.Diagnostics.Debug.Print(lowestVal.ToString());
 
-                            if (lowestVal == 0)
-                            {
+                            //if (lowestVal == 0)
+                            //{
 
-                                System.Diagnostics.Debug.Print("zero value");
+                            //    System.Diagnostics.Debug.Print("zero value");
 
-                            }
+                            //}
 
                         }
 

@@ -16,7 +16,9 @@ namespace TeboCam
 
         public string cam;
         public long time;
+        public int movLevel;
         public Color borderColour;
+        ToolTip calebrateImageTip = new ToolTip();
 
         public analysePictureControl()
         {
@@ -26,7 +28,7 @@ namespace TeboCam
         }
 
 
-        public analysePictureControl(Bitmap p_picture, string p_name, long p_time,Color p_borderColour)
+        public analysePictureControl(Bitmap p_picture, string p_name, long p_time, Color p_borderColour, int p_level)
         {
 
             InitializeComponent();
@@ -35,19 +37,13 @@ namespace TeboCam
             cam = p_name;
             time = p_time;
             borderColour = p_borderColour;
-
-        }
-
-
-
-
-        public void setborder(Color colour)
-        {
-
-            Graphics border = this.imageBorder.CreateGraphics();
-            border.FillRectangle(new SolidBrush(colour), 0, 0, imageBorder.Width, imageBorder.Height);
-            //imageBorder.SynchronisedInvoke(() => imageBorder.CreateGraphics().FillRectangle(new SolidBrush(Color.Red), 0, 0, imageBorder.Width, imageBorder.Height));
-            //border.Dispose();
+            movLevel = p_level;
+            calebrateImageTip.Active = true;
+            calebrateImageTip.IsBalloon = true;
+            calebrateImageTip.InitialDelay = 500;
+            calebrateImageTip.AutoPopDelay = 5000;
+            calebrateImageTip.SetToolTip(this.imageBox,"Motion label: " + p_level.ToString());
+            
 
         }
 
@@ -87,7 +83,6 @@ namespace TeboCam
         {
 
             e.Graphics.FillRectangle(new SolidBrush(borderColour), new Rectangle(0, 0, imageBorder.Width, imageBorder.Height));
-                
 
         }
 
