@@ -67,8 +67,10 @@ namespace TeboCam
 
 
 
-            CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
-            CameraRig.getCam(CameraRig.trainCam).calibrating = true;
+            CameraRig.getCam(cam).detectionOn = true;
+            CameraRig.getCam(cam).calibrating = true;
+            //CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
+            //CameraRig.getCam(CameraRig.trainCam).calibrating = true;
 
             while (bubble.testImagePublish)
             {
@@ -83,8 +85,10 @@ namespace TeboCam
 
             }
 
-            CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
-            CameraRig.getCam(CameraRig.trainCam).calibrating = false;
+            CameraRig.getCam(cam).detectionOn = false;
+            CameraRig.getCam(cam).calibrating = false;
+            //CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
+            //CameraRig.getCam(CameraRig.trainCam).calibrating = false;
 
 
             //analyse analysis = new analyse();

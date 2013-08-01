@@ -236,6 +236,9 @@
   <data name="&gt;&gt;cancel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="startCountdown.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
@@ -251,9 +254,6 @@
   <data name="startCountdown.Text" xml:space="preserve">
     <value>Start Calibration</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="startCountdown.ToolTip" xml:space="preserve">
     <value>Images and a csv text file are saved in the temp folder within the TeboCam folder.
 
@@ -351,14 +351,17 @@ The recommended value is 30.
   <data name="&gt;&gt;countVal.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="pnlControls.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="pnlControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>187, 78</value>
+    <value>187, 75</value>
   </data>
   <data name="pnlControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 292</value>
+    <value>682, 298</value>
   </data>
   <data name="pnlControls.TabIndex" type="System.Int32, mscorlib">
     <value>81</value>
@@ -374,6 +377,177 @@ The recommended value is 30.
   </data>
   <data name="&gt;&gt;pnlControls.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <metadata name="label6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblSensitivity.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblToleranceSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="trkMov.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblTimeSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="label4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="trkTimeSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="trkToleranceSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;btnCopy.Name" xml:space="preserve">
+    <value>btnCopy</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblSensitivity.Name" xml:space="preserve">
+    <value>lblSensitivity</value>
+  </data>
+  <data name="&gt;&gt;lblSensitivity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSensitivity.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;lblSensitivity.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Name" xml:space="preserve">
+    <value>lblToleranceSpike</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;lblToleranceSpike.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;trkMov.Name" xml:space="preserve">
+    <value>trkMov</value>
+  </data>
+  <data name="&gt;&gt;trkMov.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trkMov.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;trkMov.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Name" xml:space="preserve">
+    <value>lblTimeSpike</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;lblTimeSpike.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Name" xml:space="preserve">
+    <value>trkTimeSpike</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;trkTimeSpike.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Name" xml:space="preserve">
+    <value>trkToleranceSpike</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;trkToleranceSpike.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="grpSpikeSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 67</value>
+  </data>
+  <data name="grpSpikeSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 306</value>
+  </data>
+  <data name="grpSpikeSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>118</value>
+  </data>
+  <data name="grpSpikeSettings.Text" xml:space="preserve">
+    <value>Sensitivity Settings</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Name" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpSpikeSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="label6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -409,7 +583,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="lblSensitivity.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -445,7 +619,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;lblSensitivity.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="lblToleranceSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -481,7 +655,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;lblToleranceSpike.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="trkMov.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -514,7 +688,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;trkMov.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="lblTimeSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -550,7 +724,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;lblTimeSpike.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="label1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -586,7 +760,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="label4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -622,7 +796,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="trkTimeSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -652,7 +826,7 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;trkTimeSpike.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="trkToleranceSpike.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -682,30 +856,36 @@ The recommended value is 30.
     <value>grpSpikeSettings</value>
   </data>
   <data name="&gt;&gt;trkToleranceSpike.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
-  <data name="grpSpikeSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 70</value>
+  <data name="btnCopy.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
-  <data name="grpSpikeSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 300</value>
+  <data name="btnCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="grpSpikeSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>118</value>
+  <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 274</value>
   </data>
-  <data name="grpSpikeSettings.Text" xml:space="preserve">
-    <value>Sensitivity Settings</value>
+  <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 25</value>
   </data>
-  <data name="&gt;&gt;grpSpikeSettings.Name" xml:space="preserve">
+  <data name="btnCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>119</value>
+  </data>
+  <data name="btnCopy.Text" xml:space="preserve">
+    <value>Copy To Camera</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Name" xml:space="preserve">
+    <value>btnCopy</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Parent" xml:space="preserve">
     <value>grpSpikeSettings</value>
   </data>
-  <data name="&gt;&gt;grpSpikeSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpSpikeSettings.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpSpikeSettings.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -718,7 +898,7 @@ The recommended value is 30.
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>878, 375</value>
+    <value>875, 376</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

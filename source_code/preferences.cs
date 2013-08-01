@@ -1708,6 +1708,8 @@ namespace TeboCam
             levelBitmap = new Bitmap(lineWid, lineLen, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             Graphics levelObj = Graphics.FromImage(levelBitmap);
 
+            
+
             levelObj.FillRectangle(controlBrush, new Rectangle(lineStartX, lineStartY, lineWid, lineLen));
 
             if (val > sensePerc)
@@ -4532,9 +4534,9 @@ namespace TeboCam
             i.Add(panel1.AutoScroll);
             i.Add(camButtons.buttons());
 
-            cameraWindow.Camera = null;
-            panel1.AutoScroll = false;
-            cameraWindow.Invalidate();
+            //cameraWindow.Camera = null;
+            //panel1.AutoScroll = false;
+            //cameraWindow.Invalidate();
 
             bubble.motionLevelChanged -= new EventHandler(drawLevel);
             levelDraw(0);
@@ -4548,12 +4550,17 @@ namespace TeboCam
         }
 
 
+
         private void webcamConfigCompleted(ArrayList i)
         {
 
-            System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
+            //System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
 
+
+            bubble.motionLevelChanged -= new EventHandler(drawLevel);
             bubble.motionLevelChanged += new EventHandler(drawLevel);
+
+
 
             if (CameraRig.cameraCount() > 0)
             {
@@ -4567,12 +4574,13 @@ namespace TeboCam
 
             panel1.AutoScroll = (bool)i[1];
             i.Clear();
-            //bubble.motionLevelChanged += new EventHandler(drawLevel);
+
+            bubble.motionLevelChanged -= new EventHandler(drawLevel);
+            bubble.motionLevelChanged += new EventHandler(drawLevel);
 
             camButtonSetColours();
 
         }
-
 
 
 

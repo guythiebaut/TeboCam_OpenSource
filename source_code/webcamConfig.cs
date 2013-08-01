@@ -17,7 +17,7 @@ using AForge.Video.DirectShow;
 namespace TeboCam
 {
 
-
+    public delegate void configSettingsDelegate(List<int> list);
 
 
     public partial class webcamConfig : Form
@@ -352,7 +352,7 @@ namespace TeboCam
                 txtMov.Text = trkMov.Value.ToString();
             }
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam,CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
 
         }

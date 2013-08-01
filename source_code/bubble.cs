@@ -2703,15 +2703,6 @@ namespace TeboCam
                 testImagePublishData.Add(CameraRig.getCam(cam).name);
                 testImagePublishData.Add(time.millisecondsSinceStart());
 
-                //todo
-
-                //lightSpikeDetected(cam,motLevel,time.millisecondsSinceStart(),CameraRig.getCam(cam).
-                //CameraRig.getCam(cam)
-
-                //lightSpikeDetected
-                //zxczxc
-
-
 
                 testImagePublishFirst = false;
                 testImagePublishLast = time.millisecondsSinceStart();
@@ -2722,34 +2713,8 @@ namespace TeboCam
 
         }
 
-        //public static bool lightSpikeDetected(int p_cam, int p_mov, int p_millisecs, int p_tolerance, string p_profile)
-        //{
-
-        //    bool result = false;
-
-        //    //are we filtering light spikes?
-        //    if ((bool)(CameraRig.rigInfoGet(p_profile, CameraRig.rig[p_cam].cameraName, "lightSpike")))
-        //    {
-
-        //        int avg = statistics.changeOverTime(p_cam, p_millisecs, p_profile);
-        //        int difference = p_mov - avg;
-
-        //        if (difference > 0)
-        //        {
-
-        //            //is average change within tolerance percentage?
-        //            return (difference / p_mov) * 100 > p_tolerance;
-
-        //        }
-
-        //    }
-
-        //    return result;
-
-        //}
 
 
-      
 
 
 
@@ -2938,118 +2903,7 @@ namespace TeboCam
 
 
 
-        public static void publishImageOLD()
-        {
-
-
-            int pubButton = camButtons.publishingButton();
-
-            if (keepPublishing
-                && pubButton != 999
-                && (config.getProfile(bubble.profileInUse).publishWeb
-                || config.getProfile(bubble.profileInUse).publishLocal)
-                )
-            {
-
-                int pubCamera = CameraRig.idxFromButton(pubButton);
-
-                teboDebug.writeline(teboDebug.publishImageVal + 1);
-
-                int timeMultiplier = 0;
-                int PubInterval = 0;
-
-                if (config.getProfile(bubble.profileInUse).pubSecs) timeMultiplier = 1;
-                if (config.getProfile(bubble.profileInUse).pubMins) timeMultiplier = 60;
-                if (config.getProfile(bubble.profileInUse).pubHours) timeMultiplier = 3600;
-
-                PubInterval = timeMultiplier * config.getProfile(bubble.profileInUse).pubTime;
-
-                if (publishFirst || (time.secondsSinceStart() - lastPublished) >= PubInterval)
-                {
-                    teboDebug.writeline(teboDebug.publishImageVal + 2);
-
-                    pulseEvent(null, new EventArgs());
-
-                    publishFirst = false;
-
-                    ImagePubArgs a = new ImagePubArgs();
-
-                    a.option = "pub";
-                    a.cam = pubCamera;
-
-                    try { pubPicture(null, a); }
-                    catch { }
-
-                    if (!pubError)
-                        try
-                        {
-
-                            teboDebug.writeline(teboDebug.publishImageVal + 3);
-                            pulseEvent(null, new EventArgs());
-
-                            string pubFile = "";
-
-
-                            if (config.getProfile(bubble.profileInUse).publishLocal)
-                            {
-
-                                teboDebug.writeline(teboDebug.publishImageVal + 4);
-                                string locFile = "";
-
-                                locFile = bubble.imageFolder + fileNameSet(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc,
-                                                                           config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc,
-                                                                           config.getProfile(bubble.profileInUse).startCyclePubLoc,
-                                                                           config.getProfile(bubble.profileInUse).endCyclePubLoc,
-                                                                           ref config.getProfile(bubble.profileInUse).currentCyclePubLoc,
-                                                                           config.getProfile(bubble.profileInUse).stampAppendPubLoc);
-
-                                teboDebug.writeline(teboDebug.publishImageVal + 5);
-                                File.Copy(tmpFolder + "pubPicture.jpg", locFile, true);
-                                pubFile = locFile;
-
-                            }
-
-
-                            if (config.getProfile(bubble.profileInUse).publishWeb)
-                            {
-                                teboDebug.writeline(teboDebug.publishImageVal + 6);
-
-                                string webFile = "";
-
-                                webFile = fileNameSet(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb,
-                                                      config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb,
-                                                      config.getProfile(bubble.profileInUse).startCyclePubWeb,
-                                                      config.getProfile(bubble.profileInUse).endCyclePubWeb,
-                                                      ref config.getProfile(bubble.profileInUse).currentCyclePubWeb,
-                                                      config.getProfile(bubble.profileInUse).stampAppendPubWeb);
-
-                                File.Copy(tmpFolder + "pubPicture.jpg", tmpFolder + webFile, true);
-                                ftp.DeleteFTP(webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
-                                ftp.Upload(tmpFolder + webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
-                                pubFile = webFile;
-
-                            }
-
-                            teboDebug.writeline(teboDebug.publishImageVal + 7);
-                            File.Delete(tmpFolder + "pubPicture.jpg");
-                            lastPublished = time.secondsSinceStart();
-                            logAddLine("Webcam image " + pubFile + " published.");
-
-                            pulseEvent(null, new EventArgs());
-
-                        }
-
-
-
-                        catch
-                        {
-                            teboDebug.writeline(teboDebug.publishImageVal + 8);
-                            lastPublished = time.secondsSinceStart();
-                        }
-
-                }
-            }
-        }
+     
 
 
         public static void workInit(bool start)
@@ -3236,26 +3090,16 @@ namespace TeboCam
 
                 if (motionLevelChanged != null && motionLevel != motionLevelprevious)
                 {
+                    
                     motionLevelprevious = motionLevel;
                     motionLevelChanged(null, new EventArgs());
+
                 }
             }
 
         }
 
-        public static void levelLineOld(double level)
-        {
-            motionLevel = Convert.ToInt32((int)Math.Floor(level * 100));
-
-            if (motionLevel != motionLevelprevious)
-            {
-                motionLevelprevious = motionLevel;
-                motionLevelChanged(null, new EventArgs());
-            }
-
-
-        }
-
+       
 
         public static bool graphToday()
         {
@@ -3664,25 +3508,6 @@ namespace TeboCam
         }
 
 
-        //private static Font FindBestFitFont(String text, Font font, Size aimFor)
-        //{
-        //    // Compute actual size, shrink if needed
-        //    while (true)
-        //    {
-        //        Size size = TextRenderer.MeasureText(text, font);
-
-        //        // It fits, back out
-        //        if (size.Height <= aimFor.Height &&
-        //             size.Width <= aimFor.Width) { return font; }
-
-        //        // Try a smaller font (95% of old size)
-        //        Font oldFont = font;
-        //        font = new Font(font.FontFamily, (float)(font.Size * .95));
-        //        oldFont.Dispose();
-        //    }
-        //}
-
-
         private static void DrawPolygon(float fThickness, float fLength, Color color, Graphics g)
         {
 
@@ -3993,7 +3818,7 @@ namespace TeboCam
             {
 
 
-                lightSpikeResults =statistics.lightSpikeDetected(e.cam, l.lvl,
+                lightSpikeResults = statistics.lightSpikeDetected(e.cam, l.lvl,
                                                        config.getProfile(bubble.profileInUse).timeSpike,
                                                        config.getProfile(bubble.profileInUse).toleranceSpike,
                                                        bubble.profileInUse,

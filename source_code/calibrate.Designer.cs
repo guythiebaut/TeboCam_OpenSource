@@ -49,6 +49,7 @@ namespace TeboCam
             this.label4 = new System.Windows.Forms.Label();
             this.trkTimeSpike = new System.Windows.Forms.TrackBar();
             this.trkToleranceSpike = new System.Windows.Forms.TrackBar();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.grpSpikeSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).BeginInit();
@@ -119,6 +120,7 @@ namespace TeboCam
             // 
             // grpSpikeSettings
             // 
+            this.grpSpikeSettings.Controls.Add(this.btnCopy);
             this.grpSpikeSettings.Controls.Add(this.label6);
             this.grpSpikeSettings.Controls.Add(this.lblSensitivity);
             this.grpSpikeSettings.Controls.Add(this.lblToleranceSpike);
@@ -200,6 +202,12 @@ namespace TeboCam
             this.trkToleranceSpike.TickFrequency = 10;
             this.trkToleranceSpike.Scroll += new System.EventHandler(this.trkToleranceSpike_Scroll);
             // 
+            // btnCopy
+            // 
+            resources.ApplyResources(this.btnCopy, "btnCopy");
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            // 
             // calibrate
             // 
             resources.ApplyResources(this, "$this");
@@ -250,5 +258,6 @@ namespace TeboCam
         private System.Windows.Forms.TrackBar trkMov;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblSensitivity;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
