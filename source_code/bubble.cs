@@ -2679,6 +2679,7 @@ namespace TeboCam
             {
                 testImagePublishData.Clear();
                 testImagePublishCount = 0;
+                testImagePublishLast = 0;
             }
 
             if (testImagePublishFirst || (time.millisecondsSinceStart() - testImagePublishLast) >= testInterval)
@@ -2689,24 +2690,39 @@ namespace TeboCam
                 a.cam = cam;
 
 
-                try { pubPicture(null, a); }
-                catch { }
-                testImagePublishData.Add(testImagePublishCount);
+                try
+                {
+
+                    pubPicture(null, a);
+                    testImagePublishData.Add(testImagePublishCount);
+
+                    int motLevel = Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100));
+                    int reportLevel = motLevel >= 0 ? motLevel : 0;
+
+                    testImagePublishData.Add(reportLevel);
+                    testImagePublishData.Add(statistics.lowestValTime(cam, 2000, bubble.profileInUse, time.millisecondsSinceStart()));
+                    testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
+                    testImagePublishData.Add(CameraRig.getCam(cam).name);
+                    testImagePublishData.Add(time.millisecondsSinceStart());
 
 
-                int motLevel = Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100));
-                int reportLevel = motLevel >= 0 ? motLevel : 0;
+                    testImagePublishFirst = false;
+                    testImagePublishLast = time.millisecondsSinceStart();
 
-                testImagePublishData.Add(reportLevel);
-                testImagePublishData.Add(statistics.lowestValTime(cam, 2000, bubble.profileInUse, time.millisecondsSinceStart()));
-                testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
-                testImagePublishData.Add(CameraRig.getCam(cam).name);
-                testImagePublishData.Add(time.millisecondsSinceStart());
+                }
+                catch
+                {
+
+                    if (testImagePublishData.Count == testImagePublishCount)
+                    {
+
+                        testImagePublishData.RemoveAt(testImagePublishData.Count - 1);
+                        testImagePublishCount--;
+
+                    }
 
 
-                testImagePublishFirst = false;
-                testImagePublishLast = time.millisecondsSinceStart();
-
+                }
 
             }
 
@@ -2903,7 +2919,7 @@ namespace TeboCam
 
 
 
-     
+
 
 
         public static void workInit(bool start)
@@ -3090,7 +3106,7 @@ namespace TeboCam
 
                 if (motionLevelChanged != null && motionLevel != motionLevelprevious)
                 {
-                    
+
                     motionLevelprevious = motionLevel;
                     motionLevelChanged(null, new EventArgs());
 
@@ -3099,7 +3115,7 @@ namespace TeboCam
 
         }
 
-       
+
 
         public static bool graphToday()
         {

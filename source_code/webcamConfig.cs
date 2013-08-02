@@ -289,11 +289,22 @@ namespace TeboCam
             i.Add(CameraRig.getCam(selectedWebcam).cam);
             //System.Diagnostics.Debug.WriteLine("cam sent: " + Convert.ToString(i[1]));
 
-            calibrate calibrate = new calibrate(null, i);
+            calibrate calibrate = new calibrate(postCalibrate, i);
             calibrate.StartPosition = FormStartPosition.CenterScreen;
             calibrate.ShowDialog();
 
         }
+
+        private void postCalibrate(ArrayList results)
+        {
+
+            trkMov.Value = (int)results[0];
+            trkTimeSpike.Value = (int)results[1];
+            trkToleranceSpike.Value = (int)results[2];
+            rdSpikeOn.Checked = true;
+
+        }
+
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -341,21 +352,6 @@ namespace TeboCam
 
         }
 
-        private void trkMov_Scroll(object sender, EventArgs e)
-        {
-            if (trkMov.Value == 100)
-            {
-                txtMov.Text = "99";
-            }
-            else
-            {
-                txtMov.Text = trkMov.Value.ToString();
-            }
-
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-
-        }
 
 
 
@@ -916,23 +912,6 @@ namespace TeboCam
 
         }
 
-        private void trackBar2_Scroll(object sender, EventArgs e)
-        {
-
-            lblTimeSpike.Text = trkTimeSpike.Value.ToString();
-            config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike, trkTimeSpike.Value);
-
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-
-            lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
-            config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike, trkToleranceSpike.Value);
-
-        }
 
         private void rdSpikeOn_CheckedChanged(object sender, EventArgs e)
         {
@@ -949,6 +928,40 @@ namespace TeboCam
 
         private void lblTimeSpike_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void trkMov_ValueChanged(object sender, EventArgs e)
+        {
+            if (trkMov.Value == 100)
+            {
+                txtMov.Text = "99";
+            }
+            else
+            {
+                txtMov.Text = trkMov.Value.ToString();
+            }
+
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
+            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
+        }
+
+        private void trkTimeSpike_ValueChanged(object sender, EventArgs e)
+        {
+
+
+            lblTimeSpike.Text = trkTimeSpike.Value.ToString();
+            config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike, trkTimeSpike.Value);
+
+        }
+
+        private void trkToleranceSpike_ValueChanged(object sender, EventArgs e)
+        {
+
+            lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
+            config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
+            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike, trkToleranceSpike.Value);
 
         }
 

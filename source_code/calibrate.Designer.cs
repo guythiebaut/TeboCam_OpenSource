@@ -40,6 +40,7 @@ namespace TeboCam
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pnlControls = new System.Windows.Forms.Panel();
             this.grpSpikeSettings = new System.Windows.Forms.GroupBox();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblSensitivity = new System.Windows.Forms.Label();
             this.lblToleranceSpike = new System.Windows.Forms.Label();
@@ -49,7 +50,8 @@ namespace TeboCam
             this.label4 = new System.Windows.Forms.Label();
             this.trkTimeSpike = new System.Windows.Forms.TrackBar();
             this.trkToleranceSpike = new System.Windows.Forms.TrackBar();
-            this.btnCopy = new System.Windows.Forms.Button();
+            this.lblCountDown = new System.Windows.Forms.Label();
+            this.linkLightSpike = new System.Windows.Forms.LinkLabel();
             this.grpSpikeSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkMov)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkTimeSpike)).BeginInit();
@@ -134,6 +136,13 @@ namespace TeboCam
             this.grpSpikeSettings.Name = "grpSpikeSettings";
             this.grpSpikeSettings.TabStop = false;
             // 
+            // btnCopy
+            // 
+            resources.ApplyResources(this.btnCopy, "btnCopy");
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
@@ -202,16 +211,25 @@ namespace TeboCam
             this.trkToleranceSpike.TickFrequency = 10;
             this.trkToleranceSpike.Scroll += new System.EventHandler(this.trkToleranceSpike_Scroll);
             // 
-            // btnCopy
+            // lblCountDown
             // 
-            resources.ApplyResources(this.btnCopy, "btnCopy");
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.lblCountDown, "lblCountDown");
+            this.lblCountDown.ForeColor = System.Drawing.Color.Black;
+            this.lblCountDown.Name = "lblCountDown";
+            // 
+            // linkLightSpike
+            // 
+            resources.ApplyResources(this.linkLightSpike, "linkLightSpike");
+            this.linkLightSpike.Name = "linkLightSpike";
+            this.linkLightSpike.TabStop = true;
+            this.linkLightSpike.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLightSpike_LinkClicked);
             // 
             // calibrate
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.linkLightSpike);
+            this.Controls.Add(this.lblCountDown);
             this.Controls.Add(this.grpSpikeSettings);
             this.Controls.Add(this.pnlControls);
             this.Controls.Add(this.label3);
@@ -259,5 +277,7 @@ namespace TeboCam
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblSensitivity;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.Label lblCountDown;
+        private System.Windows.Forms.LinkLabel linkLightSpike;
     }
 }

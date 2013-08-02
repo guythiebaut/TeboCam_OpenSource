@@ -12,23 +12,29 @@ namespace TeboCam
 {
     public partial class calibrate : Form
     {
-        static BackgroundWorker tw = new BackgroundWorker();
+        private BackgroundWorker tw = new BackgroundWorker();
         private formDelegate calibrateDelegate;
-        private static bool toolTip;
-        private static int cam;
-
+        private bool toolTip = new bool();
+        private int cam = new int();
+        int CountDownFrom = new int();
 
         public analyse analysis = new analyse();
 
 
-        public calibrate(formDelegate sender, ArrayList from)
+        public calibrate(formDelegate postCalibrate, ArrayList from)
         {
             InitializeComponent();
-            calibrateDelegate = sender;
+            lblCountDown.Text = string.Empty;
+            calibrateDelegate = postCalibrate;
             toolTip = (bool)from[0];
             cam = (int)from[1];
+            CameraRig.trainCam = cam;
             from.Clear();
+            //string tmpStr = "www.teboweb.com/calibrate.html";
+            //linkLightSpike.Links.Add(tmpStr);
+
             //System.Diagnostics.Debug.WriteLine("calibrate received: " + cam.ToString());
+
         }
 
 
@@ -39,6 +45,11 @@ namespace TeboCam
                 startCountdown.Text = "Stop Calibration";
                 bubble.testImagePublishFirst = true;
                 bubble.testImagePublish = true;
+                lblCountDown.Visible = true;
+                pnlControls.Controls.Clear();
+                lblCountDown.Text = string.Empty;
+                CountDownFrom = Convert.ToInt32(countVal.Text);
+
                 tw.DoWork -= new DoWorkEventHandler(testMotion);
                 tw.DoWork += new DoWorkEventHandler(testMotion);
                 tw.WorkerSupportsCancellation = true;
@@ -48,12 +59,15 @@ namespace TeboCam
             {
                 bubble.testImagePublish = false;
                 startCountdown.Text = "Start Calibration";
+                lblCountDown.Visible = false;
+                tw.CancelAsync();
             }
         }
 
 
         private void testMotion(object sender, DoWorkEventArgs e)
         {
+
 
             string outFile = bubble.tmpFolder + "motionCalibrate.csv";
 
@@ -67,6 +81,7 @@ namespace TeboCam
 
 
 
+
             CameraRig.getCam(cam).detectionOn = true;
             CameraRig.getCam(cam).calibrating = true;
             //CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
@@ -75,7 +90,11 @@ namespace TeboCam
             while (bubble.testImagePublish)
             {
 
-                if (time.secondsSinceStart() - startSecs >= Convert.ToInt32(countVal.Text))
+                int timeLeft = CountDownFrom - (time.secondsSinceStart() - startSecs);
+
+                lblCountDown.SynchronisedInvoke(() => lblCountDown.Text = "..." + timeLeft.ToString());
+
+                if (timeLeft <= 0)//Convert.ToInt32(countVal.Text))
                 {
                     bubble.testImagePublish = false;
                 }
@@ -97,19 +116,26 @@ namespace TeboCam
             StreamWriter sw = new StreamWriter(outFile, true);
             sw.WriteLine("Sequence,Motion_Level,lowestValueOverTime,Image_File");
 
+            analysis.images.Clear();
+
             for (int i = 0; i < bubble.testImagePublishData.Count; i++)
             {
 
-                sw.WriteLine(string.Concat(bubble.testImagePublishData[i], ",",
-                             bubble.testImagePublishData[i + 1], ",",
-                             bubble.testImagePublishData[i + 2], ",",
-                             bubble.testImagePublishData[i + 3]));
+                if (!tw.CancellationPending && File.Exists(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]))
+                {
 
-                analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
-                                           (string)bubble.testImagePublishData[i + 4],
-                                           (long)bubble.testImagePublishData[i + 5],
-                                           Color.DarkOrange,
-                                           (int)bubble.testImagePublishData[i + 1]);
+                    sw.WriteLine(string.Concat(bubble.testImagePublishData[i], ",",
+                                 bubble.testImagePublishData[i + 1], ",",
+                                 bubble.testImagePublishData[i + 2], ",",
+                                 bubble.testImagePublishData[i + 3]));
+
+                    analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
+                               (string)bubble.testImagePublishData[i + 4],
+                               (long)bubble.testImagePublishData[i + 5],
+                               Color.DarkOrange,
+                               (int)bubble.testImagePublishData[i + 1]);
+
+                }
 
                 i = i + 5;
 
@@ -117,17 +143,17 @@ namespace TeboCam
 
 
             sw.Close();
-            tw.Dispose();
 
             populate();
 
+            startCountdown.SynchronisedInvoke(() => startCountdown.Text = "Start Calibration");
+            lblCountDown.SynchronisedInvoke(() => lblCountDown.Visible = false);
 
 
         }
 
         private void cancel_Click(object sender, EventArgs e)
         {
-            bubble.testImagePublish = false;
             Close();
         }
 
@@ -149,6 +175,15 @@ namespace TeboCam
         private void calibrate_FormClosing(object sender, FormClosingEventArgs e)
         {
             bubble.testImagePublish = false;
+
+            if (tw.IsBusy)
+            {
+
+                tw.CancelAsync();
+                tw.Dispose();
+
+            }
+
         }
 
 
@@ -316,6 +351,25 @@ namespace TeboCam
 
             lblToleranceSpike.Text = trkToleranceSpike.Value.ToString();
             analyseResults();
+
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+
+            ArrayList results = new ArrayList();
+
+            results.Add(trkMov.Value);
+            results.Add(trkTimeSpike.Value);
+            results.Add(trkToleranceSpike.Value);
+            calibrateDelegate(results);
+
+        }
+
+        private void linkLightSpike_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            System.Diagnostics.Process.Start("www.teboweb.com/calibrate.html");
 
         }
 

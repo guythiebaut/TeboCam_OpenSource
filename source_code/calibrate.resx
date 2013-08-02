@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -177,7 +177,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label32.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -207,13 +207,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="cancel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>546, 37</value>
+    <value>546, 44</value>
   </data>
   <data name="cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 25</value>
@@ -234,7 +234,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cancel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -243,7 +243,7 @@
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="startCountdown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 37</value>
+    <value>411, 44</value>
   </data>
   <data name="startCountdown.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 25</value>
@@ -270,7 +270,7 @@ The text file can be imported into a spreadhseet to graph and analyse movement d
     <value>$this</value>
   </data>
   <data name="&gt;&gt;startCountdown.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="trainVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt, style=Bold</value>
@@ -294,10 +294,14 @@ The text file can be imported into a spreadhseet to graph and analyse movement d
   <data name="trainVal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="trainVal.ToolTip" xml:space="preserve">
-    <value>The frequency at which to save images.
+    <value>The frequency, in seconds, at which to save images.
 
 The recomended value is 0.5
+The lowest value allowed is 0.25
 (0.5 will save two images every second)</value>
   </data>
   <data name="&gt;&gt;trainVal.Name" xml:space="preserve">
@@ -310,7 +314,7 @@ The recomended value is 0.5
     <value>$this</value>
   </data>
   <data name="&gt;&gt;trainVal.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="countVal.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 8.25pt, style=Bold</value>
@@ -349,11 +353,8 @@ The recommended value is 30.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;countVal.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="pnlControls.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -376,7 +377,7 @@ The recommended value is 30.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pnlControls.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="label6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -547,6 +548,36 @@ The recommended value is 30.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpSpikeSettings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCopy.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 274</value>
+  </data>
+  <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 25</value>
+  </data>
+  <data name="btnCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>119</value>
+  </data>
+  <data name="btnCopy.Text" xml:space="preserve">
+    <value>Copy To Camera</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Name" xml:space="preserve">
+    <value>btnCopy</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.Parent" xml:space="preserve">
+    <value>grpSpikeSettings</value>
+  </data>
+  <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="label6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -858,34 +889,67 @@ The recommended value is 30.
   <data name="&gt;&gt;trkToleranceSpike.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="btnCopy.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  <data name="lblCountDown.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="btnCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblCountDown.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblCountDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 274</value>
+  <data name="lblCountDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>357, 9</value>
   </data>
-  <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 25</value>
+  <data name="lblCountDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 23</value>
   </data>
-  <data name="btnCopy.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblCountDown.TabIndex" type="System.Int32, mscorlib">
     <value>119</value>
   </data>
-  <data name="btnCopy.Text" xml:space="preserve">
-    <value>Copy To Camera</value>
+  <data name="lblCountDown.Text" xml:space="preserve">
+    <value>countdown</value>
   </data>
-  <data name="&gt;&gt;btnCopy.Name" xml:space="preserve">
-    <value>btnCopy</value>
+  <data name="lblCountDown.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;btnCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblCountDown.Name" xml:space="preserve">
+    <value>lblCountDown</value>
   </data>
-  <data name="&gt;&gt;btnCopy.Parent" xml:space="preserve">
-    <value>grpSpikeSettings</value>
+  <data name="&gt;&gt;lblCountDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblCountDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblCountDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="linkLightSpike.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLightSpike.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 386</value>
+  </data>
+  <data name="linkLightSpike.Size" type="System.Drawing.Size, System.Drawing">
+    <value>491, 13</value>
+  </data>
+  <data name="linkLightSpike.TabIndex" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="linkLightSpike.Text" xml:space="preserve">
+    <value>If you don't have a copy of the light spike detection manual - you can get a copy by clicking on this line</value>
+  </data>
+  <data name="&gt;&gt;linkLightSpike.Name" xml:space="preserve">
+    <value>linkLightSpike</value>
+  </data>
+  <data name="&gt;&gt;linkLightSpike.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLightSpike.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;linkLightSpike.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -898,7 +962,7 @@ The recommended value is 30.
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>875, 376</value>
+    <value>875, 408</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

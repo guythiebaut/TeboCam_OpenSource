@@ -42,7 +42,7 @@ namespace TeboCam
             calebrateImageTip.IsBalloon = true;
             calebrateImageTip.InitialDelay = 500;
             calebrateImageTip.AutoPopDelay = 5000;
-            calebrateImageTip.SetToolTip(this.imageBox,"Motion label: " + p_level.ToString());
+            calebrateImageTip.SetToolTip(this.imageBox,"Motion level: " + p_level.ToString());
             
 
         }
