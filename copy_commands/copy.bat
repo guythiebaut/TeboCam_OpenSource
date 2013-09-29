@@ -6,6 +6,8 @@ copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\calibrate.cs" "E:\Visual St
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\calibrate.Designer.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\calibrate.Designer.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\calibrate.resx" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\calibrate.resx"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\analysePictureControl.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\analysePictureControl.cs"
+copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\analyse.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\analyse.cs"
+copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\exception.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\exception.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\Camera.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\Camera.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\CameraRig.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\CameraRig.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\CameraWindow.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\CameraWindow.cs"

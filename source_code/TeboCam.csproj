@@ -130,6 +130,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommandLine.cs" />
+    <Compile Include="exception.cs" />
     <Compile Include="extensions.cs" />
     <Compile Include="imageFilter.cs" />
     <Compile Include="licence.cs">

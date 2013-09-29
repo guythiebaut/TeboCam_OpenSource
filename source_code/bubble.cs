@@ -1589,7 +1589,7 @@ namespace TeboCam
         public static string lastTime = "00:00";
         public static bool webcamAttached = false;
         public static int emailTestOk = 0;
-        public static bool pingError = false;
+        //public static bool pingError = false;
         public static double pingLast;
         public static int pings = 0;
         public static string pingGraphDate;
@@ -1681,7 +1681,7 @@ namespace TeboCam
         public static event EventHandler redrawGraph;
         public static event EventHandler pingGraph;
         public static event EventHandler motionLevelChanged;
-        public static event EventHandler takePicture;
+        public static event EventHandler takePingPicture;
         public static event ImagePubEventHandler pubPicture;
         public static event EventHandler motionDetectionActivate;
         public static event EventHandler motionDetectionInactivate;
@@ -1774,8 +1774,10 @@ namespace TeboCam
                 Graph.updateGraphHist(time.currentDate(), bubble.movStats);
             }
 
-            //we have images to process however the option is set to not load to ftp and not email images
-            if (ftpToProcess + emailToProcess > 0 && !config.getProfile(bubble.profileInUse).sendNotifyEmail && !config.getProfile(bubble.profileInUse).loadImagesToFtp)
+            //we have images to process however the option is set to not load to ftp site and not email images
+            if (ftpToProcess + emailToProcess > 0 
+                && !config.getProfile(bubble.profileInUse).sendNotifyEmail 
+                && !config.getProfile(bubble.profileInUse).loadImagesToFtp)
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 3);
                 logAddLine("Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
@@ -1786,7 +1788,7 @@ namespace TeboCam
             }
 
 
-
+            //we have images to load to the ftp site and the option is set to load to ftp site
             if (config.getProfile(bubble.profileInUse).loadImagesToFtp && ftpToProcess > 0)
             {
 
@@ -1809,7 +1811,6 @@ namespace TeboCam
 
                             teboDebug.writeline(teboDebug.movementPublishVal + 7);
                             logAddLine("Uploading to ftp site");
-                            //ftp.DeleteFTP(img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
                             ftp.Upload(imageFolder + img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
                             imagesFromMovement.ftpConfirmed(img);
 
@@ -1917,16 +1918,16 @@ namespace TeboCam
                                     {
 
                                         mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
-                                                                     thumbFolder + rand + mosaicFile,
-                                                                     config.getProfile(bubble.profileInUse).alertCompression);
+                                                            thumbFolder + rand + mosaicFile,
+                                                            config.getProfile(bubble.profileInUse).alertCompression);
 
                                     }
                                     else
                                     {
 
                                         mos.saveMosaicAsJpg(10,
-                                                               thumbFolder + rand + mosaicFile,
-                                                               config.getProfile(bubble.profileInUse).alertCompression);
+                                                            thumbFolder + rand + mosaicFile,
+                                                            config.getProfile(bubble.profileInUse).alertCompression);
 
                                     }
 
@@ -2061,7 +2062,7 @@ namespace TeboCam
                                            config.getProfile(bubble.profileInUse).EnableSsl
                                            );
 
-                            string[] newdet = new string[2];
+                            //string[] newdet = new string[2];
 
 
                             emailToProcess = imagesFromMovement.emailToProcess();
@@ -2601,11 +2602,11 @@ namespace TeboCam
                 pulseEvent(null, new EventArgs());
 
                 bubble.fileBusy = true;
-                takePicture(null, new EventArgs());
+                takePingPicture(null, new EventArgs());
                 Thread.Sleep(2000);
 
-                if (!bubble.pingError)
-                {
+                //if (!bubble.pingError)
+                //{
                     teboDebug.writeline(teboDebug.pingVal + 2);
 
                     logAddLine("Preparing ping email.");
@@ -2664,7 +2665,7 @@ namespace TeboCam
                     Thread.Sleep(2000);
                     logAddLine("Ping email sent.");
 
-                }
+                //}
 
                 teboDebug.writeline(teboDebug.pingVal + 6);
                 bubble.fileBusy = false;
@@ -3784,6 +3785,37 @@ namespace TeboCam
         {
 
             System.Diagnostics.Process.Start("shutdown", "/s /t 0");
+
+        }
+
+
+        public static void openInternetBrowserAt(string url)
+        {
+
+            try
+            {
+
+                System.Diagnostics.Process.Start(url);
+
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+
+                if (noBrowser.ErrorCode == -2147467259)
+                {
+
+                    MessageBox.Show("Your internet browser does not appear to be opening with TeboCam." + Environment.NewLine + "Please open your browser with this URL: " + url);
+
+                }
+
+            }
+            catch (System.Exception other)
+            {
+
+                MessageBox.Show(other.Message);
+
+            }
+
 
         }
 

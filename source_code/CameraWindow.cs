@@ -149,7 +149,7 @@ namespace TeboCam
                 {
 
                     camera.NewFrame += new EventHandler(camera_NewFrame);
-                    bubble.takePicture += new EventHandler(take_picture);
+                    bubble.takePingPicture += new EventHandler(take_ping_picture);
                     webcamConfig.drawInitialRectangle -= new drawEventHandler(drawInitialRectangle);
                     webcamConfig.drawInitialRectangle += new drawEventHandler(drawInitialRectangle);
 
@@ -323,38 +323,6 @@ namespace TeboCam
 
         }
 
-        //private static Bitmap resizeImage(Bitmap imgToResize, int width, int height)
-        //{
-        //    int sourceWidth = imgToResize.Width;
-        //    int sourceHeight = imgToResize.Height;
-
-        //    float nPercent = 0;
-        //    float nPercentW = 0;
-        //    float nPercentH = 0;
-
-        //    nPercentW = ((float)width / (float)sourceWidth);
-        //    nPercentH = ((float)height / (float)sourceHeight);
-
-        //    if (nPercentH < nPercentW)
-        //        nPercent = nPercentH;
-        //    else
-        //        nPercent = nPercentW;
-
-        //    int destWidth = (int)(sourceWidth * nPercent);
-        //    int destHeight = (int)(sourceHeight * nPercent);
-
-        //    Bitmap b = new Bitmap(destWidth, destHeight);
-        //    Graphics g = Graphics.FromImage((Bitmap)b);
-        //    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-        //    g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
-        //    g.Dispose();
-
-        //    return (Bitmap)b;
-        //}
-
-
-
 
 
 
@@ -410,7 +378,7 @@ namespace TeboCam
             Invalidate();
         }
 
-        private void take_picture(object sender, System.EventArgs e)
+        private void take_ping_picture(object sender, System.EventArgs e)
         {
 
             haveTheFlag = true;
@@ -505,14 +473,14 @@ namespace TeboCam
                 saveBmp.Dispose();
                 thumb.Dispose();
                 bubble.logAddLine("Image saved: " + fName);
-                bubble.pingError = false;
+                //bubble.pingError = false;
                 haveTheFlag = false;
 
             }
             catch (Exception)
             {
                 haveTheFlag = false;
-                bubble.pingError = true;
+                //bubble.pingError = true;
                 bubble.logAddLine("Error in saving image: " + fName);
             }
         }

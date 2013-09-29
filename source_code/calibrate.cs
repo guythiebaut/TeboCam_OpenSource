@@ -129,11 +129,17 @@ namespace TeboCam
                                  bubble.testImagePublishData[i + 2], ",",
                                  bubble.testImagePublishData[i + 3]));
 
-                    analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
+                    analysis.newPictureControl(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3],
                                (string)bubble.testImagePublishData[i + 4],
                                (long)bubble.testImagePublishData[i + 5],
                                Color.DarkOrange,
                                (int)bubble.testImagePublishData[i + 1]);
+
+                    //analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
+                    //           (string)bubble.testImagePublishData[i + 4],
+                    //           (long)bubble.testImagePublishData[i + 5],
+                    //           Color.DarkOrange,
+                    //           (int)bubble.testImagePublishData[i + 1]);
 
                 }
 
@@ -369,7 +375,7 @@ namespace TeboCam
         private void linkLightSpike_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            System.Diagnostics.Process.Start("www.teboweb.com/calibrate.html");
+            bubble.openInternetBrowserAt("www.teboweb.com/calibrate.html");
 
         }
 

@@ -124,10 +124,12 @@ namespace TeboCam
 
         private void info_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.LinkText);
+
+            bubble.openInternetBrowserAt(e.LinkText);
+
         }
 
-  
+
 
 
     }

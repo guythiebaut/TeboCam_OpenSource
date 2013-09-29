@@ -27,6 +27,24 @@ namespace TeboCam
 
         }
 
+        public analysePictureControl(string p_picture_location  , string p_name, long p_time, Color p_borderColour, int p_level)
+        {
+
+            InitializeComponent();
+
+            imageBox.ImageLocation = p_picture_location;
+            cam = p_name;
+            time = p_time;
+            borderColour = p_borderColour;
+            movLevel = p_level;
+            calebrateImageTip.Active = true;
+            calebrateImageTip.IsBalloon = true;
+            calebrateImageTip.InitialDelay = 500;
+            calebrateImageTip.AutoPopDelay = 5000;
+            calebrateImageTip.SetToolTip(this.imageBox, "Motion level: " + p_level.ToString());
+
+
+        }
 
         public analysePictureControl(Bitmap p_picture, string p_name, long p_time, Color p_borderColour, int p_level)
         {

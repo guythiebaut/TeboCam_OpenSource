@@ -90,7 +90,7 @@ namespace TeboCam
                     if (Uri.TryCreate(name, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
                     {
 
-                        System.Diagnostics.Process.Start("http:\\" + parsedIPAddress.ToString());
+                        bubble.openInternetBrowserAt("http:\\" + parsedIPAddress.ToString());
 
                     }
 

@@ -1708,7 +1708,7 @@ namespace TeboCam
             levelBitmap = new Bitmap(lineWid, lineLen, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             Graphics levelObj = Graphics.FromImage(levelBitmap);
 
-            
+
 
             levelObj.FillRectangle(controlBrush, new Rectangle(lineStartX, lineStartY, lineWid, lineLen));
 
@@ -2242,16 +2242,11 @@ namespace TeboCam
 
 
 
-        private void openWebPage(object sender, DoWorkEventArgs e)
+        private void openWebPageOLD(object sender, DoWorkEventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Process.Start(bubble.tebowebUrl);
-            }
-            catch (Exception)
-            {
-                bubble.logAddLine("Unable to connect to download site.");
-            }
+
+            bubble.openInternetBrowserAt(bubble.tebowebUrl);
+
         }
 
 
@@ -3094,10 +3089,9 @@ namespace TeboCam
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            ew.DoWork -= new DoWorkEventHandler(openWebPage);
-            ew.DoWork += new DoWorkEventHandler(openWebPage);
-            ew.WorkerSupportsCancellation = true;
-            ew.RunWorkerAsync();
+
+            bubble.openInternetBrowserAt(bubble.tebowebUrl);
+
         }
 
         private void pubTimerOn_CheckedChanged(object sender, EventArgs e)
