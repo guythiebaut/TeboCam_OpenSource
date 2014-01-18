@@ -31,6 +31,7 @@ enum enumCommandLine
     profile = 0,
     alert = 1,
     restart = 2,
+    close = 3,
     none = 9
 };
 
@@ -266,6 +267,11 @@ namespace TeboCam
                         restart = true;
                         bubble.pulseRestart = true;
                     }
+                    if (commandLine == "/close")
+                    {
+                        result = enumCommandLine.close;
+                        return result;
+                    }
 
                     //if (restart && commandLine == "active") activate = true; ;
                     //if (restart && commandLine == "inactive") activate = false;
@@ -421,6 +427,16 @@ namespace TeboCam
             enumCommandLine commlineResults = commandLine();
             pnlStartupOptions.Visible = commlineResults <= enumCommandLine.alert;
 
+            if (commlineResults == enumCommandLine.close)
+            {
+
+                CloseAllTeboCamPocesses();
+                Close();
+                return;
+                    
+
+            }
+
             if (FileManager.readXmlFile("graph", false))
             {
                 FileManager.backupFile("graph");
@@ -566,6 +582,26 @@ namespace TeboCam
 
         }
 
+
+        private void CloseAllTeboCamPocesses()
+        {
+
+            int myProcessID = Process.GetCurrentProcess().Id;
+
+            Process[] processes = Process.GetProcesses();
+
+            foreach (Process process in processes)
+            {
+                if (process.ProcessName == bubble.processToEnd && process.Id != myProcessID)
+                {
+
+                    process.Kill();
+
+                }
+
+            }
+
+        }
 
 
         private void preferences_Loaded(object sender, EventArgs e)
