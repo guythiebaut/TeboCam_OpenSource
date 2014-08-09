@@ -34,13 +34,18 @@ namespace TeboCam
         private static string selectedWebcam;
         private static int mainSelectedWebcam;
         private static List<int> buttons;
-        private static Bitmap levelBitmap;
+        private LevelControl LevelControlBox = new LevelControl();
         private ArrayList returnList = new ArrayList();
         private bool autoscroll;
         private static bool toolTip;
 
         public webcamConfig(formDelegate sender, ArrayList from)
         {
+
+            LevelControlBox.Left = 417;
+            LevelControlBox.Top = 18;
+            this.Controls.Add(LevelControlBox);
+
 
             toolTip = (bool)from[0];
             mainSelectedWebcam = (int)from[1];
@@ -489,7 +494,7 @@ namespace TeboCam
                     CameraRig.getCam(i).calibrating = false;
                 }
 
-                levelBitmap.Dispose();
+                //levelBitmap.Dispose();
 
                 //20130617 v - noopped as main camera window was showing a blank image
                 //cameraWindow.Camera = null;
@@ -517,102 +522,13 @@ namespace TeboCam
             {
 
                 double sensitivity = (double)Convert.ToInt32(txtMov.Text);
-                levelDraw(Convert.ToInt32(a.lvl * 100), sensitivity);
+                LevelControlBox.levelDraw(Convert.ToInt32(a.lvl * 100), sensitivity);
 
             }
 
         }
 
 
-
-        private void levelbox_Paint(object sender, PaintEventArgs e)
-        {
-
-
-            Graphics levelObj = e.Graphics;
-            try
-            {
-                if (levelBitmap != null)
-                {
-                    levelObj.DrawImage(levelBitmap, 0, 0, levelBitmap.Width, levelBitmap.Height);
-                }
-            }
-            catch (Exception)
-            {
-                bubble.logAddLine("Error drawing level bitmap");
-            }
-
-        }
-
-
-
-        private void levelDraw(int val, double sensitivity)
-        {
-
-            int sensePerc = 0;
-            int lineStartX = 0;
-            int lineStartY = 0;
-            int lineLen = 0;
-            int lineWid = 0;
-            double onePct = 0;
-            int greenLen = 0;
-            int orangeLen = 0;
-            int greenStart = 0;
-            int orangeStart = 0;
-
-
-            try
-            {
-
-                sensePerc = (int)Math.Floor(sensitivity);
-                lineLen = levelbox.Size.Height;
-                lineWid = levelbox.Size.Width;
-                onePct = (double)lineLen / (double)100;
-                greenLen = (int)Math.Floor((double)val * onePct);
-                orangeLen = (int)Math.Floor(((double)100 - (double)val) * onePct);
-                greenStart = (int)Math.Floor(((double)100 - (double)val) * onePct);
-                orangeStart = (100 - val);
-
-                System.Drawing.SolidBrush controlBrush = new System.Drawing.SolidBrush(System.Drawing.SystemColors.Control);
-                System.Drawing.SolidBrush greenBrush = new System.Drawing.SolidBrush(System.Drawing.Color.GreenYellow);
-                System.Drawing.SolidBrush orangeBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
-
-                levelBitmap = new Bitmap(lineWid, lineLen, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-                Graphics levelObj = Graphics.FromImage(levelBitmap);
-
-                levelObj.FillRectangle(controlBrush, new Rectangle(lineStartX, lineStartY, lineWid, lineLen));
-
-                if (val > sensePerc)
-                {
-                    greenStart = (int)Math.Floor(((double)100 - (double)sensePerc) * onePct);
-                    greenLen = (int)Math.Floor((double)sensePerc * onePct);
-                    orangeStart = ((int)Math.Floor(((double)100 - (double)val) * onePct));
-                    orangeLen = (int)Math.Floor(((double)val - (double)sensePerc) * onePct);
-                    levelObj.FillRectangle(greenBrush, new Rectangle(lineStartX, greenStart, lineWid, greenLen));
-                    levelObj.FillRectangle(orangeBrush, new Rectangle(lineStartX, orangeStart, lineWid, orangeLen));
-                }
-                else
-                {
-                    greenStart = (int)Math.Floor(((double)100 - (double)val) * onePct);
-                    greenLen = (int)Math.Floor((double)val * onePct);
-                    levelObj.FillRectangle(greenBrush, new Rectangle(lineStartX, greenStart, lineWid, greenLen));
-                }
-
-                controlBrush.Dispose();
-                greenBrush.Dispose();
-                orangeBrush.Dispose();
-                levelObj.Dispose();
-                levelbox.Invalidate();
-
-            }
-
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-            }
-
-
-        }
 
 
         private void bttncam1_Click(object sender, EventArgs e)

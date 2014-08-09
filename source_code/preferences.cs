@@ -63,7 +63,7 @@ namespace TeboCam
         public static event ListPubEventHandler statusUpdate;
 
         public static System.Drawing.Bitmap myBitmap;
-        public static System.Drawing.Bitmap levelBitmap;
+        //public static System.Drawing.Bitmap levelBitmap;
 
         private ArrayList lineXpos = new ArrayList();
 
@@ -97,6 +97,8 @@ namespace TeboCam
 
         public int frameCount;
         public int framePrevious = 0;
+
+        private LevelControl LevelControlBox = new LevelControl();
 
         private FilterInfoCollection filters;
 
@@ -146,12 +148,16 @@ namespace TeboCam
             //bubble.logAddLine("KeepWorking value: " + bubble.keepWorking.ToString());
 
             teboDebug.filePath = bubble.logFolder;
-            teboDebug.fileName = "debug.txt";
+            teboDebug.fileName = "debug.txt";//string.Format("debug_{0}.txt", DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture));
 
-            teboDebug.debugToFile = true;
+            //teboDebug.debugToFile = true;
             teboDebug.openFile();
 
             teboDebug.writeline("workerProcess starting");
+
+            //teboDebug.debugOn = true;
+
+
 
             while (bubble.keepWorking)
             {
@@ -351,6 +357,10 @@ namespace TeboCam
 
             installationClean();
 
+            LevelControlBox.Left = 6;
+            LevelControlBox.Top = 35;
+            this.Webcam.Controls.Add(LevelControlBox);
+
             CameraRig.camSelInit();
 
             publishCams publishCams = new publishCams(9);
@@ -433,7 +443,7 @@ namespace TeboCam
                 CloseAllTeboCamPocesses();
                 Close();
                 return;
-                    
+
 
             }
 
@@ -449,7 +459,9 @@ namespace TeboCam
             //clear out thumb nail images
             FileManager.clearFiles(bubble.thumbFolder);
 
-            levelDraw(0);
+            //levelDraw(0);
+            LevelControlBox.levelDraw(0);
+
             bubble.moveStatsInitialise();
             Graph.updateGraphHist(time.currentDate(), bubble.movStats);
             drawGraph(this, null);
@@ -1700,77 +1712,10 @@ namespace TeboCam
         {
             if (showLevel)
             {
-                levelDraw(bubble.motionLevel);
+                LevelControlBox.levelDraw(bubble.motionLevel);
             }
         }
 
-
-        private void levelDraw(int val)
-        {
-
-            int sensePerc = 0;
-            int lineStartX = 0;
-            int lineStartY = 0;
-            int lineLen = 0;
-            int lineWid = 0;
-            double onePct = 0;
-            int greenLen = 0;
-            int orangeLen = 0;
-            int greenStart = 0;
-            int orangeStart = 0;
-
-
-            if (CameraRig.camerasAttached())
-            {
-                sensePerc = (int)Math.Floor(CameraRig.rig[CameraRig.activeCam].cam.movementVal * (double)100);
-            }
-            else
-            {
-                sensePerc = 100;
-            }
-
-            lineLen = levelbox.Size.Height;
-            lineWid = levelbox.Size.Width;
-            onePct = (double)lineLen / (double)100;
-            greenLen = (int)Math.Floor((double)val * onePct);
-            orangeLen = (int)Math.Floor(((double)100 - (double)val) * onePct);
-            greenStart = (int)Math.Floor(((double)100 - (double)val) * onePct);
-            orangeStart = (100 - val);
-
-            System.Drawing.SolidBrush controlBrush = new System.Drawing.SolidBrush(System.Drawing.SystemColors.Control);
-            System.Drawing.SolidBrush greenBrush = new System.Drawing.SolidBrush(System.Drawing.Color.GreenYellow);
-            System.Drawing.SolidBrush orangeBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
-
-            levelBitmap = new Bitmap(lineWid, lineLen, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            Graphics levelObj = Graphics.FromImage(levelBitmap);
-
-
-
-            levelObj.FillRectangle(controlBrush, new Rectangle(lineStartX, lineStartY, lineWid, lineLen));
-
-            if (val > sensePerc)
-            {
-                greenStart = (int)Math.Floor(((double)100 - (double)sensePerc) * onePct);
-                greenLen = (int)Math.Floor((double)sensePerc * onePct);
-                orangeStart = ((int)Math.Floor(((double)100 - (double)val) * onePct));
-                orangeLen = (int)Math.Floor(((double)val - (double)sensePerc) * onePct);
-                levelObj.FillRectangle(greenBrush, new Rectangle(lineStartX, greenStart, lineWid, greenLen));
-                levelObj.FillRectangle(orangeBrush, new Rectangle(lineStartX, orangeStart, lineWid, orangeLen));
-            }
-            else
-            {
-                greenStart = (int)Math.Floor(((double)100 - (double)val) * onePct);
-                greenLen = (int)Math.Floor((double)val * onePct);
-                levelObj.FillRectangle(greenBrush, new Rectangle(lineStartX, greenStart, lineWid, greenLen));
-            }
-
-            controlBrush.Dispose();
-            greenBrush.Dispose();
-            orangeBrush.Dispose();
-            levelObj.Dispose();
-            levelbox.Invalidate();
-
-        }
 
 
 
@@ -1951,23 +1896,23 @@ namespace TeboCam
 
         }
 
-        private void levelbox_Paint(object sender, PaintEventArgs e)
-        {
+        //private void levelbox_Paint(object sender, PaintEventArgs e)
+        //{
 
-            Graphics levelObj = e.Graphics;
-            try
-            {
-                if (levelBitmap != null)
-                {
-                    levelObj.DrawImage(levelBitmap, 0, 0, levelBitmap.Width, levelBitmap.Height);
-                }
-            }
-            catch (Exception)
-            {
-                bubble.logAddLine("Error drawing level bitmap");
-            }
+        //    Graphics levelObj = e.Graphics;
+        //    try
+        //    {
+        //        if (levelBitmap != null)
+        //        {
+        //            levelObj.DrawImage(levelBitmap, 0, 0, levelBitmap.Width, levelBitmap.Height);
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        bubble.logAddLine("Error drawing level bitmap");
+        //    }
 
-        }
+        //}
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -2680,14 +2625,17 @@ namespace TeboCam
             {
                 showLevel = false;
                 levelShow.Image = TeboCam.Properties.Resources.level;
-                levelDraw(0);
+                //levelDraw(0);
+                LevelControlBox.levelDraw(0);
             }
 
-            lbl0Perc.Visible = showLevel;
-            lbl25Perc.Visible = showLevel;
-            lbl50Perc.Visible = showLevel;
-            lbl75Perc.Visible = showLevel;
-            lbl100Perc.Visible = showLevel;
+            //lbl0Perc.Visible = showLevel;
+            //lbl25Perc.Visible = showLevel;
+            //lbl50Perc.Visible = showLevel;
+            //lbl75Perc.Visible = showLevel;
+            //lbl100Perc.Visible = showLevel;
+
+            LevelControlBox.Visible = showLevel;
 
             webUpd.Checked = data.webUpd;
             sqlUser.Text = data.webUser;
@@ -4183,17 +4131,21 @@ namespace TeboCam
 
                 showLevel = false;
                 levelShow.Image = TeboCam.Properties.Resources.level;
-                levelDraw(0);
+                //levelDraw(0);
+                LevelControlBox.levelDraw(0);
 
             }
 
             config.getProfile(bubble.profileInUse).motionLevel = showLevel;
 
-            lbl0Perc.Visible = showLevel;
-            lbl25Perc.Visible = showLevel;
-            lbl50Perc.Visible = showLevel;
-            lbl75Perc.Visible = showLevel;
-            lbl100Perc.Visible = showLevel;
+            //lbl0Perc.Visible = showLevel;
+            //lbl25Perc.Visible = showLevel;
+            //lbl50Perc.Visible = showLevel;
+            //lbl75Perc.Visible = showLevel;
+            //lbl100Perc.Visible = showLevel;
+
+            LevelControlBox.Visible = showLevel;
+
 
         }
 
@@ -4569,7 +4521,8 @@ namespace TeboCam
             //cameraWindow.Invalidate();
 
             bubble.motionLevelChanged -= new EventHandler(drawLevel);
-            levelDraw(0);
+            //levelDraw(0);
+            LevelControlBox.levelDraw(0);
 
             webcamConfig webcamConfig = new webcamConfig(new formDelegate(webcamConfigCompleted), i);
             webcamConfig.StartPosition = FormStartPosition.CenterScreen;

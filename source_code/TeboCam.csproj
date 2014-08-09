@@ -66,6 +66,9 @@
     <EmbeddedResource Include="InputBoxDialog.resx">
       <DependentUpon>InputBoxDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LevelControl.resx">
+      <DependentUpon>LevelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="schedule.resx">
       <DependentUpon>schedule.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -133,9 +136,16 @@
     <Compile Include="exception.cs" />
     <Compile Include="extensions.cs" />
     <Compile Include="imageFilter.cs" />
+    <Compile Include="LevelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LevelControl.Designer.cs">
+      <DependentUpon>LevelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="licence.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Queue.cs" />
     <Compile Include="schedule.cs">
       <SubType>Form</SubType>
     </Compile>

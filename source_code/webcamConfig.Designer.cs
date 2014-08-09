@@ -479,7 +479,7 @@ namespace TeboCam
             this.levelbox.Name = "levelbox";
             this.levelbox.TabStop = false;
             this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
-            this.levelbox.Paint += new System.Windows.Forms.PaintEventHandler(this.levelbox_Paint);
+
             // 
             // label38
             // 

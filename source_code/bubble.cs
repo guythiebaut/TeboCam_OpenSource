@@ -50,13 +50,15 @@ namespace TeboCam
         {
 
             public string guid;
-            public string image;
+            public string fileName;
             public bool ftp;
             public bool email;
 
         }
 
-        private static List<item> imageList = new List<item>();
+
+
+        public static List<item> imageList = new List<item>();
         private static List<item> ftpList = new List<item>();
         private static List<item> emailList = new List<item>();
 
@@ -69,10 +71,9 @@ namespace TeboCam
 
                 item itm = new item();
 
-                string[] tmpStr = new string[3];
                 string guid = Guid.NewGuid().ToString();
 
-                itm.image = images[i].ToString(); ;
+                itm.fileName = images[i].ToString(); ;
                 itm.ftp = false;
                 itm.email = false;
                 itm.guid = guid;
@@ -126,10 +127,10 @@ namespace TeboCam
 
             int tmpCnt = 0;
 
-            foreach (item itm in imageList)
+            foreach (item imageListItem in imageList)
             {
 
-                if (!itm.email)
+                if (!imageListItem.email)
                 {
 
                     tmpCnt++;
@@ -141,160 +142,14 @@ namespace TeboCam
             return tmpCnt;
 
         }
-
-        //find the guid for the image confirmed as ftp'd in the ftpList
-        //and set the ftp bool to true for this image
-        public static void ftpConfirmed(string image)
-        {
-
-            foreach (item itmFtp in ftpList)
-            {
-
-                if (itmFtp.image == image)
-                {
-
-                    foreach (item itmList in imageList)
-                    {
-
-                        if (itmList.guid == itmFtp.guid)
-                        {
-
-                            itmList.ftp = true;
-                            break;
-
-                        }
-
-                    }
-
-                    break;
-
-                }
-
-            }
-
-
-        }
-
-        //find the guid for the image confirmed as emailed in the emailList
-        //and set the email bool to true for this image
-        public static void emailConfirmed(string image)
-        {
-
-            foreach (item itmEmail in emailList)
-            {
-
-                if (itmEmail.image == image)
-                {
-
-                    foreach (item itmList in imageList)
-                    {
-
-                        if (itmList.guid == itmEmail.guid)
-                        {
-
-                            itmList.email = true;
-                            break;
-
-                        }
-
-                    }
-
-                    break;
-
-                }
-
-            }
-
-
-        }
-
-        public static ArrayList toFtp(int maxItems)
-        {
-
-            int tmpCnt = 0;
-
-            //clear the temporary ftpList
-            //this list contains the images which are to be sent
-            //in this ftp request batch
-            ftpList.Clear();
-            ArrayList returnList = new ArrayList();
-
-            for (int i = 0; i < imageList.Count; i++)
-            {
-
-                if (!imageList[i].ftp)
-                {
-
-                    item itm = new item();
-                    itm.image = imageList[i].image;
-                    itm.guid = imageList[i].guid;
-
-                    ftpList.Add(itm);
-                    returnList.Add(imageList[i].image);
-
-                    tmpCnt++;
-
-                }
-
-                if (tmpCnt >= maxItems)
-                {
-
-                    break;
-                }
-
-            }
-
-            return returnList;
-
-        }
-
-        public static ArrayList toEmail(int maxItems)
-        {
-
-            int tmpCnt = 0;
-
-            //clear the temporary emailList
-            //this list contains the images which are to be sent
-            //in this email request batch
-            emailList.Clear();
-            ArrayList returnList = new ArrayList();
-
-            for (int i = 0; i < imageList.Count; i++)
-            {
-
-                if (!imageList[i].email)
-                {
-
-                    item itm = new item();
-                    itm.image = imageList[i].image;
-                    itm.guid = imageList[i].guid;
-
-                    emailList.Add(itm);
-                    returnList.Add(imageList[i].image);
-
-                    tmpCnt++;
-
-                }
-
-                if (tmpCnt >= maxItems)
-                {
-
-                    break;
-                }
-
-            }
-
-            return returnList;
-
-        }
-
-
-
-
-
-
+        
 
     }
+
+
+
+
+
 
     public class mosaic
     {
@@ -499,7 +354,21 @@ namespace TeboCam
         public static int buttonState(int button)
         {
 
-            return cam[button - 1];
+            if (cam.Count > 0)
+            {
+
+                return cam[button - 1];
+
+            }
+            else
+            {
+
+
+                return 0;
+
+            }
+
+
 
         }
 
@@ -598,7 +467,7 @@ namespace TeboCam
 
             int bttn = p_bttn - 1;
 
-            if (cam[bttn] == 2)
+            if (cam.Count > 0 && cam[bttn] == 2)
             {
 
                 for (int i = 0; i < cam.Count; i++)
@@ -786,7 +655,7 @@ namespace TeboCam
             bool camTaken = true;
 
             //button is available
-            if (cam[bttn] == 0)
+            if (cam.Count > 0 && cam[bttn] == 0)
             {
 
                 cam[bttn] = 2;
@@ -1756,12 +1625,11 @@ namespace TeboCam
         public static void movementPublish()
         {
 
-            int emailToProcess = new int();
-            int ftpToProcess = new int();
+
             bool spamStopEmail = false;
 
-            emailToProcess = imagesFromMovement.emailToProcess();
-            ftpToProcess = imagesFromMovement.ftpToProcess();
+            int emailToProcess = imagesFromMovement.emailToProcess();
+            int ftpToProcess = imagesFromMovement.ftpToProcess();
 
             teboDebug.writeline(teboDebug.movementPublishVal + 1);
             pulseEvent(null, new EventArgs());
@@ -1775,8 +1643,8 @@ namespace TeboCam
             }
 
             //we have images to process however the option is set to not load to ftp site and not email images
-            if (ftpToProcess + emailToProcess > 0 
-                && !config.getProfile(bubble.profileInUse).sendNotifyEmail 
+            if (ftpToProcess + emailToProcess > 0
+                && !config.getProfile(bubble.profileInUse).sendNotifyEmail
                 && !config.getProfile(bubble.profileInUse).loadImagesToFtp)
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 3);
@@ -1788,6 +1656,10 @@ namespace TeboCam
             }
 
 
+
+            //*************************************************************************************************
+            //Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp 
+            //*************************************************************************************************
             //we have images to load to the ftp site and the option is set to load to ftp site
             if (config.getProfile(bubble.profileInUse).loadImagesToFtp && ftpToProcess > 0)
             {
@@ -1801,43 +1673,53 @@ namespace TeboCam
                         teboDebug.writeline(teboDebug.movementPublishVal + 6);
                         pulseEvent(null, new EventArgs());
 
-                        int tmpInt = 0;
 
-                        ArrayList ftpArrList = imagesFromMovement.toFtp(ftpToProcess);
+                        //ArrayList ftpArrList = imagesFromMovement.toFtp(ftpToProcess);
 
-                        //foreach (string img in imagesToProcess)
-                        foreach (string img in ftpArrList)
+                        int pulseCount = 0;
+
+                        foreach (imagesFromMovement.item item in imagesFromMovement.imageList)
                         {
 
-                            teboDebug.writeline(teboDebug.movementPublishVal + 7);
-                            logAddLine("Uploading to ftp site");
-                            ftp.Upload(imageFolder + img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
-                            imagesFromMovement.ftpConfirmed(img);
 
-                            tmpInt++;
-
-                            if (tmpInt > 4)
+                            if (!item.ftp)
                             {
-                                tmpInt = 0;
-                                pulseEvent(null, new EventArgs());
+
+                                item.ftp = true;
+                                teboDebug.writeline(teboDebug.movementPublishVal + 7);
+                                logAddLine("Uploading to ftp site");
+                                ftp.Upload(imageFolder + item.fileName, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
+
+                                pulseCount++;
+
+                                if (pulseCount > 4)
+                                {
+                                    pulseCount = 0;
+                                    pulseEvent(null, new EventArgs());
+                                }
+
                             }
+
 
                         }
 
 
                     }
                     catch { }
-                    if (!config.getProfile(bubble.profileInUse).sendNotifyEmail)
-                    {
-                        teboDebug.writeline(teboDebug.movementPublishVal + 8);
-                        //imagesToProcess.Clear();
-                    }
                 }
                 //ftp images - end
 
             }
+            //*************************************************************************************************
+            //Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp 
+            //*************************************************************************************************
 
 
+
+
+            //*************************************************************************************************
+            //Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email 
+            //*************************************************************************************************
 
             //Images to process are more than will fit in one email
             //or we have images to process and the email notify interval time has passed
@@ -1875,202 +1757,258 @@ namespace TeboCam
                 {
                     teboDebug.writeline(teboDebug.movementPublishVal + 9);
 
-                    ArrayList emailArrList = imagesFromMovement.toEmail(emailToProcess);
+                    //ArrayList emailArrList = imagesFromMovement.toEmail(emailToProcess);
                     int imagesToEmail = emailToProcess;
 
                     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    while (imagesToEmail > 0)
+                    //while (imagesToEmail > 0)
+                    //{
+                    teboDebug.writeline(teboDebug.movementPublishVal + 10);
+                    //try
+                    //{
+
+                    teboDebug.writeline(teboDebug.movementPublishVal + 11);
+                    mail.clearAttachments();
+
+                    //the time trigger has caused these emails to be sent
+                    //or the despamificator has been switched on and the time has elapsed with the mosaic option selected
+
+
+                    if (emailToProcess < config.getProfile(bubble.profileInUse).maxImagesToEmail || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
                     {
-                        teboDebug.writeline(teboDebug.movementPublishVal + 10);
-                        try
+                        teboDebug.writeline(teboDebug.movementPublishVal + 12);
+
+                        //send mosaic
+                        if (config.getProfile(bubble.profileInUse).sendMosaicImages || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
                         {
 
-                            teboDebug.writeline(teboDebug.movementPublishVal + 11);
-                            mail.clearAttachments();
 
-                            //the time trigger has caused these emails to be sent
-                            //or the despamificator has been switched on and the time has elapsed with the mosaic option selected
-                            if (emailToProcess < config.getProfile(bubble.profileInUse).maxImagesToEmail || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
+                            mosaic mos = new mosaic();
+
+                            foreach (imagesFromMovement.item item in imagesFromMovement.imageList)
                             {
-                                teboDebug.writeline(teboDebug.movementPublishVal + 12);
 
-                                //send mosaic
-                                if (config.getProfile(bubble.profileInUse).sendMosaicImages || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
+
+                                if (!item.email)
                                 {
 
-                                    mosaic mos = new mosaic();
-
-                                    mos.clearList();
-
-                                    for (int i = 0; i < emailToProcess; i++)
-                                    {
-                                        mos.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
-                                        imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
-                                    }
-
-                                    imagesToEmail = 0;
-
-                                    string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
-
-                                    pulseEvent(null, new EventArgs());
-
-                                    if (!spamStopEmail)
-                                    {
-
-                                        mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
-                                                            thumbFolder + rand + mosaicFile,
-                                                            config.getProfile(bubble.profileInUse).alertCompression);
-
-                                    }
-                                    else
-                                    {
-
-                                        mos.saveMosaicAsJpg(10,
-                                                            thumbFolder + rand + mosaicFile,
-                                                            config.getProfile(bubble.profileInUse).alertCompression);
-
-                                    }
-
-
-                                    mos.clearList();
-
-                                    mail.attachments.Add(thumbFolder + rand + mosaicFile);
-
+                                    item.email = true;
+                                    mos.addToList(thumbFolder + tmbPrefix + item.fileName);
 
                                 }
 
-                                //send thumbs or fullsize
-                                else
-                                {
-
-                                    teboDebug.writeline(teboDebug.movementPublishVal + 13);
-
-
-
-                                    for (int i = 0; i < emailArrList.Count; i++)
-                                    {
-
-                                        imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
-                                        if (config.getProfile(bubble.profileInUse).sendThumbnailImages) emailArrList[i] = thumbFolder + tmbPrefix + emailArrList[i];
-                                        if (config.getProfile(bubble.profileInUse).sendFullSizeImages) emailArrList[i] = imageFolder + emailArrList[i];
-
-                                    }
-
-                                    imagesToEmail = 0;
-
-                                    pulseEvent(null, new EventArgs());
-                                    mail.attachments.AddRange(emailArrList.GetRange(0, (emailArrList.Count)));
-
-                                }
-
-                                teboDebug.writeline(teboDebug.movementPublishVal + 14);
 
                             }
 
-                            //the quantity trigger has caused these emails to be sent 
-                            else
-                            {
-                                teboDebug.writeline(teboDebug.movementPublishVal + 15);
 
-                                //send mosaic
-                                if (config.getProfile(bubble.profileInUse).sendMosaicImages)
-                                {
+                            imagesToEmail = 0;
 
-                                    mosaic mos = new mosaic();
+                            string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
 
-                                    mos.clearList();
-
-                                    for (int i = 0; i < (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail); i++)
-                                    {
-
-                                        mos.addToList(thumbFolder + tmbPrefix + emailArrList[i].ToString());
-                                        imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
-                                        imagesToEmail--;
-
-                                    }
-
-                                    string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
-
-                                    pulseEvent(null, new EventArgs());
-                                    mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
-                                                                 thumbFolder + rand + mosaicFile,
-                                                                 config.getProfile(bubble.profileInUse).alertCompression);
-
-                                    mos.clearList();
-
-                                    mail.attachments.Add(thumbFolder + rand + mosaicFile);
-
-                                }
-
-                                //send thumbs or fullsize
-                                else
-                                {
-
-                                    teboDebug.writeline(teboDebug.movementPublishVal + 16);
-
-                                    for (int i = 0; i < (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail); i++)
-                                    {
-
-                                        imagesFromMovement.emailConfirmed(emailArrList[i].ToString());
-                                        if (config.getProfile(bubble.profileInUse).sendThumbnailImages) emailArrList[i] = thumbFolder + tmbPrefix + emailArrList[i].ToString();
-                                        if (config.getProfile(bubble.profileInUse).sendFullSizeImages) emailArrList[i] = imageFolder + emailArrList[i].ToString();
-                                        imagesToEmail--;
-
-                                    }
-
-                                    pulseEvent(null, new EventArgs());
-                                    teboDebug.writeline(teboDebug.movementPublishVal + 17);
-                                    mail.attachments.AddRange(emailArrList.GetRange(0, (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail)));
-
-                                }
-
-                            }
-
-                            try
-                            {
-                                teboDebug.writeline(teboDebug.movementPublishVal + 18);
-                                graphSeq++;
-                                graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
-                            }
-                            catch
-                            {
-                                logAddLine("Error saving graph for emailing;");
-                            }
-
-                            teboDebug.writeline(teboDebug.movementPublishVal + 19);
                             pulseEvent(null, new EventArgs());
 
-                            mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"); ;
-                            logAddLine("graphCurrent" + graphSeq.ToString() + ".jpg" + " added to email");
-                            Thread.Sleep(500);
-                            logAddLine("Sending Email");
+                            if (!spamStopEmail)
+                            {
 
-                            mail.sendEmail(
-                                           config.getProfile(bubble.profileInUse).sentBy,
-                                           config.getProfile(bubble.profileInUse).sendTo,
-                                           config.getProfile(bubble.profileInUse).mailSubject,
-                                           config.getProfile(bubble.profileInUse).mailBody,
-                                           config.getProfile(bubble.profileInUse).replyTo,
-                                           (config.getProfile(bubble.profileInUse).sendThumbnailImages ||
-                                           config.getProfile(bubble.profileInUse).sendFullSizeImages ||
-                                           config.getProfile(bubble.profileInUse).sendMosaicImages),
-                                           time.secondsSinceStart(),
-                                           config.getProfile(bubble.profileInUse).emailUser,
-                                           config.getProfile(bubble.profileInUse).emailPass,
-                                           config.getProfile(bubble.profileInUse).smtpHost,
-                                           config.getProfile(bubble.profileInUse).smtpPort,
-                                           config.getProfile(bubble.profileInUse).EnableSsl
-                                           );
+                                mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
+                                                    thumbFolder + rand + mosaicFile,
+                                                    config.getProfile(bubble.profileInUse).alertCompression);
 
-                            //string[] newdet = new string[2];
+                            }
+                            else
+                            {
 
+                                mos.saveMosaicAsJpg(10,
+                                                    thumbFolder + rand + mosaicFile,
+                                                    config.getProfile(bubble.profileInUse).alertCompression);
 
-                            emailToProcess = imagesFromMovement.emailToProcess();
-                            imagesToEmail = emailToProcess;
+                            }
+
+                            mail.addAttachment(thumbFolder + rand + mosaicFile);
+
 
                         }
-                        catch { }
-                    }//while (imagesToProcess2.emailToProcess() != 0)
+
+                        //send thumbs or fullsize
+                        else
+                        {
+
+
+                            teboDebug.writeline(teboDebug.movementPublishVal + 13);
+
+
+                            foreach (imagesFromMovement.item item in imagesFromMovement.imageList)
+                            {
+
+                                if (!item.email)
+                                {
+
+                                    item.email = true;
+                                    if (config.getProfile(bubble.profileInUse).sendThumbnailImages) mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
+                                    if (config.getProfile(bubble.profileInUse).sendFullSizeImages) mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+
+                                }
+
+                            }
+
+                            pulseEvent(null, new EventArgs());
+
+
+                        }
+
+                        teboDebug.writeline(teboDebug.movementPublishVal + 14);
+
+                    }
+
+
+
+
+                    //the quantity trigger has caused these emails to be sent 
+                    else
+                    {
+                        teboDebug.writeline(teboDebug.movementPublishVal + 15);
+
+                        //send mosaic
+                        if (config.getProfile(bubble.profileInUse).sendMosaicImages)
+                        {
+
+
+
+                            mosaic mos = new mosaic();
+                            int imagesProcessed = 0;
+
+
+                            foreach (imagesFromMovement.item item in imagesFromMovement.imageList)
+                            {
+
+                                if (!item.email)
+                                {
+
+                                    item.email = true;
+                                    mos.addToList(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
+                                    imagesProcessed++;
+
+                                    if (imagesProcessed >= (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail))
+                                    {
+
+                                        break;
+
+                                    }
+
+                                }
+
+
+                            }
+
+
+
+                            string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
+
+                            pulseEvent(null, new EventArgs());
+                            mos.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
+                                                thumbFolder + rand + mosaicFile,
+                                                config.getProfile(bubble.profileInUse).alertCompression);
+
+
+                            mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, rand, mosaicFile));
+
+                        }
+
+                        //send thumbs or fullsize
+                        else
+                        {
+
+
+
+
+                            teboDebug.writeline(teboDebug.movementPublishVal + 16);
+
+                            int imagesProcessed = 0;
+
+
+                            foreach (imagesFromMovement.item item in imagesFromMovement.imageList)
+                            {
+
+                                if (!item.email)
+                                {
+
+                                    item.email = true;
+                                    imagesProcessed++;
+                                    if (config.getProfile(bubble.profileInUse).sendThumbnailImages) mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
+                                    if (config.getProfile(bubble.profileInUse).sendFullSizeImages) mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+
+                                    if (imagesProcessed >= (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail))
+                                    {
+
+                                        break;
+
+                                    }
+
+                                }
+
+
+                            }
+
+                            pulseEvent(null, new EventArgs());
+                            teboDebug.writeline(teboDebug.movementPublishVal + 17);
+
+
+                        }
+
+                    }
+
+                    try
+                    {
+                        teboDebug.writeline(teboDebug.movementPublishVal + 18);
+                        graphSeq++;
+                        graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
+                    }
+                    catch
+                    {
+                        logAddLine("Error saving graph for emailing;");
+                    }
+
+                    teboDebug.writeline(teboDebug.movementPublishVal + 19);
+                    pulseEvent(null, new EventArgs());
+
+                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"); ;
+                    logAddLine("graphCurrent" + graphSeq.ToString() + ".jpg" + " added to email");
+                    Thread.Sleep(500);
+                    logAddLine("Sending Email");
+
+                    mail.sendEmail(
+                                   config.getProfile(bubble.profileInUse).sentBy,
+                                   config.getProfile(bubble.profileInUse).sendTo,
+                                   config.getProfile(bubble.profileInUse).mailSubject,
+                                   config.getProfile(bubble.profileInUse).mailBody,
+                                   config.getProfile(bubble.profileInUse).replyTo,
+                                   (config.getProfile(bubble.profileInUse).sendThumbnailImages ||
+                                   config.getProfile(bubble.profileInUse).sendFullSizeImages ||
+                                   config.getProfile(bubble.profileInUse).sendMosaicImages),
+                                   time.secondsSinceStart(),
+                                   config.getProfile(bubble.profileInUse).emailUser,
+                                   config.getProfile(bubble.profileInUse).emailPass,
+                                   config.getProfile(bubble.profileInUse).smtpHost,
+                                   config.getProfile(bubble.profileInUse).smtpPort,
+                                   config.getProfile(bubble.profileInUse).EnableSsl
+                                   );
+
+                    //string[] newdet = new string[2];
+
+                    //emailToProcess = imagesFromMovement.emailToProcess();
+                    //imagesToEmail = emailToProcess;
+
+
+                    //}
+
+                    //catch
+                    //{
+
+                    //    //emailToProcess = imagesFromMovement.emailToProcess();
+                    //    //imagesToEmail = emailToProcess;
+
+                    //}
+                    //}//while imagesToEmail > 0
 
 
 
@@ -2097,6 +2035,11 @@ namespace TeboCam
                 }
 
             }
+            //*************************************************************************************************
+            //Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email 
+            //*************************************************************************************************
+
+
 
             teboDebug.writeline(teboDebug.movementPublishVal + 21);
             pulseEvent(null, new EventArgs());
@@ -2607,63 +2550,63 @@ namespace TeboCam
 
                 //if (!bubble.pingError)
                 //{
-                    teboDebug.writeline(teboDebug.pingVal + 2);
+                teboDebug.writeline(teboDebug.pingVal + 2);
 
-                    logAddLine("Preparing ping email.");
-                    pings = 1;
-                    mail.clearAttachments();
-                    logAddLine("Attachments cleared.");
-                    graphSeq++;
+                logAddLine("Preparing ping email.");
+                pings = 1;
+                mail.clearAttachments();
+                logAddLine("Attachments cleared.");
+                graphSeq++;
 
-                    if (!graphToday())
-                    {
-                        teboDebug.writeline(teboDebug.pingVal + 3);
-                        string tmpDate = graphCurrentDate;
-                        pingGraphDate = time.currentDate();
-                        pingGraph(null, new EventArgs());
-                        graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
-                        logAddLine("Adding graph attachment.");
-                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
-                        pingGraphDate = tmpDate;
-                        pingGraph(null, new EventArgs());
-                    }
-                    else
-                    {
-                        teboDebug.writeline(teboDebug.pingVal + 4);
-                        redrawGraph(null, new EventArgs());
-                        graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
-                        logAddLine("Adding graph attachment.");
-                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
-                    }
+                if (!graphToday())
+                {
+                    teboDebug.writeline(teboDebug.pingVal + 3);
+                    string tmpDate = graphCurrentDate;
+                    pingGraphDate = time.currentDate();
+                    pingGraph(null, new EventArgs());
+                    graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
+                    logAddLine("Adding graph attachment.");
+                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+                    pingGraphDate = tmpDate;
+                    pingGraph(null, new EventArgs());
+                }
+                else
+                {
+                    teboDebug.writeline(teboDebug.pingVal + 4);
+                    redrawGraph(null, new EventArgs());
+                    graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
+                    logAddLine("Adding graph attachment.");
+                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+                }
 
-                    teboDebug.writeline(teboDebug.pingVal + 5);
-                    pulseEvent(null, new EventArgs());
+                teboDebug.writeline(teboDebug.pingVal + 5);
+                pulseEvent(null, new EventArgs());
 
-                    FileManager.WriteFile("log");
-                    File.Copy(bubble.xmlFolder + "log.xml", tmpFolder + "pinglog" + graphSeq.ToString() + ".xml", true);
-                    logAddLine("Adding log attachment.");
-                    mail.addAttachment(tmpFolder + "pinglog" + graphSeq.ToString() + ".xml");
-                    File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg", true);
-                    logAddLine("Adding image attachment.");
-                    mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
-                    File.Delete(tmpFolder + "pingPicture.jpg");
-                    Thread.Sleep(2000);
-                    mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
-                                   config.getProfile(bubble.profileInUse).sendTo,
-                                   config.getProfile(bubble.profileInUse).pingSubject,
-                                   "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.",
-                                   config.getProfile(bubble.profileInUse).replyTo,
-                                   true,
-                                   time.secondsSinceStart(),
-                                   config.getProfile(bubble.profileInUse).emailUser,
-                                   config.getProfile(bubble.profileInUse).emailPass,
-                                   config.getProfile(bubble.profileInUse).smtpHost,
-                                   config.getProfile(bubble.profileInUse).smtpPort,
-                                   config.getProfile(bubble.profileInUse).EnableSsl
-                                   );
-                    pingLast = time.secondsSinceStart();
-                    Thread.Sleep(2000);
-                    logAddLine("Ping email sent.");
+                FileManager.WriteFile("log");
+                File.Copy(bubble.xmlFolder + "log.xml", tmpFolder + "pinglog" + graphSeq.ToString() + ".xml", true);
+                logAddLine("Adding log attachment.");
+                mail.addAttachment(tmpFolder + "pinglog" + graphSeq.ToString() + ".xml");
+                File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg", true);
+                logAddLine("Adding image attachment.");
+                mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
+                File.Delete(tmpFolder + "pingPicture.jpg");
+                Thread.Sleep(2000);
+                mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
+                               config.getProfile(bubble.profileInUse).sendTo,
+                               config.getProfile(bubble.profileInUse).pingSubject,
+                               "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.",
+                               config.getProfile(bubble.profileInUse).replyTo,
+                               true,
+                               time.secondsSinceStart(),
+                               config.getProfile(bubble.profileInUse).emailUser,
+                               config.getProfile(bubble.profileInUse).emailPass,
+                               config.getProfile(bubble.profileInUse).smtpHost,
+                               config.getProfile(bubble.profileInUse).smtpPort,
+                               config.getProfile(bubble.profileInUse).EnableSsl
+                               );
+                pingLast = time.secondsSinceStart();
+                Thread.Sleep(2000);
+                logAddLine("Ping email sent.");
 
                 //}
 
@@ -2952,13 +2895,16 @@ namespace TeboCam
         {
             try
             {
-                if (lastUpdateSeq != updateSeq)
+
+                int currentUpdateSeq = updateSeq;
+
+                if (lastUpdateSeq != currentUpdateSeq)
                 {
 
                     teboDebug.writeline(teboDebug.movementAddImagesVal + 1);
 
                     //only pulse every 5 images
-                    if (updateSeq % 5 == 0)
+                    if (currentUpdateSeq % 5 == 0)
                     {
 
                         pulseEvent(null, new EventArgs());
@@ -2971,7 +2917,7 @@ namespace TeboCam
                     imagesFromMovement.addImageRange(tmpArrLst);
 
                     lastStartSeq = tmpInt;
-                    lastUpdateSeq = updateSeq;
+                    lastUpdateSeq = currentUpdateSeq;
                     ringMyBell(false);
                 }
             }

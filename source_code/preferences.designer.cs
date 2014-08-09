@@ -70,12 +70,6 @@ namespace TeboCam
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
-            this.lbl0Perc = new System.Windows.Forms.Label();
-            this.lbl100Perc = new System.Windows.Forms.Label();
-            this.lbl75Perc = new System.Windows.Forms.Label();
-            this.lbl25Perc = new System.Windows.Forms.Label();
-            this.lbl50Perc = new System.Windows.Forms.Label();
-            this.levelbox = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -358,7 +352,6 @@ namespace TeboCam
             this.pnlStartupOptions.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MotionAlarm.SuspendLayout();
@@ -478,12 +471,6 @@ namespace TeboCam
             this.Webcam.Controls.Add(this.newsInfo);
             this.Webcam.Controls.Add(this.button5);
             this.Webcam.Controls.Add(this.hideLog);
-            this.Webcam.Controls.Add(this.lbl0Perc);
-            this.Webcam.Controls.Add(this.lbl100Perc);
-            this.Webcam.Controls.Add(this.lbl75Perc);
-            this.Webcam.Controls.Add(this.lbl25Perc);
-            this.Webcam.Controls.Add(this.lbl50Perc);
-            this.Webcam.Controls.Add(this.levelbox);
             this.Webcam.Controls.Add(this.button6);
             this.Webcam.Controls.Add(this.txtLog);
             this.Webcam.Controls.Add(this.groupBox3);
@@ -802,39 +789,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.hideLog, resources.GetString("hideLog.ToolTip"));
             this.hideLog.UseVisualStyleBackColor = true;
             this.hideLog.Click += new System.EventHandler(this.hideLog_Click);
-            // 
-            // lbl0Perc
-            // 
-            resources.ApplyResources(this.lbl0Perc, "lbl0Perc");
-            this.lbl0Perc.Name = "lbl0Perc";
-            // 
-            // lbl100Perc
-            // 
-            resources.ApplyResources(this.lbl100Perc, "lbl100Perc");
-            this.lbl100Perc.Name = "lbl100Perc";
-            // 
-            // lbl75Perc
-            // 
-            resources.ApplyResources(this.lbl75Perc, "lbl75Perc");
-            this.lbl75Perc.Name = "lbl75Perc";
-            // 
-            // lbl25Perc
-            // 
-            resources.ApplyResources(this.lbl25Perc, "lbl25Perc");
-            this.lbl25Perc.Name = "lbl25Perc";
-            // 
-            // lbl50Perc
-            // 
-            resources.ApplyResources(this.lbl50Perc, "lbl50Perc");
-            this.lbl50Perc.Name = "lbl50Perc";
-            // 
-            // levelbox
-            // 
-            resources.ApplyResources(this.levelbox, "levelbox");
-            this.levelbox.Name = "levelbox";
-            this.levelbox.TabStop = false;
-            this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
-            this.levelbox.Paint += new System.Windows.Forms.PaintEventHandler(this.levelbox_Paint);
             // 
             // button6
             // 
@@ -3160,7 +3114,6 @@ namespace TeboCam
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelbox)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MotionAlarm.ResumeLayout(false);
@@ -3324,11 +3277,6 @@ namespace TeboCam
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MonthCalendar calendar;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.PictureBox levelbox;
-        private System.Windows.Forms.Label lbl50Perc;
-        private System.Windows.Forms.Label lbl0Perc;
-        private System.Windows.Forms.Label lbl100Perc;
-        private System.Windows.Forms.Label lbl75Perc;
         private System.Windows.Forms.CheckBox ping;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox pingMins;
@@ -3341,7 +3289,6 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton bttnSeconds;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label lbl25Perc;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton bttnNow;
         private System.Windows.Forms.RadioButton bttnMotionAtStartup;

@@ -100,3 +100,4 @@ copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\bin\Release\AForge.Video.dl
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\bin\Release\cuteButton.dll" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\dll\cuteButton.dll"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\bin\Release\dshow.dll" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\dll\dshow.dll"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\bin\Release\Tiger.Video.VFW.dll" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\dll\Tiger.Video.VFW.dll"
+copy "E:\Visual Studio 2005\Projects\TeboCam\Queue.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\Queue.cs"

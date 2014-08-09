@@ -1466,7 +1466,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.36234, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.27780, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1594,216 +1594,6 @@ or any other function in TeboCam.
   <data name="&gt;&gt;hideLog.ZOrder" xml:space="preserve">
     <value>30</value>
   </data>
-  <metadata name="lbl0Perc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="lbl0Perc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl0Perc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8.25pt</value>
-  </data>
-  <data name="lbl0Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl0Perc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 278</value>
-  </data>
-  <data name="lbl0Perc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 14</value>
-  </data>
-  <data name="lbl0Perc.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="lbl0Perc.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbl0Perc.Name" xml:space="preserve">
-    <value>lbl0Perc</value>
-  </data>
-  <data name="&gt;&gt;lbl0Perc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl0Perc.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;lbl0Perc.ZOrder" xml:space="preserve">
-    <value>31</value>
-  </data>
-  <metadata name="lbl100Perc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="lbl100Perc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl100Perc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8.25pt</value>
-  </data>
-  <data name="lbl100Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl100Perc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 35</value>
-  </data>
-  <data name="lbl100Perc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 14</value>
-  </data>
-  <data name="lbl100Perc.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="lbl100Perc.Text" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="&gt;&gt;lbl100Perc.Name" xml:space="preserve">
-    <value>lbl100Perc</value>
-  </data>
-  <data name="&gt;&gt;lbl100Perc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl100Perc.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;lbl100Perc.ZOrder" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <metadata name="lbl75Perc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="lbl75Perc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl75Perc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8.25pt</value>
-  </data>
-  <data name="lbl75Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl75Perc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 95</value>
-  </data>
-  <data name="lbl75Perc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 14</value>
-  </data>
-  <data name="lbl75Perc.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="lbl75Perc.Text" xml:space="preserve">
-    <value>75</value>
-  </data>
-  <data name="&gt;&gt;lbl75Perc.Name" xml:space="preserve">
-    <value>lbl75Perc</value>
-  </data>
-  <data name="&gt;&gt;lbl75Perc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl75Perc.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;lbl75Perc.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <metadata name="lbl25Perc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="lbl25Perc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl25Perc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8.25pt</value>
-  </data>
-  <data name="lbl25Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl25Perc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 215</value>
-  </data>
-  <data name="lbl25Perc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 14</value>
-  </data>
-  <data name="lbl25Perc.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="lbl25Perc.Text" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;lbl25Perc.Name" xml:space="preserve">
-    <value>lbl25Perc</value>
-  </data>
-  <data name="&gt;&gt;lbl25Perc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl25Perc.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;lbl25Perc.ZOrder" xml:space="preserve">
-    <value>34</value>
-  </data>
-  <metadata name="lbl50Perc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="lbl50Perc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbl50Perc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8.25pt</value>
-  </data>
-  <data name="lbl50Perc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl50Perc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 156</value>
-  </data>
-  <data name="lbl50Perc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>21, 14</value>
-  </data>
-  <data name="lbl50Perc.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="lbl50Perc.Text" xml:space="preserve">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;lbl50Perc.Name" xml:space="preserve">
-    <value>lbl50Perc</value>
-  </data>
-  <data name="&gt;&gt;lbl50Perc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl50Perc.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;lbl50Perc.ZOrder" xml:space="preserve">
-    <value>35</value>
-  </data>
-  <metadata name="levelbox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="levelbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="levelbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 45</value>
-  </data>
-  <data name="levelbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>10, 243</value>
-  </data>
-  <data name="levelbox.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="levelbox.ToolTip" xml:space="preserve">
-    <value>Motion detection level.</value>
-  </data>
-  <data name="&gt;&gt;levelbox.Name" xml:space="preserve">
-    <value>levelbox</value>
-  </data>
-  <data name="&gt;&gt;levelbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;levelbox.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;levelbox.ZOrder" xml:space="preserve">
-    <value>36</value>
-  </data>
   <metadata name="button6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1835,7 +1625,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>31</value>
   </data>
   <metadata name="txtLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1871,7 +1661,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;txtLog.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>32</value>
   </data>
   <metadata name="pictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1928,7 +1718,7 @@ above.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>33</value>
   </data>
   <metadata name="MotionAlarm.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2616,7 +2406,7 @@ In accordance with settings within the "Activate in/at" area. </value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;MotionAlarm.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>34</value>
   </data>
   <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2647,7 +2437,7 @@ attached webcams.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>35</value>
   </data>
   <data name="Webcam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
