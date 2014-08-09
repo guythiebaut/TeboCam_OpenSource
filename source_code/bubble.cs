@@ -46,10 +46,21 @@ namespace TeboCam
     public static class imagesFromMovement
     {
 
+
+        public enum TypeEnum
+        {
+
+            All,
+            Ftp,
+            Email,
+            FtpAndEMail
+
+        }
+
+
         public class item
         {
 
-            public string guid;
             public string fileName;
             public bool ftp;
             public bool email;
@@ -59,8 +70,7 @@ namespace TeboCam
 
 
         public static List<item> imageList = new List<item>();
-        private static List<item> ftpList = new List<item>();
-        private static List<item> emailList = new List<item>();
+
 
 
         public static void addImageRange(ArrayList images)
@@ -71,12 +81,9 @@ namespace TeboCam
 
                 item itm = new item();
 
-                string guid = Guid.NewGuid().ToString();
-
                 itm.fileName = images[i].ToString(); ;
                 itm.ftp = false;
                 itm.email = false;
-                itm.guid = guid;
 
                 imageList.Add(itm);
 
@@ -86,16 +93,46 @@ namespace TeboCam
         }
 
 
-        public static void listsClear()
+        public static void listsClear(TypeEnum type)
         {
 
-            foreach (item itm in imageList)
+            if (type == TypeEnum.All)
             {
 
-                itm.ftp = true;
-                itm.email = true;
+                imageList.Clear();
 
             }
+            else
+            {
+
+                for (int i = imageList.Count; i > 0; i--)
+                {
+
+                    switch (type)
+                    {
+
+                        case TypeEnum.Ftp:
+                            if (imageList[i].ftp) imageList.RemoveAt(i);
+                            break;
+
+                        case TypeEnum.Email:
+                            if (imageList[i].email) imageList.RemoveAt(i);
+                            break;
+
+                        case TypeEnum.FtpAndEMail:
+                            if (imageList[i].ftp && imageList[i].email) imageList.RemoveAt(i);
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                }
+
+            }
+
+
 
         }
 
@@ -142,7 +179,7 @@ namespace TeboCam
             return tmpCnt;
 
         }
-        
+
 
     }
 
@@ -1649,7 +1686,7 @@ namespace TeboCam
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 3);
                 logAddLine("Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
-                imagesFromMovement.listsClear();
+                imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.All);
                 //imagesToProcess.Clear();
                 Graph.updateGraphHist(time.currentDate(), bubble.movStats);
                 if (graphToday()) { redrawGraph(null, new EventArgs()); }
@@ -1664,6 +1701,7 @@ namespace TeboCam
             if (config.getProfile(bubble.profileInUse).loadImagesToFtp && ftpToProcess > 0)
             {
 
+               
                 //ftp images - start
                 if (config.getProfile(bubble.profileInUse).loadImagesToFtp)
                 {
@@ -1702,12 +1740,18 @@ namespace TeboCam
 
 
                         }
+                        
+                        if(!config.getProfile(bubble.profileInUse).sendNotifyEmail) imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.Ftp);
 
 
                     }
                     catch { }
                 }
                 //ftp images - end
+
+
+
+
 
             }
             //*************************************************************************************************
@@ -1757,17 +1801,11 @@ namespace TeboCam
                 {
                     teboDebug.writeline(teboDebug.movementPublishVal + 9);
 
-                    //ArrayList emailArrList = imagesFromMovement.toEmail(emailToProcess);
                     int imagesToEmail = emailToProcess;
 
-                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    //while (imagesToEmail > 0)
-                    //{
                     teboDebug.writeline(teboDebug.movementPublishVal + 10);
-                    //try
-                    //{
 
-                    teboDebug.writeline(teboDebug.movementPublishVal + 11);
+
                     mail.clearAttachments();
 
                     //the time trigger has caused these emails to be sent
@@ -1993,23 +2031,8 @@ namespace TeboCam
                                    config.getProfile(bubble.profileInUse).EnableSsl
                                    );
 
-                    //string[] newdet = new string[2];
 
-                    //emailToProcess = imagesFromMovement.emailToProcess();
-                    //imagesToEmail = emailToProcess;
-
-
-                    //}
-
-                    //catch
-                    //{
-
-                    //    //emailToProcess = imagesFromMovement.emailToProcess();
-                    //    //imagesToEmail = emailToProcess;
-
-                    //}
-                    //}//while imagesToEmail > 0
-
+                    if (!config.getProfile(bubble.profileInUse).loadImagesToFtp) imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.Email);
 
 
                     teboDebug.writeline(teboDebug.movementPublishVal + 20);
@@ -2025,12 +2048,17 @@ namespace TeboCam
                     bubble.fileBusy = false;
                     Thread.Sleep(500);
 
+
+
                     if (spamStopEmail)
                     {
 
                         spamStopEmail = false;
 
                     }
+
+
+
 
                 }
 
@@ -2039,6 +2067,8 @@ namespace TeboCam
             //Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email 
             //*************************************************************************************************
 
+
+            if (config.getProfile(bubble.profileInUse).loadImagesToFtp && config.getProfile(bubble.profileInUse).sendNotifyEmail) imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.FtpAndEMail);
 
 
             teboDebug.writeline(teboDebug.movementPublishVal + 21);
@@ -2884,9 +2914,11 @@ namespace TeboCam
             }
         }
 
-        private static void ImageSaved(object sender, ImageSavedArgs e)
+        private static void AddImageTo_imageSaved(object sender, ImageSavedArgs e)
         {
+
             imagesSaved.Add(e.image.ToString());
+
         }
 
 
@@ -3879,7 +3911,7 @@ namespace TeboCam
                         thumb.Dispose();
                         ImageSavedArgs a = new ImageSavedArgs();
                         a.image = fName;
-                        ImageSaved(null, a);
+                        AddImageTo_imageSaved(null, a);
 
                         updateSeq++;
 
