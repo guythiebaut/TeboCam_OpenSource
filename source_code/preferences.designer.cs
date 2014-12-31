@@ -66,7 +66,6 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -147,6 +146,16 @@ namespace TeboCam
             this.t34 = new System.Windows.Forms.PictureBox();
             this.t14 = new System.Windows.Forms.PictureBox();
             this.Alerts = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.pnlStatsToFile = new System.Windows.Forms.Panel();
+            this.txtStatsToFileMb = new System.Windows.Forms.TextBox();
+            this.chkStatsToFileTimeStamp = new System.Windows.Forms.CheckBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.btnStatsToFileLocation = new System.Windows.Forms.Button();
+            this.rdStatsToFileOff = new System.Windows.Forms.RadioButton();
+            this.rdStatsToFileOn = new System.Windows.Forms.RadioButton();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.emailIntelPanel = new System.Windows.Forms.Panel();
             this.EmailIntelMosaic = new System.Windows.Forms.RadioButton();
@@ -346,7 +355,9 @@ namespace TeboCam
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -394,6 +405,8 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.t34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t14)).BeginInit();
             this.Alerts.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.pnlStatsToFile.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.emailIntelPanel.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -756,15 +769,6 @@ namespace TeboCam
             resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
             this.lblCameraName.Tag = "";
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -1412,6 +1416,7 @@ namespace TeboCam
             // 
             // Alerts
             // 
+            this.Alerts.Controls.Add(this.groupBox11);
             this.Alerts.Controls.Add(this.groupBox4);
             this.Alerts.Controls.Add(this.groupBox21);
             this.Alerts.Controls.Add(this.groupBox14);
@@ -1420,6 +1425,86 @@ namespace TeboCam
             resources.ApplyResources(this.Alerts, "Alerts");
             this.Alerts.Name = "Alerts";
             this.Alerts.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.pnlStatsToFile);
+            this.groupBox11.Controls.Add(this.btnStatsToFileLocation);
+            this.groupBox11.Controls.Add(this.rdStatsToFileOff);
+            this.groupBox11.Controls.Add(this.rdStatsToFileOn);
+            this.groupBox11.Controls.Add(this.label31);
+            this.groupBox11.Controls.Add(this.label29);
+            resources.ApplyResources(this.groupBox11, "groupBox11");
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.TabStop = false;
+            // 
+            // pnlStatsToFile
+            // 
+            this.pnlStatsToFile.Controls.Add(this.txtStatsToFileMb);
+            this.pnlStatsToFile.Controls.Add(this.chkStatsToFileTimeStamp);
+            this.pnlStatsToFile.Controls.Add(this.label37);
+            resources.ApplyResources(this.pnlStatsToFile, "pnlStatsToFile");
+            this.pnlStatsToFile.Name = "pnlStatsToFile";
+            // 
+            // txtStatsToFileMb
+            // 
+            this.txtStatsToFileMb.BackColor = System.Drawing.Color.LemonChiffon;
+            resources.ApplyResources(this.txtStatsToFileMb, "txtStatsToFileMb");
+            this.txtStatsToFileMb.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtStatsToFileMb.Name = "txtStatsToFileMb";
+            this.toolTip1.SetToolTip(this.txtStatsToFileMb, resources.GetString("txtStatsToFileMb.ToolTip"));
+            this.txtStatsToFileMb.Leave += new System.EventHandler(this.txtStatsToFileMb_Leave);
+            // 
+            // chkStatsToFileTimeStamp
+            // 
+            resources.ApplyResources(this.chkStatsToFileTimeStamp, "chkStatsToFileTimeStamp");
+            this.chkStatsToFileTimeStamp.BackColor = System.Drawing.SystemColors.Control;
+            this.chkStatsToFileTimeStamp.Name = "chkStatsToFileTimeStamp";
+            this.toolTip1.SetToolTip(this.chkStatsToFileTimeStamp, resources.GetString("chkStatsToFileTimeStamp.ToolTip"));
+            this.chkStatsToFileTimeStamp.UseVisualStyleBackColor = false;
+            this.chkStatsToFileTimeStamp.CheckedChanged += new System.EventHandler(this.chkStatsToFileTimeStamp_CheckedChanged);
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.ForeColor = System.Drawing.Color.Black;
+            this.label37.Name = "label37";
+            // 
+            // btnStatsToFileLocation
+            // 
+            resources.ApplyResources(this.btnStatsToFileLocation, "btnStatsToFileLocation");
+            this.btnStatsToFileLocation.Name = "btnStatsToFileLocation";
+            this.toolTip1.SetToolTip(this.btnStatsToFileLocation, resources.GetString("btnStatsToFileLocation.ToolTip"));
+            this.btnStatsToFileLocation.UseVisualStyleBackColor = true;
+            this.btnStatsToFileLocation.Click += new System.EventHandler(this.btnStatsToFileLocation_Click);
+            // 
+            // rdStatsToFileOff
+            // 
+            resources.ApplyResources(this.rdStatsToFileOff, "rdStatsToFileOff");
+            this.rdStatsToFileOff.Checked = true;
+            this.rdStatsToFileOff.Name = "rdStatsToFileOff";
+            this.rdStatsToFileOff.TabStop = true;
+            this.rdStatsToFileOff.UseVisualStyleBackColor = true;
+            // 
+            // rdStatsToFileOn
+            // 
+            resources.ApplyResources(this.rdStatsToFileOn, "rdStatsToFileOn");
+            this.rdStatsToFileOn.Name = "rdStatsToFileOn";
+            this.toolTip1.SetToolTip(this.rdStatsToFileOn, resources.GetString("rdStatsToFileOn.ToolTip"));
+            this.rdStatsToFileOn.UseVisualStyleBackColor = true;
+            this.rdStatsToFileOn.CheckedChanged += new System.EventHandler(this.rdStatsToFileOn_CheckedChanged);
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.ForeColor = System.Drawing.Color.Black;
+            this.label31.Name = "label31";
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Name = "label29";
             // 
             // groupBox4
             // 
@@ -3055,6 +3140,7 @@ namespace TeboCam
             this.toolStripMenuItem1,
             this.toolStripMenuItem5,
             this.toolStripMenuItem4,
+            this.toolStripMenuItem6,
             this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
@@ -3084,11 +3170,25 @@ namespace TeboCam
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // preferences
             // 
@@ -3162,6 +3262,10 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.t34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t14)).EndInit();
             this.Alerts.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.pnlStatsToFile.ResumeLayout(false);
+            this.pnlStatsToFile.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.emailIntelPanel.ResumeLayout(false);
@@ -3533,5 +3637,16 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton rdPingAllCameras;
         private System.Windows.Forms.TextBox sqlConString;
         private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button btnStatsToFileLocation;
+        private System.Windows.Forms.RadioButton rdStatsToFileOff;
+        private System.Windows.Forms.RadioButton rdStatsToFileOn;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtStatsToFileMb;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.CheckBox chkStatsToFileTimeStamp;
+        private System.Windows.Forms.Panel pnlStatsToFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
     }
 }

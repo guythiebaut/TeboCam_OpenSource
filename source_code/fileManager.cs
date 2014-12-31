@@ -602,6 +602,8 @@ namespace TeboCam
 
 
 
+
+
                             //!!!!!!!!!!!!!!!!!!!!!!!!!!
                             //Webcam individual settings
                             //!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1071,6 +1073,23 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").disCommOnlineSecs = Convert.ToInt32(configData.ReadString());
                             }
+                            if (configData.LocalName.Equals("StatsToFileOn"))
+                            {
+                                config.getProfile("##newProf##").StatsToFileOn = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("StatsToFileLocation"))
+                            {
+                                config.getProfile("##newProf##").StatsToFileLocation = configData.ReadString();
+                            }
+                            if (configData.LocalName.Equals("StatsToFileTimeStamp"))
+                            {
+                                config.getProfile("##newProf##").StatsToFileTimeStamp = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("StatsToFileMb"))
+                            {
+                                config.getProfile("##newProf##").StatsToFileMb = Convert.ToDouble(configData.ReadString());
+                            }
+
 
 
                         }
@@ -1570,6 +1589,12 @@ namespace TeboCam
                         writeElement("EmailIntelStop", config.getProfile().EmailIntelStop.ToString(), configData);
                         writeElement("disCommOnline", config.getProfile().disCommOnline.ToString(), configData);
                         writeElement("disCommOnlineSecs", config.getProfile().disCommOnlineSecs.ToString(), configData);
+                        //###
+                        writeElement("StatsToFileOn", config.getProfile().StatsToFileOn.ToString(), configData);
+                        writeElement("StatsToFileLocation", config.getProfile().StatsToFileLocation.ToString(), configData);
+                        writeElement("StatsToFileTimeStamp", config.getProfile().StatsToFileTimeStamp.ToString(), configData);
+                        writeElement("StatsToFileMb", config.getProfile().StatsToFileMb.ToString(), configData);
+
 
                         //******************************
                         //Do not put anything after this

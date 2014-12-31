@@ -1231,6 +1231,14 @@ namespace TeboCam
         public string ipWebcamUser;
         public string ipWebcamPassword;
 
+        public bool StatsToFileOn;
+        public string StatsToFileLocation;
+        public bool StatsToFileTimeStamp;
+        public double StatsToFileMb;
+
+
+
+
 
 
         public object Clone()
@@ -1402,6 +1410,11 @@ namespace TeboCam
             ipWebcamAddress = "";
             ipWebcamUser = "";
             ipWebcamPassword = "";
+
+            StatsToFileOn = false;
+            StatsToFileLocation = string.Empty;
+            StatsToFileTimeStamp = false;
+            StatsToFileMb = 10;
 
         }
 
@@ -1701,7 +1714,7 @@ namespace TeboCam
             if (config.getProfile(bubble.profileInUse).loadImagesToFtp && ftpToProcess > 0)
             {
 
-               
+
                 //ftp images - start
                 if (config.getProfile(bubble.profileInUse).loadImagesToFtp)
                 {
@@ -1740,8 +1753,8 @@ namespace TeboCam
 
 
                         }
-                        
-                        if(!config.getProfile(bubble.profileInUse).sendNotifyEmail) imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.Ftp);
+
+                        if (!config.getProfile(bubble.profileInUse).sendNotifyEmail) imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.Ftp);
 
 
                     }
@@ -3071,7 +3084,25 @@ namespace TeboCam
         public static void RecordMotionStats(MotionLevelArgs a, CamIdArgs b)
         {
 
-            statistics.add(b.cam, Convert.ToInt32((int)Math.Floor(a.lvl * 100)), time.millisecondsSinceStart(), bubble.profileInUse);
+
+            double maxFileLength = 0;
+
+            if (config.getProfile(bubble.profileInUse).StatsToFileTimeStamp)
+            {
+
+                maxFileLength = config.getProfile(bubble.profileInUse).StatsToFileMb;
+
+            }
+
+            statistics.AddStatistic( b.cam,
+                CameraRig.rigInfoGet(bubble.profileInUse, b.name, CameraRig.infoEnum.friendlyName).ToString().Trim(),
+                Convert.ToInt32((int)Math.Floor(a.lvl * 100)),
+                Convert.ToInt32((int)Math.Floor(a.alarmLvl * 100)),
+                time.millisecondsSinceStart(),
+                bubble.profileInUse,
+                config.getProfile(bubble.profileInUse).StatsToFileOn,
+                config.getProfile(bubble.profileInUse).StatsToFileLocation,
+                maxFileLength);
 
         }
 

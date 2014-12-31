@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+//using System.Text;
 
 namespace TeboCam
 {
@@ -9,12 +10,18 @@ namespace TeboCam
     {
 
         public static int statisticsCountLimit = 10000;
+        private const string tab = "\t";
+        private const string timestamp = "yyyyMMddHHmmfff";
+        //this is the filename that will be used for writing statistics
+        public static string fileName = string.Empty;
 
         private class movement
         {
 
             public int cameraId;
+            public string cameraName;
             public int motionLevel;
+            public int alarmLevel;
             public Int64 milliSecondsSinceStart;
             public string profile;
             public DateTime dateTime;
@@ -48,10 +55,10 @@ namespace TeboCam
         private static List<movement> statList = new List<movement>();
         private static List<LastMovement> lastMovementList = new List<LastMovement>();
 
-        public static void add(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
+        public static void AddStatistic(int p_cameraId, string p_cameraName, int p_motionLevel, int p_alarmLevel, Int64 p_milliSsecondsSinceStart, string p_profile, bool p_outputToFile, string p_fileName, double p_maxLength)
         {
 
-            insertIfValueChanged(p_cameraId, p_motionLevel, p_milliSsecondsSinceStart, p_profile);
+            insertIfValueChanged(p_cameraId, p_cameraName, p_motionLevel, p_alarmLevel, p_milliSsecondsSinceStart, p_profile, p_outputToFile, p_fileName, p_maxLength);
 
         }
 
@@ -85,6 +92,78 @@ namespace TeboCam
             results.Add(spike);
             results.Add(perc);
             return results;
+
+        }
+
+        private static void WriteToFile(string p_fileName, double p_MaxLength, movement p_mv)
+        {
+
+
+            if (fileName == string.Empty)
+            {
+
+                if (p_MaxLength > Convert.ToDouble(0))
+                {
+
+                    fileName = Path.GetDirectoryName(p_fileName) + "\\" + Path.GetFileNameWithoutExtension(p_fileName) + DateTime.Now.ToString(timestamp) + Path.GetExtension(p_fileName);
+
+                }
+                else
+                {
+
+                    fileName = p_fileName;
+
+                }
+            }
+
+            if (!File.Exists(fileName))
+            {
+
+                using (StreamWriter w = File.AppendText(fileName))
+                {
+
+                    w.Write("cameraId" + tab + "cameraName" + tab + "motionLevel" + tab + "alarmLevel" + tab + "profile" + tab + "dateTime" + Environment.NewLine);
+
+                }
+
+            }
+
+
+            FileInfo fi = new FileInfo(fileName);
+
+            //create new file if file has reached largest size allowed
+
+
+
+            if (p_MaxLength > Convert.ToDouble(0) && (Convert.ToDouble(fi.Length)>= (p_MaxLength * Convert.ToDouble(1024) * Convert.ToDouble(1024)) || fileName == string.Empty))
+            {
+
+                fileName = Path.GetDirectoryName(p_fileName) + "\\" + Path.GetFileNameWithoutExtension(p_fileName) + DateTime.Now.ToString(timestamp) + Path.GetExtension(p_fileName);
+
+                using (StreamWriter w = File.AppendText(fileName))
+                {
+
+                    w.Write("cameraId" + tab + "cameraName" + tab + "motionLevel" + tab + "alarmLevel" + tab + "profile" + tab + "dateTime" + Environment.NewLine);
+
+                }
+
+            }
+
+
+
+
+
+            using (StreamWriter w = File.AppendText(fileName))
+            {
+
+
+                string outString = p_mv.cameraId.ToString() + tab + p_mv.cameraName + tab + p_mv.motionLevel.ToString() + tab + p_mv.alarmLevel.ToString() + tab +
+                    p_mv.profile.Replace(tab, " ") + tab + p_mv.dateTime.ToString("dd/MM/yyyy HH:mm:ss.fff") +
+                    Environment.NewLine;
+
+                w.Write(outString);
+
+            }
 
         }
 
@@ -201,13 +280,13 @@ namespace TeboCam
         }
 
 
-        private static void insertIfValueChanged(int p_cameraId, int p_motionLevel, Int64 p_milliSsecondsSinceStart, string p_profile)
+        private static void insertIfValueChanged(int p_cameraId, string p_cameraName, int p_motionLevel, int p_alarmLevel, Int64 p_milliSsecondsSinceStart, string p_profile, bool p_outputToFile, string p_fileName, double p_maxLength)
         {
 
             int statsLimit = statisticsCountLimit;
             bool found = false;
 
-            //keep the list os statistics to a reasonable size
+            //keep the list of statistics to a reasonable size
             if (statList.Count > statsLimit)
             {
 
@@ -222,6 +301,7 @@ namespace TeboCam
                 {
 
                     found = true;
+
                     if (item.motionLevel != p_motionLevel)
                     {
 
@@ -230,12 +310,21 @@ namespace TeboCam
 
                         movement mv = new movement();
                         mv.cameraId = p_cameraId;
+                        mv.cameraName = p_cameraName;
                         mv.motionLevel = p_motionLevel;
+                        mv.alarmLevel = p_alarmLevel;
                         mv.milliSecondsSinceStart = p_milliSsecondsSinceStart;
                         mv.dateTime = DateTime.Now;
                         mv.profile = p_profile;
 
                         statList.Add(mv);
+
+                        if (p_outputToFile)
+                        {
+
+                            WriteToFile(p_fileName, p_maxLength, statList.Last());
+
+                        }
 
                     }
 

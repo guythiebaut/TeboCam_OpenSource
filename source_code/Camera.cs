@@ -22,6 +22,7 @@ namespace TeboCam
 
     public class MotionLevelArgs : EventArgs
     {
+        
         private double _lvl;
 
         public double lvl
@@ -35,6 +36,22 @@ namespace TeboCam
                 _lvl = value;
             }
         }
+
+
+        private double _alarmLvl;
+
+        public double alarmLvl
+        {
+            get
+            {
+                return _alarmLvl;
+            }
+            set
+            {
+                _alarmLvl = value;
+            }
+        }
+
     }
 
     public class AlarmArgs : EventArgs
@@ -56,6 +73,7 @@ namespace TeboCam
 
     public class CamIdArgs : EventArgs
     {
+        
         private int _cam;
 
         public int cam
@@ -69,6 +87,22 @@ namespace TeboCam
                 _cam = value;
             }
         }
+
+        private string _name;
+
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+
+
     }
 
     public class LevelArgs : EventArgs
@@ -133,7 +167,7 @@ namespace TeboCam
         private bool ipCamera;
 
         private IVideoSource videoSource = null;
-        private MotionDetector motionDetecotor = null;
+        private MotionDetector motionDetector = null;
         //private Bitmap lastFrame = null;
         public Bitmap pubFrame = null;
 
@@ -163,7 +197,9 @@ namespace TeboCam
                     MotionLevelArgs a = new MotionLevelArgs();
                     CamIdArgs b = new CamIdArgs();
                     a.lvl = 0;
+                    a.alarmLvl = movementVal;
                     b.cam = cam;
+                    b.name = name;
                     motionLevelEvent(null, a, b);
 
                 }
@@ -248,8 +284,8 @@ namespace TeboCam
         // MotionDetector property
         public MotionDetector MotionDetector
         {
-            get { return motionDetecotor; }
-            set { motionDetecotor = value; }
+            get { return motionDetector; }
+            set { motionDetector = value; }
         }
 
 
@@ -352,7 +388,7 @@ namespace TeboCam
             cameraName = _name;
             pubFrame = null;
             this.videoSource = source;
-            this.motionDetecotor = detector;
+            this.motionDetector = detector;
             videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
 
         }
@@ -365,7 +401,7 @@ namespace TeboCam
             cameraName = _name;
             pubFrame = null;
             this.videoSource = source;
-            this.motionDetecotor = detector;
+            this.motionDetector = detector;
             videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
 
         }
@@ -505,7 +541,7 @@ namespace TeboCam
                     {
 
                         // apply motion detector
-                        if (motionDetecotor != null)
+                        if (motionDetector != null)
                         {
 
 
@@ -517,7 +553,7 @@ namespace TeboCam
 
                             if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
                             {
-                                motionDetecotor.Reset();
+                                motionDetector.Reset();
                                 areaOffAtMotionReset = true;
                             }
 
@@ -542,31 +578,34 @@ namespace TeboCam
 
 
 
-                            motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
+                            motionDetector.ProcessFrame(areaDetectionPreparedImage);
 
 
                             MotionLevelArgs a = new MotionLevelArgs();
                             CamIdArgs b = new CamIdArgs();
-                            a.lvl = motionDetecotor.MotionDetectionAlgorithm.MotionLevel;
+                            a.lvl = motionDetector.MotionDetectionAlgorithm.MotionLevel;
+                            a.alarmLvl = movementVal;
                             b.cam = cam;
+                            b.name = name;
                             motionLevelEvent(null, a, b);
 
                             // check motion level
                             if (calibrating && cam == CameraRig.trainCam)
                             {
-                                bubble.train(motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                                bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                             }
                             else
                             {
                                 if (alarmActive &&
                                     alert &&
-                                    motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal
+                                    motionDetector.MotionDetectionAlgorithm.MotionLevel >= movementVal
                                     && motionAlarm != null)
                                 {
                                     CamIdArgs c = new CamIdArgs();
                                     c.cam = cam;
+                                    c.name = name;
                                     LevelArgs l = new LevelArgs();
-                                    l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                                    l.lvl = Convert.ToInt32(100 * motionDetector.MotionDetectionAlgorithm.MotionLevel);
 
                                     motionAlarm(null, c, l);
 
@@ -652,7 +691,7 @@ namespace TeboCam
                 {
 
                     // apply motion detector
-                    if (motionDetecotor != null)
+                    if (motionDetector != null)
                     {
 
                         //*************************************
@@ -663,7 +702,7 @@ namespace TeboCam
 
                         if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
                         {
-                            motionDetecotor.Reset();
+                            motionDetector.Reset();
                             areaOffAtMotionReset = true;
                         }
 
@@ -687,30 +726,33 @@ namespace TeboCam
                         //*************************************
 
 
-                        motionDetecotor.ProcessFrame(areaDetectionPreparedImage);
+                        motionDetector.ProcessFrame(areaDetectionPreparedImage);
 
 
                         MotionLevelArgs a = new MotionLevelArgs();
                         CamIdArgs b = new CamIdArgs();
-                        a.lvl = motionDetecotor.MotionDetectionAlgorithm.MotionLevel;
+                        a.lvl = motionDetector.MotionDetectionAlgorithm.MotionLevel;
+                        a.alarmLvl = movementVal;
                         b.cam = cam;
+                        b.name = name;
                         motionLevelEvent(null, a, b);
 
 
                         // check motion level
                         if (calibrating && cam == CameraRig.trainCam)
                         {
-                            bubble.train(motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                            bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                         }
                         else
                         {
-                            if (alarmActive && alert && motionDetecotor.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
+                            if (alarmActive && alert && motionDetector.MotionDetectionAlgorithm.MotionLevel >= movementVal && motionAlarm != null)
                             {
 
                                 CamIdArgs c = new CamIdArgs();
                                 c.cam = cam;
+                                c.name = name;
                                 LevelArgs l = new LevelArgs();
-                                l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionDetectionAlgorithm.MotionLevel);
+                                l.lvl = Convert.ToInt32(100 * motionDetector.MotionDetectionAlgorithm.MotionLevel);
 
                                 motionAlarm(null, c, l);
 

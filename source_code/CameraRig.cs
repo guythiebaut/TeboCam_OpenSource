@@ -156,6 +156,11 @@ namespace TeboCam
         public string ipWebcamUser = "";
         public string ipWebcamPassword = "";
 
+        //public bool StatsToFileOn = false;
+        //public string StatsToFileLocation = string.Empty;
+        //public bool StatsToFileTimeStamp;
+        //public double StatsToFileMb = 10;
+
 
 
         //for monitoring publishing - does not need to be saved to xml file
@@ -220,6 +225,7 @@ namespace TeboCam
             ipWebcamAddress,
             ipWebcamUser,
             ipWebcamPassword,
+
             fileDirAlertLoc,
             fileDirAlertCust
 
@@ -410,6 +416,7 @@ namespace TeboCam
                         if (infoType == infoEnum.ipWebcamUser) { infoI.ipWebcamUser = (string)val; }
                         if (infoType == infoEnum.ipWebcamPassword) { infoI.ipWebcamPassword = (string)val; }
 
+
                     }
 
                 }
@@ -502,7 +509,6 @@ namespace TeboCam
                 if (infoType == infoEnum.ipWebcamAddress) { camInfo[infoIdx].ipWebcamAddress = (string)val; }
                 if (infoType == infoEnum.ipWebcamUser) { camInfo[infoIdx].ipWebcamUser = (string)val; }
                 if (infoType == infoEnum.ipWebcamPassword) { camInfo[infoIdx].ipWebcamPassword = (string)val; }
-
 
             }
 
@@ -740,6 +746,9 @@ namespace TeboCam
                     if (property == infoEnum.ipWebcamAddress) return infoI.ipWebcamAddress;
                     if (property == infoEnum.ipWebcamUser) return infoI.ipWebcamUser;
                     if (property == infoEnum.ipWebcamPassword) return infoI.ipWebcamPassword;
+
+
+
 
 
                 }

@@ -382,6 +382,17 @@ namespace TeboCam
             }
 
 
+            //ImageDisplayer displayer = new ImageDisplayer(Test.Width - 20, Test.Height - 20, 100, 100);
+            //Test.Controls.Add(displayer);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_1.jpg", 50);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_2.jpg", 50);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_3.jpg", 50);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_4.jpg", 50);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_5.jpg", 50);
+            //displayer.AddImage(@"C:\Users\Guy\Desktop\temp\testimages\g_6.jpg", 50);
+
+
+
 
 
             if (!bubble.databaseConnect) tabControl1.TabPages.Remove(Online); ;
@@ -2666,6 +2677,11 @@ namespace TeboCam
             emailIntelMins.Text = data.emailIntelMins.ToString();
             EmailIntelStop.Checked = data.EmailIntelStop;
             EmailIntelMosaic.Checked = !data.EmailIntelStop;
+
+            rdStatsToFileOn.Checked = data.StatsToFileOn;
+            pnlStatsToFile.Enabled = rdStatsToFileOn.Checked;
+            chkStatsToFileTimeStamp.Checked = data.StatsToFileTimeStamp;
+            txtStatsToFileMb.Text = data.StatsToFileMb.ToString();
 
             disCommOnline.Checked = data.disCommOnline;
             disCommOnlineSecs.Text = data.disCommOnlineSecs.ToString();
@@ -5000,13 +5016,73 @@ namespace TeboCam
         }
 
 
+        private void rdStatsToFileOn_CheckedChanged(object sender, EventArgs e)
+        {
+
+            pnlStatsToFile.Enabled = rdStatsToFileOn.Checked;
+            config.getProfile(bubble.profileInUse).StatsToFileOn = rdStatsToFileOn.Checked;
+
+            if (config.getProfile(bubble.profileInUse).StatsToFileLocation == string.Empty)
+            {
+
+                config.getProfile(bubble.profileInUse).StatsToFileLocation = Application.StartupPath + "\\" + "MovementStats.txt";
+
+            }
+
+        }
+
+        private void btnStatsToFileLocation_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog statsDialog = new SaveFileDialog();
+
+            if (config.getProfile(bubble.profileInUse).StatsToFileLocation != string.Empty)
+            {
+
+                statsDialog.InitialDirectory = Path.GetDirectoryName(config.getProfile(bubble.profileInUse).StatsToFileLocation);
+                statsDialog.FileName = Path.GetFileName(config.getProfile(bubble.profileInUse).StatsToFileLocation);
+
+            }
+            else
+            {
+
+                statsDialog.InitialDirectory = Application.StartupPath;
+                statsDialog.FileName = "MovementStats";
+
+            }
 
 
+            statsDialog.Title = "Save statistics...";
+            statsDialog.DefaultExt = "txt";
+            statsDialog.AddExtension = true;
+            statsDialog.Filter = "text files (*.txt)|*.txt|All files (*.*)|*.*";
 
 
+            if (statsDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                config.getProfile(bubble.profileInUse).StatsToFileLocation = statsDialog.FileName;
+                statistics.fileName = string.Empty;
+
+            }
 
 
+        }
 
+        private void chkStatsToFileTimeStamp_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).StatsToFileTimeStamp = chkStatsToFileTimeStamp.Checked;
+
+        }
+
+        private void txtStatsToFileMb_Leave(object sender, EventArgs e)
+        {
+            
+            txtStatsToFileMb.Text = bubble.verifyDouble(txtStatsToFileMb.Text, .01, double.MaxValue, "0.01");
+            config.getProfile(bubble.profileInUse).StatsToFileMb = Convert.ToDouble(txtStatsToFileMb.Text);
+
+        }
 
 
 
