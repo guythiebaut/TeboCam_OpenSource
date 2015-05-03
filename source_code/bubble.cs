@@ -1114,6 +1114,7 @@ namespace TeboCam
         public int rectY;
         public string replyTo;
         public bool sendFullSizeImages;
+        public bool captureMovementImages;
         public bool sendNotifyEmail;
         public string sendTo;
         public bool sendThumbnailImages;
@@ -1294,6 +1295,7 @@ namespace TeboCam
             rectY = 20;
             replyTo = "anyone@googlemail.com";
             sendFullSizeImages = false;
+            captureMovementImages = true;
             sendNotifyEmail = false;
             sendTo = "anyone@yahoo.com";
             sendThumbnailImages = false;
@@ -1875,7 +1877,13 @@ namespace TeboCam
 
                             }
 
-                            mail.addAttachment(thumbFolder + rand + mosaicFile);
+                            if (File.Exists(thumbFolder + rand + mosaicFile))
+                            {
+
+                                mail.addAttachment(thumbFolder + rand + mosaicFile);
+
+                            }
+
 
 
                         }
@@ -1895,8 +1903,23 @@ namespace TeboCam
                                 {
 
                                     item.email = true;
-                                    if (config.getProfile(bubble.profileInUse).sendThumbnailImages) mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
-                                    if (config.getProfile(bubble.profileInUse).sendFullSizeImages) mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+                                    
+                                                                       
+
+                                    if( config.getProfile(bubble.profileInUse).sendThumbnailImages && File.Exists(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName)))
+                                    {
+
+                                        mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
+
+                                    }
+
+                                    if( config.getProfile(bubble.profileInUse).sendFullSizeImages && File.Exists(string.Format("{0}{1}", imageFolder, item.fileName)))
+                                    {
+
+                                       mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+
+                                    }
+
 
                                 }
 
@@ -1961,7 +1984,14 @@ namespace TeboCam
                                                 config.getProfile(bubble.profileInUse).alertCompression);
 
 
-                            mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, rand, mosaicFile));
+
+                            if (File.Exists(string.Format("{0}{1}{2}", thumbFolder, rand, mosaicFile)))
+                            {
+
+                                mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, rand, mosaicFile));
+
+                            }
+                            
 
                         }
 
@@ -1985,8 +2015,22 @@ namespace TeboCam
 
                                     item.email = true;
                                     imagesProcessed++;
-                                    if (config.getProfile(bubble.profileInUse).sendThumbnailImages) mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
-                                    if (config.getProfile(bubble.profileInUse).sendFullSizeImages) mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+
+
+                                    if (File.Exists(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName)))
+                                    {
+
+                                        mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
+
+                                    }
+
+                                    if (File.Exists(string.Format("{0}{1}", imageFolder, item.fileName)))
+                                    {
+
+                                        mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+
+                                    }
+                                    
 
                                     if (imagesProcessed >= (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail))
                                     {
@@ -2022,7 +2066,18 @@ namespace TeboCam
                     teboDebug.writeline(teboDebug.movementPublishVal + 19);
                     pulseEvent(null, new EventArgs());
 
-                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"); ;
+
+                    if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
+                    {
+                        
+                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"); 
+
+                    }
+
+                
+
+
+
                     logAddLine("graphCurrent" + graphSeq.ToString() + ".jpg" + " added to email");
                     Thread.Sleep(500);
                     logAddLine("Sending Email");
@@ -2609,7 +2664,18 @@ namespace TeboCam
                     pingGraph(null, new EventArgs());
                     graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
                     logAddLine("Adding graph attachment.");
-                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+
+
+                    if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
+                    {
+
+                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+
+                    }
+
+                  
+
+
                     pingGraphDate = tmpDate;
                     pingGraph(null, new EventArgs());
                 }
@@ -2619,7 +2685,17 @@ namespace TeboCam
                     redrawGraph(null, new EventArgs());
                     graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
                     logAddLine("Adding graph attachment.");
-                    mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+
+
+                    if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
+                    {
+
+                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
+
+                    }
+                                        
+
+
                 }
 
                 teboDebug.writeline(teboDebug.pingVal + 5);
@@ -2628,10 +2704,30 @@ namespace TeboCam
                 FileManager.WriteFile("log");
                 File.Copy(bubble.xmlFolder + "log.xml", tmpFolder + "pinglog" + graphSeq.ToString() + ".xml", true);
                 logAddLine("Adding log attachment.");
-                mail.addAttachment(tmpFolder + "pinglog" + graphSeq.ToString() + ".xml");
+
+
+                if (File.Exists(tmpFolder + "pinglog" + graphSeq.ToString() + ".xml"))
+                {
+
+                    mail.addAttachment(tmpFolder + "pinglog" + graphSeq.ToString() + ".xml");
+
+                }
+
+                
                 File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg", true);
                 logAddLine("Adding image attachment.");
-                mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
+
+
+
+                if (File.Exists(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg"))
+                {
+
+                    mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
+
+                }
+
+
+                
                 File.Delete(tmpFolder + "pingPicture.jpg");
                 Thread.Sleep(2000);
                 mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
@@ -3094,7 +3190,7 @@ namespace TeboCam
 
             }
 
-            statistics.AddStatistic( b.cam,
+            statistics.AddStatistic(b.cam,
                 CameraRig.rigInfoGet(bubble.profileInUse, b.name, CameraRig.infoEnum.friendlyName).ToString().Trim(),
                 Convert.ToInt32((int)Math.Floor(a.lvl * 100)),
                 Convert.ToInt32((int)Math.Floor(a.alarmLvl * 100)),
@@ -3912,6 +4008,7 @@ namespace TeboCam
                     try
                     {
 
+
                         string fName = fileNameSet(config.getProfile(bubble.profileInUse).filenamePrefix,
                                                    config.getProfile(bubble.profileInUse).cycleStampChecked,
                                                    config.getProfile(bubble.profileInUse).startCycle,
@@ -3919,30 +4016,43 @@ namespace TeboCam
                                                    ref config.getProfile(bubble.profileInUse).currentCycle,
                                                    true);
 
-                        Bitmap saveBmp = null;
+                        //20150110 Claudio asked for the possibility of not saving images
+                        if (config.getProfile(profileInUse).captureMovementImages)
+                        {
 
-                        imageText stampArgs = new imageText();
-                        stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
-                        stampArgs.type = "Alert";
-                        stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
+                            Bitmap saveBmp = null;
 
-                        saveBmp = timeStampImage(stampArgs);
+                            imageText stampArgs = new imageText();
+                            stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
+                            stampArgs.type = "Alert";
+                            stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
 
-                        ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
-                        System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
-                        EncoderParameters myEncoderParameters = new EncoderParameters(1);
-                        EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, config.getProfile(profileInUse).alertCompression);
-                        myEncoderParameters.Param[0] = myEncoderParameter;
-                        saveBmp.Save(bubble.imageFolder + fName, jgpEncoder, myEncoderParameters);
+                            saveBmp = timeStampImage(stampArgs);
 
-                        Bitmap thumb = GetThumb(saveBmp);
-                        thumb.Save(thumbFolder + tmbPrefix + fName, ImageFormat.Jpeg);
-                        ImageThumbs.addThumbToPictureBox(thumbFolder + tmbPrefix + fName);
-                        saveBmp.Dispose();
-                        thumb.Dispose();
-                        ImageSavedArgs a = new ImageSavedArgs();
-                        a.image = fName;
-                        AddImageTo_imageSaved(null, a);
+                            ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, config.getProfile(profileInUse).alertCompression);
+                            myEncoderParameters.Param[0] = myEncoderParameter;
+
+
+                            saveBmp.Save(bubble.imageFolder + fName, jgpEncoder, myEncoderParameters);
+
+
+
+
+                            Bitmap thumb = GetThumb(saveBmp);
+                            thumb.Save(thumbFolder + tmbPrefix + fName, ImageFormat.Jpeg);
+                            ImageThumbs.addThumbToPictureBox(thumbFolder + tmbPrefix + fName);
+                            saveBmp.Dispose();
+                            thumb.Dispose();
+                            ImageSavedArgs a = new ImageSavedArgs();
+                            a.image = fName;
+                            AddImageTo_imageSaved(null, a);
+
+
+                        }
+
 
                         updateSeq++;
 
@@ -3954,7 +4064,13 @@ namespace TeboCam
                         moveStatsAdd(time.currentTime());
                         logAddLine("Movement detected");
                         logAddLine("Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString(spikePerc));
-                        logAddLine("Image saved: " + fName);
+
+                        if (config.getProfile(profileInUse).captureMovementImages)
+                        {
+
+                            logAddLine("Image saved: " + fName);
+
+                        }
 
                     }
                     catch (Exception)

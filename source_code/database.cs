@@ -98,7 +98,8 @@ namespace TeboCam
             try
             {
 
-                OdbcConnection con = new OdbcConnection("Driver=" + driver + ";Server=" + server + ";Database=" + dbase + ";UID=" + uid + ";PWD=" + crypt.DecryptString(pwd) + ";OPTION=3");
+                //OdbcConnection con = new OdbcConnection("Driver=" + driver + ";Server=" + server + ";Database=" + dbase + ";UID=" + uid + ";PWD=" + crypt.DecryptString(pwd) + ";OPTION=3");
+                OdbcConnection con = new OdbcConnection("Driver=" + driver + ";Server=" + server + ";Database=" + dbase + ";Uid=" + uid + ";Password=" + crypt.DecryptString(pwd) + ";Option=3");
 
 
                 OdbcCommand com = new OdbcCommand("SELECT user FROM users where user = '" + user + "' and password = '" + encPass + "'", con);

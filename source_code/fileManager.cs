@@ -660,6 +660,10 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pingInterval = Convert.ToInt32(configData.ReadString());
                             }
+                            if (configData.LocalName.Equals("captureMovementImages"))
+                            {
+                                config.getProfile("##newProf##").captureMovementImages = Convert.ToBoolean(configData.ReadString());
+                            }
                             if (configData.LocalName.Equals("sendNotifyEmail"))
                             {
                                 config.getProfile("##newProf##").sendNotifyEmail = Convert.ToBoolean(configData.ReadString());
@@ -1483,6 +1487,7 @@ namespace TeboCam
                         writeElement("countdownTime", config.getProfile().countdownTime.ToString(), configData);
                         writeElement("alert", bubble.Alert.on.ToString(), configData);
                         writeElement("maxImagesToEmail", config.getProfile().maxImagesToEmail.ToString(), configData);
+                        writeElement("captureMovementImages", config.getProfile().captureMovementImages.ToString(), configData);
                         writeElement("sendNotifyEmail", config.getProfile().sendNotifyEmail.ToString(), configData);
                         writeElement("ping", config.getProfile().ping.ToString(), configData);
                         writeElement("pingAll", config.getProfile().pingAll.ToString(), configData);

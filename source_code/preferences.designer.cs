@@ -66,6 +66,7 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -357,7 +358,7 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraWindow = new TeboCam.CameraWindow();
+            this.captureMovementImages = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -769,6 +770,15 @@ namespace TeboCam
             resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
             this.lblCameraName.Tag = "";
+            // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -1643,6 +1653,7 @@ namespace TeboCam
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.captureMovementImages);
             this.groupBox14.Controls.Add(this.pingBox);
             this.groupBox14.Controls.Add(this.mosaicImagesPerRow);
             this.groupBox14.Controls.Add(this.sendMosaic);
@@ -3181,14 +3192,14 @@ namespace TeboCam
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // cameraWindow
+            // captureMovementImages
             // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            resources.ApplyResources(this.captureMovementImages, "captureMovementImages");
+            this.captureMovementImages.BackColor = System.Drawing.SystemColors.Control;
+            this.captureMovementImages.Name = "captureMovementImages";
+            this.toolTip1.SetToolTip(this.captureMovementImages, resources.GetString("captureMovementImages.ToolTip"));
+            this.captureMovementImages.UseVisualStyleBackColor = false;
+            this.captureMovementImages.CheckedChanged += new System.EventHandler(this.captureMovementImages_CheckedChanged);
             // 
             // preferences
             // 
@@ -3648,5 +3659,6 @@ namespace TeboCam
         private System.Windows.Forms.CheckBox chkStatsToFileTimeStamp;
         private System.Windows.Forms.Panel pnlStatsToFile;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.CheckBox captureMovementImages;
     }
 }

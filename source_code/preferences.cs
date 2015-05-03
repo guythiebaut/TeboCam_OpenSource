@@ -476,7 +476,23 @@ namespace TeboCam
 
             bubble.moveStatsInitialise();
             Graph.updateGraphHist(time.currentDate(), bubble.movStats);
-            drawGraph(this, null);
+
+
+            if (!captureMovementImages.Checked)
+            {
+
+                graphDate(DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture), "Image capture switched off");
+
+            }
+            else
+            {
+
+                drawGraph(this, null);
+
+            }
+
+
+
 
             bubble.logAddLine("Starting TeboCam");
             FileManager.clearLog();
@@ -1099,6 +1115,33 @@ namespace TeboCam
             mosaicImagesPerRow.Enabled = sendMosaic.Checked;
 
         }
+
+        private void captureMovementImages_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).captureMovementImages = captureMovementImages.Checked;
+
+            if (!captureMovementImages.Checked)
+            {
+
+                graphDate(DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture), "Image capture switched off");
+
+                sendFullSize.Checked = false;
+                sendThumb.Checked = false;
+                sendMosaic.Checked = false;
+                loadToFtp.Checked = false;
+
+            }
+            else
+            {
+
+                drawGraph(this, null);  
+
+            }
+
+
+        }
+
 
         private void sendEmail_CheckedChanged(object sender, EventArgs e)
         {
@@ -1745,7 +1788,7 @@ namespace TeboCam
         }
 
 
-        private void graphDate(string graphDate)
+        private void graphDate(string graphDate, string displayText = "")
         {
             try
             {
@@ -1783,107 +1826,123 @@ namespace TeboCam
                 double heightMod = 0;
 
 
-
-                for (int i = 0; i < 24; i++)
+                if (displayText == string.Empty)
                 {
 
-                    int cellIdx = Convert.ToInt32((int)Math.Floor((decimal)(i / 2)));
-                    //Draw times
-                    string tpmStr1 = i.ToString() + ":00";
-                    string tpmStr2 = Convert.ToString(i + 1) + ":59";
 
-                    if (i < 10)
-                    {
-                        tpmStr1 = "0" + i.ToString() + ":00";
-                    }
-                    if (i + 1 < 10)
-                    {
-                        tpmStr2 = "0" + Convert.ToString(i + 1) + ":59";
-                    }
-
-                    graphicsObj.DrawString(tpmStr1 + "\n" + tpmStr2, new Font("Tahoma", 8), Brushes.LemonChiffon, new PointF(curPos, windowHeight - 30));
-
-                    int currHour = Convert.ToInt32(LeftRightMid.Left(time.currentTime(), 2));
-                    int currHourIdx = Convert.ToInt32((int)Math.Floor((decimal)(currHour / 2)));
-                    if (graphDate == time.currentDate() && cellIdx == currHourIdx)
-                    {
-                        Rectangle rect1 = new Rectangle(curPos - 2, windowHeight - 31, 35, 27);
-                        graphicsObj.DrawRectangle(thinPen, rect1);
-                    }
-
-                    startY = (windowHeight - lineLength) - 35;
-                    xPos = curPos + 10;
-                    lineXpos.Add(xPos);
-
-                    if (graphDate != null)
+                    for (int i = 0; i < 24; i++)
                     {
 
-                        //draw lines
-                        ArrayList graphData = Graph.getGraphHist(graphDate);
+                        int cellIdx = Convert.ToInt32((int)Math.Floor((decimal)(i / 2)));
+                        //Draw times
+                        string tpmStr1 = i.ToString() + ":00";
+                        string tpmStr2 = Convert.ToString(i + 1) + ":59";
 
-                        string val = "";
-                        val = bubble.graphVal(graphData, cellIdx).ToString();
-
-
-
-                        if (val != "nil")
+                        if (i < 10)
                         {
-
-                            int maxVal = 0;
-                            int lastV = 0;
-                            int regVals = 0;
-                            foreach (int v in graphData)
-                            {
-                                if (v > 0) regVals++;
-                                if (v > lastV)
-                                {
-                                    maxVal = v;
-                                    lastV = v;
-                                }
-
-                            }
-                            if (regVals > 1)
-                            {
-                                heightMod = (double)topHt / (double)maxVal;
-                            }
-                            else
-                            {
-                                heightMod = 0.5 * ((double)topHt / (double)maxVal);
-                            }
-
-                            int gVal = (int)graphData[cellIdx];
-                            lineHeight = Convert.ToInt32(Math.Floor((double)gVal * heightMod));
-                            startY = startY + lineLength - lineHeight;
-
-
-                            movement = true;
-
-                            //yellow outline
-                            Rectangle rectangleObj = new Rectangle(xPos, startY, lineWidth, lineHeight);
-                            graphicsObj.DrawRectangle(linePen, rectangleObj);
-
-                            //red filler
-                            Rectangle rectangleObj2 = new Rectangle(xPos + 4, startY + 4, 3, lineHeight - 7);
-                            graphicsObj.DrawRectangle(redPen, rectangleObj2);
-
-                            string thisVal = Graph.getGraphVal(graphDate, cellIdx);
-
-                            graphicsObj.DrawString(thisVal, new Font("Tahoma", 8), Brushes.LemonChiffon, new PointF(curPos + 7, lineLength - (lineHeight)));
+                            tpmStr1 = "0" + i.ToString() + ":00";
+                        }
+                        if (i + 1 < 10)
+                        {
+                            tpmStr2 = "0" + Convert.ToString(i + 1) + ":59";
                         }
 
+                        graphicsObj.DrawString(tpmStr1 + "\n" + tpmStr2, new Font("Tahoma", 8), Brushes.LemonChiffon, new PointF(curPos, windowHeight - 30));
+
+                        int currHour = Convert.ToInt32(LeftRightMid.Left(time.currentTime(), 2));
+                        int currHourIdx = Convert.ToInt32((int)Math.Floor((decimal)(currHour / 2)));
+                        if (graphDate == time.currentDate() && cellIdx == currHourIdx)
+                        {
+                            Rectangle rect1 = new Rectangle(curPos - 2, windowHeight - 31, 35, 27);
+                            graphicsObj.DrawRectangle(thinPen, rect1);
+                        }
+
+                        startY = (windowHeight - lineLength) - 35;
+                        xPos = curPos + 10;
+                        lineXpos.Add(xPos);
+
+                        if (graphDate != null)
+                        {
+
+                            //draw lines
+                            ArrayList graphData = Graph.getGraphHist(graphDate);
+
+                            string val = "";
+                            val = bubble.graphVal(graphData, cellIdx).ToString();
+
+
+
+                            if (val != "nil")
+                            {
+
+                                int maxVal = 0;
+                                int lastV = 0;
+                                int regVals = 0;
+                                foreach (int v in graphData)
+                                {
+                                    if (v > 0) regVals++;
+                                    if (v > lastV)
+                                    {
+                                        maxVal = v;
+                                        lastV = v;
+                                    }
+
+                                }
+                                if (regVals > 1)
+                                {
+                                    heightMod = (double)topHt / (double)maxVal;
+                                }
+                                else
+                                {
+                                    heightMod = 0.5 * ((double)topHt / (double)maxVal);
+                                }
+
+                                int gVal = (int)graphData[cellIdx];
+                                lineHeight = Convert.ToInt32(Math.Floor((double)gVal * heightMod));
+                                startY = startY + lineLength - lineHeight;
+
+
+                                movement = true;
+
+                                //yellow outline
+                                Rectangle rectangleObj = new Rectangle(xPos, startY, lineWidth, lineHeight);
+                                graphicsObj.DrawRectangle(linePen, rectangleObj);
+
+                                //red filler
+                                Rectangle rectangleObj2 = new Rectangle(xPos + 4, startY + 4, 3, lineHeight - 7);
+                                graphicsObj.DrawRectangle(redPen, rectangleObj2);
+
+                                string thisVal = Graph.getGraphVal(graphDate, cellIdx);
+
+                                graphicsObj.DrawString(thisVal, new Font("Tahoma", 8), Brushes.LemonChiffon, new PointF(curPos + 7, lineLength - (lineHeight)));
+                            }
+
+                        }
+
+                        //increment i for next two hour slot
+                        i += 1;
+                        curPos += timeSep;
+
+
                     }
 
-                    //increment i for next two hour slot
-                    i += 1;
-                    curPos += timeSep;
-
-
                 }
 
-                if (!movement)
+                if (!movement && displayText == string.Empty)
                 {
+
                     graphicsObj.DrawString("No Movement Detected", new Font("Tahoma", 20), Brushes.LemonChiffon, new PointF(80, windowHeight - 140));
+
                 }
+
+                if (displayText != string.Empty)
+                {
+
+                    graphicsObj.DrawString(displayText, new Font("Tahoma", 20), Brushes.LemonChiffon, new PointF(80, windowHeight - 140));
+
+                }
+
+
 
                 Bitmap tmpBit = new Bitmap(myBitmap);
                 bubble.graphCurrent = tmpBit;
@@ -2092,14 +2151,30 @@ namespace TeboCam
 
         private void calendar_DateSelected(object sender, DateRangeEventArgs e)
         {
+
             string dateSelected = calendar.SelectionStart.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+
+            if (!captureMovementImages.Checked)
+            {
+
+                graphDate(dateSelected, "Image capture switched off");
+                return;
+
+            }
+
+
             if (Graph.dataExistsForDate(dateSelected))
             {
+
                 graphDate(dateSelected);
+
             }
             else
             {
+
                 graphDate(null);
+
+
             }
         }
 
@@ -2364,31 +2439,6 @@ namespace TeboCam
             }
 
 
-            //20120318 noopped 
-            //Move files out of images folder to sub folders
-            //DirectoryInfo diImg = new DirectoryInfo(bubble.imageParentFolder);
-            //FileInfo[] imageFilesImg = diImg.GetFiles("*.*");
-            //foreach (FileInfo fi in imageFilesImg)
-            //{
-
-            //    if (LeftRightMid.Left(fi.Name, bubble.tmbPrefix.Length) == bubble.tmbPrefix)
-            //    {
-            //        if (File.Exists(bubble.thumbFolder + fi.Name))
-            //        {
-            //            File.Delete(bubble.thumbFolder + fi.Name);
-            //        }
-            //        File.Move(fi.FullName, bubble.thumbFolder + fi.Name);
-            //    }
-            //    else
-            //    {
-            //        if (File.Exists(bubble.imageFolder + fi.Name))
-            //        {
-            //            File.Delete(bubble.imageFolder + fi.Name);
-            //        }
-            //        File.Move(fi.FullName, bubble.imageFolder + fi.Name);
-            //    }
-            //}
-            //20120318 noopped 
 
             if (!Directory.Exists(bubble.tmpFolder))
             {
@@ -2584,8 +2634,6 @@ namespace TeboCam
             pingSubject.Text = data.pingSubject;
             replyTo.Text = data.replyTo;
 
-            bool tmpBool = data.sendNotifyEmail;
-
             if (data.sendThumbnailImages)
             {
                 sendThumb.Checked = data.sendThumbnailImages;
@@ -2608,7 +2656,8 @@ namespace TeboCam
             mosaicImagesPerRow.Text = data.mosaicImagesPerRow.ToString();
 
 
-            sendEmail.Checked = tmpBool;
+
+            sendEmail.Checked = data.sendNotifyEmail;
 
 
             sendTo.Text = data.sendTo;
@@ -2726,6 +2775,16 @@ namespace TeboCam
 
             lblstartmov.Text = "Start: " + LeftRightMid.Left(data.timerStartMov, 2) + ":" + LeftRightMid.Right(data.timerStartMov, 2);
             lblendmov.Text = "End: " + LeftRightMid.Left(data.timerEndMov, 2) + ":" + LeftRightMid.Right(data.timerEndMov, 2);
+
+            captureMovementImages.Checked = data.captureMovementImages;
+
+
+            if (!captureMovementImages.Checked)
+            {
+
+                graphDate(DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture), "Image capture switched off");
+
+            }
 
 
             txtInternetConnection.Text = data.internetCheck;
@@ -5078,11 +5137,13 @@ namespace TeboCam
 
         private void txtStatsToFileMb_Leave(object sender, EventArgs e)
         {
-            
+
             txtStatsToFileMb.Text = bubble.verifyDouble(txtStatsToFileMb.Text, .01, double.MaxValue, "0.01");
             config.getProfile(bubble.profileInUse).StatsToFileMb = Convert.ToDouble(txtStatsToFileMb.Text);
 
         }
+
+
 
 
 
