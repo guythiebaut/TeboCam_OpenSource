@@ -213,7 +213,7 @@ namespace TeboCam
             }
 
             // lock
-            Monitor.Enter(this);
+            ///Monitor.Enter(this);
 
             Graphics g = pe.Graphics;
             Rectangle rc = this.ClientRectangle;
@@ -294,7 +294,7 @@ namespace TeboCam
             pen.Dispose();
 
             // unlock
-            Monitor.Exit(this);
+            //Monitor.Exit(this);
             base.OnPaint(pe);
         }
 

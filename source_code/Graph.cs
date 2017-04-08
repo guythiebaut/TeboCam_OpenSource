@@ -56,13 +56,13 @@ namespace TeboCam
             return (Graph)Serialization.SerializeFromXMLFile(filename, this);
         }
 
-        public void WriteXMLFile(string filename)
+        public void WriteXMLFile(string filename, Graph graph)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            Serialization.SerializeToXMLFile(filename, this);
+            Serialization.SerializeToXMLFile(filename, graph);
         }
 
         private void AddGraphHist(string date, ArrayList vals)
@@ -79,7 +79,7 @@ namespace TeboCam
 
             bool dateAlreadyExists = false;
             int days = graphHistory.Count;
-            ArrayList histVals = new ArrayList();
+            //ArrayList histVals = new ArrayList();
             int tmpInt1 = 0;
             int tmpInt2 = 0;
 
@@ -91,17 +91,18 @@ namespace TeboCam
                     if (graphHistory[i].date == date)
                     {
                         dateAlreadyExists = true;
-                        histVals = graphHistory[i].vals;
+                        //histVals = graphHistory[i].vals;
                         for (int a = 0; a < 12; a++)
                         {
-                            tmpInt1 = Convert.ToInt32(histVals[a].ToString());
+                            tmpInt1 = Convert.ToInt32(graphHistory[i].vals[a].ToString());
                             tmpInt2 = Convert.ToInt32(vals[a].ToString());
                             //histVals[a] = tmpInt2;
                             //old code 20091226
-                            histVals[a] = tmpInt1 + tmpInt2;
+                            graphHistory[i].vals[a] = tmpInt1 + tmpInt2;
                             //old code 20091226
                         }
-                        graphHistory[i].vals = histVals;
+                        //graphHistory[i].vals=histVals;
+                        //graphHistory[i].vals.AddRange(histVals);
                     }
                 }
 

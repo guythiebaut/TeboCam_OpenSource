@@ -102,7 +102,7 @@ namespace TeboCam
 
         private FilterInfoCollection filters;
 
-        private Graph graph = new Graph();
+        private Graph graph= new Graph();
 
         [STAThread]
 
@@ -205,8 +205,8 @@ namespace TeboCam
             {
                 //FileManager.WriteFile("graphInit"); #FIX
                 //FileManager.backupFile("graph");#FIX
-                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.xml");
-                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.bak");
+                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
+                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.bak", graph);
             }
             if (!File.Exists(bubble.xmlFolder + FileManager.logFile + ".xml"))
             {
@@ -473,19 +473,18 @@ namespace TeboCam
             //}
 
             //graph = new Graph();
-            bubble.graph = graph;
 
             try
             {
-                graph = graph.ReadXMLFile(bubble.xmlFolder + "GraphData.xml");
-                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.bak");
+                graph = new Graph().ReadXMLFile(bubble.xmlFolder + "GraphData.xml");
+                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.bak", graph);
             }
             catch (Exception)
             {
-                graph = graph.ReadXMLFile(bubble.xmlFolder + "GraphData.bak");
+                graph = new Graph().ReadXMLFile(bubble.xmlFolder + "GraphData.bak");
             }
 
-
+            bubble.graph = graph;
 
 
 
@@ -496,7 +495,7 @@ namespace TeboCam
             LevelControlBox.levelDraw(0);
 
             bubble.moveStatsInitialise();
-            graph.updateGraphHist(time.currentDate(), bubble.movStats);
+            graph.updateGraphHist(time.currentDate(), bubble.moveStats);
 
 
             if (!captureMovementImages.Checked)
@@ -2104,7 +2103,7 @@ namespace TeboCam
                 FileManager.WriteFile("config");
                 bubble.logAddLine("Config data saved.");
                 //FileManager.WriteFile("graph");#FIX
-                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml");
+                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                 bubble.logAddLine("Graph data saved.");
                 bubble.logAddLine("Saving log data and closing.");
                 FileManager.WriteFile("log");

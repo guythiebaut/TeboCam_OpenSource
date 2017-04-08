@@ -106,7 +106,7 @@ namespace TeboCam
             else
             {
 
-                for (int i = imageList.Count; i > 0; i--)
+                for (int i = imageList.Count-1; i >= 0; i--)
                 {
 
                     switch (type)
@@ -1567,10 +1567,10 @@ namespace TeboCam
         public static ArrayList training = new ArrayList();
         public static ArrayList imagesSaved = new ArrayList();
         //public static ArrayList log = new ArrayList();
-        public static ArrayList movStats = new ArrayList();
-        public static ArrayList movHist = new ArrayList();
-        public static DateTime movHistDate = new DateTime();
-        public static ArrayList movHistVals = new ArrayList();
+        public static ArrayList moveStats = new ArrayList();
+        //public static ArrayList movHist = new ArrayList();
+        //public static DateTime movHistDate = new DateTime();
+        //public static ArrayList movHistVals = new ArrayList();
 
         public static bool testFtp = false;
         public static bool testFtpError = false;
@@ -1634,7 +1634,7 @@ namespace TeboCam
         {
             for (int i = 0; i < 12; i++)
             {
-                movStats.Add(0);
+                moveStats.Add(0);
             }
 
         }
@@ -1647,9 +1647,9 @@ namespace TeboCam
             int hour = Convert.ToInt32(LeftRightMid.Left(time, 2));
 
             int cellIdx = Convert.ToInt32((int)Math.Floor((decimal)(hour / 2)));
-            int cellVal = Convert.ToInt32(movStats[cellIdx].ToString());
+            int cellVal = Convert.ToInt32(moveStats[cellIdx].ToString());
 
-            movStats[cellIdx] = cellVal + 1;
+            moveStats[cellIdx] = cellVal + 1;
 
         }
 
@@ -1707,9 +1707,9 @@ namespace TeboCam
             if (!graph.dataExistsForDate(time.currentDate()))
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 2);
-                movStats.Clear();
+                moveStats.Clear();
                 moveStatsInitialise();
-                graph.updateGraphHist(time.currentDate(), bubble.movStats);
+                graph.updateGraphHist(time.currentDate(), moveStats);
             }
 
             //we have images to process however the option is set to not load to ftp site and not email images
@@ -1721,7 +1721,7 @@ namespace TeboCam
                 logAddLine("Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
                 imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.All);
                 //imagesToProcess.Clear();
-                graph.updateGraphHist(time.currentDate(), bubble.movStats);
+                graph.updateGraphHist(time.currentDate(), moveStats);
                 if (graphToday()) { redrawGraph(null, new EventArgs()); }
             }
 
@@ -1791,8 +1791,8 @@ namespace TeboCam
             //Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp Ftp 
             //*************************************************************************************************
 
-
-
+            //if (graphToday()) { redrawGraph(null, new EventArgs()); }
+            //graph.updateGraphHist(time.currentDate(), moveStats);
 
             //*************************************************************************************************
             //Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email Email 
@@ -1826,7 +1826,7 @@ namespace TeboCam
                 teboDebug.writeline(teboDebug.movementPublishVal + 4);
                 logAddLine("Images to process: " + emailToProcess.ToString());
                 fileBusy = true;
-                graph.updateGraphHist(time.currentDate(), movStats);
+                graph.updateGraphHist(time.currentDate(), moveStats);
                 if (graphToday()) { redrawGraph(null, new EventArgs()); }
 
 

@@ -57,6 +57,7 @@ namespace teboweb
 
                 //open a data stream from the supplied URL
                 WebRequest webReq = WebRequest.Create(URL + file);
+                webReq.Timeout = 5000;   
                 WebResponse webResponse = webReq.GetResponse();
                 Stream dataStream = webResponse.GetResponseStream();
 
