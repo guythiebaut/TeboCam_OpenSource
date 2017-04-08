@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Text;
+using System.IO;
 
 namespace TeboCam
 {
 
+    [Serializable]
     public class graphHist
     {
         public string date;
         public ArrayList vals = new ArrayList();
+        public graphHist() { }
         public graphHist(string date, ArrayList vals)
         {
             this.date = date;
@@ -29,31 +31,48 @@ namespace TeboCam
 
     }
 
-
+    [Serializable]
     public class GraphDataLine
     {
 
         public DateTime DT;
         public List<Int32> Vals = new List<int>();
 
+        public GraphDataLine() { }
+
+
     }
 
 
     [Serializable]
-    class Graph
+    public class Graph
     {
-        public static List<graphHist> graphHistory = new List<graphHist>();
+        public List<graphHist> graphHistory = new List<graphHist>();
 
         public Graph() { }
 
-        private static void AddGraphHist(string date, ArrayList vals)
+        public Graph ReadXMLFile(string filename)
+        {
+            return (Graph)Serialization.SerializeFromXMLFile(filename, this);
+        }
+
+        public void WriteXMLFile(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            Serialization.SerializeToXMLFile(filename, this);
+        }
+
+        private void AddGraphHist(string date, ArrayList vals)
         {
             ArrayList newVals = new ArrayList();
             newVals.AddRange(vals);
             graphHistory.Add(new graphHist(date, newVals));
         }
 
-        public static void updateGraphHist(string date, ArrayList vals)
+        public void updateGraphHist(string date, ArrayList vals)
         {
 
             //date is in format yyyyMMdd
@@ -101,7 +120,7 @@ namespace TeboCam
             { }
         }
 
-        public static ArrayList getGraphHist(string date)
+        public ArrayList getGraphHist(string date)
         {
             //date is in format yyyyMMdd
 
@@ -119,7 +138,7 @@ namespace TeboCam
 
         }
 
-        public static string getGraphVal(string date, int cellIdx)
+        public string getGraphVal(string date, int cellIdx)
         {
             //date is in format yyyyMMdd
 
@@ -138,7 +157,7 @@ namespace TeboCam
         }
 
 
-        public static ArrayList getGraphDates()
+        public ArrayList getGraphDates()
         {
 
             ArrayList dates = new ArrayList();
@@ -154,7 +173,7 @@ namespace TeboCam
 
         }
 
-        public static bool dataExistsForDate(string date)
+        public bool dataExistsForDate(string date)
         {
             //date is in format yyyyMMdd
 

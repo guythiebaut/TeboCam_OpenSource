@@ -102,6 +102,8 @@ namespace TeboCam
 
         private FilterInfoCollection filters;
 
+        private Graph graph = new Graph();
+
         [STAThread]
 
         static void Main()
@@ -199,10 +201,12 @@ namespace TeboCam
         private void filesInit()
         {
 
-            if (!File.Exists(bubble.xmlFolder + FileManager.graphFile + ".xml"))
+            if (!File.Exists(bubble.xmlFolder + "GraphData.xml"))
             {
-                FileManager.WriteFile("graphInit");
-                FileManager.backupFile("graph");
+                //FileManager.WriteFile("graphInit"); #FIX
+                //FileManager.backupFile("graph");#FIX
+                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.xml");
+                new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.bak");
             }
             if (!File.Exists(bubble.xmlFolder + FileManager.logFile + ".xml"))
             {
@@ -459,14 +463,31 @@ namespace TeboCam
 
             }
 
-            if (FileManager.readXmlFile("graph", false))
+            //if (FileManager.readXmlFile("graph", false))
+            //{
+            //    FileManager.backupFile("graph");
+            //}
+            //else
+            //{
+            //    FileManager.readXmlFile("graph", true);
+            //}
+
+            //graph = new Graph();
+            bubble.graph = graph;
+
+            try
             {
-                FileManager.backupFile("graph");
+                graph = graph.ReadXMLFile(bubble.xmlFolder + "GraphData.xml");
+                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.bak");
             }
-            else
+            catch (Exception)
             {
-                FileManager.readXmlFile("graph", true);
+                graph = graph.ReadXMLFile(bubble.xmlFolder + "GraphData.bak");
             }
+
+
+
+
 
             //clear out thumb nail images
             FileManager.clearFiles(bubble.thumbFolder);
@@ -475,7 +496,7 @@ namespace TeboCam
             LevelControlBox.levelDraw(0);
 
             bubble.moveStatsInitialise();
-            Graph.updateGraphHist(time.currentDate(), bubble.movStats);
+            graph.updateGraphHist(time.currentDate(), bubble.movStats);
 
 
             if (!captureMovementImages.Checked)
@@ -1889,7 +1910,7 @@ namespace TeboCam
                         {
 
                             //draw lines
-                            ArrayList graphData = Graph.getGraphHist(graphDate);
+                            ArrayList graphData = graph.getGraphHist(graphDate);
 
                             string val = "";
                             val = bubble.graphVal(graphData, cellIdx).ToString();
@@ -1936,7 +1957,7 @@ namespace TeboCam
                                 Rectangle rectangleObj2 = new Rectangle(xPos + 4, startY + 4, 3, lineHeight - 7);
                                 graphicsObj.DrawRectangle(redPen, rectangleObj2);
 
-                                string thisVal = Graph.getGraphVal(graphDate, cellIdx);
+                                string thisVal = graph.getGraphVal(graphDate, cellIdx);
 
                                 graphicsObj.DrawString(thisVal, new Font("Tahoma", 8), Brushes.LemonChiffon, new PointF(curPos + 7, lineLength - (lineHeight)));
                             }
@@ -2022,7 +2043,7 @@ namespace TeboCam
             {
                 button6.Text = "Hide Calendar";
 
-                ArrayList tmpList = Graph.getGraphDates();
+                ArrayList tmpList = graph.getGraphDates();
 
                 foreach (string date in tmpList)
                 {
@@ -2082,7 +2103,8 @@ namespace TeboCam
 
                 FileManager.WriteFile("config");
                 bubble.logAddLine("Config data saved.");
-                FileManager.WriteFile("graph");
+                //FileManager.WriteFile("graph");#FIX
+                graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml");
                 bubble.logAddLine("Graph data saved.");
                 bubble.logAddLine("Saving log data and closing.");
                 FileManager.WriteFile("log");
@@ -2187,7 +2209,7 @@ namespace TeboCam
             }
 
 
-            if (Graph.dataExistsForDate(dateSelected))
+            if (graph.dataExistsForDate(dateSelected))
             {
 
                 graphDate(dateSelected);

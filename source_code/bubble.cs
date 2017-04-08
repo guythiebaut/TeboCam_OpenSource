@@ -1558,7 +1558,7 @@ namespace TeboCam
 
 
 
-
+        public static Graph graph;
         public static Bitmap graphCurrent;
 
         public static int detectionCountDown;
@@ -1704,12 +1704,12 @@ namespace TeboCam
             teboDebug.writeline(teboDebug.movementPublishVal + 1);
             pulseEvent(null, new EventArgs());
 
-            if (!Graph.dataExistsForDate(time.currentDate()))
+            if (!graph.dataExistsForDate(time.currentDate()))
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 2);
                 movStats.Clear();
                 moveStatsInitialise();
-                Graph.updateGraphHist(time.currentDate(), bubble.movStats);
+                graph.updateGraphHist(time.currentDate(), bubble.movStats);
             }
 
             //we have images to process however the option is set to not load to ftp site and not email images
@@ -1721,7 +1721,7 @@ namespace TeboCam
                 logAddLine("Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
                 imagesFromMovement.listsClear(imagesFromMovement.TypeEnum.All);
                 //imagesToProcess.Clear();
-                Graph.updateGraphHist(time.currentDate(), bubble.movStats);
+                graph.updateGraphHist(time.currentDate(), bubble.movStats);
                 if (graphToday()) { redrawGraph(null, new EventArgs()); }
             }
 
@@ -1825,8 +1825,8 @@ namespace TeboCam
 
                 teboDebug.writeline(teboDebug.movementPublishVal + 4);
                 logAddLine("Images to process: " + emailToProcess.ToString());
-                bubble.fileBusy = true;
-                Graph.updateGraphHist(time.currentDate(), bubble.movStats);
+                fileBusy = true;
+                graph.updateGraphHist(time.currentDate(), movStats);
                 if (graphToday()) { redrawGraph(null, new EventArgs()); }
 
 

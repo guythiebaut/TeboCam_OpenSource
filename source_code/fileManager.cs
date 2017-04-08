@@ -207,62 +207,67 @@ namespace TeboCam
             #region ::::::::::::::::::::::::Read Graph::::::::::::::::::::::::
             if (file == "graph")
             {
-                int histVal = 0;
-                bool firstDate = true;
-                ArrayList histVals = new ArrayList();
-                string date = "";
-                string fileName = path;//bubble.xmlFolder + graphFile + ".xml";
 
-                XmlTextReader graphData = new XmlTextReader(fileName);
+                //int histVal = 0;
+                //bool firstDate = true;
+                //ArrayList histVals = new ArrayList();
+                //string date = "";
+                //string fileName = path;//bubble.xmlFolder + graphFile + ".xml";
+
+                //XmlTextReader graphData = new XmlTextReader(fileName);
 
                 try
                 {
 
-                    while (graphData.Read())
-                    {
-                        if (graphData.NodeType == XmlNodeType.Element)
-                        {
-
-                            if (graphData.LocalName.Equals("date"))
-                            {
-                                if (!firstDate)
-                                {
-                                    Graph.updateGraphHist(date, histVals);
-                                }
-                                date = graphData.ReadString();
-                                histVals = new ArrayList();
-                                firstDate = false;
-                                for (int i = 0; i < 12; i++)
-                                {
-                                    histVals.Add(0);
-                                }
-
-                            }
-
-                            if (graphData.LocalName.Equals("val"))
-                            {
-                                string tmpStr = graphData.ReadString();
-                                int colonPos = tmpStr.IndexOf(":", 0);
-                                int pos = Convert.ToInt32(LeftRightMid.Left(tmpStr, colonPos));
-                                int val = Convert.ToInt32(LeftRightMid.Right(tmpStr, (tmpStr.Length - (colonPos + 1))));
-
-                                histVals[pos] = val;
-
-                                //histVals.Add(Convert.ToInt32(graphData.ReadString()));
-                                histVal++;
-                            }
+                    Graph gr = new Graph();
+                    gr = (Graph)Serialization.SerializeFromXMLFile(path, gr);
 
 
-                        }
-                    }
-                    Graph.updateGraphHist(date, histVals);
-                    histVal = 0;
-                    graphData.Close();
-                    return 1;
+                    //    while (graphData.Read())
+                    //    {
+                    //        if (graphData.NodeType == XmlNodeType.Element)
+                    //        {
+
+                    //            if (graphData.LocalName.Equals("date"))
+                    //            {
+                    //                if (!firstDate)
+                    //                {
+                    //                    Graph.updateGraphHist(date, histVals);
+                    //                }
+                    //                date = graphData.ReadString();
+                    //                histVals = new ArrayList();
+                    //                firstDate = false;
+                    //                for (int i = 0; i < 12; i++)
+                    //                {
+                    //                    histVals.Add(0);
+                    //                }
+
+                    //            }
+
+                    //            if (graphData.LocalName.Equals("val"))
+                    //            {
+                    //                string tmpStr = graphData.ReadString();
+                    //                int colonPos = tmpStr.IndexOf(":", 0);
+                    //                int pos = Convert.ToInt32(LeftRightMid.Left(tmpStr, colonPos));
+                    //                int val = Convert.ToInt32(LeftRightMid.Right(tmpStr, (tmpStr.Length - (colonPos + 1))));
+
+                    //                histVals[pos] = val;
+
+                    //                //histVals.Add(Convert.ToInt32(graphData.ReadString()));
+                    //                histVal++;
+                    //            }
+
+
+                    //        }
+                    //    }
+                    //    Graph.updateGraphHist(date, histVals);
+                    //    histVal = 0;
+                    //    graphData.Close();
+                    //    return 1;
                 }
                 catch (Exception e)
                 {
-                    graphData.Close();
+                    //graphData.Close();
                     WriteFile("graphInit");
                     MessageBox.Show(e.ToString());
                     return 0;
@@ -1146,103 +1151,126 @@ namespace TeboCam
 
             #region ::::::::::::::::::::::::Write Graph::::::::::::::::::::::::
 
-            if (file == "graphInit")
-            {
-                try
-                {
-                    string fileName = bubble.xmlFolder + graphFile + ".xml";
-                    XmlTextWriter graphData = new XmlTextWriter(fileName, null);
+            //if (file == "graphInit")
+            //{
+            //    try
+            //    {
 
-                    graphData.Formatting = Formatting.Indented;
-                    graphData.Indentation = 4;
-                    graphData.Namespaces = false;
-                    graphData.WriteStartDocument();
+            //        string fileName = bubble.xmlFolder + graphFile + ".xml";
 
-                    graphData.WriteStartElement("", "graph", "");
+            //        if (File.Exists(fileName))
+            //        {
+            //            File.Delete(fileName);
+            //        }
 
-                    graphData.WriteStartElement("", "date", "");
-                    graphData.WriteString("19700511");
-                    graphData.WriteEndElement();
+            //        Graph gr = new Graph();
+            //        Serialization.SerializeToXMLFile(fileName, gr);
+                                        
+            //        //string fileName = bubble.xmlFolder + graphFile + ".xml";
+            //        //XmlTextWriter graphData = new XmlTextWriter(fileName, null);
 
-                    graphData.WriteStartElement("", "val", "");
-                    graphData.WriteString("3:10");
-                    graphData.WriteEndElement();
+            //        //graphData.Formatting = Formatting.Indented;
+            //        //graphData.Indentation = 4;
+            //        //graphData.Namespaces = false;
+            //        //graphData.WriteStartDocument();
 
-                    graphData.WriteEndElement();
-                    graphData.WriteEndDocument();
-                    graphData.Flush();
-                    graphData.Close();
+            //        //graphData.WriteStartElement("", "graph", "");
 
-                }
-                catch
-                {
-                }
-            }
+            //        //graphData.WriteStartElement("", "date", "");
+            //        //graphData.WriteString("19700511");
+            //        //graphData.WriteEndElement();
 
-            if (file == "graph")
-            {
-                try
-                {
-                    string fileName = bubble.xmlFolder + graphFile + ".xml";
-                    XmlTextWriter graphData = new XmlTextWriter(fileName, null);
+            //        //graphData.WriteStartElement("", "val", "");
+            //        //graphData.WriteString("3:10");
+            //        //graphData.WriteEndElement();
 
-                    graphData.Formatting = Formatting.Indented;
-                    graphData.Indentation = 4;
-                    graphData.Namespaces = false;
-                    graphData.WriteStartDocument();
+            //        //graphData.WriteEndElement();
+            //        //graphData.WriteEndDocument();
+            //        //graphData.Flush();
+            //        //graphData.Close();
 
-                    graphData.WriteStartElement("", "graph", "");
+            //    }
+            //    catch
+            //    {
+            //    }
+            //}
 
-                    ArrayList dates = Graph.getGraphDates();
+            //if (file == "graph")
+            //{
+            //    try
+            //    {
 
-                    foreach (string date in dates)
-                    {
+            //        string fileName = bubble.xmlFolder + graphFile + ".xml";
 
-                        ArrayList vals = Graph.getGraphHist(date);
-                        bool hasVals = false;
+            //        if (File.Exists(fileName))
+            //        {
+            //            File.Delete(fileName);
+            //        }
 
-                        foreach (int val in vals)
-                        {
-                            if (val > 0)
-                            {
-                                hasVals = true;
-                            }
-                        }
+            //        Graph gr = new Graph();
+            //        Serialization.SerializeToXMLFile(fileName, gr);
+                    
 
-                        if (hasVals)
-                        {
+            //        //string fileName = bubble.xmlFolder + graphFile + ".xml";
+            //        //XmlTextWriter graphData = new XmlTextWriter(fileName, null);
 
-                            graphData.WriteStartElement("", "date", "");
-                            graphData.WriteString(date);
-                            graphData.WriteEndElement();
+            //        //graphData.Formatting = Formatting.Indented;
+            //        //graphData.Indentation = 4;
+            //        //graphData.Namespaces = false;
+            //        //graphData.WriteStartDocument();
 
-                            int valIdx = 0;
+            //        //graphData.WriteStartElement("", "graph", "");
 
-                            foreach (int val in vals)
-                            {
-                                if (val > 0)
-                                {
-                                    graphData.WriteStartElement("", "val", "");
-                                    graphData.WriteString(valIdx.ToString() + ":" + val.ToString());
-                                    graphData.WriteEndElement();
-                                }
-                                valIdx++;
-                            }
+            //        //ArrayList dates = Graph.getGraphDates();
 
-                        }
+            //        //foreach (string date in dates)
+            //        //{
 
-                    }
+            //        //    ArrayList vals = Graph.getGraphHist(date);
+            //        //    bool hasVals = false;
 
-                    graphData.WriteEndElement();
-                    graphData.WriteEndDocument();
-                    graphData.Flush();
-                    graphData.Close();
+            //        //    foreach (int val in vals)
+            //        //    {
+            //        //        if (val > 0)
+            //        //        {
+            //        //            hasVals = true;
+            //        //        }
+            //        //    }
 
-                }
-                catch
-                {
-                }
-            }
+            //        //    if (hasVals)
+            //        //    {
+
+            //        //        graphData.WriteStartElement("", "date", "");
+            //        //        graphData.WriteString(date);
+            //        //        graphData.WriteEndElement();
+
+            //        //        int valIdx = 0;
+
+            //        //        foreach (int val in vals)
+            //        //        {
+            //        //            if (val > 0)
+            //        //            {
+            //        //                graphData.WriteStartElement("", "val", "");
+            //        //                graphData.WriteString(valIdx.ToString() + ":" + val.ToString());
+            //        //                graphData.WriteEndElement();
+            //        //            }
+            //        //            valIdx++;
+            //        //        }
+
+            //        //    }
+
+            //        //}
+
+            //        //graphData.WriteEndElement();
+            //        //graphData.WriteEndDocument();
+            //        //graphData.Flush();
+            //        //graphData.Close();
+
+            //    }
+            //    catch
+            //    {
+            //    }
+            //}
             #endregion
 
             #region ::::::::::::::::::::::::Write Log::::::::::::::::::::::::
