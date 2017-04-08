@@ -174,7 +174,7 @@ namespace TeboCam
                     {
                         if (LeftRightMid.Left(img, config.getProfile(bubble.profileInUse).filenamePrefix.Length) == config.getProfile(bubble.profileInUse).filenamePrefix && LeftRightMid.Right(img, bubble.ImgSuffix.Length) == bubble.ImgSuffix)
                         {
-                            ftp.DeleteFTP(img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
+                            ftp.DeleteFTP(img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass, false);
                             tmpInt--;
                             bubble.logAddLine(tmpInt.ToString() + " web files left to delete via ftp.");
                         }
@@ -241,7 +241,6 @@ namespace TeboCam
 
                             if (graphData.LocalName.Equals("val"))
                             {
-                                int tmpInt = 0;
                                 string tmpStr = graphData.ReadString();
                                 int colonPos = tmpStr.IndexOf(":", 0);
                                 int pos = Convert.ToInt32(LeftRightMid.Left(tmpStr, colonPos));
@@ -275,29 +274,33 @@ namespace TeboCam
 
             if (file == "log")
             {
-                string fileName = path;// bubble.xmlFolder + logFile + ".xml";
+                //string fileName = path;// bubble.xmlFolder + logFile + ".xml";
 
-                XmlTextReader logData = new XmlTextReader(fileName);
+                //XmlTextReader logData = new XmlTextReader(fileName);
 
                 try
                 {
 
-                    while (logData.Read())
-                    {
-                        if (logData.NodeType == XmlNodeType.Element)
-                        {
-                            //###
-                            if (logData.LocalName.Equals("log"))
-                            {
-                                bubble.log.Add(logData.ReadString());
-                            }
-                        }
-                    }
-                    logData.Close();
+
+                    Log log = new Log(path);
+                    log = (Log)Serialization.SerializeFromXMLFile(path, log);
+
+                    //while (logData.Read())
+                    //{
+                    //    if (logData.NodeType == XmlNodeType.Element)
+                    //    {
+                    //        //###
+                    //        if (logData.LocalName.Equals("log"))
+                    //        {
+                    //            bubble.log.AddLine(DateTime.Now, logData.ReadString());
+                    //        }
+                    //    }
+                    //}
+                    //logData.Close();
                 }
                 catch (Exception e)
                 {
-                    logData.Close();
+                    //logData.Close();
                     WriteFile("logInit");
                     MessageBox.Show(e.ToString());
                     return 0;
@@ -731,6 +734,14 @@ namespace TeboCam
                             if (configData.LocalName.Equals("emailPassword"))
                             {
                                 config.getProfile("##newProf##").emailPass = decrypt(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("lockdownPassword"))
+                            {
+                                config.getProfile("##newProf##").lockdownPassword = decrypt(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("lockdownOn"))
+                            {
+                                config.getProfile("##newProf##").lockdownOn = Convert.ToBoolean(configData.ReadString());
                             }
                             if (configData.LocalName.Equals("smtpHost"))
                             {
@@ -1238,59 +1249,66 @@ namespace TeboCam
 
             if (file == "logInit")
             {
-                try
+                //string fileName = bubble.xmlFolder + logFile + ".xml";
+                //XmlTextWriter logData = new XmlTextWriter(fileName, null);
+
+                //logData.Formatting = Formatting.Indented;
+                //logData.Indentation = 4;
+                //logData.Namespaces = false;
+                //logData.WriteStartDocument();
+
+                //logData.WriteStartElement("", "log", "");
+
+                //logData.WriteEndElement();
+                //logData.WriteEndDocument();
+                //logData.Flush();
+                //logData.Close();
+
+                string fileName = bubble.xmlFolder + logFile + ".xml";
+
+                if (File.Exists(fileName))
                 {
-                    string fileName = bubble.xmlFolder + logFile + ".xml";
-                    XmlTextWriter logData = new XmlTextWriter(fileName, null);
-
-                    logData.Formatting = Formatting.Indented;
-                    logData.Indentation = 4;
-                    logData.Namespaces = false;
-                    logData.WriteStartDocument();
-
-                    logData.WriteStartElement("", "log", "");
-
-                    logData.WriteEndElement();
-                    logData.WriteEndDocument();
-                    logData.Flush();
-                    logData.Close();
+                    File.Delete(fileName);
 
                 }
-                catch
-                {
-                }
+
+                Log log = new Log(fileName);
+                Serialization.SerializeToXMLFile(fileName, log);
             }
             if (file == "log")
             {
-                try
+                //string fileName = bubble.xmlFolder + logFile + ".xml";
+                //XmlTextWriter logData = new XmlTextWriter(fileName, null);
+
+                //logData.Formatting = Formatting.Indented;
+                //logData.Indentation = 4;
+                //logData.Namespaces = false;
+                //logData.WriteStartDocument();
+
+                //logData.WriteStartElement("", "log", "");
+
+                ////###
+                //foreach (logLine logEntry in bubble.log.Lines)
+                //{
+                //    logData.WriteStartElement("", "log", "");
+                //    logData.WriteString(logEntry.Message);
+                //    logData.WriteEndElement();
+                //}
+
+                //logData.WriteEndElement();
+                //logData.WriteEndDocument();
+                //logData.Flush();
+                //logData.Close();
+
+                string fileName = bubble.xmlFolder + logFile + ".xml";
+
+                if (File.Exists(fileName))
                 {
-                    string fileName = bubble.xmlFolder + logFile + ".xml";
-                    XmlTextWriter logData = new XmlTextWriter(fileName, null);
-
-                    logData.Formatting = Formatting.Indented;
-                    logData.Indentation = 4;
-                    logData.Namespaces = false;
-                    logData.WriteStartDocument();
-
-                    logData.WriteStartElement("", "log", "");
-
-                    //###
-                    foreach (string logEntry in bubble.log)
-                    {
-                        logData.WriteStartElement("", "log", "");
-                        logData.WriteString(logEntry.ToString());
-                        logData.WriteEndElement();
-                    }
-
-                    logData.WriteEndElement();
-                    logData.WriteEndDocument();
-                    logData.Flush();
-                    logData.Close();
+                    File.Delete(fileName);
 
                 }
-                catch
-                {
-                }
+
+                Serialization.SerializeToXMLFile(fileName, bubble.log);
             }
             #endregion
             #region ::::::::::::::::::::::::Write Training::::::::::::::::::::::::
@@ -1509,6 +1527,8 @@ namespace TeboCam
                         //###
                         writeElement("emailUser", config.getProfile().emailUser, configData);
                         writeElement("emailPassword", encrypt(config.getProfile().emailPass), configData);
+                        writeElement("lockdownPassword", encrypt(config.getProfile().lockdownPassword), configData);
+                        writeElement("lockdownOn", config.getProfile().lockdownOn.ToString(), configData);
                         writeElement("smtpHost", config.getProfile().smtpHost, configData);
                         writeElement("stmpPort", config.getProfile().smtpPort.ToString(), configData);
                         writeElement("ssl", config.getProfile().EnableSsl.ToString(), configData);

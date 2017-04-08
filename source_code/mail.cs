@@ -14,6 +14,7 @@ namespace TeboCam
         public static bool spamStopped = false;
         public static ArrayList attachments = new ArrayList();
         public static List<int> emailTimeSent = new List<int>();
+        public static List<EmailSent> EmailsSent = new List<EmailSent>();
 
         public static void addAttachment(string file)
         {
@@ -53,10 +54,18 @@ namespace TeboCam
 
         }
 
-        public static void sendEmail(string by, string to, string subj, string body,
-                                     string replyTo, bool hasAttachments, int curTime,
-                                     string emailUser, string emailPass, string smtpHost,
-                                     int smtpPort, bool EnableSsl)
+        public static void sendEmail(string by,
+                                    string to,
+                                    string subj,
+                                    string body,
+                                    string replyTo,
+                                    bool hasAttachments,
+                                    int curTime,
+                                    string emailUser,
+                                    string emailPass,
+                                    string smtpHost,
+                                    int smtpPort,
+                                    bool EnableSsl)
         {
 
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
@@ -81,7 +90,7 @@ namespace TeboCam
                 mail.Body += Environment.NewLine + "No images attached option selected.";
             }
             mail.IsBodyHtml = true;
-            mail.ReplyTo = new MailAddress(replyTo); 
+            mail.ReplyTo = new MailAddress(replyTo);
 
 
 
@@ -116,10 +125,34 @@ namespace TeboCam
 
             try
             {
+
+                //20160627 fix to prevent a bug where sometimes the same email is sent continuosly
+                EmailSent emsent = new EmailSent();
+                string contactInfo = by + to + subj + body + replyTo + emailUser + emailPass + smtpHost;
+
+                foreach (EmailSent item in EmailsSent)
+                {
+
+                    if (item.ConcatInfo == contactInfo && time.secondsSinceStart() - item.TimeSent < 4)
+                    {
+
+                        return;
+
+                    }
+
+                }
+
+                emsent.ConcatInfo = contactInfo;
+                emsent.TimeSent = curTime;
+                EmailsSent.Add(emsent);
+
+
+
                 smtp.Send(mail);
                 emailTimeSent.Add(curTime);
                 bubble.emailTestOk = 1;
                 bubble.logAddLine("Email sent.");
+
             }
 
             catch (System.Exception ex)
@@ -173,6 +206,14 @@ namespace TeboCam
             return false;
 
         }
+
+    }
+
+    public class EmailSent
+    {
+
+        public string ConcatInfo = string.Empty;
+        public int TimeSent;
 
     }
 

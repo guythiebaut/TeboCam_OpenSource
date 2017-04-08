@@ -10,7 +10,6 @@ namespace TeboCam
     {
         public string date;
         public ArrayList vals = new ArrayList();
-
         public graphHist(string date, ArrayList vals)
         {
             this.date = date;
@@ -18,9 +17,34 @@ namespace TeboCam
         }
     }
 
+
+    [Serializable]
+    public class GraphData
+    {
+
+        public List<GraphDataLine> Data;
+
+        public GraphData()
+        { }
+
+    }
+
+
+    public class GraphDataLine
+    {
+
+        public DateTime DT;
+        public List<Int32> Vals = new List<int>();
+
+    }
+
+
+    [Serializable]
     class Graph
     {
-        static List<graphHist> graphHistory = new List<graphHist>();
+        public static List<graphHist> graphHistory = new List<graphHist>();
+
+        public Graph() { }
 
         private static void AddGraphHist(string date, ArrayList vals)
         {

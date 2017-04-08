@@ -620,6 +620,30 @@ namespace TeboCam
             worker.DoWork += new DoWorkEventHandler(workerProcess);
             worker.RunWorkerAsync();
 
+            this.Enabled = false;
+
+            if (bubble.lockdown)
+            {
+
+                while (1 == 1)
+                {
+
+                    if (Prompt.ShowDialog("Password", "Enter password to unlock") == config.getProfile(bubble.profileInUse).lockdownPassword)
+                    {
+
+                        this.Enabled = true;
+                        break;
+
+                    }
+
+
+                }
+
+            }
+
+
+            this.Enabled = true;
+
         }
 
 
@@ -1135,7 +1159,7 @@ namespace TeboCam
             else
             {
 
-                drawGraph(this, null);  
+                drawGraph(this, null);
 
             }
 
@@ -1745,7 +1769,7 @@ namespace TeboCam
         private void log_add(object sender, System.EventArgs e)
         {
             //SetRichInfo(txtLog, bubble.log[bubble.log.Count - 1].ToString() + "\n");
-            txtLog.SynchronisedInvoke(() => txtLog.Text = bubble.log[bubble.log.Count - 1].ToString() + "\n" + txtLog.Text);
+            txtLog.SynchronisedInvoke(() => txtLog.Text = bubble.log.Lines[(int)bubble.log.Count() - 1].Message + "\n" + txtLog.Text);
 
         }
 
@@ -2270,7 +2294,7 @@ namespace TeboCam
             if (!bubble.testFtpError)
             {
                 bubble.logAddLine("ftp test: deleting file");
-                ftp.DeleteFTP(FileManager.testFile + ".xml", config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
+                ftp.DeleteFTP(FileManager.testFile + ".xml", config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass, false);
                 if (bubble.testFtpError)
                 {
                     bubble.logAddLine("Error with test ftp: deleting file");
@@ -2573,6 +2597,10 @@ namespace TeboCam
 
             emailNotifInterval.Text = data.emailNotifyInterval.ToString();
             emailPass.Text = data.emailPass;
+            txtLockdownPassword.Text = data.lockdownPassword;
+            rdLockdownOn.Checked = data.lockdownOn;
+            bubble.lockdown = data.lockdownOn;
+            btnSecurityLockdownOn.Enabled = rdLockdownOn.Checked;
             emailUser.Text = data.emailUser;
 
             ftpPass.Text = data.ftpPass;
@@ -5029,7 +5057,7 @@ namespace TeboCam
         {
 
             emailIntelPanel.Enabled = EmailIntelOn.Checked;
-            config.getProfile(bubble.profileInUse).EmailIntelOn = EmailIntelOn.Checked; ;
+            config.getProfile(bubble.profileInUse).EmailIntelOn = EmailIntelOn.Checked;
 
         }
 
@@ -5140,6 +5168,47 @@ namespace TeboCam
 
             txtStatsToFileMb.Text = bubble.verifyDouble(txtStatsToFileMb.Text, .01, double.MaxValue, "0.01");
             config.getProfile(bubble.profileInUse).StatsToFileMb = Convert.ToDouble(txtStatsToFileMb.Text);
+
+        }
+
+        private void txtLockdownPassword_Leave(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).lockdownPassword = txtLockdownPassword.Text;
+
+        }
+
+        private void rdLockdownOff_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).lockdownOn = !rdLockdownOff.Checked;
+            bubble.lockdown = !rdLockdownOff.Checked;
+            btnSecurityLockdownOn.Enabled = !rdLockdownOff.Checked;
+
+        }
+
+        private void btnSecurityLockdownOn_Click(object sender, EventArgs e)
+        {
+
+
+            WindowState = FormWindowState.Minimized;
+            Hide();
+            this.Enabled = false;
+
+            while (1 == 1)
+            {
+
+                if (Prompt.ShowDialog("Password", "Enter password to unlock") == config.getProfile(bubble.profileInUse).lockdownPassword)
+                {
+
+                    this.Enabled = true;
+                    break;
+
+                }
+
+
+            }
+
 
         }
 

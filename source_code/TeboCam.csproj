@@ -154,6 +154,8 @@
     <Compile Include="licence.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="Prompt.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="schedule.cs">
       <SubType>Form</SubType>
@@ -204,6 +206,7 @@
     <Compile Include="Pulse.cs" />
     <Compile Include="regex.cs" />
     <Compile Include="sensitiveInfo.cs" />
+    <Compile Include="Serialization.cs" />
     <Compile Include="statistics.cs" />
     <Compile Include="teboDebug.cs" />
     <Compile Include="time.cs" />

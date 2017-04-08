@@ -48,7 +48,7 @@ namespace TeboCam
             }
             if (option == "reset")
             {
-                update = "set online_request = null , lastTeboCamUpdate = '" + value + "'";
+                update = "set online_request = null, command_guid=null , lastTeboCamUpdate = '" + value + "'";
                 cmd = "update settings " + update + " where user = '" + user + "' and instance_name = '" + instance + "'";
             }
             if (option == "picLoc")

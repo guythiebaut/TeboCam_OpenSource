@@ -175,6 +175,7 @@ namespace TeboCam
             this.button21 = new System.Windows.Forms.Button();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.captureMovementImages = new System.Windows.Forms.CheckBox();
             this.pingBox = new System.Windows.Forms.GroupBox();
             this.rdPingActiveCamera = new System.Windows.Forms.RadioButton();
             this.rdPingAllCameras = new System.Windows.Forms.RadioButton();
@@ -245,6 +246,11 @@ namespace TeboCam
             this.label24 = new System.Windows.Forms.Label();
             this.ftpRoot = new System.Windows.Forms.TextBox();
             this.Admin = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.rdLockdownOff = new System.Windows.Forms.RadioButton();
+            this.rdLockdownOn = new System.Windows.Forms.RadioButton();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtLockdownPassword = new System.Windows.Forms.TextBox();
             this.infoMode = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.freezeGuardWindow = new System.Windows.Forms.CheckBox();
@@ -358,7 +364,7 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.captureMovementImages = new System.Windows.Forms.CheckBox();
+            this.btnSecurityLockdownOn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -420,6 +426,7 @@ namespace TeboCam
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Admin.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.groupBox19.SuspendLayout();
@@ -1673,6 +1680,15 @@ namespace TeboCam
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.TabStop = false;
             // 
+            // captureMovementImages
+            // 
+            resources.ApplyResources(this.captureMovementImages, "captureMovementImages");
+            this.captureMovementImages.BackColor = System.Drawing.SystemColors.Control;
+            this.captureMovementImages.Name = "captureMovementImages";
+            this.toolTip1.SetToolTip(this.captureMovementImages, resources.GetString("captureMovementImages.ToolTip"));
+            this.captureMovementImages.UseVisualStyleBackColor = false;
+            this.captureMovementImages.CheckedChanged += new System.EventHandler(this.captureMovementImages_CheckedChanged);
+            // 
             // pingBox
             // 
             this.pingBox.Controls.Add(this.rdPingActiveCamera);
@@ -2237,6 +2253,7 @@ namespace TeboCam
             // Admin
             // 
             this.Admin.BackColor = System.Drawing.Color.Transparent;
+            this.Admin.Controls.Add(this.groupBox12);
             this.Admin.Controls.Add(this.infoMode);
             this.Admin.Controls.Add(this.groupBox2);
             this.Admin.Controls.Add(this.groupBox22);
@@ -2249,6 +2266,49 @@ namespace TeboCam
             resources.ApplyResources(this.Admin, "Admin");
             this.Admin.Name = "Admin";
             this.Admin.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.btnSecurityLockdownOn);
+            this.groupBox12.Controls.Add(this.rdLockdownOff);
+            this.groupBox12.Controls.Add(this.rdLockdownOn);
+            this.groupBox12.Controls.Add(this.label38);
+            this.groupBox12.Controls.Add(this.txtLockdownPassword);
+            resources.ApplyResources(this.groupBox12, "groupBox12");
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.TabStop = false;
+            // 
+            // rdLockdownOff
+            // 
+            resources.ApplyResources(this.rdLockdownOff, "rdLockdownOff");
+            this.rdLockdownOff.Checked = true;
+            this.rdLockdownOff.Name = "rdLockdownOff";
+            this.rdLockdownOff.TabStop = true;
+            this.toolTip1.SetToolTip(this.rdLockdownOff, resources.GetString("rdLockdownOff.ToolTip"));
+            this.rdLockdownOff.UseVisualStyleBackColor = true;
+            this.rdLockdownOff.CheckedChanged += new System.EventHandler(this.rdLockdownOff_CheckedChanged);
+            // 
+            // rdLockdownOn
+            // 
+            resources.ApplyResources(this.rdLockdownOn, "rdLockdownOn");
+            this.rdLockdownOn.Name = "rdLockdownOn";
+            this.toolTip1.SetToolTip(this.rdLockdownOn, resources.GetString("rdLockdownOn.ToolTip"));
+            this.rdLockdownOn.UseVisualStyleBackColor = true;
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.ForeColor = System.Drawing.Color.Black;
+            this.label38.Name = "label38";
+            // 
+            // txtLockdownPassword
+            // 
+            this.txtLockdownPassword.BackColor = System.Drawing.Color.LemonChiffon;
+            resources.ApplyResources(this.txtLockdownPassword, "txtLockdownPassword");
+            this.txtLockdownPassword.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLockdownPassword.Name = "txtLockdownPassword";
+            this.toolTip1.SetToolTip(this.txtLockdownPassword, resources.GetString("txtLockdownPassword.ToolTip"));
+            this.txtLockdownPassword.Leave += new System.EventHandler(this.txtLockdownPassword_Leave);
             // 
             // infoMode
             // 
@@ -3192,14 +3252,13 @@ namespace TeboCam
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // captureMovementImages
+            // btnSecurityLockdownOn
             // 
-            resources.ApplyResources(this.captureMovementImages, "captureMovementImages");
-            this.captureMovementImages.BackColor = System.Drawing.SystemColors.Control;
-            this.captureMovementImages.Name = "captureMovementImages";
-            this.toolTip1.SetToolTip(this.captureMovementImages, resources.GetString("captureMovementImages.ToolTip"));
-            this.captureMovementImages.UseVisualStyleBackColor = false;
-            this.captureMovementImages.CheckedChanged += new System.EventHandler(this.captureMovementImages_CheckedChanged);
+            resources.ApplyResources(this.btnSecurityLockdownOn, "btnSecurityLockdownOn");
+            this.btnSecurityLockdownOn.Name = "btnSecurityLockdownOn";
+            this.toolTip1.SetToolTip(this.btnSecurityLockdownOn, resources.GetString("btnSecurityLockdownOn.ToolTip"));
+            this.btnSecurityLockdownOn.UseVisualStyleBackColor = true;
+            this.btnSecurityLockdownOn.Click += new System.EventHandler(this.btnSecurityLockdownOn_Click);
             // 
             // preferences
             // 
@@ -3300,6 +3359,8 @@ namespace TeboCam
             this.panel2.PerformLayout();
             this.Admin.ResumeLayout(false);
             this.Admin.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox22.ResumeLayout(false);
@@ -3660,5 +3721,11 @@ namespace TeboCam
         private System.Windows.Forms.Panel pnlStatsToFile;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.CheckBox captureMovementImages;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.RadioButton rdLockdownOff;
+        private System.Windows.Forms.RadioButton rdLockdownOn;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox txtLockdownPassword;
+        private System.Windows.Forms.Button btnSecurityLockdownOn;
     }
 }

@@ -135,7 +135,7 @@ namespace TeboCam
                 //GetFileListSuccess(null, new EventArgs()); 
                 return tempList;
             }
-            catch 
+            catch
             {
                 //GetFileListError(null, new EventArgs()); 
                 bubble.logAddLine("FTP error: GetFileList");
@@ -148,7 +148,7 @@ namespace TeboCam
         #endregion
 
         #region ::::::::::::::::::::::::DeleteFTP::::::::::::::::::::::::
-        public static bool DeleteFTP(string fileName, string ftpServerIP, string ftpUserID, string ftpPassword)
+        public static bool DeleteFTP(string fileName, string ftpServerIP, string ftpUserID, string ftpPassword, bool getResponse)
         {
             bubble.fileBusy = true;
 
@@ -162,15 +162,23 @@ namespace TeboCam
                 reqFTP.KeepAlive = false;
                 reqFTP.Method = WebRequestMethods.Ftp.DeleteFile;
 
-                string result = String.Empty;
+
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
-                long size = response.ContentLength;
-                Stream datastream = response.GetResponseStream();
-                StreamReader sr = new StreamReader(datastream);
-                result = sr.ReadToEnd();
-                sr.Close();
-                datastream.Close();
-                response.Close();
+
+                if (getResponse)
+                {
+
+                    long size = response.ContentLength;
+                    Stream datastream = response.GetResponseStream();
+                    StreamReader sr = new StreamReader(datastream);
+                    string result = sr.ReadToEnd();
+                    sr.Close();
+                    datastream.Close();
+                    response.Close();
+
+                }
+
+
                 //DeleteSuccess(null, new EventArgs()); 
             }
             catch (Exception)

@@ -20,6 +20,8 @@ using System.Drawing.Drawing2D;
 namespace TeboCam
 {
 
+
+
     public class Update_Version_Being_Used
     {
 
@@ -70,7 +72,6 @@ namespace TeboCam
 
 
         public static List<item> imageList = new List<item>();
-
 
 
         public static void addImageRange(ArrayList images)
@@ -417,6 +418,12 @@ namespace TeboCam
         /// <returns>int</returns>
         public static int motionSenseClick(int p_bttn)
         {
+
+            //if (cam.Count == 0)
+            //{
+            //    return -1;
+            //}
+
 
             int bttn = p_bttn - 1;
 
@@ -1088,6 +1095,8 @@ namespace TeboCam
         public int cycleStampChecked;
         public long emailNotifyInterval;
         public string emailPass;
+        public string lockdownPassword;
+        public bool lockdownOn;
         public string emailUser;
         public bool EnableSsl;
         public long endCycle;
@@ -1269,12 +1278,14 @@ namespace TeboCam
             cycleStamp = false;
             cycleStampChecked = 1;
             emailNotifyInterval = 2;
-            emailPass = "";
+            emailPass = string.Empty;
+            lockdownPassword = string.Empty;
+            lockdownOn = false;
             emailUser = "anyone@googlemail.com";
             EnableSsl = true;
             endCycle = 999;
             filenamePrefix = "webcamImage";
-            ftpPass = "";
+            ftpPass = string.Empty;
             ftpRoot = "ftp.anyone.com/docs/webcam";
             ftpUser = "anyone.com";
             imageSaveInterval = Double.Parse("0.5", new System.Globalization.CultureInfo("en-GB"));
@@ -1314,7 +1325,7 @@ namespace TeboCam
             pubMins = true;
             pubSecs = false;
             pubFtpUser = "anyone@googlemail.com";
-            pubFtpPass = "";
+            pubFtpPass = string.Empty;
             pubFtpRoot = "ftp.anyone.com/docs/webcam";
             //20101026 can be removed on 20110101
             pubStampDate = false;
@@ -1455,6 +1466,9 @@ namespace TeboCam
         //installUpdate
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+        public static Log log = new Log("filename");
+
+
         public static string devMachineFile = sensitiveInfo.devMachineFile;
         public static string databaseTrialFile = sensitiveInfo.databaseTrialFile;
         public static string dbaseConnectFile = sensitiveInfo.dbaseConnectFile;
@@ -1464,6 +1478,8 @@ namespace TeboCam
         public const int databaseTimeOutCount = 5;
 
         public const string updaterPrefix = sensitiveInfo.updaterPrefix;
+
+        public static List<string> OnlineCommandGuids = new List<string>();
 
         public static string imageParentFolder = Application.StartupPath + @"\images\";
         public static string imageFolder = imageParentFolder + @"fullSize\";
@@ -1527,6 +1543,8 @@ namespace TeboCam
         public static bool publishFirst = true;
         public static bool pubError;
 
+        public static bool lockdown = false;
+
         public static List<bool> publishCams = new List<bool>();
 
         public static bool testImagePublish = false;
@@ -1548,7 +1566,7 @@ namespace TeboCam
 
         public static ArrayList training = new ArrayList();
         public static ArrayList imagesSaved = new ArrayList();
-        public static ArrayList log = new ArrayList();
+        //public static ArrayList log = new ArrayList();
         public static ArrayList movStats = new ArrayList();
         public static ArrayList movHist = new ArrayList();
         public static DateTime movHistDate = new DateTime();
@@ -1903,20 +1921,20 @@ namespace TeboCam
                                 {
 
                                     item.email = true;
-                                    
-                                                                       
 
-                                    if( config.getProfile(bubble.profileInUse).sendThumbnailImages && File.Exists(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName)))
+
+
+                                    if (config.getProfile(bubble.profileInUse).sendThumbnailImages && File.Exists(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName)))
                                     {
 
                                         mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, tmbPrefix, item.fileName));
 
                                     }
 
-                                    if( config.getProfile(bubble.profileInUse).sendFullSizeImages && File.Exists(string.Format("{0}{1}", imageFolder, item.fileName)))
+                                    if (config.getProfile(bubble.profileInUse).sendFullSizeImages && File.Exists(string.Format("{0}{1}", imageFolder, item.fileName)))
                                     {
 
-                                       mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
+                                        mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
 
                                     }
 
@@ -1991,7 +2009,7 @@ namespace TeboCam
                                 mail.addAttachment(string.Format("{0}{1}{2}", thumbFolder, rand, mosaicFile));
 
                             }
-                            
+
 
                         }
 
@@ -2030,7 +2048,7 @@ namespace TeboCam
                                         mail.addAttachment(string.Format("{0}{1}", imageFolder, item.fileName));
 
                                     }
-                                    
+
 
                                     if (imagesProcessed >= (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail))
                                     {
@@ -2069,12 +2087,12 @@ namespace TeboCam
 
                     if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
                     {
-                        
-                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"); 
+
+                        mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
 
                     }
 
-                
+
 
 
 
@@ -2202,6 +2220,7 @@ namespace TeboCam
                     //publish off
                     //shutdown
 
+                    webUpdLastChecked = time.secondsSinceStart();
                     teboDebug.writeline(teboDebug.webUpdateVal + 5);
                     pulseEvent(null, new EventArgs());
 
@@ -2212,6 +2231,28 @@ namespace TeboCam
                     string instance = config.getProfile(bubble.profileInUse).webInstance;
                     ArrayList data_result = new ArrayList();
                     string update_result = "";
+
+                    //20160627 if the command has already been processed jump out of this routine
+                    ArrayList command_guid = new ArrayList();
+                    command_guid = database.database_get_data(bubble.mysqlDriver, user, instance, "command_guid");
+
+                    if (bubble.OnlineCommandGuids.Contains(command_guid[0].ToString()))
+                    {
+
+                        //let's clear the command
+                        //update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusinactive", logForSql()) + " records affected.";
+                        //update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", logForSql()) + " records affected.";
+                        update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+                        return;
+
+                    }
+                    else
+                    {
+
+                        bubble.OnlineCommandGuids.Clear();
+                        bubble.OnlineCommandGuids.Add(command_guid[0].ToString());
+
+                    }
 
                     //20120331 check for restriction on processing old commands
                     //if a command has been sitting online for longer than a given number of seconds
@@ -2232,9 +2273,17 @@ namespace TeboCam
                     }
 
 
+
+
                     data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "online_request");
                     string tmpStr = "";
-                    if (data_result.Count >= 1) tmpStr = data_result[0].ToString().Trim();
+
+                    if (data_result.Count >= 1)
+                    {
+
+                        tmpStr = data_result[0].ToString().Trim();
+
+                    }
 
 
                     bool securityCode = regex.match("111+$", tmpStr);
@@ -2252,10 +2301,17 @@ namespace TeboCam
 
                     data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "email");
                     string email = "";
-                    if (data_result.Count >= 1) email = data_result[0].ToString().Trim();
+
+                    if (data_result.Count >= 1)
+                    {
+
+                        email = data_result[0].ToString().Trim();
+
+                    }
 
                     if (tmpStr != "NULL" && email == "1")
                     {
+
                         teboDebug.writeline(teboDebug.webUpdateVal + 6);
                         mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
                                        config.getProfile(bubble.profileInUse).sendTo,
@@ -2271,6 +2327,8 @@ namespace TeboCam
                                        config.getProfile(bubble.profileInUse).EnableSsl
                                        );
                         bubble.logAddLine("Online Request Confirmation email sent.");
+
+
 
                     }
 
@@ -2347,11 +2405,12 @@ namespace TeboCam
                         teboDebug.writeline(teboDebug.webUpdateVal + 15);
                         logAddLine("Web request motion detection activated.");
 
-                        motionDetectionActivate(null, new EventArgs());
-
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusactive", logForSql()) + " records affected.";
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", logForSql()) + " records affected.";
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+                        motionDetectionActivate(null, new EventArgs());
+
                     }
 
                     if (inactivateCmd)
@@ -2359,11 +2418,12 @@ namespace TeboCam
                         teboDebug.writeline(teboDebug.webUpdateVal + 16);
                         logAddLine("Web request motion detection inactivated.");
 
-                        motionDetectionInactivate(null, new EventArgs());
-
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusinactive", logForSql()) + " records affected.";
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", logForSql()) + " records affected.";
                         update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+                        motionDetectionInactivate(null, new EventArgs());
+
                     }
 
 
@@ -2624,7 +2684,6 @@ namespace TeboCam
 
 
                     teboDebug.writeline(teboDebug.webUpdateVal + 47);
-                    webUpdLastChecked = time.secondsSinceStart();
 
                     pulseEvent(null, new EventArgs());
 
@@ -2673,7 +2732,7 @@ namespace TeboCam
 
                     }
 
-                  
+
 
 
                     pingGraphDate = tmpDate;
@@ -2693,7 +2752,7 @@ namespace TeboCam
                         mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
 
                     }
-                                        
+
 
 
                 }
@@ -2713,7 +2772,7 @@ namespace TeboCam
 
                 }
 
-                
+
                 File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg", true);
                 logAddLine("Adding image attachment.");
 
@@ -2727,7 +2786,7 @@ namespace TeboCam
                 }
 
 
-                
+
                 File.Delete(tmpFolder + "pingPicture.jpg");
                 Thread.Sleep(2000);
                 mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
@@ -2964,7 +3023,7 @@ namespace TeboCam
                                         CameraRig.updateInfo(bubble.profileInUse, item.cameraName, CameraRig.infoEnum.currentCyclePubWeb, Convert.ToInt32(tmpCycleWeb));
 
                                         File.Copy(tmpFolder + "pubPicture.jpg", tmpFolder + webFile, true);
-                                        ftp.DeleteFTP(webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
+                                        ftp.DeleteFTP(webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass, false);
                                         ftp.Upload(tmpFolder + webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
                                         pubFile = webFile;
 
@@ -3154,7 +3213,9 @@ namespace TeboCam
         public static void logAddLine(string line)
         {
             string tmpStr = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss:fff", System.Globalization.CultureInfo.InvariantCulture);
-            log.Add(tmpStr + " | " + line);
+            //log.Add(tmpStr + " | " + line);
+
+            log.AddLine(DateTime.Now, line);
             LogAdded(null, new EventArgs());
         }
 
@@ -3230,7 +3291,7 @@ namespace TeboCam
 
 
 
-        public static string fileNameSet(string filenamePrefix, int cycleType, long startCycle, long endCycle, ref  long currCycle, bool appendStamp)
+        public static string fileNameSet(string filenamePrefix, int cycleType, long startCycle, long endCycle, ref long currCycle, bool appendStamp)
         {
 
             string fileName;
@@ -3839,9 +3900,9 @@ namespace TeboCam
         {
             string log = "";
 
-            foreach (string line in bubble.log)
+            foreach (logLine line in bubble.log.Lines)
             {
-                log += System.Environment.NewLine + line;
+                log += System.Environment.NewLine + line.Message;
             }
             return log;
         }
