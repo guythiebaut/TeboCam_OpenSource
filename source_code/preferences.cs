@@ -102,7 +102,8 @@ namespace TeboCam
 
         private FilterInfoCollection filters;
 
-        private Graph graph= new Graph();
+        private Graph graph = new Graph();
+        private Log log = new Log();
 
         [STAThread]
 
@@ -208,11 +209,15 @@ namespace TeboCam
                 new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                 new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.bak", graph);
             }
+
             if (!File.Exists(bubble.xmlFolder + FileManager.logFile + ".xml"))
             {
-                FileManager.WriteFile("logInit");
-                FileManager.backupFile("log");
+                //FileManager.WriteFile("logInit");
+                //FileManager.backupFile("log");
+                new Log().WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
+                new Log().WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak", log);
             }
+
             if (!File.Exists(bubble.xmlFolder + FileManager.configFile + ".xml"))
             {
                 //bubble.configDataInit();
@@ -434,14 +439,27 @@ namespace TeboCam
             {
                 FileManager.readXmlFile("config", true);
             }
-            if (FileManager.readXmlFile("log", false))
+
+            //if (FileManager.readXmlFile("log", false))
+            //{
+            //    FileManager.backupFile("log");
+            //}
+            //else
+            //{
+            //    FileManager.readXmlFile("log", true);
+            //}
+
+            try
             {
-                FileManager.backupFile("log");
+                log = new Log().ReadXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml");
+                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak", log);
             }
-            else
+            catch (Exception)
             {
-                FileManager.readXmlFile("log", true);
+                log = new Log().ReadXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak");
             }
+
+            bubble.log = log;
 
             profileListRefresh(bubble.profileInUse);
 
@@ -2106,7 +2124,7 @@ namespace TeboCam
                 graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                 bubble.logAddLine("Graph data saved.");
                 bubble.logAddLine("Saving log data and closing.");
-                FileManager.WriteFile("log");
+                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
 
                 bttnMotionInactive.Checked = true;
                 bttnMotionActive.Checked = false;

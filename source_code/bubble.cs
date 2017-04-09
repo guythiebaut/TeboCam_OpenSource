@@ -106,7 +106,7 @@ namespace TeboCam
             else
             {
 
-                for (int i = imageList.Count-1; i >= 0; i--)
+                for (int i = imageList.Count - 1; i >= 0; i--)
                 {
 
                     switch (type)
@@ -1466,7 +1466,7 @@ namespace TeboCam
         //installUpdate
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        public static Log log = new Log("filename");
+ 
 
 
         public static string devMachineFile = sensitiveInfo.devMachineFile;
@@ -1557,7 +1557,7 @@ namespace TeboCam
         public static AlertClass Alert = new AlertClass();
 
 
-
+        public static Log log;
         public static Graph graph;
         public static Bitmap graphCurrent;
 
@@ -2125,9 +2125,11 @@ namespace TeboCam
                     pulseEvent(null, new EventArgs());
 
                     lastProcessedTime = time.secondsSinceStart();
-                    FileManager.WriteFile("log");
+                    //FileManager.WriteFile("log");
+                    log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
                     bubble.logAddLine("Log data saved.");
-                    FileManager.WriteFile("graph");
+                    //FileManager.WriteFile("graph");
+                    graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                     bubble.logAddLine("Graph data saved.");
                     bubble.logAddLine("Config data saved.");
                     FileManager.WriteFile("config");
@@ -2760,7 +2762,8 @@ namespace TeboCam
                 teboDebug.writeline(teboDebug.pingVal + 5);
                 pulseEvent(null, new EventArgs());
 
-                FileManager.WriteFile("log");
+                //FileManager.WriteFile("log");
+                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
                 File.Copy(bubble.xmlFolder + "log.xml", tmpFolder + "pinglog" + graphSeq.ToString() + ".xml", true);
                 logAddLine("Adding log attachment.");
 
