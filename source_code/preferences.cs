@@ -210,12 +210,12 @@ namespace TeboCam
                 new Graph().WriteXMLFile(bubble.xmlFolder + "GraphData.bak", graph);
             }
 
-            if (!File.Exists(bubble.xmlFolder + FileManager.logFile + ".xml"))
+            if (!File.Exists(bubble.xmlFolder + "LogData" + ".xml"))
             {
                 //FileManager.WriteFile("logInit");
                 //FileManager.backupFile("log");
-                new Log().WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
-                new Log().WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak", log);
+                new Log().WriteXMLFile(bubble.xmlFolder + "LogData" + ".xml", log);
+                new Log().WriteXMLFile(bubble.xmlFolder + "LogData" + ".bak", log);
             }
 
             if (!File.Exists(bubble.xmlFolder + FileManager.configFile + ".xml"))
@@ -451,12 +451,12 @@ namespace TeboCam
 
             try
             {
-                log = new Log().ReadXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml");
-                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak", log);
+                log = new Log().ReadXMLFile(bubble.xmlFolder + "LogData" + ".xml");
+                log.WriteXMLFile(bubble.xmlFolder + "LogData" + ".bak", log);
             }
             catch (Exception)
             {
-                log = new Log().ReadXMLFile(bubble.xmlFolder + FileManager.logFile + ".bak");
+                log = new Log().ReadXMLFile(bubble.xmlFolder + "LogData" + ".bak");
             }
 
             bubble.log = log;
@@ -2124,7 +2124,7 @@ namespace TeboCam
                 graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                 bubble.logAddLine("Graph data saved.");
                 bubble.logAddLine("Saving log data and closing.");
-                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
+                log.WriteXMLFile(bubble.xmlFolder + "LogData" + ".xml", log);
 
                 bttnMotionInactive.Checked = true;
                 bttnMotionActive.Checked = false;

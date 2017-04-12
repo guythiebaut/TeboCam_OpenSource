@@ -16,8 +16,8 @@ namespace TeboCam
     {
         static BackgroundWorker bw = new BackgroundWorker();
         public static string configFile = "config";
-        public static string graphFile = "graph";
-        public static string logFile = "log";
+        //public static string graphFile = "graph";
+        //public static string logFile = "log";
         public static string keyFile = "licence";
         public static string testFile = "test";
 
@@ -28,16 +28,6 @@ namespace TeboCam
         public static void backupFile(string file)
         {
             string path = "";
-
-            if (file == "graph")
-            {
-                path = bubble.xmlFolder + graphFile;
-            }
-
-            if (file == "log")
-            {
-                path = bubble.xmlFolder + logFile;
-            }
 
             if (file == "config")
             {
@@ -92,7 +82,7 @@ namespace TeboCam
             string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
             bubble.logAddLine("Making copy of log file with time stamp - " + timeStamp);
             WriteFile("log");
-            File.Copy(bubble.xmlFolder + "log.xml", bubble.logFolder + @"\log_" + timeStamp + ".xml");
+            File.Copy(bubble.xmlFolder + "LogData.xml", bubble.logFolder + @"\log_" + timeStamp + ".xml");
             bubble.log.Clear();
             bubble.logAddLine("Previous log file archived.");
             WriteFile("log");

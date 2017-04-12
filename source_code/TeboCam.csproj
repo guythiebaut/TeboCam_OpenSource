@@ -207,6 +207,7 @@
     <Compile Include="regex.cs" />
     <Compile Include="sensitiveInfo.cs" />
     <Compile Include="Serialization.cs" />
+    <Compile Include="SettingsData.cs" />
     <Compile Include="statistics.cs" />
     <Compile Include="teboDebug.cs" />
     <Compile Include="time.cs" />

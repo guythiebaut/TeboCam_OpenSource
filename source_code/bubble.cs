@@ -2126,7 +2126,7 @@ namespace TeboCam
 
                     lastProcessedTime = time.secondsSinceStart();
                     //FileManager.WriteFile("log");
-                    log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
+                    log.WriteXMLFile(bubble.xmlFolder + "LogData" + ".xml", log);
                     bubble.logAddLine("Log data saved.");
                     //FileManager.WriteFile("graph");
                     graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
@@ -2763,7 +2763,7 @@ namespace TeboCam
                 pulseEvent(null, new EventArgs());
 
                 //FileManager.WriteFile("log");
-                log.WriteXMLFile(bubble.xmlFolder + FileManager.logFile + ".xml", log);
+                log.WriteXMLFile(bubble.xmlFolder + "LogData" + ".xml", log);
                 File.Copy(bubble.xmlFolder + "log.xml", tmpFolder + "pinglog" + graphSeq.ToString() + ".xml", true);
                 logAddLine("Adding log attachment.");
 
