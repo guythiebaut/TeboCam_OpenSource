@@ -9,7 +9,7 @@ namespace TeboCam
     //see http://stackoverflow.com/questions/2449263/aes-two-way-encryption-with-salting
     //for salt addition
 
-    class crypt
+    class crypt : Interfaces.IEncryption
     {
         // Change these keys
         private byte[] Key = sensitiveInfo.Key;
@@ -173,6 +173,7 @@ namespace TeboCam
             }
             return tempStr;
         }
+
     }
 
 }

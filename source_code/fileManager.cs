@@ -16,6 +16,7 @@ namespace TeboCam
     {
         static BackgroundWorker bw = new BackgroundWorker();
         public static string configFile = "config";
+        public static string configFileNEW = "configData";
         //public static string graphFile = "graph";
         //public static string logFile = "log";
         public static string keyFile = "licence";
@@ -259,6 +260,14 @@ namespace TeboCam
                                 config.getProfile("##newProf##").profileVersion = profileVer;
                                 config.getProfile("##newProf##").profileName = profileName.ToLower();
                                 firstProfile = false;
+
+                                if (bubble.configuration != null)
+                                {
+                                    configApplication newData = (configApplication)config.getProfile(profileName.ToLower()).Clone()                                        ;
+                                    newData.CryptSet(new crypt());
+                                    bubble.configuration.appConfigs.Add(newData);
+                                }
+
 
                             }
                             //profile footer
@@ -993,12 +1002,14 @@ namespace TeboCam
                     {
                         config.getProfile("##newProf##").profileName = "main";
                         bubble.profileInUse = "main";
+
+
                     }
-
-
+                    
                     configData.Close();
 
-
+                   
+                    
                 }
                 catch (Exception e)
                 {

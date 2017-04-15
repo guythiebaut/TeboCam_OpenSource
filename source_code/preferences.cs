@@ -52,7 +52,7 @@ namespace TeboCam
 
         public Pulse pulse;
 
-        public configData configInfo = new configData();
+        public configApplication configInfo = new configApplication(new crypt());
 
         public static event EventHandler pulseEvent;
         public static event EventHandler pulseStopEvent;
@@ -104,6 +104,7 @@ namespace TeboCam
 
         private Graph graph = new Graph();
         private Log log = new Log();
+        private Configuration configuration = new Configuration();
 
         [STAThread]
 
@@ -125,7 +126,7 @@ namespace TeboCam
         {
 
             config.addProfile();
-            configData data = config.getProfile("main");
+            configApplication data = config.getProfile("main");
 
         }
 
@@ -218,11 +219,19 @@ namespace TeboCam
                 new Log().WriteXMLFile(bubble.xmlFolder + "LogData" + ".bak", log);
             }
 
-            if (!File.Exists(bubble.xmlFolder + FileManager.configFile + ".xml"))
+
+
+            //if the old style config file exists read it otherwise deserialise file into class and delete the old config file
+
+
+            if (!File.Exists(bubble.xmlFolder + "ConfigData" + ".xml"))
             {
                 //bubble.configDataInit();
-                FileManager.WriteFile("config");
-                FileManager.backupFile("config");
+                //FileManager.WriteFile("config");
+                //FileManager.backupFile("config");
+                new Configuration().WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+                new Configuration().WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".bak", configuration);
+                
             }
 
         }
@@ -431,6 +440,19 @@ namespace TeboCam
 
             filesInit();
 
+            try
+            {
+                configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + "ConfigData" + ".xml");
+                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".bak", configuration);
+            }
+            catch (Exception)
+            {
+                //#fix this will need uncommenting when data is read from serialoised class
+                //configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + "ConfigData" + ".bak");
+            }
+
+            bubble.configuration = configuration;
+
             if (FileManager.readXmlFile("config", false))
             {
                 FileManager.backupFile("config");
@@ -439,6 +461,7 @@ namespace TeboCam
             {
                 FileManager.readXmlFile("config", true);
             }
+
 
             //if (FileManager.readXmlFile("log", false))
             //{
@@ -554,8 +577,11 @@ namespace TeboCam
 
             List<string> updateDat = new List<string>();
 
+//#if !DEBUG
+
             updateDat = check_for_updates();
 
+//#endif
             string onlineVersion = Double.Parse(updateDat[1], new System.Globalization.CultureInfo("en-GB")).ToString();
 
 
@@ -1231,7 +1257,7 @@ namespace TeboCam
 
 
 
-        #region camera_code
+#region camera_code
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -1533,7 +1559,7 @@ namespace TeboCam
             }
         }
 
-        # endregion
+#endregion
 
 
         private void bttnClearAll_Click(object sender, EventArgs e)
@@ -2119,6 +2145,7 @@ namespace TeboCam
                 }
 
                 FileManager.WriteFile("config");
+                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
                 bubble.logAddLine("Config data saved.");
                 //FileManager.WriteFile("graph");#FIX
                 graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
@@ -2586,7 +2613,7 @@ namespace TeboCam
 
         private void getProfile(string profileName)
         {
-            configData data = config.getProfile(profileName);
+            configApplication data = config.getProfile(profileName);
 
             config.getProfile(bubble.profileInUse).areaDetection = data.areaDetection;
             config.getProfile(bubble.profileInUse).areaDetectionWithin = data.areaDetectionWithin;
@@ -3616,6 +3643,7 @@ namespace TeboCam
         {
             config.getProfile(bubble.profileInUse).soundAlertOn = plSnd.Checked;
             FileManager.WriteFile("config");
+            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
             bubble.logAddLine("Config data saved.");
         }
 
@@ -3638,6 +3666,7 @@ namespace TeboCam
             {
                 config.getProfile(bubble.profileInUse).soundAlert = dialog.FileName;
                 FileManager.WriteFile("config");
+                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
                 bubble.logAddLine("Config data saved.");
             }
 
@@ -3851,6 +3880,7 @@ namespace TeboCam
         private void saveChanges()
         {
             FileManager.WriteFile("config");
+            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
             bubble.logAddLine("Config data saved.");
         }
 

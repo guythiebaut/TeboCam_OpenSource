@@ -883,13 +883,15 @@ namespace TeboCam
 
     public static class config
     {
-        public static ArrayList profiles = new ArrayList();
+        //public static ArrayList profiles = new ArrayList();
+
+        public static List<configApplication> profiles = bubble.configuration.appConfigs;
         private static int profileGiven = 0;
 
         public static void addProfile()
         {
-            configData data = new configData();
-            data.configDataInit();
+            configApplication data = new configApplication(new crypt());
+            //data.configDataInit();
             profiles.Add(data);
         }
 
@@ -899,8 +901,8 @@ namespace TeboCam
             if (!profileExists(profileName))
             {
 
-                configData data = new configData();
-                data.configDataInit();
+                configApplication data = new configApplication(new crypt());
+                //data.configDataInit();
                 data.profileName = profileName.ToLower();
                 profiles.Add(data);
 
@@ -914,11 +916,11 @@ namespace TeboCam
 
 
 
-        public static void updateProfile(string profileName, configData profile)
+        public static void updateProfile(string profileName, configApplication profile)
         {
             for (int i = 0; i < profiles.Count; i++)
             {
-                configData tmpData = (configData)profiles[i];
+                configApplication tmpData = (configApplication)profiles[i];
                 if (tmpData.profileName == profileName)
                 { profiles[i] = profile; }
             }
@@ -928,7 +930,7 @@ namespace TeboCam
         {
             ArrayList tmpList = new ArrayList();
 
-            foreach (configData data in profiles)
+            foreach (configApplication data in profiles)
             {
                 tmpList.Add(data.profileName);
             }
@@ -936,9 +938,10 @@ namespace TeboCam
             return tmpList;
         }
 
-        public static configData getProfile(string profileName)
+        public static configApplication getProfile(string profileName)
         {
-            foreach (configData data in profiles)
+            foreach (configApplication data in profiles)
+            //foreach (configData data in bubble.configuration.Configs)
             {
                 if (data.profileName.ToLower() == profileName.ToLower())
                 {
@@ -948,11 +951,11 @@ namespace TeboCam
             return null;
         }
 
-        public static configData getProfile()
+        public static configApplication getProfile()
         {
             if (profileGiven <= profiles.Count)
             {
-                return (configData)profiles[profileGiven - 1];
+                return (configApplication)profiles[profileGiven - 1];
             }
             return null;
         }
@@ -988,7 +991,7 @@ namespace TeboCam
                 {
                     for (int i = 0; i < profiles.Count; i++)
                     {
-                        configData tmpData = (configData)profiles[i];
+                        configApplication tmpData = (configApplication)profiles[i];
                         if (tmpData.profileName == profileName)
                         {
                             profiles.RemoveAt(i);
@@ -1007,15 +1010,16 @@ namespace TeboCam
             {
 
                 //configData tmpData = (configData)profiles[i]
-                foreach (configData data in profiles)
+                foreach (configApplication data in profiles)
                 {
                     if (data.profileName == copyFrom)
                     {
-                        configData newData = (configData)data.Clone();
+                        configApplication newData = (configApplication)data.Clone();
                         //configData newData = new configData();
                         //newData = data;
                         newData.profileName = copyTo;
                         profiles.Add(newData);
+                        //bubble.configuration.Configs.Add(newData);
                         break;
                     }
                 }
@@ -1036,7 +1040,7 @@ namespace TeboCam
             if (!profileExists(NewName))
             {
 
-                foreach (configData data in profiles)
+                foreach (configApplication data in profiles)
                 {
                     if (data.profileName == profile)
                     {
@@ -1058,7 +1062,7 @@ namespace TeboCam
         {
             bool profileExists = false;
 
-            foreach (configData data in profiles)
+            foreach (configApplication data in profiles)
             {
                 if (data.profileName.ToLower() == profileName.ToLower())
                 {
@@ -1074,364 +1078,6 @@ namespace TeboCam
 
     }
 
-    [Serializable]
-    public class configData : ICloneable
-    {
-        public const string newProfile = "##newProf##";
-
-        public string profileName;
-
-
-        public int activatecountdown = 15;
-        public string activatecountdownTime;
-        public bool AlertOnStartup;
-        public bool areaDetection;
-        public bool areaDetectionWithin;
-        public double baselineVal;
-        public bool countdownNow;
-        public bool countdownTime;
-        public long currentCycle;
-        public bool cycleStamp;
-        public int cycleStampChecked;
-        public long emailNotifyInterval;
-        public string emailPass;
-        public string lockdownPassword;
-        public bool lockdownOn;
-        public string emailUser;
-        public bool EnableSsl;
-        public long endCycle;
-        public string filenamePrefix;
-        public string ftpPass;
-        public string ftpRoot;
-        public string ftpUser;
-        public double imageSaveInterval;
-        public bool loadImagesToFtp;
-        public string mailBody;
-        public string mailSubject;
-        public long maxImagesToEmail;
-        public double movementVal;
-        public int timeSpike;
-        public int toleranceSpike;
-        public bool lightSpike;
-        public bool ping;
-        public bool pingAll;
-        public int pingInterval;
-        public string pingSubject;
-        public int rectHeight;
-        public int rectWidth;
-        public int rectX;
-        public int rectY;
-        public string replyTo;
-        public bool sendFullSizeImages;
-        public bool captureMovementImages;
-        public bool sendNotifyEmail;
-        public string sendTo;
-        public bool sendThumbnailImages;
-        public bool sendMosaicImages;
-        public int mosaicImagesPerRow;
-        public string sentBy;
-        public string sentByName;
-        public string smtpHost;
-        public int smtpPort;
-        public long startCycle;
-        public bool updatesNotify;
-        public string webcam;
-        public bool pubImage;
-        public int pubTime;
-        public bool pubHours;
-        public bool pubMins;
-        public bool pubSecs;
-        public string pubFtpUser;
-        public string pubFtpPass;
-        public string pubFtpRoot;
-        //20101026 can be removed on 20110101
-        public bool pubStampDate;
-        public bool pubStampTime;
-        public bool pubStampDateTime;
-        public bool pubStamp;
-        //20101026 can be removed on 20110101
-        public bool timerOn;
-        public bool timerOnMov;
-        public bool scheduleOnAtStart;
-        public bool activateAtEveryStartup;
-        public string timerStartPub;
-        public string timerEndPub;
-        public string timerStartMov;
-        public string timerEndMov;
-        public bool webUpd;
-        public string webUser;
-        public string webPass;
-        public int webPoll;
-        public string webInstance;
-        public string webFtpUser;
-        public string webFtpPass;
-        public string webImageRoot;
-        public string webImageFileName;
-        public string soundAlert;
-        public bool soundAlertOn;
-        //public int newsSeq;
-        public int logsKeep;
-        public bool logsKeepChk;
-        public bool imageLocCust;
-        public string imageParentFolderCust;
-        public string imageFolderCust;
-        public string thumbFolderCust;
-        public bool areaOffAtMotion;
-        public bool startTeboCamMinimized;
-        public string internetCheck;
-        public bool toolTips;
-        public int alertCompression;
-        public int publishCompression;
-        public int pingCompression;
-        public bool alertTimeStamp;
-        public int onlineCompression;
-        public string alertTimeStampFormat;
-        public bool alertStatsStamp;
-        public string alertTimeStampColour;
-        public string alertTimeStampPosition;
-        public bool alertTimeStampRect;
-        public bool publishTimeStamp;
-        public string publishTimeStampFormat;
-        public bool publishStatsStamp;
-        public string publishTimeStampColour;
-        public string publishTimeStampPosition;
-        public bool publishTimeStampRect;
-        public bool pingTimeStamp;
-        public string pingTimeStampFormat;
-        public bool pingStatsStamp;
-        public string pingTimeStampColour;
-        public string pingTimeStampPosition;
-        public bool pingTimeStampRect;
-        public bool onlineTimeStamp;
-        public string onlineTimeStampFormat;
-        public bool onlineStatsStamp;
-        public string onlineTimeStampColour;
-        public string onlineTimeStampPosition;
-        public bool onlineTimeStampRect;
-        public bool publishLocal;
-        public bool publishWeb;
-        public bool imageToframe;
-        public string profileVersion;
-        public bool cameraShow;
-        public bool motionLevel;
-        public bool freezeGuard;
-        public bool freezeGuardWindowShow;
-        public string selectedCam;
-        public string filenamePrefixPubWeb;
-        public int cycleStampCheckedPubWeb;
-        public long startCyclePubWeb;
-        public long endCyclePubWeb;
-        public long currentCyclePubWeb;
-        public bool stampAppendPubWeb;
-        public string filenamePrefixPubLoc;
-        public int cycleStampCheckedPubLoc;
-        public long startCyclePubLoc;
-        public long endCyclePubLoc;
-        public long currentCyclePubLoc;
-        public bool stampAppendPubLoc;
-        public decimal pulseFreq;
-        public bool EmailIntelOn;
-        public int emailIntelEmails;
-        public int emailIntelMins;
-        public bool EmailIntelStop;
-        public bool disCommOnline;
-        public int disCommOnlineSecs;
-
-        public string ipWebcamAddress;
-        public string ipWebcamUser;
-        public string ipWebcamPassword;
-
-        public bool StatsToFileOn;
-        public string StatsToFileLocation;
-        public bool StatsToFileTimeStamp;
-        public double StatsToFileMb;
-
-
-
-
-
-
-        public object Clone()
-        {
-            MemoryStream ms = new MemoryStream();
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(ms, this);
-            ms.Position = 0;
-            object obj = bf.Deserialize(ms);
-            ms.Close();
-            return obj;
-        }
-
-        public void configDataInit()
-        {
-            profileName = newProfile.ToLower();
-
-            activatecountdown = 15;
-            activatecountdownTime = "0800";
-            AlertOnStartup = false;
-            areaDetection = false;
-            areaDetectionWithin = false;//activate detection within/without selection area
-            baselineVal = Double.Parse("0", new System.Globalization.CultureInfo("en-GB"));
-            countdownNow = false;
-            countdownTime = false;
-            currentCycle = 1;
-            cycleStamp = false;
-            cycleStampChecked = 1;
-            emailNotifyInterval = 2;
-            emailPass = string.Empty;
-            lockdownPassword = string.Empty;
-            lockdownOn = false;
-            emailUser = "anyone@googlemail.com";
-            EnableSsl = true;
-            endCycle = 999;
-            filenamePrefix = "webcamImage";
-            ftpPass = string.Empty;
-            ftpRoot = "ftp.anyone.com/docs/webcam";
-            ftpUser = "anyone.com";
-            imageSaveInterval = Double.Parse("0.5", new System.Globalization.CultureInfo("en-GB"));
-            loadImagesToFtp = false;
-            mailBody = "Movement detected - image(s) attached";
-            mailSubject = "Webcam Warning From TeboCam";
-            maxImagesToEmail = 10;
-            movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
-            timeSpike = 100;
-            toleranceSpike = 50;
-            ping = false;
-            pingAll = true;
-            pingInterval = 120;
-            pingSubject = "WebCamPing";
-            rectHeight = 80;
-            rectWidth = 80;
-            rectX = 20;
-            rectY = 20;
-            replyTo = "anyone@googlemail.com";
-            sendFullSizeImages = false;
-            captureMovementImages = true;
-            sendNotifyEmail = false;
-            sendTo = "anyone@yahoo.com";
-            sendThumbnailImages = false;
-            sendMosaicImages = false;
-            mosaicImagesPerRow = 10;
-            sentBy = "anyone@googlemail.com";
-            sentByName = "Webcam Warning";
-            smtpHost = "smtp.googlemail.com";
-            smtpPort = 25;
-            startCycle = 1;
-            updatesNotify = true;
-            webcam = "";
-            pubImage = false;
-            pubTime = 2;
-            pubHours = false;
-            pubMins = true;
-            pubSecs = false;
-            pubFtpUser = "anyone@googlemail.com";
-            pubFtpPass = string.Empty;
-            pubFtpRoot = "ftp.anyone.com/docs/webcam";
-            //20101026 can be removed on 20110101
-            pubStampDate = false;
-            pubStampTime = false;
-            pubStampDateTime = false;
-            pubStamp = false;
-            //20101026 can be removed on 20110101
-            timerOn = false;
-            timerOnMov = false;
-            scheduleOnAtStart = false;
-            activateAtEveryStartup = false;
-            timerStartPub = "0500";
-            timerEndPub = "2130";
-            timerStartMov = "0500";
-            timerEndMov = "2130";
-            webUpd = false;
-            webUser = ""; ;
-            webPass = "";
-            webPoll = 30;
-            webInstance = "main";
-            webFtpUser = "";
-            webFtpPass = "";
-            webImageRoot = "";
-            webImageFileName = "webImg";
-            soundAlert = "";
-            soundAlertOn = false;
-            //newsSeq = 0;
-            logsKeep = 30;
-            logsKeepChk = false;
-            imageLocCust = false;
-            imageParentFolderCust = "";
-            imageFolderCust = "";
-            thumbFolderCust = "";
-            areaOffAtMotion = false;
-            startTeboCamMinimized = false;
-            internetCheck = "www.google.com";
-            toolTips = true;
-            alertCompression = 100;
-            publishCompression = 100;
-            pingCompression = 100;
-            onlineCompression = 100;
-            alertTimeStamp = false;
-            alertTimeStampFormat = "ddmmyy";
-            alertStatsStamp = false;
-            alertTimeStampColour = "red";
-            alertTimeStampPosition = "tl";
-            alertTimeStampRect = false;
-            publishTimeStamp = false;
-            publishTimeStampFormat = "ddmmyy";
-            publishStatsStamp = false;
-            publishTimeStampColour = "red";
-            publishTimeStampPosition = "tl";
-            publishTimeStampRect = false;
-            pingTimeStamp = false;
-            pingTimeStampFormat = "ddmmyy";
-            pingStatsStamp = false;
-            pingTimeStampColour = "red";
-            pingTimeStampPosition = "tl";
-            pingTimeStampRect = false;
-            onlineTimeStamp = false;
-            onlineTimeStampFormat = "ddmmyy";
-            onlineStatsStamp = false;
-            onlineTimeStampColour = "red";
-            onlineTimeStampPosition = "tl";
-            onlineTimeStampRect = false;
-            publishLocal = false;
-            publishWeb = true;
-            imageToframe = true;
-            profileVersion = "0";
-            cameraShow = true;
-            motionLevel = true;
-            freezeGuard = true;
-            freezeGuardWindowShow = false;
-            selectedCam = "";
-            filenamePrefixPubWeb = "webcamPublish";
-            cycleStampCheckedPubWeb = 1;
-            startCyclePubWeb = 1;
-            endCyclePubWeb = 999;
-            currentCyclePubWeb = 1;
-            stampAppendPubWeb = false;
-            filenamePrefixPubLoc = "webcamPublish";
-            cycleStampCheckedPubLoc = 1;
-            startCyclePubLoc = 1;
-            endCyclePubLoc = 999;
-            currentCyclePubLoc = 1;
-            stampAppendPubLoc = false;
-            pulseFreq = 0.5m;
-            EmailIntelOn = false;
-            emailIntelEmails = 2;
-            emailIntelMins = 1;
-            EmailIntelStop = false;
-            disCommOnline = false;
-            disCommOnlineSecs = 3600;
-
-            ipWebcamAddress = "";
-            ipWebcamUser = "";
-            ipWebcamPassword = "";
-
-            StatsToFileOn = false;
-            StatsToFileLocation = string.Empty;
-            StatsToFileTimeStamp = false;
-            StatsToFileMb = 10;
-
-        }
-
-    }
 
     public class bubble
     {
@@ -1466,7 +1112,7 @@ namespace TeboCam
         //installUpdate
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
- 
+
 
 
         public static string devMachineFile = sensitiveInfo.devMachineFile;
@@ -1557,6 +1203,7 @@ namespace TeboCam
         public static AlertClass Alert = new AlertClass();
 
 
+        public static Configuration configuration;
         public static Log log;
         public static Graph graph;
         public static Bitmap graphCurrent;
@@ -2133,6 +1780,7 @@ namespace TeboCam
                     bubble.logAddLine("Graph data saved.");
                     bubble.logAddLine("Config data saved.");
                     FileManager.WriteFile("config");
+                    configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
                     bubble.fileBusy = false;
                     Thread.Sleep(500);
 
@@ -2386,6 +2034,7 @@ namespace TeboCam
                             motionDetectionInactivate(null, new EventArgs());
                             bubble.logAddLine("Config data saved.");
                             FileManager.WriteFile("config");
+                            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
 
                             update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusoff", logForSql()) + " records affected.";
                             update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", logForSql()) + " records affected.";
