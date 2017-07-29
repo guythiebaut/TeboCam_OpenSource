@@ -136,6 +136,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommandLine.cs" />
+    <Compile Include="config.cs" />
     <Compile Include="exception.cs" />
     <Compile Include="extensions.cs" />
     <Compile Include="ImageDisplayer.cs">

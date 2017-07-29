@@ -206,7 +206,7 @@ namespace TeboCam
 
         public void addToList(string path)
         {
-            bitmaps.Add(new Bitmap(path));
+            addToList(new Bitmap(path));
         }
 
         public void saveMosaicAsJpg(int imagesPerRow, string path, int compression)
@@ -881,203 +881,7 @@ namespace TeboCam
 
     }
 
-    public static class config
-    {
-        //public static ArrayList profiles = new ArrayList();
-
-        public static List<configApplication> profiles = bubble.configuration.appConfigs;
-        private static int profileGiven = 0;
-
-        public static void addProfile()
-        {
-            configApplication data = new configApplication(new crypt());
-            //data.configDataInit();
-            profiles.Add(data);
-        }
-
-        public static void addProfile(string profileName)
-        {
-
-            if (!profileExists(profileName))
-            {
-
-                configApplication data = new configApplication(new crypt());
-                //data.configDataInit();
-                data.profileName = profileName.ToLower();
-                profiles.Add(data);
-
-            }
-            else
-            {
-                MessageBox.Show("Cannot create profile as name already exists.", "Error");
-            }
-
-        }
-
-
-
-        public static void updateProfile(string profileName, configApplication profile)
-        {
-            for (int i = 0; i < profiles.Count; i++)
-            {
-                configApplication tmpData = (configApplication)profiles[i];
-                if (tmpData.profileName == profileName)
-                { profiles[i] = profile; }
-            }
-        }
-
-        public static ArrayList getProfileList()
-        {
-            ArrayList tmpList = new ArrayList();
-
-            foreach (configApplication data in profiles)
-            {
-                tmpList.Add(data.profileName);
-            }
-
-            return tmpList;
-        }
-
-        public static configApplication getProfile(string profileName)
-        {
-            foreach (configApplication data in profiles)
-            //foreach (configData data in bubble.configuration.Configs)
-            {
-                if (data.profileName.ToLower() == profileName.ToLower())
-                {
-                    return data;
-                }
-            }
-            return null;
-        }
-
-        public static configApplication getProfile()
-        {
-            if (profileGiven <= profiles.Count)
-            {
-                return (configApplication)profiles[profileGiven - 1];
-            }
-            return null;
-        }
-
-
-        public static void getFirstProfile()
-        {
-            profileGiven = 0;
-        }
-
-        public static bool moreProfiles()
-        {
-
-            if (profileGiven < profiles.Count)
-            {
-                profileGiven++;
-                return true;
-            }
-
-            return false;
-
-        }
-
-        public static void deleteProfile(string profileName)
-        {
-            if (profileExists(profileName))
-            {
-                if (profiles.Count <= 1)
-                {
-                    MessageBox.Show("Cannot delete profile as at least one profile must exist.", "Error");
-                }
-                else
-                {
-                    for (int i = 0; i < profiles.Count; i++)
-                    {
-                        configApplication tmpData = (configApplication)profiles[i];
-                        if (tmpData.profileName == profileName)
-                        {
-                            profiles.RemoveAt(i);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-
-        public static void copyProfile(string copyFrom, string copyTo)
-        {
-
-            if (!profileExists(copyTo))
-            {
-
-                //configData tmpData = (configData)profiles[i]
-                foreach (configApplication data in profiles)
-                {
-                    if (data.profileName == copyFrom)
-                    {
-                        configApplication newData = (configApplication)data.Clone();
-                        //configData newData = new configData();
-                        //newData = data;
-                        newData.profileName = copyTo;
-                        profiles.Add(newData);
-                        //bubble.configuration.Configs.Add(newData);
-                        break;
-                    }
-                }
-
-
-            }
-            else
-            {
-                MessageBox.Show("Cannot copy profile as new name already exists.", "Error");
-            }
-
-
-        }
-
-        public static void renameProfile(string profile, string NewName)
-        {
-
-            if (!profileExists(NewName))
-            {
-
-                foreach (configApplication data in profiles)
-                {
-                    if (data.profileName == profile)
-                    {
-                        data.profileName = NewName;
-                        break;
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Cannot rename profile as name already exists.", "Error");
-            }
-
-        }
-
-
-        public static bool profileExists(string profileName)
-        {
-            bool profileExists = false;
-
-            foreach (configApplication data in profiles)
-            {
-                if (data.profileName.ToLower() == profileName.ToLower())
-                {
-                    profileExists = true;
-                    break;
-                }
-            }
-
-            return profileExists;
-
-        }
-
-
-    }
-
+   
 
     public class bubble
     {
@@ -1303,6 +1107,11 @@ namespace TeboCam
 
         public static string graphVal(ArrayList graphData, int cellIdx)
         {
+            if (graphData == null)
+            {
+                return string.Empty;
+            }
+         
             int nil = 0;
             int low = 5;
             int mid = 10;
@@ -1779,8 +1588,9 @@ namespace TeboCam
                     graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
                     bubble.logAddLine("Graph data saved.");
                     bubble.logAddLine("Config data saved.");
-                    FileManager.WriteFile("config");
-                    configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+                    //FileManager.WriteFile("config");
+                    config.WebcamSettingsConfigDataPopulate();
+                    configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
                     bubble.fileBusy = false;
                     Thread.Sleep(500);
 
@@ -2033,8 +1843,9 @@ namespace TeboCam
                             logAddLine("Motion detection inactivated.");
                             motionDetectionInactivate(null, new EventArgs());
                             bubble.logAddLine("Config data saved.");
-                            FileManager.WriteFile("config");
-                            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+                            //FileManager.WriteFile("config");
+                            config.WebcamSettingsConfigDataPopulate();
+                            configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
 
                             update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusoff", logForSql()) + " records affected.";
                             update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", logForSql()) + " records affected.";
@@ -2425,6 +2236,7 @@ namespace TeboCam
                 }
 
 
+                //#i reckon this fails if a pingpicture is not available
                 File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg", true);
                 logAddLine("Adding image attachment.");
 
@@ -2454,6 +2266,8 @@ namespace TeboCam
                                config.getProfile(bubble.profileInUse).smtpPort,
                                config.getProfile(bubble.profileInUse).EnableSsl
                                );
+
+                //#too late to update pinglast?
                 pingLast = time.secondsSinceStart();
                 Thread.Sleep(2000);
                 logAddLine("Ping email sent.");

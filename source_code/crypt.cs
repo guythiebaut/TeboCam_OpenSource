@@ -70,6 +70,10 @@ namespace TeboCam
         /// Encrypt some text and return a string suitable for passing in a URL.
         public string EncryptToString(string TextValue)
         {
+            if (string.IsNullOrEmpty(TextValue))
+            {
+                return string.Empty;
+            }
             return ByteArrToString(Encrypt(TextValue));
         }
 
@@ -108,6 +112,10 @@ namespace TeboCam
         /// The other side: Decryption methods
         public string DecryptString(string EncryptedString)
         {
+            if (string.IsNullOrEmpty(EncryptedString))
+            {
+                return string.Empty;
+            }
             return Decrypt(StrToByteArray(EncryptedString));
         }
 

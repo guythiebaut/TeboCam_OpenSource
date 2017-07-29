@@ -247,6 +247,7 @@ namespace TeboCam
             this.ftpRoot = new System.Windows.Forms.TextBox();
             this.Admin = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.btnSecurityLockdownOn = new System.Windows.Forms.Button();
             this.rdLockdownOff = new System.Windows.Forms.RadioButton();
             this.rdLockdownOn = new System.Windows.Forms.RadioButton();
             this.label38 = new System.Windows.Forms.Label();
@@ -364,7 +365,6 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSecurityLockdownOn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -2278,6 +2278,14 @@ namespace TeboCam
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.TabStop = false;
             // 
+            // btnSecurityLockdownOn
+            // 
+            resources.ApplyResources(this.btnSecurityLockdownOn, "btnSecurityLockdownOn");
+            this.btnSecurityLockdownOn.Name = "btnSecurityLockdownOn";
+            this.toolTip1.SetToolTip(this.btnSecurityLockdownOn, resources.GetString("btnSecurityLockdownOn.ToolTip"));
+            this.btnSecurityLockdownOn.UseVisualStyleBackColor = true;
+            this.btnSecurityLockdownOn.Click += new System.EventHandler(this.btnSecurityLockdownOn_Click);
+            // 
             // rdLockdownOff
             // 
             resources.ApplyResources(this.rdLockdownOff, "rdLockdownOff");
@@ -3251,14 +3259,6 @@ namespace TeboCam
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // btnSecurityLockdownOn
-            // 
-            resources.ApplyResources(this.btnSecurityLockdownOn, "btnSecurityLockdownOn");
-            this.btnSecurityLockdownOn.Name = "btnSecurityLockdownOn";
-            this.toolTip1.SetToolTip(this.btnSecurityLockdownOn, resources.GetString("btnSecurityLockdownOn.ToolTip"));
-            this.btnSecurityLockdownOn.UseVisualStyleBackColor = true;
-            this.btnSecurityLockdownOn.Click += new System.EventHandler(this.btnSecurityLockdownOn_Click);
             // 
             // preferences
             // 

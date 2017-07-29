@@ -222,16 +222,17 @@ namespace TeboCam
 
 
             //if the old style config file exists read it otherwise deserialise file into class and delete the old config file
+            FileManager.ConvertOldProfileIfExists(configuration);
 
-
-            if (!File.Exists(bubble.xmlFolder + "ConfigData" + ".xml"))
+            if (!File.Exists(bubble.xmlFolder + FileManager.configFile + ".xml"))
             {
                 //bubble.configDataInit();
                 //FileManager.WriteFile("config");
                 //FileManager.backupFile("config");
-                new Configuration().WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
-                new Configuration().WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".bak", configuration);
-                
+                //config.WebcamSettingsConfigDataPopulate();
+                new Configuration().WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
+                new Configuration().WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".bak", configuration);
+
             }
 
         }
@@ -440,27 +441,39 @@ namespace TeboCam
 
             filesInit();
 
+
             try
             {
-                configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + "ConfigData" + ".xml");
-                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".bak", configuration);
+                configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml");
+                configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".bak", configuration);
             }
             catch (Exception)
             {
-                //#fix this will need uncommenting when data is read from serialoised class
-                //configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + "ConfigData" + ".bak");
+                //#fix this will need uncommenting when data is read from serialised class
+                configuration = new Configuration().ReadXMLFile(bubble.xmlFolder + FileManager.configFile + ".bak");
             }
+
+            if (configuration.appConfigs.Count == 0)
+            {
+                configApplication config = new configApplication();
+                configuration.appConfigs.Add(config);
+            }
+
 
             bubble.configuration = configuration;
+            bubble.profileInUse = configuration.profileInUse;
+            bubble.mysqlDriver = configuration.mysqlDriver;
+            bubble.newsSeq = configuration.newsSeq;
 
-            if (FileManager.readXmlFile("config", false))
-            {
-                FileManager.backupFile("config");
-            }
-            else
-            {
-                FileManager.readXmlFile("config", true);
-            }
+            //#todo fails here
+            //            if (FileManager.readXmlFile("config", false))
+            //            {
+            //                FileManager.backupFile("config");
+            //            }
+            //            else
+            //            {
+            //                FileManager.readXmlFile("config", true);
+            //            }
 
 
             //if (FileManager.readXmlFile("log", false))
@@ -484,8 +497,8 @@ namespace TeboCam
 
             bubble.log = log;
 
+            config.WebcamSettingsPopulate();
             profileListRefresh(bubble.profileInUse);
-
 
             bubble.connectedToInternet = bubble.internetConnected(config.getProfile(bubble.profileInUse).internetCheck);
             notConnected.Visible = !bubble.connectedToInternet;
@@ -577,11 +590,11 @@ namespace TeboCam
 
             List<string> updateDat = new List<string>();
 
-//#if !DEBUG
+            //#if !DEBUG
 
             updateDat = check_for_updates();
 
-//#endif
+            //#endif
             string onlineVersion = Double.Parse(updateDat[1], new System.Globalization.CultureInfo("en-GB")).ToString();
 
 
@@ -979,6 +992,7 @@ namespace TeboCam
                         }
 
                         bubble.newsSeq = Int32.Parse(updateDat[4]);
+                        configuration.newsSeq = Int32.Parse(updateDat[4]);
                         newsInfo.BackColor = Color.Gold;
                     }
                     catch { return updateDat; }
@@ -1257,7 +1271,7 @@ namespace TeboCam
 
 
 
-#region camera_code
+        #region camera_code
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -1559,7 +1573,7 @@ namespace TeboCam
             }
         }
 
-#endregion
+        #endregion
 
 
         private void bttnClearAll_Click(object sender, EventArgs e)
@@ -1954,6 +1968,10 @@ namespace TeboCam
 
                             //draw lines
                             ArrayList graphData = graph.getGraphHist(graphDate);
+                            if (graphData == null)
+                            {
+                                return;
+                            }
 
                             string val = "";
                             val = bubble.graphVal(graphData, cellIdx).ToString();
@@ -2144,8 +2162,9 @@ namespace TeboCam
                     bubble.Alert.on = true;
                 }
 
-                FileManager.WriteFile("config");
-                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+                //FileManager.WriteFile("config");
+                config.WebcamSettingsConfigDataPopulate();
+                configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
                 bubble.logAddLine("Config data saved.");
                 //FileManager.WriteFile("graph");#FIX
                 graph.WriteXMLFile(bubble.xmlFolder + "GraphData.xml", graph);
@@ -2611,7 +2630,7 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).pingSubject = pingSubject.Text;
         }
 
-        private void getProfile(string profileName)
+        private void populateFromProfile(string profileName)
         {
             configApplication data = config.getProfile(profileName);
 
@@ -3015,7 +3034,8 @@ namespace TeboCam
 
             saveChanges();
             bubble.profileInUse = profileList.SelectedItem.ToString();
-            getProfile(bubble.profileInUse);
+            configuration.profileInUse = profileList.SelectedItem.ToString();
+            populateFromProfile(configuration.profileInUse);
             cameraNewProfile();
 
         }
@@ -3308,7 +3328,7 @@ namespace TeboCam
         }
 
 
-
+        //#todo
         private void cameraReconnectIfLost()
         {
             bool oldCamPresent = false;
@@ -3625,9 +3645,8 @@ namespace TeboCam
 
         private void sqlConString_Leave(object sender, EventArgs e)
         {
-
             bubble.mysqlDriver = sqlConString.Text;
-
+            configuration.mysqlDriver = sqlConString.Text;
         }
 
         private void webUpd_CheckedChanged(object sender, EventArgs e)
@@ -3642,8 +3661,9 @@ namespace TeboCam
         private void plSnd_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).soundAlertOn = plSnd.Checked;
-            FileManager.WriteFile("config");
-            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+            //FileManager.WriteFile("config");
+            config.WebcamSettingsConfigDataPopulate();
+            configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
             bubble.logAddLine("Config data saved.");
         }
 
@@ -3665,8 +3685,9 @@ namespace TeboCam
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 config.getProfile(bubble.profileInUse).soundAlert = dialog.FileName;
-                FileManager.WriteFile("config");
-                configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+                //FileManager.WriteFile("config");
+                config.WebcamSettingsConfigDataPopulate();
+                configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
                 bubble.logAddLine("Config data saved.");
             }
 
@@ -3879,8 +3900,9 @@ namespace TeboCam
 
         private void saveChanges()
         {
-            FileManager.WriteFile("config");
-            configuration.WriteXMLFile(bubble.xmlFolder + "ConfigData" + ".xml", configuration);
+            //FileManager.WriteFile("config");
+            config.WebcamSettingsConfigDataPopulate();
+            configuration.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", configuration);
             bubble.logAddLine("Config data saved.");
         }
 
@@ -4669,11 +4691,11 @@ namespace TeboCam
 
             if (!Directory.Exists(bubble.vaultFolder)) Directory.CreateDirectory(bubble.vaultFolder);
 
-            string configVlt = bubble.vaultFolder + "config_" + DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture) + ".xml";
-            string configXml = bubble.xmlFolder + "config.xml";
+            string configVlt = bubble.vaultFolder + FileManager.configFile + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture) + ".xml";
+            string configXml = bubble.xmlFolder + FileManager.configFile + ".xml";
 
             File.Copy(configXml, configVlt, true);
-            MessageBox.Show("config.xml has been successfully vaulted in the vault folder.", "File Vaulted");
+            MessageBox.Show(FileManager.configFile + ".xml has been successfully vaulted in the vault folder.", "File Vaulted");
 
 
 

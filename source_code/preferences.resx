@@ -1466,7 +1466,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.24925, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.29087, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -10832,7 +10832,7 @@ This usually takes less than 1 minute.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>43</value>
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
