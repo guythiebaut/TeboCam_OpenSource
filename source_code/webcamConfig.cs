@@ -33,7 +33,7 @@ namespace TeboCam
 
         private static string selectedWebcam;
         private static int mainSelectedWebcam;
-        private static List<int> buttons;
+        private static List<camButtons.ButtonColourEnum> buttons;
         private LevelControl LevelControlBox = new LevelControl();
         private ArrayList returnList = new ArrayList();
         private bool autoscroll;
@@ -50,14 +50,14 @@ namespace TeboCam
             toolTip = (bool)from[0];
             mainSelectedWebcam = (int)from[1];
             autoscroll = (bool)from[2];
-            buttons = (List<int>)from[3];
+            buttons = (List<camButtons.ButtonColourEnum>)from[3];
             webcamConfigDelegate = sender;
             from.Clear();
             InitializeComponent();
 
             camButtonSetColours();
 
-            cameraSwitch(CameraRig.rig[CameraRig.activeCam].displayButton, true);
+            cameraSwitch(CameraRig.ConnectedCameras[CameraRig.activeCam].displayButton, true);
 
         }
 
@@ -81,7 +81,7 @@ namespace TeboCam
 
             //hjfgjgf
 
-            if (CameraRig.rig[CameraRig.drawCam].cam.isIPCamera)
+            if (CameraRig.ConnectedCameras[CameraRig.drawCam].cam.isIPCamera)
             {
 
                 try
@@ -89,7 +89,7 @@ namespace TeboCam
 
                     IPAddress parsedIPAddress;
                     Uri parsedUri;
-                    string name = CameraRig.rig[CameraRig.drawCam].cam.name;
+                    string name = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.name;
 
                     //check that the url resolves
                     if (Uri.TryCreate(name, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
@@ -138,7 +138,7 @@ namespace TeboCam
                 groupBox4.Enabled = radioButton4.Checked;
                 showSelection.Enabled = radioButton4.Checked;
 
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.Reset();
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.MotionDetector.Reset();
 
 
             }
@@ -162,8 +162,8 @@ namespace TeboCam
 
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion, areaOffAtMotion.Checked);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionTriggered = false;
-            CameraRig.rig[CameraRig.drawCam].cam.areaOffAtMotionReset = false;
+            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.areaOffAtMotionTriggered = false;
+            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.areaOffAtMotionReset = false;
 
         }
 
@@ -291,7 +291,7 @@ namespace TeboCam
 
             //i.Add(config.getProfile(bubble.profileInUse).toolTips);
             i.Add(toolTip1.Active);
-            i.Add(CameraRig.getCam(selectedWebcam).cam);
+            i.Add(CameraRig.getCam(selectedWebcam).camNo);
             //System.Diagnostics.Debug.WriteLine("cam sent: " + Convert.ToString(i[1]));
 
             calibrate calibrate = new calibrate(postCalibrate, i);
@@ -341,7 +341,7 @@ namespace TeboCam
 
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.rig[CameraRig.drawCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
+            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
 
         }
 
@@ -363,7 +363,7 @@ namespace TeboCam
         private void trainDetection(ArrayList i)
         {
 
-            CameraRig.trainCam = CameraRig.getCam(selectedWebcam).cam;
+            CameraRig.trainCam = CameraRig.getCam(selectedWebcam).camNo;
 
             bubble.detectionCountDown = (int)i[0];
             bubble.detectionTrain = (int)i[1];
@@ -582,7 +582,7 @@ namespace TeboCam
                 if (load || !load && CameraRig.cameraExists(camId))
                 {
 
-                    selectedWebcam = CameraRig.rig[camId].cameraName;
+                    selectedWebcam = CameraRig.ConnectedCameras[camId].cameraName;
                     CameraRig.drawCam = camId;
                     CameraRig.getCam(camId).MotionDetector.Reset();
 
@@ -687,15 +687,15 @@ namespace TeboCam
                 if (ctrl.Name.ToString().Length > 7 && ctrl.Name.ToString().Length < 11 && LeftRightMid.Left(ctrl.Name.ToString(), 7) == "bttncam")
                 {
 
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == 0)
+                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.grey)
                     {
                         ctrl.BackColor = Color.Silver;
                     }
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == 1)
+                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.green)
                     {
                         ctrl.BackColor = Color.LawnGreen;
                     }
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == 2)
+                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.blue)
                     {
                         ctrl.BackColor = Color.SkyBlue;
                     }
@@ -713,7 +713,7 @@ namespace TeboCam
         private void camUp(object sender, EventArgs e)
         {
 
-            int wasButton = CameraRig.rig[CameraRig.drawCam].displayButton;
+            int wasButton = CameraRig.ConnectedCameras[CameraRig.drawCam].displayButton;
             int nowButton;
 
             if (wasButton == 9)
@@ -737,7 +737,7 @@ namespace TeboCam
         private void camDown(object sender, EventArgs e)
         {
 
-            int wasButton = CameraRig.rig[CameraRig.drawCam].displayButton;
+            int wasButton = CameraRig.ConnectedCameras[CameraRig.drawCam].displayButton;
             int nowButton;
 
             if (wasButton == 1)

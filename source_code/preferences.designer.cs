@@ -65,8 +65,8 @@ namespace TeboCam
             this.startMinimized = new System.Windows.Forms.CheckBox();
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblFrameRate = new System.Windows.Forms.Label();
             this.lblCameraName = new System.Windows.Forms.Label();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -246,6 +246,10 @@ namespace TeboCam
             this.label24 = new System.Windows.Forms.Label();
             this.ftpRoot = new System.Windows.Forms.TextBox();
             this.Admin = new System.Windows.Forms.TabPage();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.numFrameRateCalcOver = new System.Windows.Forms.NumericUpDown();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnSecurityLockdownOn = new System.Windows.Forms.Button();
             this.rdLockdownOff = new System.Windows.Forms.RadioButton();
@@ -288,7 +292,6 @@ namespace TeboCam
             this.lblVerAvail = new System.Windows.Forms.Label();
             this.lblCurVer = new System.Windows.Forms.Label();
             this.updateNotify = new System.Windows.Forms.CheckBox();
-            this.label35 = new System.Windows.Forms.Label();
             this.Publish = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.lblendpub = new System.Windows.Forms.Label();
@@ -365,6 +368,8 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkFrameRateTrack = new System.Windows.Forms.CheckBox();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -426,6 +431,8 @@ namespace TeboCam
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Admin.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrameRateCalcOver)).BeginInit();
             this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox22.SuspendLayout();
@@ -768,24 +775,22 @@ namespace TeboCam
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.lblFrameRate);
             this.panel1.Controls.Add(this.lblCameraName);
             this.panel1.Controls.Add(this.cameraWindow);
             this.panel1.Name = "panel1";
+            // 
+            // lblFrameRate
+            // 
+            resources.ApplyResources(this.lblFrameRate, "lblFrameRate");
+            this.lblFrameRate.Name = "lblFrameRate";
+            this.lblFrameRate.Tag = "";
             // 
             // lblCameraName
             // 
             resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
             this.lblCameraName.Tag = "";
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -2253,6 +2258,7 @@ namespace TeboCam
             // Admin
             // 
             this.Admin.BackColor = System.Drawing.Color.Transparent;
+            this.Admin.Controls.Add(this.groupBox16);
             this.Admin.Controls.Add(this.groupBox12);
             this.Admin.Controls.Add(this.infoMode);
             this.Admin.Controls.Add(this.groupBox2);
@@ -2262,10 +2268,54 @@ namespace TeboCam
             this.Admin.Controls.Add(this.groupBox15);
             this.Admin.Controls.Add(this.groupBox10);
             this.Admin.Controls.Add(this.groupBox7);
-            this.Admin.Controls.Add(this.label35);
             resources.ApplyResources(this.Admin, "Admin");
             this.Admin.Name = "Admin";
             this.Admin.UseVisualStyleBackColor = true;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.chkFrameRateTrack);
+            this.groupBox16.Controls.Add(this.label64);
+            this.groupBox16.Controls.Add(this.label35);
+            this.groupBox16.Controls.Add(this.numFrameRateCalcOver);
+            resources.ApplyResources(this.groupBox16, "groupBox16");
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.TabStop = false;
+            // 
+            // label64
+            // 
+            resources.ApplyResources(this.label64, "label64");
+            this.label64.ForeColor = System.Drawing.Color.Black;
+            this.label64.Name = "label64";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.ForeColor = System.Drawing.Color.Black;
+            this.label35.Name = "label35";
+            // 
+            // numFrameRateCalcOver
+            // 
+            this.numFrameRateCalcOver.BackColor = System.Drawing.Color.LemonChiffon;
+            resources.ApplyResources(this.numFrameRateCalcOver, "numFrameRateCalcOver");
+            this.numFrameRateCalcOver.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numFrameRateCalcOver.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numFrameRateCalcOver.Name = "numFrameRateCalcOver";
+            this.toolTip1.SetToolTip(this.numFrameRateCalcOver, resources.GetString("numFrameRateCalcOver.ToolTip"));
+            this.numFrameRateCalcOver.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numFrameRateCalcOver.Leave += new System.EventHandler(this.numFrameRateCalcOver_Leave);
             // 
             // groupBox12
             // 
@@ -2645,12 +2695,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.updateNotify, resources.GetString("updateNotify.ToolTip"));
             this.updateNotify.UseVisualStyleBackColor = true;
             this.updateNotify.CheckedChanged += new System.EventHandler(this.updateNotify_CheckedChanged);
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.ForeColor = System.Drawing.Color.Black;
-            this.label35.Name = "label35";
             // 
             // Publish
             // 
@@ -3260,6 +3304,23 @@ namespace TeboCam
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // chkFrameRateTrack
+            // 
+            resources.ApplyResources(this.chkFrameRateTrack, "chkFrameRateTrack");
+            this.chkFrameRateTrack.Name = "chkFrameRateTrack";
+            this.toolTip1.SetToolTip(this.chkFrameRateTrack, resources.GetString("chkFrameRateTrack.ToolTip"));
+            this.chkFrameRateTrack.UseVisualStyleBackColor = true;
+            this.chkFrameRateTrack.CheckedChanged += new System.EventHandler(this.chkFrameRateTrack_CheckedChanged);
+            // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            // 
             // preferences
             // 
             resources.ApplyResources(this, "$this");
@@ -3359,6 +3420,9 @@ namespace TeboCam
             this.panel2.PerformLayout();
             this.Admin.ResumeLayout(false);
             this.Admin.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrameRateCalcOver)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -3446,7 +3510,6 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton bttnMotionInactive;
         private System.Windows.Forms.RadioButton bttnMotionActive;
         private System.Windows.Forms.TabPage Admin;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox txtLog;
         private System.Windows.Forms.TextBox actCountdown;
@@ -3727,5 +3790,11 @@ namespace TeboCam
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox txtLockdownPassword;
         private System.Windows.Forms.Button btnSecurityLockdownOn;
+        private System.Windows.Forms.Label lblFrameRate;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.NumericUpDown numFrameRateCalcOver;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.CheckBox chkFrameRateTrack;
     }
 }

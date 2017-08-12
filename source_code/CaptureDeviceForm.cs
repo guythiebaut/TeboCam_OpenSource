@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
+using System.Linq;
 //using dshow;
 //using dshow.Core;
 
@@ -51,7 +52,7 @@ namespace TeboCam
 
 
         // Constructor
-        public CaptureDeviceForm(string dvc,bool tooltips)
+        public CaptureDeviceForm(string dvc, bool tooltips)
         {
             //
             // Required for Windows Form Designer support
@@ -66,6 +67,16 @@ namespace TeboCam
 
                 filters = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
+                //remove cameras that are already attached
+                for (int i = filters.Count - 1; i >= 0; i--)
+                {
+                    if (CameraRig.ConnectedCameras.Where(x => x.cameraName == filters[i].MonikerString).Count() > 0)
+                    {
+                        filters.RemoveAt(i);
+                    }
+                }
+
+
                 if (filters.Count == 0)
                     throw new ApplicationException();
 
@@ -74,21 +85,12 @@ namespace TeboCam
                 {
                     deviceCombo.Items.Add(filters[i].MonikerString);
                 }
-                //                foreach (VideoCaptureDevice filter in filters)
-                //{
-                //    deviceCombo.Items.Add(filter.MonikerString);
-                //                }
 
                 // number the webcams in case there are more than one of the same type present
                 int tmpInt = 0;
 
                 for (int f = 0; f < filters.Count; f++)
                 {
-                 
-                  
-                //foreach (Filter filter in filters)
-                //{
-
                     int cnt = 1;
                     for (int i = tmpInt + 1; i < filters.Count; i++)
                     {
@@ -97,10 +99,7 @@ namespace TeboCam
                         deviceCombo.Items[i] = cnt.ToString() + " - " + deviceCombo.Items[i].ToString();
                         cnt++;
                     }
-
                     tmpInt++;
-                                   
-                //}
 
                 }
 
@@ -124,7 +123,7 @@ namespace TeboCam
             {
                 deviceCombo.Items.Add("No local capture devices");
                 deviceCombo.Enabled = false;
-                //okButton.Enabled = false;
+                okButton.Enabled = false;
             }
 
             if (deviceCombo.SelectedIndex == -1) deviceCombo.SelectedIndex = 0;

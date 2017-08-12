@@ -295,7 +295,7 @@ namespace TeboCam
                         int spikePerc = new int();
 
 
-                        lightSpikeResults = statistics.lightSpikeDetected(CameraRig.getCam(item.cam).cam,
+                        lightSpikeResults = statistics.lightSpikeDetected(CameraRig.getCam(item.cam).camNo,
                                                                           item.movLevel,
                                                                           trkTimeSpike.Value,
                                                                           trkToleranceSpike.Value,

@@ -345,20 +345,27 @@ namespace TeboCam
     public static class camButtons
     {
 
+        public enum ButtonColourEnum
+        {
+            grey = 0,
+            green = 1,
+            blue = 2
+        }
+
         private static int maxCams;
 
         //0 = grey
         //1 = green
         //2 = blue
-        private static List<int> cam = new List<int>();
+        private static List<ButtonColourEnum> cam = new List<ButtonColourEnum>();
 
         //0 = grey
         //1 = green
-        private static List<int> mov = new List<int>();
+        private static List<ButtonColourEnum> mov = new List<ButtonColourEnum>();
 
         //0 = grey
         //1 = green
-        private static List<int> pub = new List<int>();
+        private static List<ButtonColourEnum> pub = new List<ButtonColourEnum>();
 
         public static void initialize(int maximumCameras)
         {
@@ -378,7 +385,7 @@ namespace TeboCam
 
         }
 
-        public static List<int> buttons()
+        public static List<ButtonColourEnum> buttons()
         {
             return cam;
         }
@@ -389,7 +396,7 @@ namespace TeboCam
         }
 
 
-        public static int buttonState(int button)
+        public static ButtonColourEnum buttonState(int button)
         {
 
             if (cam.Count > 0)
@@ -416,7 +423,7 @@ namespace TeboCam
         /// Test if sense motion button is available - 1 set to green, 0 set to grey, 2 means not available.
         /// </summary>
         /// <returns>int</returns>
-        public static int motionSenseClick(int p_bttn)
+        public static ButtonColourEnum motionSenseClick(int p_bttn)
         {
 
             //if (cam.Count == 0)
@@ -434,27 +441,26 @@ namespace TeboCam
                 //we have a candidate for motion sensing
 
                 //sensing button is grey
-                if (mov[bttn] == 0)
+                if (mov[bttn] == ButtonColourEnum.grey)
                 {
 
-                    mov[bttn] = 1;
-                    return 1;
+                    mov[bttn] = ButtonColourEnum.green;
+                    return ButtonColourEnum.green;
 
                 }
                 else
                 //sensing button is green
                 {
 
-                    mov[bttn] = 0;
-                    return 0;
+                    mov[bttn] = ButtonColourEnum.grey;
+                    return ButtonColourEnum.grey;
 
                 }
-
 
             }
 
             //button is not available for selection
-            return 2;
+            return ButtonColourEnum.blue;
 
         }
 
@@ -462,24 +468,24 @@ namespace TeboCam
         /// Test if sense publish button is available - 1 set to green, 0 set to grey, 2 means not available.
         /// </summary>
         /// <returns>int</returns>
-        public static int publishClick(int p_bttn)
+        public static ButtonColourEnum publishClick(int p_bttn)
         {
 
             int bttn = p_bttn - 1;
 
             //camera button is green or blue
-            if (cam[bttn] != 0)
+            if (cam[bttn] != ButtonColourEnum.grey)
             {
 
                 //we have a candidate for publishing
 
                 //publishing button is grey
                 //set to green
-                if (pub[bttn] == 0)
+                if (pub[bttn] == ButtonColourEnum.grey)
                 {
 
-                    pub[bttn] = 1;
-                    return 1;
+                    pub[bttn] = ButtonColourEnum.green;
+                    return ButtonColourEnum.green;
 
                 }
                 else
@@ -487,8 +493,8 @@ namespace TeboCam
                 //set to grey
                 {
 
-                    pub[bttn] = 0;
-                    return 0;
+                    pub[bttn] = ButtonColourEnum.grey;
+                    return ButtonColourEnum.grey;
 
                 }
 
@@ -496,7 +502,7 @@ namespace TeboCam
             }
 
             //button is not available for selection
-            return 2;
+            return ButtonColourEnum.blue;
 
         }
 
@@ -511,15 +517,15 @@ namespace TeboCam
 
             int bttn = p_bttn - 1;
 
-            if (cam.Count > 0 && cam[bttn] == 2)
+            if (cam.Count > 0 && cam[bttn] == ButtonColourEnum.blue)
             {
 
                 for (int i = 0; i < cam.Count; i++)
                 {
-                    if (cam[i] == 1) cam[i] = 2;
+                    if (cam[i] == ButtonColourEnum.green) cam[i] = ButtonColourEnum.blue;
                 }
 
-                cam[bttn] = 1;
+                cam[bttn] = ButtonColourEnum.green;
                 return true;
 
             }
@@ -577,12 +583,10 @@ namespace TeboCam
             for (int i = 0; i < cam.Count; i++)
             {
 
-                if (cam[i] == 2)
+                if (cam[i] == ButtonColourEnum.blue)
                 {
-
-                    cam[i] = 1;
+                    cam[i] = ButtonColourEnum.green;
                     return;
-
                 }
 
             }
@@ -655,7 +659,7 @@ namespace TeboCam
             for (int i = 0; i < cam.Count; i++)
             {
 
-                if (cam[i] == 1)
+                if (cam[i] == camButtons.ButtonColourEnum.green)
                 {
                     return i + 1;
                 }
@@ -669,20 +673,15 @@ namespace TeboCam
 
         public static int firstAvailableButton()
         {
-
             for (int i = 0; i < cam.Count; i++)
             {
-
-                if (cam[i] > 0)
+                if (cam[i] > ButtonColourEnum.grey)
                 {
                     return i + 1;
                 }
-
-
             }
 
             return 999;
-
         }
 
 
@@ -694,15 +693,13 @@ namespace TeboCam
         {
 
             int bttn = p_bttn - 1;
-
-
             bool camTaken = true;
 
             //button is available
-            if (cam.Count > 0 && cam[bttn] == 0)
+            if (cam.Count > 0 && cam[bttn] == ButtonColourEnum.grey)
             {
 
-                cam[bttn] = 2;
+                cam[bttn] = ButtonColourEnum.blue;
                 camTaken = false;
                 return p_bttn;
 
@@ -714,9 +711,9 @@ namespace TeboCam
 
                 for (int i = 0; i < cam.Count; i++)
                 {
-                    if (cam[i] == 0)
+                    if (cam[i] == ButtonColourEnum.grey)
                     {
-                        cam[i] = 2;
+                        cam[i] = ButtonColourEnum.blue;
                         return i + 1;
                     }
 
@@ -739,8 +736,8 @@ namespace TeboCam
             int from = p_from - 1;
             int to = p_to - 1;
 
-            int tmpMov = mov[from];
-            int tmpPub = pub[from];
+            ButtonColourEnum tmpMov = mov[from];
+            ButtonColourEnum tmpPub = pub[from];
 
             //swap the sense button colours
             mov[from] = mov[to];
@@ -753,14 +750,14 @@ namespace TeboCam
             //we are moving to a button that has a camera assigned to it
             if (cam[to] > 0)
             {
-                cam[from] = 2;
-                cam[to] = 1;
+                cam[from] = ButtonColourEnum.blue;
+                cam[to] = ButtonColourEnum.green;
             }
             //we are moving to a button that has no camera assigned to it
             else
             {
                 cam[from] = 0;
-                cam[to] = 1;
+                cam[to] = ButtonColourEnum.green;
             }
 
         }
@@ -881,7 +878,7 @@ namespace TeboCam
 
     }
 
-   
+
 
     public class bubble
     {
@@ -1061,8 +1058,8 @@ namespace TeboCam
 
         public static AVIWriter film = new AVIWriter();
 
-        static BackgroundWorker bw = new BackgroundWorker();
-        static BackgroundWorker webPub = new BackgroundWorker();
+        //static BackgroundWorker workerMain = new BackgroundWorker();
+        //static BackgroundWorker webPub = new BackgroundWorker();
 
 
         public static event EventHandler cycleChanged;
@@ -1111,7 +1108,7 @@ namespace TeboCam
             {
                 return string.Empty;
             }
-         
+
             int nil = 0;
             int low = 5;
             int mid = 10;
@@ -2160,17 +2157,11 @@ namespace TeboCam
             {
 
                 teboDebug.writeline(teboDebug.pingVal + 1);
-
                 pulseEvent(null, new EventArgs());
-
                 bubble.fileBusy = true;
                 takePingPicture(null, new EventArgs());
                 Thread.Sleep(2000);
-
-                //if (!bubble.pingError)
-                //{
                 teboDebug.writeline(teboDebug.pingVal + 2);
-
                 logAddLine("Preparing ping email.");
                 pings = 1;
                 mail.clearAttachments();
@@ -2186,16 +2177,10 @@ namespace TeboCam
                     graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
                     logAddLine("Adding graph attachment.");
 
-
                     if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
                     {
-
                         mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
-
                     }
-
-
-
 
                     pingGraphDate = tmpDate;
                     pingGraph(null, new EventArgs());
@@ -2207,16 +2192,10 @@ namespace TeboCam
                     graphCurrent.Save(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
                     logAddLine("Adding graph attachment.");
 
-
                     if (File.Exists(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg"))
                     {
-
                         mail.addAttachment(tmpFolder + "graphCurrent" + graphSeq.ToString() + ".jpg");
-
                     }
-
-
-
                 }
 
                 teboDebug.writeline(teboDebug.pingVal + 5);
@@ -2267,7 +2246,7 @@ namespace TeboCam
                                config.getProfile(bubble.profileInUse).EnableSsl
                                );
 
-                //#too late to update pinglast?
+                //#todo too late to update pinglast?
                 pingLast = time.secondsSinceStart();
                 Thread.Sleep(2000);
                 logAddLine("Ping email sent.");
@@ -2350,7 +2329,7 @@ namespace TeboCam
             if (keepPublishing)
             {
 
-                foreach (rigItem item in CameraRig.rig)
+                foreach (ConnectedCamera item in CameraRig.ConnectedCameras)
                 {
 
                     bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, CameraRig.infoEnum.publishWeb).ToString());
@@ -2389,7 +2368,7 @@ namespace TeboCam
                             {
 
                                 statistics.movementResults stats = new statistics.movementResults();
-                                stats = statistics.statsForCam(item.cam.cam, bubble.profileInUse, "Publish");
+                                stats = statistics.statsForCam(item.cam.camNo, bubble.profileInUse, "Publish");
 
                                 lst.Add(stats.avgMvStart.ToString());
                                 lst.Add(stats.avgMvLast.ToString());
@@ -2418,7 +2397,7 @@ namespace TeboCam
                             ImagePubArgs a = new ImagePubArgs();
 
                             a.option = "pub";
-                            a.cam = item.cam.cam;
+                            a.cam = item.cam.camNo;
                             a.lst = lst;
 
                             try { pubPicture(null, a); }
@@ -3493,8 +3472,8 @@ namespace TeboCam
             int spikePerc = new int();
 
             //are we filtering light spikes?
-            if (!CameraRig.rig[e.cam].cam.triggeredBySpike
-                && (bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
+            if (!CameraRig.ConnectedCameras[e.cam].cam.triggeredBySpike
+                && (bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
             {
 
 
@@ -3514,12 +3493,12 @@ namespace TeboCam
             //movement alarm was not previously triggered by a light spike
             //and a light spike has not been detected with the current alarm inducing movement  
             //or we are not concerned about light spikes
-            if ((!CameraRig.rig[e.cam].cam.triggeredBySpike && !spike)
-                || CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike
-                || !(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
+            if ((!CameraRig.ConnectedCameras[e.cam].cam.triggeredBySpike && !spike)
+                || CameraRig.ConnectedCameras[e.cam].cam.certifiedTriggeredByNonSpike
+                || !(bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
             {
 
-                CameraRig.rig[e.cam].cam.certifiedTriggeredByNonSpike = true;
+                CameraRig.ConnectedCameras[e.cam].cam.certifiedTriggeredByNonSpike = true;
 
                 if (config.getProfile(bubble.profileInUse).areaOffAtMotion && !CameraRig.AreaOffAtMotionIsTriggeredCam(e.cam))
                 {
@@ -3550,7 +3529,7 @@ namespace TeboCam
                             Bitmap saveBmp = null;
 
                             imageText stampArgs = new imageText();
-                            stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
+                            stampArgs.bitmap = (Bitmap)CameraRig.ConnectedCameras[e.cam].cam.pubFrame.Clone();
                             stampArgs.type = "Alert";
                             stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
 
@@ -3615,10 +3594,10 @@ namespace TeboCam
             {
 
                 //a light spike caused this alarm and we are catching light spikes
-                if ((bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
+                if ((bool)(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[e.cam].cameraName, CameraRig.infoEnum.lightSpike)))
                 {
 
-                    CameraRig.rig[e.cam].cam.triggeredBySpike = true;
+                    CameraRig.ConnectedCameras[e.cam].cam.triggeredBySpike = true;
 
                 }
 

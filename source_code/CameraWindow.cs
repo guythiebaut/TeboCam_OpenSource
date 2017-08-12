@@ -393,65 +393,45 @@ namespace TeboCam
 
                 if (config.getProfile(bubble.profileInUse).pingStatsStamp)
                 {
-
                     statistics.movementResults stats = new statistics.movementResults();
                     stats = statistics.statsForCam(CameraRig.activeCam, bubble.profileInUse, "Ping");
-
                     lst.Add(stats.avgMvStart.ToString());
                     lst.Add(stats.avgMvLast.ToString());
                     lst.Add(stats.mvNow.ToString());
-                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[CameraRig.activeCam].cameraName, CameraRig.infoEnum.alarmActive)) ? "On" : "Off");
+                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.activeCam].cameraName, CameraRig.infoEnum.alarmActive)) ? "On" : "Off");
                     lst.Add(config.getProfile(bubble.profileInUse).pingInterval.ToString() + " Mins");
-
                 }
-
 
                 imageText stampArgs = new imageText();
 
-
                 if (config.getProfile(bubble.profileInUse).pingAll)
                 {
-
                     mosaic mos = new mosaic();
                     int imgHeight = 0;
                     int imgWidth = 0;
 
+                    //#todo there may be issue here if an image is not present
                     //set the height and width to the largest image
-                    foreach (rigItem item in CameraRig.rig)
+                    foreach (ConnectedCamera item in CameraRig.ConnectedCameras)
                     {
-
                         if (item.cam.pubFrame.Height > imgHeight || item.cam.pubFrame.Width > imgWidth)
                         {
-
                             imgHeight = item.cam.pubFrame.Height;
                             imgWidth = item.cam.pubFrame.Width;
-
                         }
-
                     }
 
-
-                    foreach (rigItem item in CameraRig.rig)
+                    foreach (ConnectedCamera item in CameraRig.ConnectedCameras)
                     {
-
                         mos.addToList(bubble.resizeImage(item.cam.pubFrame, imgWidth, imgHeight));
-
                     }
-
 
                     stampArgs.bitmap = (Bitmap)mos.getMosaicBitmap(4).Clone();
-
                 }
                 else//if (config.getProfile(bubble.profileInUse).pingStatsStamp)
                 {
-
-
                     stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
-
-
                 }
-
-
 
 
                 stampArgs.type = "Ping";
@@ -606,10 +586,10 @@ namespace TeboCam
 
                     drawRect
                     (
-                    CameraRig.rig[CameraRig.drawCam].cam.rectX,
-                    CameraRig.rig[CameraRig.drawCam].cam.rectY,
-                    CameraRig.rig[CameraRig.drawCam].cam.rectWidth,
-                    CameraRig.rig[CameraRig.drawCam].cam.rectHeight
+                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX,
+                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY,
+                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth,
+                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight
                     );
 
 
@@ -642,10 +622,10 @@ namespace TeboCam
 
 
 
-            CurrentTopLeft.X = CameraRig.rig[CameraRig.drawCam].cam.rectX;
-            CurrentTopLeft.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY;
-            CurrentBottomRight.X = CameraRig.rig[CameraRig.drawCam].cam.rectX + CameraRig.rig[CameraRig.drawCam].cam.rectWidth;
-            CurrentBottomRight.Y = CameraRig.rig[CameraRig.drawCam].cam.rectY + CameraRig.rig[CameraRig.drawCam].cam.rectHeight;
+            CurrentTopLeft.X = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX;
+            CurrentTopLeft.Y = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY;
+            CurrentBottomRight.X = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX + CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth;
+            CurrentBottomRight.Y = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY + CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight;
 
 
             rectDrawn = true;
@@ -669,16 +649,16 @@ namespace TeboCam
             else
                 //Selection area has reached the right side of the screen
                 if (cursor.X - DragClickRelative.X > 0)
-                {
-                    CurrentTopLeft.X = width - RectangleWidth;
-                    CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
-                }
-                //Selection area has reached the left side of the screen
-                else
-                {
-                    CurrentTopLeft.X = 0;
-                    CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
-                }
+            {
+                CurrentTopLeft.X = width - RectangleWidth;
+                CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
+            }
+            //Selection area has reached the left side of the screen
+            else
+            {
+                CurrentTopLeft.X = 0;
+                CurrentBottomRight.X = CurrentTopLeft.X + RectangleWidth;
+            }
 
             if (cursor.Y - DragClickRelative.Y > 0 && cursor.Y - DragClickRelative.Y + RectangleHeight < height)
             {
@@ -688,16 +668,16 @@ namespace TeboCam
             else
                 //Selection area has reached the bottom of the screen
                 if (cursor.Y - DragClickRelative.Y > 0)
-                {
-                    CurrentTopLeft.Y = height - RectangleHeight;
-                    CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
-                }
-                //Selection area has reached the top of the screen
-                else
-                {
-                    CurrentTopLeft.Y = 0;
-                    CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
-                }
+            {
+                CurrentTopLeft.Y = height - RectangleHeight;
+                CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
+            }
+            //Selection area has reached the top of the screen
+            else
+            {
+                CurrentTopLeft.Y = 0;
+                CurrentBottomRight.Y = CurrentTopLeft.Y + RectangleHeight;
+            }
 
             drawRect(CurrentTopLeft.X, CurrentTopLeft.Y, RectangleWidth, RectangleHeight);
 
@@ -781,18 +761,18 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).rectWidth = width;
                 config.getProfile(bubble.profileInUse).rectHeight = height;
 
-                CameraRig.rig[CameraRig.drawCam].cam.rectX = topLeftX;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectX, topLeftX);
-                CameraRig.rig[CameraRig.drawCam].cam.rectY = topLeftY;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectY, topLeftY);
-                CameraRig.rig[CameraRig.drawCam].cam.rectWidth = width;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectWidth, width);
-                CameraRig.rig[CameraRig.drawCam].cam.rectHeight = height;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectHeight, height);
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX = topLeftX;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectX, topLeftX);
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY = topLeftY;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectY, topLeftY);
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth = width;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectWidth, width);
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight = height;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectHeight, height);
 
-                CameraRig.rig[CameraRig.drawCam].cam.Lock();
-                CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.Reset();
-                CameraRig.rig[CameraRig.drawCam].cam.Unlock();
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.Lock();
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.MotionDetector.Reset();
+                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.Unlock();
 
 
             }

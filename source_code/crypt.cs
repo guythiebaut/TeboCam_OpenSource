@@ -11,6 +11,7 @@ namespace TeboCam
 
     class crypt : Interfaces.IEncryption
     {
+        private static Random rand = new Random();
         // Change these keys
         private byte[] Key = sensitiveInfo.Key;
         private byte[] Vector = sensitiveInfo.Vector;
@@ -31,6 +32,25 @@ namespace TeboCam
             //Used to translate bytes to text and vice versa
             UTFEncoder = new System.Text.UTF8Encoding();
         }
+
+        protected static int GetRandInt(int min, int max)
+        {
+            return rand.Next(min, max);
+        }
+
+        public byte[] GenerateByteArray()
+        {
+            var result = new byte[0];
+            int arrSize = GetRandInt(10, 20);
+            Array.Resize(ref result, arrSize);
+
+            for (int i = 0; i < arrSize; i++)
+            {
+                result[i] = Convert.ToByte(GetRandInt(0, 255));
+            }
+            return result;
+        }
+
 
 
         public static string HashString(string Value)

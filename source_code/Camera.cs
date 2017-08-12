@@ -10,7 +10,8 @@ namespace TeboCam
     using System.Threading;
     //using VideoSource;
     using System.Diagnostics;
-
+    using System.Collections.Generic;
+    using System.Linq;
 
     using AForge.Video;
     using AForge.Video.DirectShow;
@@ -22,7 +23,7 @@ namespace TeboCam
 
     public class MotionLevelArgs : EventArgs
     {
-        
+
         private double _lvl;
 
         public double lvl
@@ -73,7 +74,7 @@ namespace TeboCam
 
     public class CamIdArgs : EventArgs
     {
-        
+
         private int _cam;
 
         public int cam
@@ -156,7 +157,6 @@ namespace TeboCam
 
 
 
-
     /// <summary>
     /// Camera class
     /// </summary>
@@ -198,7 +198,7 @@ namespace TeboCam
                     CamIdArgs b = new CamIdArgs();
                     a.lvl = 0;
                     a.alarmLvl = movementVal;
-                    b.cam = cam;
+                    b.cam = camNo;
                     b.name = name;
                     motionLevelEvent(null, a, b);
 
@@ -221,7 +221,7 @@ namespace TeboCam
         private int width = -1, height = -1;
 
         // alarm level
-        public int cam = 0;
+        public int camNo = 0;
         public double movementVal = 1;
         //public int timeSpike = 0;
         //public int toleranceSpike = 0;
@@ -288,6 +288,7 @@ namespace TeboCam
             set { motionDetector = value; }
         }
 
+        public List<DateTime> framesDt = new List<DateTime>();
 
 
 
@@ -305,7 +306,9 @@ namespace TeboCam
         private int RectX = 20;
         private int RectY = 20;
 
-
+        public Frames frames = new Frames();
+        public int FrameRateCalculated = 0;
+        public DateTime ConnectedAt;
 
         public bool calibrating
         {
@@ -360,24 +363,75 @@ namespace TeboCam
 
         //Carried over from motiondetector3optimized class
 
+        public bool frameRateTrack = false;
+        public class FrameRateInfo
+        {
+            public DateTime dateTime = DateTime.Now;
+            public long frames = 1;
+        }
+
+        public class Frames
+        {
+            int count = 0;
+            public List<FrameRateInfo> framesInfo = new List<FrameRateInfo>();
+            //maintain a count of 1000 frames
+            public void addFrame()
+            {
+                framesInfo.Add(new FrameRateInfo());
+            }
+
+            public int LastFrameSecondsAgo()
+            {
+                if (framesInfo.Count == 0) return int.MaxValue;
+                return (int)(DateTime.Now - framesInfo.Last().dateTime).TotalSeconds;
+            }
+
+            public void purge(int numberToKeep)
+            {
+                DateTime now = DateTime.Now;
+                int deleteUpTo = 0;
+
+                for (int i = framesInfo.Count - 1; i >= 0; i--)
+                {
+                    if ((now - framesInfo[i].dateTime).TotalSeconds > numberToKeep)
+                    {
+                        deleteUpTo = i + 1;
+                        break;
+                    }
+                }
+
+                if (deleteUpTo > 0)
+                {
+                    framesInfo.RemoveRange(0, deleteUpTo);
+                    count = framesInfo.Count;
+                }
 
 
+                //if (numberToKeep > framesInfo.Count)
+                //{
+                //    return;
+                //}
 
-
-
-
-
-
-
-
-
+                //if (numberToKeep == 0)
+                //{
+                //    framesInfo.Clear();
+                //    count = 0;
+                //}
+                //else
+                //{
+                //    //framesInfo.RemoveRange(numberToKeep - 1, framesInfo.Count - numberToKeep);
+                //    framesInfo.RemoveRange(0, framesInfo.Count - numberToKeep);
+                //    count = numberToKeep;
+                //}
+            }
+        }
 
 
 
 
         // Constructor
         public Camera(VideoCaptureDevice source)
-            : this(source, null, null)
+                : this(source, null, null)
         { }
 
 
@@ -499,45 +553,31 @@ namespace TeboCam
 
 
                 //lastFrame = (Bitmap)e.Frame.Clone();
-                pubFrame = (Bitmap)e.Frame.Clone();
+
+                try
+                {
+                    pubFrame = (Bitmap)e.Frame.Clone();
+                    //#ToDo
+                    if (frameRateTrack)
+                    {
+                        frames.addFrame();
+                    }
+                    //purge outside of this on a semi-regular basis
+                    //framesDtCount.purge(100);
+                    //framesDt.Add(DateTime.Now);
+                }
+                catch (Exception)
+                {
+                    pubFrame = (Bitmap)Properties.Resources.imagenotavailable.Clone();
+                }
 
 
-                ////*************************************
-                ////pre-process bitmap for area detection
-                ////*************************************
-
-                //Bitmap areaDetectionPreparedImage;
-
-                //if (areaOffAtMotionTriggered && !areaOffAtMotionReset)
-                //{
-                //    motionDetecotor.Reset();
-                //    areaOffAtMotionReset = true;
-                //}
-
-                //if (areaDetection && !areaOffAtMotionTriggered)
-                //{
-                //    areaDetectionPreparedImage = selectArea(pubFrame, AreaDetectionWithin, RectWidth, RectHeight, RectX, RectY);
-
-                //    if (exposeArea)
-                //    {
-                //        pubFrame = areaDetectionPreparedImage;
-                //    }
-                //}
-                //else
-                //{
-                //    areaDetectionPreparedImage = pubFrame;
-                //}
-
-
-                ////*************************************
-                ////pre-process bitmap for area detection
-                ////*************************************
 
                 if (_detectionOn)
                 {
 
 
-                    if ((calibrating && cam == CameraRig.trainCam) || (alarmActive && alert))
+                    if ((calibrating && camNo == CameraRig.trainCam) || (alarmActive && alert))
                     {
 
                         // apply motion detector
@@ -585,12 +625,12 @@ namespace TeboCam
                             CamIdArgs b = new CamIdArgs();
                             a.lvl = motionDetector.MotionDetectionAlgorithm.MotionLevel;
                             a.alarmLvl = movementVal;
-                            b.cam = cam;
+                            b.cam = camNo;
                             b.name = name;
                             motionLevelEvent(null, a, b);
 
                             // check motion level
-                            if (calibrating && cam == CameraRig.trainCam)
+                            if (calibrating && camNo == CameraRig.trainCam)
                             {
                                 bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                             }
@@ -602,7 +642,7 @@ namespace TeboCam
                                     && motionAlarm != null)
                                 {
                                     CamIdArgs c = new CamIdArgs();
-                                    c.cam = cam;
+                                    c.cam = camNo;
                                     c.name = name;
                                     LevelArgs l = new LevelArgs();
                                     l.lvl = Convert.ToInt32(100 * motionDetector.MotionDetectionAlgorithm.MotionLevel);
@@ -612,15 +652,10 @@ namespace TeboCam
                                 }
                                 else
                                 {
-
                                     certifiedTriggeredByNonSpike = false;
                                     triggeredBySpike = false;
-
                                 }
                             }
-
-                            //System.Diagnostics.Debug.Print(triggeredBySpike.ToString());
-
 
                         }
 
@@ -684,8 +719,15 @@ namespace TeboCam
 
 
                 //lastFrame = (Bitmap)e.Frame.Clone();
-                pubFrame = (Bitmap)e.Frame.Clone();
 
+                try
+                {
+                    pubFrame = (Bitmap)e.Frame.Clone();
+                }
+                catch (Exception)
+                {
+                    pubFrame = (Bitmap)Properties.Resources.imagenotavailable.Clone();
+                }
 
                 if (_detectionOn)
                 {
@@ -733,13 +775,13 @@ namespace TeboCam
                         CamIdArgs b = new CamIdArgs();
                         a.lvl = motionDetector.MotionDetectionAlgorithm.MotionLevel;
                         a.alarmLvl = movementVal;
-                        b.cam = cam;
+                        b.cam = camNo;
                         b.name = name;
                         motionLevelEvent(null, a, b);
 
 
                         // check motion level
-                        if (calibrating && cam == CameraRig.trainCam)
+                        if (calibrating && camNo == CameraRig.trainCam)
                         {
                             bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                         }
@@ -749,7 +791,7 @@ namespace TeboCam
                             {
 
                                 CamIdArgs c = new CamIdArgs();
-                                c.cam = cam;
+                                c.cam = camNo;
                                 c.name = name;
                                 LevelArgs l = new LevelArgs();
                                 l.lvl = Convert.ToInt32(100 * motionDetector.MotionDetectionAlgorithm.MotionLevel);
