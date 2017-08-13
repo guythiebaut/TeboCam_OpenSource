@@ -527,7 +527,6 @@ namespace TeboCam
             resources.ApplyResources(this.grpSpikeSettings, "grpSpikeSettings");
             this.grpSpikeSettings.Name = "grpSpikeSettings";
             this.grpSpikeSettings.TabStop = false;
-            this.grpSpikeSettings.Enter += new System.EventHandler(this.grpSpikeSettings_Enter);
             // 
             // lblToleranceSpike
             // 
@@ -540,7 +539,6 @@ namespace TeboCam
             resources.ApplyResources(this.lblTimeSpike, "lblTimeSpike");
             this.lblTimeSpike.ForeColor = System.Drawing.Color.Black;
             this.lblTimeSpike.Name = "lblTimeSpike";
-            this.lblTimeSpike.Click += new System.EventHandler(this.lblTimeSpike_Click);
             // 
             // label1
             // 

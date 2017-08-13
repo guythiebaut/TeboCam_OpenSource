@@ -726,11 +726,8 @@ namespace TeboCam
             }
 
             CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.drawCam, nowButton);
-            //cameraSwitch(nowButton, false);
-
             camButtons.changeDisplayButton(wasButton, nowButton);
             cameraSwitch(nowButton, true);
-            //camButtonSetColours();
 
         }
 
@@ -750,11 +747,8 @@ namespace TeboCam
             }
 
             CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.drawCam, nowButton);
-            //cameraSwitch(nowButton, false);
-
             camButtons.changeDisplayButton(wasButton, nowButton);
             cameraSwitch(nowButton, true);
-            //camButtonSetColours();
 
         }
 
@@ -799,10 +793,10 @@ namespace TeboCam
                     camButtons.activateFirstAvailableButton();
                     camButtonSetColours();
 
-                    int tmpInt = camButtons.firstAvailableButton();
-                    if (tmpInt != 999)
+                    int firstAvailableButton = camButtons.firstAvailableButton();
+                    if (firstAvailableButton > 0)
                     {
-                        cameraSwitch(tmpInt, true);
+                        cameraSwitch(firstAvailableButton, true);
                     }
 
 
@@ -837,16 +831,6 @@ namespace TeboCam
 
         }
 
-        private void grpSpikeSettings_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTimeSpike_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void trkMov_ValueChanged(object sender, EventArgs e)
         {
             if (trkMov.Value == 100)
@@ -864,43 +848,17 @@ namespace TeboCam
 
         private void trkTimeSpike_ValueChanged(object sender, EventArgs e)
         {
-
-
             lblTimeSpike.Text = trkTimeSpike.Value.ToString();
             config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike, trkTimeSpike.Value);
-
         }
 
         private void trkToleranceSpike_ValueChanged(object sender, EventArgs e)
         {
-
             lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
             config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike, trkToleranceSpike.Value);
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

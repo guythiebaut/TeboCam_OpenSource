@@ -681,7 +681,7 @@ namespace TeboCam
                 }
             }
 
-            return 999;
+            return 0;
         }
 
 
@@ -693,37 +693,26 @@ namespace TeboCam
         {
 
             int bttn = p_bttn - 1;
-            bool camTaken = true;
 
             //button is available
             if (cam.Count > 0 && cam[bttn] == ButtonColourEnum.grey)
             {
-
                 cam[bttn] = ButtonColourEnum.blue;
-                camTaken = false;
                 return p_bttn;
-
             }
 
             //return first available button
-            if (camTaken)
+            for (int i = 0; i < cam.Count; i++)
             {
-
-                for (int i = 0; i < cam.Count; i++)
+                if (cam[i] == ButtonColourEnum.grey)
                 {
-                    if (cam[i] == ButtonColourEnum.grey)
-                    {
-                        cam[i] = ButtonColourEnum.blue;
-                        return i + 1;
-                    }
-
+                    cam[i] = ButtonColourEnum.blue;
+                    return i + 1;
                 }
-
             }
 
             //no buttons available
             return 999;
-
         }
 
         /// <summary>
@@ -2657,9 +2646,6 @@ namespace TeboCam
 
         public static void logAddLine(string line)
         {
-            string tmpStr = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss:fff", System.Globalization.CultureInfo.InvariantCulture);
-            //log.Add(tmpStr + " | " + line);
-
             log.AddLine(DateTime.Now, line);
             LogAdded(null, new EventArgs());
         }

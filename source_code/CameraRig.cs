@@ -286,13 +286,6 @@ namespace TeboCam
 
         }
 
-        //public int AvailableButton()
-        //{
-
-
-
-        //}
-
         public static List<List<string>> cameraCredentialsListedUnderProfile(string profileName)
         {
 
@@ -528,36 +521,8 @@ namespace TeboCam
             selectedCamera.cam.areaDetection = (bool)(CameraRig.rigInfoGet(profileName, webcam, infoEnum.areaDetection));
             selectedCamera.cam.areaDetectionWithin = (bool)(CameraRig.rigInfoGet(profileName, webcam, infoEnum.areaDetectionWithin));
 
-            //foreach (rigConnectedCamera item in CameraRig.rig)
-            //{
-
-            //    if (item.cameraName == webcam)
-            //    {
-
-            //        item.friendlyName = (string)(CameraRig.rigInfoGet(profileName, webcam, infoEnum.friendlyName));
-            //        item.cam.areaDetection = (bool)(CameraRig.rigInfoGet(profileName, webcam, infoEnum.areaDetection));
-            //        item.cam.areaDetectionWithin = (bool)(CameraRig.rigInfoGet(profileName, webcam, infoEnum.areaDetectionWithin));
-
-            //    }
-
-            //}
-
         }
 
-
-        //public static int idFromButton(int bttn)
-        //{
-
-        //    foreach (rigConnectedCamera item in CameraRig.rig)
-        //    {
-
-        //        if (item.displayButton == bttn) return item.cam.camNo;
-
-        //    }
-
-        //    return 0;
-
-        //}
 
         public static int idxFromButton(int bttn)
         {
@@ -781,16 +746,6 @@ namespace TeboCam
             return CameraRig.ConnectedCameras[cam].cam;
         }
 
-        //public static void addCamera(rigItem p_cam)
-        //{
-
-        //    rigItem r_item = new rigItem();
-        //    r_item = p_cam;
-        //    rig.Add(r_item);
-
-
-        //}
-
         public static bool camerasAreConnected()
         {
 
@@ -815,9 +770,7 @@ namespace TeboCam
 
         public static int cameraCount()
         {
-
             return ConnectedCameras.Count;
-
         }
 
 
