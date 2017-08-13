@@ -248,105 +248,34 @@ namespace TeboCam
 
         public static void camSelInit()
         {
-
             for (int i = 1; i < 10; i++)
             {
-
                 camSel.Add(false);
-
             }
-
         }
 
         public static void renameProfile(string oldProfile, string newProfile)
         {
-
-            for (int i = 0; i < CamsInfo.Count; i++)
-            {
-
-                if (CamsInfo[i].profileName == oldProfile)
-                {
-                    CamsInfo[i].profileName = newProfile;
-                    break;
-                }
-
-            }
-
-
+            CamsInfo.Where(x => x.profileName == oldProfile).FirstOrDefault().profileName = newProfile;
         }
 
         public static void cameraRemove(int camId)
         {
-
             ConnectedCameras[camId].cam.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
             ConnectedCameras[camId].cam.SignalToStop();
             ConnectedCameras[camId].cam.WaitForStop();
-
             ConnectedCameras.RemoveAt(camId);
-
         }
 
-        public static List<List<string>> cameraCredentialsListedUnderProfile(string profileName)
+        public static List<cameraSpecificInfo> cameraCredentialsListedUnderProfile(string profileName)
         {
-
-            List<List<string>> lst = new List<List<string>>();
-
-            foreach (cameraSpecificInfo infoI in CamsInfo)
-            {
-
-
-                if (infoI.profileName == profileName)
-                {
-
-                    List<string> item = new List<string>();
-                    item.Add(infoI.webcam);
-                    item.Add(infoI.ipWebcamAddress);
-                    item.Add(infoI.ipWebcamUser);
-                    item.Add(infoI.ipWebcamPassword);
-                    lst.Add(item);
-
-                }
-
-
-
-            }
-
-            return lst;
-
+            return CamsInfo.Where(x => x.profileName == profileName).ToList();
         }
-
-        public static List<string> cameraCredentials(string profileName, string webcam)
-        {
-
-            List<string> lst = new List<string>();
-
-            foreach (cameraSpecificInfo infoI in CamsInfo)
-            {
-
-                if (infoI.profileName == profileName && infoI.webcam == webcam)
-                {
-
-                    lst.Add(infoI.webcam);
-                    lst.Add(infoI.ipWebcamAddress);
-                    lst.Add(infoI.ipWebcamUser);
-                    lst.Add(infoI.ipWebcamPassword);
-
-                }
-
-
-            }
-
-            return lst;
-
-        }
-
 
         public static void clear()
         {
             CameraRig.ConnectedCameras.Clear();
         }
-
-
 
         public static void updateInfo(string profileName, string webcam, infoEnum infoType, object val)
         {
