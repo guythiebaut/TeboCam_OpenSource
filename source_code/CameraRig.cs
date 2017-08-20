@@ -7,12 +7,13 @@ using System.Linq;
 namespace TeboCam
 {
 
-    class ConnectedCamera
+    public class ConnectedCamera
     {
 
         public string cameraName;
         public string friendlyName;
         public int displayButton;
+        public bool selected;
         public Camera cam;
 
     }
@@ -105,10 +106,11 @@ namespace TeboCam
     class cameraSpecificInfo
     {
 
-        public string profileName = "";
-        public string webcam = "";
+        public string profileName = string.Empty;
+        public string webcam = string.Empty;
+        public string friendlyName = string.Empty;
+        public int displayButton = 1;
 
-        public string friendlyName = "";
         public bool areaDetection = false;
         public bool areaDetectionWithin = false;
         public bool areaOffAtMotion = false;
@@ -118,7 +120,6 @@ namespace TeboCam
         public int rectY = 20;
         public int rectWidth = 80;
         public int rectHeight = 80;
-        public int displayButton = 1;
         public double movementVal = 0.99;
         public int timeSpike = 100;
         public int toleranceSpike = 50;
@@ -237,7 +238,7 @@ namespace TeboCam
 
         public static List<ConnectedCamera> ConnectedCameras = new List<ConnectedCamera>();
         public static List<cameraSpecificInfo> CamsInfo = new List<cameraSpecificInfo>();
-        public static int activeCam = 0;
+        public static int CurrentlyDisplayingCamera = 0;
         public static int drawCam = 0;
         public static int trainCam = 0;
         private static int infoIdx = -1;
@@ -455,7 +456,6 @@ namespace TeboCam
 
         public static int idxFromButton(int bttn)
         {
-
             for (int i = 0; i < ConnectedCameras.Count; i++)
             {
 
@@ -470,7 +470,10 @@ namespace TeboCam
 
         }
 
-
+        public static bool CameraConnectedToButton(int buttonNo)
+        {
+            return ConnectedCameras.Where(x => x.displayButton == buttonNo).Count() > 0;
+        }
 
         /// <summary>
         /// swap camera buttons
@@ -752,28 +755,28 @@ namespace TeboCam
 
         public static bool Calibrating
         {
-            get { return ConnectedCameras[activeCam].cam.calibrating; }
+            get { return ConnectedCameras[CurrentlyDisplayingCamera].cam.calibrating; }
             set
             {
-                if (camerasAreConnected()) ConnectedCameras[activeCam].cam.calibrating = value;
+                if (camerasAreConnected()) ConnectedCameras[CurrentlyDisplayingCamera].cam.calibrating = value;
             }
         }
 
         public static bool AreaOffAtMotionTriggered
         {
-            get { return ConnectedCameras[activeCam].cam.areaOffAtMotionTriggered; }
+            get { return ConnectedCameras[CurrentlyDisplayingCamera].cam.areaOffAtMotionTriggered; }
             set
             {
-                if (camerasAreConnected()) ConnectedCameras[activeCam].cam.areaOffAtMotionTriggered = value;
+                if (camerasAreConnected()) ConnectedCameras[CurrentlyDisplayingCamera].cam.areaOffAtMotionTriggered = value;
             }
         }
 
         public static bool AreaOffAtMotionReset
         {
-            get { return ConnectedCameras[activeCam].cam.areaOffAtMotionReset; }
+            get { return ConnectedCameras[CurrentlyDisplayingCamera].cam.areaOffAtMotionReset; }
             set
             {
-                if (camerasAreConnected()) ConnectedCameras[activeCam].cam.areaOffAtMotionReset = value;
+                if (camerasAreConnected()) ConnectedCameras[CurrentlyDisplayingCamera].cam.areaOffAtMotionReset = value;
             }
         }
 

@@ -394,11 +394,11 @@ namespace TeboCam
                 if (config.getProfile(bubble.profileInUse).pingStatsStamp)
                 {
                     statistics.movementResults stats = new statistics.movementResults();
-                    stats = statistics.statsForCam(CameraRig.activeCam, bubble.profileInUse, "Ping");
+                    stats = statistics.statsForCam(CameraRig.CurrentlyDisplayingCamera, bubble.profileInUse, "Ping");
                     lst.Add(stats.avgMvStart.ToString());
                     lst.Add(stats.avgMvLast.ToString());
                     lst.Add(stats.mvNow.ToString());
-                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.activeCam].cameraName, CameraRig.infoEnum.alarmActive)) ? "On" : "Off");
+                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].cameraName, CameraRig.infoEnum.alarmActive)) ? "On" : "Off");
                     lst.Add(config.getProfile(bubble.profileInUse).pingInterval.ToString() + " Mins");
                 }
 

@@ -55,6 +55,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>calibrate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CameraButtonsCntl.resx">
+      <DependentUpon>CameraButtonsCntl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CameraWindow.resx">
       <DependentUpon>CameraWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -128,6 +131,13 @@
       <DependentUpon>calibrate.cs</DependentUpon>
     </Compile>
     <Compile Include="Camera.cs" />
+    <Compile Include="CameraButtonGroup.cs" />
+    <Compile Include="CameraButtonsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CameraButtonsCntl.Designer.cs">
+      <DependentUpon>CameraButtonsCntl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CameraRig.cs" />
     <Compile Include="CameraWindow.cs">
       <SubType>Component</SubType>

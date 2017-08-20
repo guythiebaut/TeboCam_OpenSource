@@ -22,6 +22,7 @@ namespace TeboCam
 
     public partial class webcamConfig : Form
     {
+        public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
         private formDelegate webcamConfigDelegate;
 
         public static BackgroundWorker dw = new BackgroundWorker();
@@ -39,8 +40,12 @@ namespace TeboCam
         private bool autoscroll;
         private static bool toolTip;
 
-        public webcamConfig(formDelegate sender, ArrayList from)
+        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance)
         {
+
+            this.Controls.Add(ButtonCameraControl);
+            ButtonCameraControl.Location = new Point(5, 480);
+            ButtonCameraControl.AddExistingButtons(CameraButtonGroupInstance);
 
             LevelControlBox.Left = 417;
             LevelControlBox.Top = 18;
@@ -57,7 +62,7 @@ namespace TeboCam
 
             camButtonSetColours();
 
-            cameraSwitch(CameraRig.ConnectedCameras[CameraRig.activeCam].displayButton, true);
+            cameraSwitch(CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].displayButton, true);
 
         }
 
@@ -673,6 +678,11 @@ namespace TeboCam
 
         private void camButtonSetColours()
         {
+
+            foreach (var item in collection)
+            {
+
+            }
 
             List<Control> availControls = controls(this);
 

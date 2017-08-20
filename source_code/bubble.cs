@@ -16,6 +16,7 @@ using Tiger.Video.VFW;
 using Ionic.Zip;
 using System.Net;
 using System.Drawing.Drawing2D;
+using System.Linq;
 
 namespace TeboCam
 {
@@ -342,7 +343,7 @@ namespace TeboCam
     }
 
 
-    public static class camButtons
+    public static class camButtonsOLD
     {
 
         public enum ButtonColourEnum
@@ -435,7 +436,7 @@ namespace TeboCam
             int bttn = p_bttn - 1;
 
             //camera button is green or blue
-            if (cam[bttn] != 0)
+            if (cam[bttn] != ButtonColourEnum.grey)
             {
 
                 //we have a candidate for motion sensing
@@ -655,20 +656,7 @@ namespace TeboCam
 
         public static int firstActiveButton()
         {
-
-            for (int i = 0; i < cam.Count; i++)
-            {
-
-                if (cam[i] == camButtons.ButtonColourEnum.green)
-                {
-                    return i + 1;
-                }
-
-
-            }
-
-            return 999;
-
+            return CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].displayButton;
         }
 
         public static int firstAvailableButton()
@@ -689,8 +677,18 @@ namespace TeboCam
         /// returns an int for the next available button if the selected button is not available
         /// </summary>
         /// <returns>int</returns>
-        public static int availForClick(int p_bttn, bool update)
+        public static int getDisplayButton(int p_bttn)
         {
+
+            //if (CameraRig.ConnectedCameras.Select(x => x.displayButton == p_bttn).Count() == 1)
+            //{
+            //    return p_bttn;
+            //}
+
+            var numberList = Enumerable.Range(1, 999).ToList();
+            var displayButtons = CameraRig.ConnectedCameras.Select(x => x.displayButton).ToList();
+            int firstAvailableDisplayButton = numberList.Where(x => !displayButtons.Contains(x)).Min();
+
 
             int bttn = p_bttn - 1;
 
@@ -1955,7 +1953,7 @@ namespace TeboCam
 
                         ImagePubArgs a = new ImagePubArgs();
                         a.option = "onl";
-                        a.cam = CameraRig.idxFromButton(camButtons.firstActiveButton());
+                        a.cam = CameraRig.idxFromButton(CameraRig.CurrentlyDisplayingCamera);
                         //a.cam = CameraRig.activeCam;
 
                         try { pubPicture(null, a); }
@@ -2698,7 +2696,7 @@ namespace TeboCam
         public static void levelLine(MotionLevelArgs a, CamIdArgs b)
         {
 
-            if (b.cam == CameraRig.activeCam)
+            if (b.cam == CameraRig.CurrentlyDisplayingCamera)
             {
                 motionLevel = Convert.ToInt32((int)Math.Floor(a.lvl * 100));
 

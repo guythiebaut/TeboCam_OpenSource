@@ -67,6 +67,7 @@ namespace TeboCam
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblFrameRate = new System.Windows.Forms.Label();
             this.lblCameraName = new System.Windows.Forms.Label();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -247,6 +248,7 @@ namespace TeboCam
             this.ftpRoot = new System.Windows.Forms.TextBox();
             this.Admin = new System.Windows.Forms.TabPage();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.chkFrameRateTrack = new System.Windows.Forms.CheckBox();
             this.label64 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.numFrameRateCalcOver = new System.Windows.Forms.NumericUpDown();
@@ -368,8 +370,6 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkFrameRateTrack = new System.Windows.Forms.CheckBox();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -791,6 +791,15 @@ namespace TeboCam
             resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
             this.lblCameraName.Tag = "";
+            // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -2282,6 +2291,14 @@ namespace TeboCam
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.TabStop = false;
             // 
+            // chkFrameRateTrack
+            // 
+            resources.ApplyResources(this.chkFrameRateTrack, "chkFrameRateTrack");
+            this.chkFrameRateTrack.Name = "chkFrameRateTrack";
+            this.toolTip1.SetToolTip(this.chkFrameRateTrack, resources.GetString("chkFrameRateTrack.ToolTip"));
+            this.chkFrameRateTrack.UseVisualStyleBackColor = true;
+            this.chkFrameRateTrack.CheckedChanged += new System.EventHandler(this.chkFrameRateTrack_CheckedChanged);
+            // 
             // label64
             // 
             resources.ApplyResources(this.label64, "label64");
@@ -3303,23 +3320,6 @@ namespace TeboCam
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // chkFrameRateTrack
-            // 
-            resources.ApplyResources(this.chkFrameRateTrack, "chkFrameRateTrack");
-            this.chkFrameRateTrack.Name = "chkFrameRateTrack";
-            this.toolTip1.SetToolTip(this.chkFrameRateTrack, resources.GetString("chkFrameRateTrack.ToolTip"));
-            this.chkFrameRateTrack.UseVisualStyleBackColor = true;
-            this.chkFrameRateTrack.CheckedChanged += new System.EventHandler(this.chkFrameRateTrack_CheckedChanged);
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // preferences
             // 
