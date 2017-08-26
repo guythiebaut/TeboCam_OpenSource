@@ -60,15 +60,6 @@ namespace TeboCam
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.bttncam9 = new System.Windows.Forms.Button();
-            this.bttncam7 = new System.Windows.Forms.Button();
-            this.bttncam8 = new System.Windows.Forms.Button();
-            this.bttncam6 = new System.Windows.Forms.Button();
-            this.bttncam1 = new System.Windows.Forms.Button();
-            this.bttncam4 = new System.Windows.Forms.Button();
-            this.bttncam2 = new System.Windows.Forms.Button();
-            this.bttncam5 = new System.Windows.Forms.Button();
-            this.bttncam3 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cameraWindow = new TeboCam.CameraWindow();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -313,18 +304,9 @@ namespace TeboCam
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.bttncam9);
             this.panel2.Controls.Add(this.label33);
-            this.panel2.Controls.Add(this.bttncam7);
             this.panel2.Controls.Add(this.camName);
-            this.panel2.Controls.Add(this.bttncam8);
             this.panel2.Controls.Add(this.bttnCamProp);
-            this.panel2.Controls.Add(this.bttncam6);
-            this.panel2.Controls.Add(this.bttncam1);
-            this.panel2.Controls.Add(this.bttncam4);
-            this.panel2.Controls.Add(this.bttncam2);
-            this.panel2.Controls.Add(this.bttncam5);
-            this.panel2.Controls.Add(this.bttncam3);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
@@ -371,87 +353,6 @@ namespace TeboCam
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.camUp);
             // 
-            // bttncam9
-            // 
-            this.bttncam9.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam9, "bttncam9");
-            this.bttncam9.Name = "bttncam9";
-            this.toolTip1.SetToolTip(this.bttncam9, resources.GetString("bttncam9.ToolTip"));
-            this.bttncam9.UseVisualStyleBackColor = false;
-            this.bttncam9.Click += new System.EventHandler(this.bttncam9_Click);
-            // 
-            // bttncam7
-            // 
-            this.bttncam7.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam7, "bttncam7");
-            this.bttncam7.Name = "bttncam7";
-            this.toolTip1.SetToolTip(this.bttncam7, resources.GetString("bttncam7.ToolTip"));
-            this.bttncam7.UseVisualStyleBackColor = false;
-            this.bttncam7.Click += new System.EventHandler(this.bttncam7_Click);
-            // 
-            // bttncam8
-            // 
-            this.bttncam8.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam8, "bttncam8");
-            this.bttncam8.Name = "bttncam8";
-            this.toolTip1.SetToolTip(this.bttncam8, resources.GetString("bttncam8.ToolTip"));
-            this.bttncam8.UseVisualStyleBackColor = false;
-            this.bttncam8.Click += new System.EventHandler(this.bttncam8_Click);
-            // 
-            // bttncam6
-            // 
-            this.bttncam6.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam6, "bttncam6");
-            this.bttncam6.Name = "bttncam6";
-            this.toolTip1.SetToolTip(this.bttncam6, resources.GetString("bttncam6.ToolTip"));
-            this.bttncam6.UseVisualStyleBackColor = false;
-            this.bttncam6.Click += new System.EventHandler(this.bttncam6_Click);
-            // 
-            // bttncam1
-            // 
-            this.bttncam1.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam1, "bttncam1");
-            this.bttncam1.Name = "bttncam1";
-            this.toolTip1.SetToolTip(this.bttncam1, resources.GetString("bttncam1.ToolTip"));
-            this.bttncam1.UseVisualStyleBackColor = false;
-            this.bttncam1.Click += new System.EventHandler(this.bttncam1_Click);
-            // 
-            // bttncam4
-            // 
-            this.bttncam4.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam4, "bttncam4");
-            this.bttncam4.Name = "bttncam4";
-            this.toolTip1.SetToolTip(this.bttncam4, resources.GetString("bttncam4.ToolTip"));
-            this.bttncam4.UseVisualStyleBackColor = false;
-            this.bttncam4.Click += new System.EventHandler(this.bttncam4_Click);
-            // 
-            // bttncam2
-            // 
-            this.bttncam2.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam2, "bttncam2");
-            this.bttncam2.Name = "bttncam2";
-            this.toolTip1.SetToolTip(this.bttncam2, resources.GetString("bttncam2.ToolTip"));
-            this.bttncam2.UseVisualStyleBackColor = false;
-            this.bttncam2.Click += new System.EventHandler(this.bttncam2_Click);
-            // 
-            // bttncam5
-            // 
-            this.bttncam5.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam5, "bttncam5");
-            this.bttncam5.Name = "bttncam5";
-            this.toolTip1.SetToolTip(this.bttncam5, resources.GetString("bttncam5.ToolTip"));
-            this.bttncam5.UseVisualStyleBackColor = false;
-            this.bttncam5.Click += new System.EventHandler(this.bttncam5_Click);
-            // 
-            // bttncam3
-            // 
-            this.bttncam3.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam3, "bttncam3");
-            this.bttncam3.Name = "bttncam3";
-            this.toolTip1.SetToolTip(this.bttncam3, resources.GetString("bttncam3.ToolTip"));
-            this.bttncam3.UseVisualStyleBackColor = false;
-            this.bttncam3.Click += new System.EventHandler(this.bttncam3_Click);
-            // 
             // panel3
             // 
             resources.ApplyResources(this.panel3, "panel3");
@@ -479,7 +380,6 @@ namespace TeboCam
             this.levelbox.Name = "levelbox";
             this.levelbox.TabStop = false;
             this.toolTip1.SetToolTip(this.levelbox, resources.GetString("levelbox.ToolTip"));
-
             // 
             // label38
             // 
@@ -692,15 +592,6 @@ namespace TeboCam
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.PictureBox levelbox;
         private System.Windows.Forms.TrackBar trkMov;
-        private System.Windows.Forms.Button bttncam9;
-        private System.Windows.Forms.Button bttncam7;
-        private System.Windows.Forms.Button bttncam8;
-        private System.Windows.Forms.Button bttncam6;
-        private System.Windows.Forms.Button bttncam1;
-        private System.Windows.Forms.Button bttncam4;
-        private System.Windows.Forms.Button bttncam2;
-        private System.Windows.Forms.Button bttncam5;
-        private System.Windows.Forms.Button bttncam3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;

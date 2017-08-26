@@ -239,11 +239,11 @@ namespace TeboCam
         public static List<ConnectedCamera> ConnectedCameras = new List<ConnectedCamera>();
         public static List<cameraSpecificInfo> CamsInfo = new List<cameraSpecificInfo>();
         public static int CurrentlyDisplayingCamera = 0;
-        public static int drawCam = 0;
-        public static int trainCam = 0;
+        public static int ConfigCam = 0;
+        public static int TrainCam = 0;
         private static int infoIdx = -1;
         public static List<bool> camSel = new List<bool>();
-        private const int camLicense = 9;
+        private const int CamLicense = 9;
         //public static bool reconfiguring = false;
 
 
@@ -782,29 +782,29 @@ namespace TeboCam
 
         public static bool AreaDetection
         {
-            get { return ConnectedCameras[drawCam].cam.areaDetection; }
+            get { return ConnectedCameras[ConfigCam].cam.areaDetection; }
             set
             {
-                if (camerasAreConnected()) ConnectedCameras[drawCam].cam.areaDetection = value;
+                if (camerasAreConnected()) ConnectedCameras[ConfigCam].cam.areaDetection = value;
             }
         }
 
         public static bool AreaDetectionWithin
         {
-            get { return ConnectedCameras[drawCam].cam.areaDetectionWithin; }
+            get { return ConnectedCameras[ConfigCam].cam.areaDetectionWithin; }
             set
             {
                 if (camerasAreConnected())
-                    ConnectedCameras[drawCam].cam.areaDetectionWithin = value;
+                    ConnectedCameras[ConfigCam].cam.areaDetectionWithin = value;
             }
         }
 
         public static bool ExposeArea
         {
-            get { return ConnectedCameras[drawCam].cam.exposeArea; }
+            get { return ConnectedCameras[ConfigCam].cam.exposeArea; }
             set
             {
-                if (camerasAreConnected()) ConnectedCameras[drawCam].cam.exposeArea = value;
+                if (camerasAreConnected()) ConnectedCameras[ConfigCam].cam.exposeArea = value;
             }
         }
 

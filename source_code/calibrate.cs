@@ -28,7 +28,7 @@ namespace TeboCam
             calibrateDelegate = postCalibrate;
             toolTip = (bool)from[0];
             cam = (int)from[1];
-            CameraRig.trainCam = cam;
+            CameraRig.TrainCam = cam;
             from.Clear();
             //string tmpStr = "www.teboweb.com/calibrate.html";
             //linkLightSpike.Links.Add(tmpStr);

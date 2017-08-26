@@ -577,7 +577,7 @@ namespace TeboCam
                 {
 
 
-                    if ((calibrating && camNo == CameraRig.trainCam) || (alarmActive && alert))
+                    if ((calibrating && camNo == CameraRig.TrainCam) || (alarmActive && alert))
                     {
 
                         // apply motion detector
@@ -630,7 +630,7 @@ namespace TeboCam
                             motionLevelEvent(null, a, b);
 
                             // check motion level
-                            if (calibrating && camNo == CameraRig.trainCam)
+                            if (calibrating && camNo == CameraRig.TrainCam)
                             {
                                 bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                             }
@@ -781,7 +781,7 @@ namespace TeboCam
 
 
                         // check motion level
-                        if (calibrating && camNo == CameraRig.trainCam)
+                        if (calibrating && camNo == CameraRig.TrainCam)
                         {
                             bubble.train(motionDetector.MotionDetectionAlgorithm.MotionLevel);
                         }

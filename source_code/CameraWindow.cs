@@ -586,10 +586,10 @@ namespace TeboCam
 
                     drawRect
                     (
-                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX,
-                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY,
-                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth,
-                    CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight
+                    CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectX,
+                    CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectY,
+                    CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectWidth,
+                    CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectHeight
                     );
 
 
@@ -622,10 +622,10 @@ namespace TeboCam
 
 
 
-            CurrentTopLeft.X = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX;
-            CurrentTopLeft.Y = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY;
-            CurrentBottomRight.X = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX + CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth;
-            CurrentBottomRight.Y = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY + CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight;
+            CurrentTopLeft.X = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectX;
+            CurrentTopLeft.Y = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectY;
+            CurrentBottomRight.X = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectX + CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectWidth;
+            CurrentBottomRight.Y = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectY + CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectHeight;
 
 
             rectDrawn = true;
@@ -761,18 +761,18 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).rectWidth = width;
                 config.getProfile(bubble.profileInUse).rectHeight = height;
 
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectX = topLeftX;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectX, topLeftX);
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectY = topLeftY;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectY, topLeftY);
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectWidth = width;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectWidth, width);
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.rectHeight = height;
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.drawCam].cameraName, CameraRig.infoEnum.rectHeight, height);
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectX = topLeftX;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.ConfigCam].cameraName, CameraRig.infoEnum.rectX, topLeftX);
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectY = topLeftY;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.ConfigCam].cameraName, CameraRig.infoEnum.rectY, topLeftY);
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectWidth = width;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.ConfigCam].cameraName, CameraRig.infoEnum.rectWidth, width);
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.rectHeight = height;
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[CameraRig.ConfigCam].cameraName, CameraRig.infoEnum.rectHeight, height);
 
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.Lock();
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.MotionDetector.Reset();
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.Unlock();
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.Lock();
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.MotionDetector.Reset();
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.Unlock();
 
 
             }

@@ -321,774 +321,6 @@
   <data name="&gt;&gt;lblCamAlert.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="bttncam9sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam9sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam9sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam9sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 325</value>
-  </data>
-  <data name="bttncam9sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam9sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam9sel.TabIndex" type="System.Int32, mscorlib">
-    <value>94</value>
-  </data>
-  <data name="bttncam9sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>124, 17</value>
-  </metadata>
-  <data name="bttncam9sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam9sel.Name" xml:space="preserve">
-    <value>bttncam9sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam9sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam9sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam9sel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="bttncam9.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam9.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 304</value>
-  </data>
-  <data name="bttncam9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam9.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
-  </data>
-  <data name="bttncam9.Text" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="bttncam9.ToolTip" xml:space="preserve">
-    <value>Select Camera 9
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam9.Name" xml:space="preserve">
-    <value>bttncam9</value>
-  </data>
-  <data name="&gt;&gt;bttncam9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam9.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam9.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="bttncam7sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam7sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam7sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam7sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 325</value>
-  </data>
-  <data name="bttncam7sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam7sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam7sel.TabIndex" type="System.Int32, mscorlib">
-    <value>93</value>
-  </data>
-  <data name="bttncam7sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam7sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam7sel.Name" xml:space="preserve">
-    <value>bttncam7sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam7sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam7sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam7sel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="bttncam7.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam7.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 304</value>
-  </data>
-  <data name="bttncam7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam7.TabIndex" type="System.Int32, mscorlib">
-    <value>83</value>
-  </data>
-  <data name="bttncam7.Text" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="bttncam7.ToolTip" xml:space="preserve">
-    <value>Select Camera 7
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam7.Name" xml:space="preserve">
-    <value>bttncam7</value>
-  </data>
-  <data name="&gt;&gt;bttncam7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam7.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam7.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <metadata name="bttncam8sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam8sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam8sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam8sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 325</value>
-  </data>
-  <data name="bttncam8sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam8sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam8sel.TabIndex" type="System.Int32, mscorlib">
-    <value>92</value>
-  </data>
-  <data name="bttncam8sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam8sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam8sel.Name" xml:space="preserve">
-    <value>bttncam8sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam8sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam8sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam8sel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="bttncam8.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam8.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 304</value>
-  </data>
-  <data name="bttncam8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam8.TabIndex" type="System.Int32, mscorlib">
-    <value>82</value>
-  </data>
-  <data name="bttncam8.Text" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="bttncam8.ToolTip" xml:space="preserve">
-    <value>Select Camera 8
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam8.Name" xml:space="preserve">
-    <value>bttncam8</value>
-  </data>
-  <data name="&gt;&gt;bttncam8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam8.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam8.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="bttncam6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam6.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 304</value>
-  </data>
-  <data name="bttncam6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam6.TabIndex" type="System.Int32, mscorlib">
-    <value>81</value>
-  </data>
-  <data name="bttncam6.Text" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="bttncam6.ToolTip" xml:space="preserve">
-    <value>Select Camera 6
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam6.Name" xml:space="preserve">
-    <value>bttncam6</value>
-  </data>
-  <data name="&gt;&gt;bttncam6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam6.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam6.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <metadata name="bttncam6sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam6sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam6sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam6sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 325</value>
-  </data>
-  <data name="bttncam6sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam6sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam6sel.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="bttncam6sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam6sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam6sel.Name" xml:space="preserve">
-    <value>bttncam6sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam6sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam6sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam6sel.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <metadata name="bttncam4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam4.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 304</value>
-  </data>
-  <data name="bttncam4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam4.TabIndex" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="bttncam4.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="bttncam4.ToolTip" xml:space="preserve">
-    <value>Select Camera 4
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam4.Name" xml:space="preserve">
-    <value>bttncam4</value>
-  </data>
-  <data name="&gt;&gt;bttncam4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam4.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam4.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <metadata name="bttncam1sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam1sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam1sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam1sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 325</value>
-  </data>
-  <data name="bttncam1sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam1sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam1sel.TabIndex" type="System.Int32, mscorlib">
-    <value>86</value>
-  </data>
-  <data name="bttncam1sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam1sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam1sel.Name" xml:space="preserve">
-    <value>bttncam1sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam1sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam1sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam1sel.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="bttncam5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 304</value>
-  </data>
-  <data name="bttncam5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam5.TabIndex" type="System.Int32, mscorlib">
-    <value>79</value>
-  </data>
-  <data name="bttncam5.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="bttncam5.ToolTip" xml:space="preserve">
-    <value>Select Camera 5
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam5.Name" xml:space="preserve">
-    <value>bttncam5</value>
-  </data>
-  <data name="&gt;&gt;bttncam5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam5.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam5.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <metadata name="bttncam4sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam4sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam4sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam4sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 325</value>
-  </data>
-  <data name="bttncam4sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam4sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam4sel.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="bttncam4sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam4sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam4sel.Name" xml:space="preserve">
-    <value>bttncam4sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam4sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam4sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam4sel.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <metadata name="bttncam2sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam2sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam2sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam2sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 325</value>
-  </data>
-  <data name="bttncam2sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam2sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam2sel.TabIndex" type="System.Int32, mscorlib">
-    <value>87</value>
-  </data>
-  <data name="bttncam2sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam2sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam2sel.Name" xml:space="preserve">
-    <value>bttncam2sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam2sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam2sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam2sel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <metadata name="bttncam3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 304</value>
-  </data>
-  <data name="bttncam3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam3.TabIndex" type="System.Int32, mscorlib">
-    <value>78</value>
-  </data>
-  <data name="bttncam3.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="bttncam3.ToolTip" xml:space="preserve">
-    <value>Select Camera 3
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam3.Name" xml:space="preserve">
-    <value>bttncam3</value>
-  </data>
-  <data name="&gt;&gt;bttncam3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam3.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam3.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <metadata name="bttncam5sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam5sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam5sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam5sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 325</value>
-  </data>
-  <data name="bttncam5sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam5sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam5sel.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="bttncam5sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam5sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam5sel.Name" xml:space="preserve">
-    <value>bttncam5sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam5sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam5sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam5sel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <metadata name="bttncam2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 304</value>
-  </data>
-  <data name="bttncam2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam2.TabIndex" type="System.Int32, mscorlib">
-    <value>77</value>
-  </data>
-  <data name="bttncam2.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="bttncam2.ToolTip" xml:space="preserve">
-    <value>Select Camera 2
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam2.Name" xml:space="preserve">
-    <value>bttncam2</value>
-  </data>
-  <data name="&gt;&gt;bttncam2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam2.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam2.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <metadata name="bttncam3sel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam3sel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam3sel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam3sel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 325</value>
-  </data>
-  <data name="bttncam3sel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam3sel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 15</value>
-  </data>
-  <data name="bttncam3sel.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="bttncam3sel.Text" xml:space="preserve">
-    <value> </value>
-  </data>
-  <data name="bttncam3sel.ToolTip" xml:space="preserve">
-    <value>Set camera to be motion sensitive.
-
-Green - camera connected and motion sensitive
-Grey - no camera present/camera not motion sensitive</value>
-  </data>
-  <data name="&gt;&gt;bttncam3sel.Name" xml:space="preserve">
-    <value>bttncam3sel</value>
-  </data>
-  <data name="&gt;&gt;bttncam3sel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam3sel.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam3sel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <metadata name="bttncam1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 304</value>
-  </data>
-  <data name="bttncam1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam1.TabIndex" type="System.Int32, mscorlib">
-    <value>76</value>
-  </data>
-  <data name="bttncam1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="bttncam1.ToolTip" xml:space="preserve">
-    <value>Select Camera 1
-
-Green - camera connected and selected
-Blue -  camera connected
-Grey - no camera present</value>
-  </data>
-  <data name="&gt;&gt;bttncam1.Name" xml:space="preserve">
-    <value>bttncam1</value>
-  </data>
-  <data name="&gt;&gt;bttncam1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam1.Parent" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
-  <data name="&gt;&gt;bttncam1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
   <metadata name="groupBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1174,7 +406,7 @@ Grey - no camera present</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>3</value>
   </data>
   <metadata name="levelShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1214,6 +446,9 @@ Grey - no camera present</value>
   <data name="levelShow.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>124, 17</value>
+  </metadata>
   <data name="levelShow.ToolTip" xml:space="preserve">
     <value>Show/hide motion detection level.</value>
   </data>
@@ -1227,7 +462,7 @@ Grey - no camera present</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;levelShow.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>4</value>
   </data>
   <metadata name="cameraShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1287,7 +522,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;cameraShow.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>5</value>
   </data>
   <metadata name="imageInFrame.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1340,7 +575,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;imageInFrame.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>6</value>
   </data>
   <metadata name="startMinimized.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1373,7 +608,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;startMinimized.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>7</value>
   </data>
   <metadata name="calendar.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1403,7 +638,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;calendar.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>8</value>
   </data>
   <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1502,7 +737,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.35744, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.36114, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1529,7 +764,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>9</value>
   </data>
   <metadata name="newsInfo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1562,7 +797,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;newsInfo.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>10</value>
   </data>
   <metadata name="button5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1595,7 +830,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>11</value>
   </data>
   <metadata name="hideLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1628,7 +863,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;hideLog.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>12</value>
   </data>
   <metadata name="button6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1661,7 +896,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>13</value>
   </data>
   <metadata name="txtLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1697,7 +932,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;txtLog.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>14</value>
   </data>
   <metadata name="pictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1754,7 +989,7 @@ above.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>15</value>
   </data>
   <metadata name="MotionAlarm.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2442,7 +1677,7 @@ In accordance with settings within the "Activate in/at" area. </value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;MotionAlarm.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>16</value>
   </data>
   <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2473,7 +1708,7 @@ attached webcams.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>17</value>
   </data>
   <data name="Webcam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
@@ -10965,7 +10200,7 @@ This usually takes less than 1 minute.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>45</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Net;
-using System.Net.NetworkInformation;
+using System.Linq;
+
 
 //using AForge.Video;
 using AForge.Video.DirectShow;
@@ -23,7 +23,9 @@ namespace TeboCam
     public partial class webcamConfig : Form
     {
         public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
+        List<CameraButtonGroup> CameraButtons = new List<CameraButtonGroup>();
         private formDelegate webcamConfigDelegate;
+        private int currentlySelectedButton;
 
         public static BackgroundWorker dw = new BackgroundWorker();
 
@@ -34,7 +36,7 @@ namespace TeboCam
 
         private static string selectedWebcam;
         private static int mainSelectedWebcam;
-        private static List<camButtons.ButtonColourEnum> buttons;
+        //private static List<camButtons.ButtonColourEnum> buttons;
         private LevelControl LevelControlBox = new LevelControl();
         private ArrayList returnList = new ArrayList();
         private bool autoscroll;
@@ -43,22 +45,23 @@ namespace TeboCam
         public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance)
         {
 
-            this.Controls.Add(ButtonCameraControl);
-            ButtonCameraControl.Location = new Point(5, 480);
-            ButtonCameraControl.AddExistingButtons(CameraButtonGroupInstance);
+            toolTip = (bool)from[0];
+            mainSelectedWebcam = (int)from[1];
+            autoscroll = (bool)from[2];
+            // buttons = (List<camButtons.ButtonColourEnum>)from[3];
+            webcamConfigDelegate = sender;
+            from.Clear();
+            InitializeComponent();
+
+            //this.Controls.Add(ButtonCameraControl);
+            //ButtonCameraControl.Location = new Point(5, 480);
+            //ButtonCameraControl.AddExistingButtons(CameraButtonGroupInstance);
+            ConfigureCameraButtons(CameraButtonGroupInstance);
+            //CameraButtons = CameraButtonGroupInstance;
 
             LevelControlBox.Left = 417;
             LevelControlBox.Top = 18;
             this.Controls.Add(LevelControlBox);
-
-
-            toolTip = (bool)from[0];
-            mainSelectedWebcam = (int)from[1];
-            autoscroll = (bool)from[2];
-            buttons = (List<camButtons.ButtonColourEnum>)from[3];
-            webcamConfigDelegate = sender;
-            from.Clear();
-            InitializeComponent();
 
             camButtonSetColours();
 
@@ -66,6 +69,20 @@ namespace TeboCam
 
         }
 
+        private void ConfigureCameraButtons(List<CameraButtonGroup> CameraButtonGroupInstance)
+        {
+            foreach (CameraButtonGroup group in CameraButtonGroupInstance)
+            {
+                ButtonCameraControl.AddButton(CameraButtons, ButtonCameraDelegation, null, false,18);
+            }
+            panel2.Controls.Add(ButtonCameraControl);
+            ButtonCameraControl.Location = new Point(10, 2);
+        }
+
+        private void ButtonCameraDelegation(int id, Button cameraButton, Button activeButton)
+        {
+            cameraSwitch(id, false);
+        }
 
         private void webcamConfig_Load(object sender, EventArgs e)
         {
@@ -86,7 +103,7 @@ namespace TeboCam
 
             //hjfgjgf
 
-            if (CameraRig.ConnectedCameras[CameraRig.drawCam].cam.isIPCamera)
+            if (CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.isIPCamera)
             {
 
                 try
@@ -94,7 +111,7 @@ namespace TeboCam
 
                     IPAddress parsedIPAddress;
                     Uri parsedUri;
-                    string name = CameraRig.ConnectedCameras[CameraRig.drawCam].cam.name;
+                    string name = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.name;
 
                     //check that the url resolves
                     if (Uri.TryCreate(name, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
@@ -143,7 +160,7 @@ namespace TeboCam
                 groupBox4.Enabled = radioButton4.Checked;
                 showSelection.Enabled = radioButton4.Checked;
 
-                CameraRig.ConnectedCameras[CameraRig.drawCam].cam.MotionDetector.Reset();
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.MotionDetector.Reset();
 
 
             }
@@ -167,8 +184,8 @@ namespace TeboCam
 
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion, areaOffAtMotion.Checked);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.areaOffAtMotionTriggered = false;
-            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.areaOffAtMotionReset = false;
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.areaOffAtMotionTriggered = false;
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.areaOffAtMotionReset = false;
 
         }
 
@@ -346,7 +363,7 @@ namespace TeboCam
 
             CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
             CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.ConnectedCameras[CameraRig.drawCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
 
         }
 
@@ -368,7 +385,7 @@ namespace TeboCam
         private void trainDetection(ArrayList i)
         {
 
-            CameraRig.trainCam = CameraRig.getCam(selectedWebcam).camNo;
+            CameraRig.TrainCam = CameraRig.getCam(selectedWebcam).camNo;
 
             bubble.detectionCountDown = (int)i[0];
             bubble.detectionTrain = (int)i[1];
@@ -399,7 +416,7 @@ namespace TeboCam
                 tmpInt = bubble.detectionCountDown;
                 secondsToTrainStart = time.secondsSinceStart();
 
-                CameraRig.getCam(CameraRig.trainCam).calibrating = false;
+                CameraRig.getCam(CameraRig.TrainCam).calibrating = false;
 
                 actCount.ForeColor = Color.Blue;
                 txtMess.ForeColor = Color.Blue;
@@ -420,8 +437,8 @@ namespace TeboCam
 
                 tmpInt = bubble.detectionTrain;
                 secondsToTrainStart = time.secondsSinceStart();
-                CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
-                CameraRig.getCam(CameraRig.trainCam).calibrating = true;
+                CameraRig.getCam(CameraRig.TrainCam).detectionOn = true;
+                CameraRig.getCam(CameraRig.TrainCam).calibrating = true;
                 actCount.ForeColor = Color.Red;
                 txtMess.ForeColor = Color.Red;
 
@@ -441,8 +458,8 @@ namespace TeboCam
 
                 //calculate average motion sensitivity setting
                 //only calculate average based on non zero values
-                CameraRig.getCam(CameraRig.trainCam).detectionOn = false;
-                CameraRig.getCam(CameraRig.trainCam).calibrating = false;
+                CameraRig.getCam(CameraRig.TrainCam).detectionOn = false;
+                CameraRig.getCam(CameraRig.TrainCam).calibrating = false;
                 tmpDbl = 0;
                 tmpInt = 0;
                 foreach (double val in bubble.training)
@@ -523,7 +540,7 @@ namespace TeboCam
         private void drawLevel(object sender, MotionLevelArgs a, CamIdArgs b)
         {
 
-            if (b.cam == CameraRig.drawCam)
+            if (b.cam == CameraRig.ConfigCam)
             {
 
                 double sensitivity = (double)Convert.ToInt32(txtMov.Text);
@@ -574,21 +591,35 @@ namespace TeboCam
         }
 
 
+        private bool camClick(int button)
+        {
+            bool canClick = CameraButtons.Where(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).Count() > 0;
+            if (!canClick) return false;
+
+            var connected = CameraButtons.Where(x => x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).ToList();
+            connected.ForEach(x => x.CameraButtonState = CameraButtonGroup.ButtonState.ConnectedAndInactive);
+            var newActiveButton = CameraButtons.Where(x => x.id == button).First();
+            newActiveButton.CameraButtonState = CameraButtonGroup.ButtonState.ConnectedAndActive;
+            return true;
+
+        }
 
         private void cameraSwitch(int button, bool load)
         {
+
+            currentlySelectedButton = button;
 
             //int camId = CameraRig.idFromButton(button);
             int camId = CameraRig.idxFromButton(button);
 
 
-            if (load || !load && camButtons.camClick(button))
+            if (load || !load && camClick(button))
             {
                 if (load || !load && CameraRig.cameraExists(camId))
                 {
 
                     selectedWebcam = CameraRig.ConnectedCameras[camId].cameraName;
-                    CameraRig.drawCam = camId;
+                    CameraRig.ConfigCam = camId;
                     CameraRig.getCam(camId).MotionDetector.Reset();
 
                     camName.Text = (string)CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.friendlyName);
@@ -674,56 +705,53 @@ namespace TeboCam
 
         }
 
-
-
         private void camButtonSetColours()
         {
 
-            foreach (var item in collection)
+            foreach (var buttonGroup in CameraButtons)
             {
-
-            }
-
-            List<Control> availControls = controls(this);
-
-            for (int i = 0; i < availControls.Count; i++)
-            {
-                if (availControls[i] is Button) { }
-                else { availControls.RemoveAt(i); }
-            }
-
-            foreach (Control ctrl in availControls)
-            {
-                if (ctrl.Name.ToString().Length > 7 && ctrl.Name.ToString().Length < 11 && LeftRightMid.Left(ctrl.Name.ToString(), 7) == "bttncam")
+                //display camera buttons
+                if (buttonGroup.id == CameraRig.ConnectedCameras[CameraRig.ConfigCam].displayButton)
                 {
-
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.grey)
-                    {
-                        ctrl.BackColor = Color.Silver;
-                    }
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.green)
-                    {
-                        ctrl.BackColor = Color.LawnGreen;
-                    }
-                    if (camButtons.buttonState(Convert.ToInt32(ctrl.Text)) == camButtons.ButtonColourEnum.blue)
-                    {
-                        ctrl.BackColor = Color.SkyBlue;
-                    }
-
+                    buttonGroup.CameraButtonIsActive();
                 }
-
+                else
+                {
+                    if (CameraRig.CameraConnectedToButton(buttonGroup.id))
+                    {
+                        buttonGroup.CameraButtonIsInactive();
+                    }
+                    else
+                    {
+                        buttonGroup.CameraButtonIsNotConnected();
+                    }
+                }
             }
-
-            availControls.Clear();
-
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (button3.Text == "Change Button")
+            {
+                button3.Text = "Lock Buttons";
+                button2.BackColor = Color.LawnGreen;
+                button1.BackColor = Color.LawnGreen;
+            }
+            else
+            {
+                button3.Text = "Change Button";
+                button2.BackColor = System.Drawing.SystemColors.Control;
+                button1.BackColor = System.Drawing.SystemColors.Control;
+            }
 
+            button1.Enabled = !button1.Enabled;
+            button2.Enabled = !button2.Enabled;
+        }
 
         private void camUp(object sender, EventArgs e)
         {
 
-            int wasButton = CameraRig.ConnectedCameras[CameraRig.drawCam].displayButton;
+            int wasButton = CameraRig.ConnectedCameras[CameraRig.ConfigCam].displayButton;
             int nowButton;
 
             if (wasButton == 9)
@@ -735,16 +763,14 @@ namespace TeboCam
                 nowButton = wasButton + 1;
             }
 
-            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.drawCam, nowButton);
-            camButtons.changeDisplayButton(wasButton, nowButton);
+            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.ConfigCam, nowButton);
             cameraSwitch(nowButton, true);
-
         }
 
         private void camDown(object sender, EventArgs e)
         {
 
-            int wasButton = CameraRig.ConnectedCameras[CameraRig.drawCam].displayButton;
+            int wasButton = CameraRig.ConnectedCameras[CameraRig.ConfigCam].displayButton;
             int nowButton;
 
             if (wasButton == 1)
@@ -756,64 +782,22 @@ namespace TeboCam
                 nowButton = wasButton - 1;
             }
 
-            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.drawCam, nowButton);
-            camButtons.changeDisplayButton(wasButton, nowButton);
+            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.ConfigCam, nowButton);
             cameraSwitch(nowButton, true);
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-            if (button3.Text == "Change Button")
-            {
-
-                button3.Text = "Lock Buttons";
-                button2.BackColor = Color.LawnGreen;
-                button1.BackColor = Color.LawnGreen;
-
-            }
-            else
-            {
-
-                button3.Text = "Change Button";
-                button2.BackColor = System.Drawing.SystemColors.Control;
-                button1.BackColor = System.Drawing.SystemColors.Control;
-
-            }
-
-            button1.Enabled = !button1.Enabled;
-            button2.Enabled = !button2.Enabled;
-
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
-            if (camButtons.removeCam(camButtons.firstActiveButton()))
+            if (CameraButtons.Where(x => x.id == currentlySelectedButton).First().CameraButtonState != CameraButtonGroup.ButtonState.NotConnected &&
+                button5.Enabled)
             {
-
-                if (button5.Enabled)
-                {
-
-                    CameraRig.cameraRemove(CameraRig.drawCam);
-                    button5.Enabled = false;
-                    button5.BackColor = System.Drawing.SystemColors.Control;
-
-                    camButtons.activateFirstAvailableButton();
-                    camButtonSetColours();
-
-                    int firstAvailableButton = camButtons.firstAvailableButton();
-                    if (firstAvailableButton > 0)
-                    {
-                        cameraSwitch(firstAvailableButton, true);
-                    }
-
-
-                }
-
+                CameraRig.cameraRemove(CameraRig.idxFromButton(currentlySelectedButton));
+                int firstAvailableButton = CameraRig.ConnectedCameras.Where(x => x.displayButton > 0).First().displayButton;
+                cameraSwitch(firstAvailableButton, false);
+                camButtonSetColours();
+                button5.Enabled = false;
+                button5.BackColor = System.Drawing.SystemColors.Control;
             }
-
         }
 
         private void button4_Click(object sender, EventArgs e)
