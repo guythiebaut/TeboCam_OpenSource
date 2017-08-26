@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMonitor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 353</value>
+  </data>
+  <data name="btnMonitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 25</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnMonitor.TabIndex" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
+  <data name="btnMonitor.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnMonitor.Name" xml:space="preserve">
+    <value>btnMonitor</value>
+  </data>
+  <data name="&gt;&gt;btnMonitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMonitor.Parent" xml:space="preserve">
+    <value>Webcam</value>
+  </data>
+  <data name="&gt;&gt;btnMonitor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="pnlStartupOptions.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="label47.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label47.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label47.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold, Italic</value>
   </data>
@@ -253,7 +277,7 @@
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;pnlStartupOptions.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="button23.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -286,7 +310,7 @@
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button23.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="lblCamAlert.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -319,7 +343,7 @@
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;lblCamAlert.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="groupBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -406,7 +430,7 @@
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="levelShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -462,7 +486,7 @@
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;levelShow.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="cameraShow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -522,7 +546,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;cameraShow.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="imageInFrame.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -575,7 +599,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;imageInFrame.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="startMinimized.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -608,7 +632,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;startMinimized.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="calendar.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -638,7 +662,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;calendar.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -737,7 +761,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.36114, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.30018, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -764,7 +788,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <metadata name="newsInfo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -797,7 +821,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;newsInfo.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <metadata name="button5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -830,7 +854,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <metadata name="hideLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -863,7 +887,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;hideLog.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <metadata name="button6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -896,7 +920,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <metadata name="txtLog.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -932,7 +956,7 @@ or any other function in TeboCam.
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;txtLog.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <metadata name="pictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -989,7 +1013,7 @@ above.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <metadata name="MotionAlarm.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1677,7 +1701,7 @@ In accordance with settings within the "Activate in/at" area. </value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;MotionAlarm.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1708,7 +1732,7 @@ attached webcams.</value>
     <value>Webcam</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="Webcam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold</value>
@@ -8290,88 +8314,6 @@ publishing of images.</value>
   <data name="&gt;&gt;bttnSetPrefixPublish.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="bttncam9pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam9pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam9pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam9pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 17</value>
-  </data>
-  <data name="bttncam9pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam9pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam9pub.TabIndex" type="System.Int32, mscorlib">
-    <value>93</value>
-  </data>
-  <data name="bttncam9pub.Text" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="bttncam9pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam9pub.Name" xml:space="preserve">
-    <value>bttncam9pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam9pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam9pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam9pub.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="bttncam7pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam7pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam7pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam7pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 17</value>
-  </data>
-  <data name="bttncam7pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam7pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam7pub.TabIndex" type="System.Int32, mscorlib">
-    <value>92</value>
-  </data>
-  <data name="bttncam7pub.Text" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="bttncam7pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam7pub.Name" xml:space="preserve">
-    <value>bttncam7pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam7pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam7pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam7pub.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <metadata name="pubToWeb.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -8409,48 +8351,7 @@ At present you may only publish from one selected camera.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubToWeb.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="bttncam8pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam8pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam8pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam8pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 17</value>
-  </data>
-  <data name="bttncam8pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam8pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam8pub.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
-  </data>
-  <data name="bttncam8pub.Text" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="bttncam8pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam8pub.Name" xml:space="preserve">
-    <value>bttncam8pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam8pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam8pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam8pub.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>5</value>
   </data>
   <metadata name="pubToLocal.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8489,48 +8390,7 @@ At present you may only publish from one selected camera.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubToLocal.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <metadata name="bttncam6pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam6pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam6pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam6pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 17</value>
-  </data>
-  <data name="bttncam6pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam6pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam6pub.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="bttncam6pub.Text" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="bttncam6pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam6pub.Name" xml:space="preserve">
-    <value>bttncam6pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam6pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam6pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam6pub.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <metadata name="pubTimerOn.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8569,212 +8429,7 @@ At present you may only publish from one selected camera.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubTimerOn.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <metadata name="bttncam4pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam4pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam4pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam4pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="bttncam4pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam4pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam4pub.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
-  </data>
-  <data name="bttncam4pub.Text" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="bttncam4pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam4pub.Name" xml:space="preserve">
-    <value>bttncam4pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam4pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam4pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam4pub.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="bttncam5pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam5pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam5pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam5pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="bttncam5pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam5pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam5pub.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
-  </data>
-  <data name="bttncam5pub.Text" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="bttncam5pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam5pub.Name" xml:space="preserve">
-    <value>bttncam5pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam5pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam5pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam5pub.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <metadata name="bttncam3pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam3pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam3pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam3pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 17</value>
-  </data>
-  <data name="bttncam3pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam3pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam3pub.TabIndex" type="System.Int32, mscorlib">
-    <value>87</value>
-  </data>
-  <data name="bttncam3pub.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="bttncam3pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam3pub.Name" xml:space="preserve">
-    <value>bttncam3pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam3pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam3pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam3pub.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <metadata name="bttncam2pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam2pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam2pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam2pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 17</value>
-  </data>
-  <data name="bttncam2pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam2pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam2pub.TabIndex" type="System.Int32, mscorlib">
-    <value>86</value>
-  </data>
-  <data name="bttncam2pub.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="bttncam2pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam2pub.Name" xml:space="preserve">
-    <value>bttncam2pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam2pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam2pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam2pub.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <metadata name="bttncam1pub.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttncam1pub.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomRight</value>
-  </data>
-  <data name="bttncam1pub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttncam1pub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 17</value>
-  </data>
-  <data name="bttncam1pub.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="bttncam1pub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="bttncam1pub.TabIndex" type="System.Int32, mscorlib">
-    <value>85</value>
-  </data>
-  <data name="bttncam1pub.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="bttncam1pub.ToolTip" xml:space="preserve">
-    <value>Select which camera to publish images from.
-
-At present you may only publish from one selected camera.</value>
-  </data>
-  <data name="&gt;&gt;bttncam1pub.Name" xml:space="preserve">
-    <value>bttncam1pub</value>
-  </data>
-  <data name="&gt;&gt;bttncam1pub.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bttncam1pub.Parent" xml:space="preserve">
-    <value>groupBox17</value>
-  </data>
-  <data name="&gt;&gt;bttncam1pub.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>7</value>
   </data>
   <metadata name="button14.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8807,7 +8462,7 @@ At present you may only publish from one selected camera.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;button14.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>8</value>
   </data>
   <metadata name="label55.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8843,7 +8498,7 @@ At present you may only publish from one selected camera.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;label55.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>9</value>
   </data>
   <metadata name="pubTime.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8877,7 +8532,7 @@ in hours, minutes or seconds.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubTime.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>10</value>
   </data>
   <metadata name="pubSecs.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8910,7 +8565,7 @@ in hours, minutes or seconds.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubSecs.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>11</value>
   </data>
   <metadata name="pubMins.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8943,7 +8598,7 @@ in hours, minutes or seconds.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubMins.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>12</value>
   </data>
   <metadata name="pubHours.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8976,7 +8631,7 @@ in hours, minutes or seconds.</value>
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubHours.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>13</value>
   </data>
   <metadata name="pubFtpRoot.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9008,7 +8663,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubFtpRoot.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>14</value>
   </data>
   <metadata name="label59.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9044,7 +8699,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;label59.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>15</value>
   </data>
   <metadata name="pubFtpPass.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9080,7 +8735,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubFtpPass.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>16</value>
   </data>
   <metadata name="label60.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9116,7 +8771,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;label60.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>17</value>
   </data>
   <metadata name="pubFtpUser.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9148,7 +8803,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubFtpUser.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>18</value>
   </data>
   <metadata name="label61.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9184,7 +8839,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;label61.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>19</value>
   </data>
   <metadata name="pubImage.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -9223,7 +8878,7 @@ Consult your ISP instructions.
     <value>groupBox17</value>
   </data>
   <data name="&gt;&gt;pubImage.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>20</value>
   </data>
   <data name="groupBox17.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>

@@ -105,7 +105,6 @@ namespace TeboCam
 
     class cameraSpecificInfo
     {
-
         public string profileName = string.Empty;
         public string webcam = string.Empty;
         public string friendlyName = string.Empty;
@@ -158,19 +157,10 @@ namespace TeboCam
         public string ipWebcamUser = "";
         public string ipWebcamPassword = "";
 
-        //public bool StatsToFileOn = false;
-        //public string StatsToFileLocation = string.Empty;
-        //public bool StatsToFileTimeStamp;
-        //public double StatsToFileMb = 10;
-
-
-
         //for monitoring publishing - does not need to be saved to xml file
         public bool publishFirst = true;
         public int lastPublished = 0;
         //for monitoring publishing - does not need to be saved to xml file        
-
-
     }
 
 
@@ -260,8 +250,12 @@ namespace TeboCam
             CamsInfo.Where(x => x.profileName == oldProfile).FirstOrDefault().profileName = newProfile;
         }
 
-        public static void cameraRemove(int camId)
+        public static void cameraRemove(int camId, bool removeInfo)
         {
+            if (removeInfo)
+            {
+                rigInfoRemove(bubble.profileInUse, ConnectedCameras[camId].cameraName);
+            }
             ConnectedCameras[camId].cam.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
             ConnectedCameras[camId].cam.SignalToStop();
             ConnectedCameras[camId].cam.WaitForStop();
@@ -470,7 +464,7 @@ namespace TeboCam
 
         }
 
-        public static bool CameraConnectedToButton(int buttonNo)
+        public static bool CameraIsConnectedToButton(int buttonNo)
         {
             return ConnectedCameras.Where(x => x.displayButton == buttonNo).Count() > 0;
         }
@@ -593,19 +587,10 @@ namespace TeboCam
 
         }
 
-
-        public static void framerateGet()
+        public static void rigInfoRemove(string profile, string webcamIdentifier)
         {
-
-            foreach (var item in ConnectedCameras)
-            {
-
-            }
-
-
-
+            CamsInfo.RemoveAll(x => x.profileName == profile && x.webcam == webcamIdentifier);
         }
-
 
         public static object rigInfoGet(string profile, string webcamIdentifier, infoEnum property)
         {
@@ -706,12 +691,12 @@ namespace TeboCam
         }
 
 
-        public static void alert(bool alt)
+        public static void alert(bool alertOn)
         {
             foreach (ConnectedCamera rigI in ConnectedCameras)
             {
-                rigI.cam.alert = alt;
-                rigI.cam.detectionOn = alt;
+                rigI.cam.alert = alertOn;
+                rigI.cam.detectionOn = alertOn;
             }
         }
 

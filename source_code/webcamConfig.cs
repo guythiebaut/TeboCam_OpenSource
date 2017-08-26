@@ -22,6 +22,8 @@ namespace TeboCam
 
     public partial class webcamConfig : Form
     {
+        public delegate void SaveChanges();
+        private SaveChanges saveChanges;
         public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
         List<CameraButtonGroup> CameraButtons = new List<CameraButtonGroup>();
         private formDelegate webcamConfigDelegate;
@@ -42,9 +44,9 @@ namespace TeboCam
         private bool autoscroll;
         private static bool toolTip;
 
-        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance)
+        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance, SaveChanges save)
         {
-
+            saveChanges = save;
             toolTip = (bool)from[0];
             mainSelectedWebcam = (int)from[1];
             autoscroll = (bool)from[2];
@@ -73,7 +75,7 @@ namespace TeboCam
         {
             foreach (CameraButtonGroup group in CameraButtonGroupInstance)
             {
-                ButtonCameraControl.AddButton(CameraButtons, ButtonCameraDelegation, null, false,18);
+                ButtonCameraControl.AddButton(CameraButtons, ButtonCameraDelegation, null, false, 18);
             }
             panel2.Controls.Add(ButtonCameraControl);
             ButtonCameraControl.Location = new Point(10, 2);
@@ -717,7 +719,7 @@ namespace TeboCam
                 }
                 else
                 {
-                    if (CameraRig.CameraConnectedToButton(buttonGroup.id))
+                    if (CameraRig.CameraIsConnectedToButton(buttonGroup.id))
                     {
                         buttonGroup.CameraButtonIsInactive();
                     }
@@ -788,15 +790,25 @@ namespace TeboCam
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (CameraButtons.Where(x => x.id == currentlySelectedButton).First().CameraButtonState != CameraButtonGroup.ButtonState.NotConnected &&
-                button5.Enabled)
+            if (button5.Enabled &&
+                CameraButtons.Where(x => x.id == currentlySelectedButton).First().CameraButtonState != CameraButtonGroup.ButtonState.NotConnected
+                )
             {
-                CameraRig.cameraRemove(CameraRig.idxFromButton(currentlySelectedButton));
-                int firstAvailableButton = CameraRig.ConnectedCameras.Where(x => x.displayButton > 0).First().displayButton;
-                cameraSwitch(firstAvailableButton, false);
-                camButtonSetColours();
-                button5.Enabled = false;
-                button5.BackColor = System.Drawing.SystemColors.Control;
+                var response = MessageBox.Show("Are you sure you want to remove this camera and all the associated information?" +
+                    Environment.NewLine + Environment.NewLine +
+                     "Once the camera is removed, if you require it again you will need to add the webcam again " +
+                     "together with all the camera specific settings associated with it.", "Remove camera and associated information?",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (response == DialogResult.Yes)
+                {
+                    CameraRig.cameraRemove(CameraRig.idxFromButton(currentlySelectedButton), true);
+                    int firstAvailableButton = CameraRig.ConnectedCameras.Where(x => x.displayButton > 0).First().displayButton;
+                    cameraSwitch(firstAvailableButton, false);
+                    camButtonSetColours();
+                    button5.Enabled = false;
+                    button5.BackColor = System.Drawing.SystemColors.Control;
+                    saveChanges();
+                }
             }
         }
 

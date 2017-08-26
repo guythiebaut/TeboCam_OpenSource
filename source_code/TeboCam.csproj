@@ -66,6 +66,9 @@
       <DependentUpon>CaptureDeviceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ControlRoomCntl.resx">
+      <DependentUpon>ControlRoomCntl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageDisplayer.resx">
       <DependentUpon>ImageDisplayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +150,12 @@
     </Compile>
     <Compile Include="CommandLine.cs" />
     <Compile Include="config.cs" />
+    <Compile Include="ControlRoomCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlRoomCntl.Designer.cs">
+      <DependentUpon>ControlRoomCntl.cs</DependentUpon>
+    </Compile>
     <Compile Include="exception.cs" />
     <Compile Include="extensions.cs" />
     <Compile Include="ImageDisplayer.cs">

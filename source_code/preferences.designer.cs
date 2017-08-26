@@ -32,6 +32,7 @@ namespace TeboCam
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(preferences));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Webcam = new System.Windows.Forms.TabPage();
+            this.btnMonitor = new System.Windows.Forms.Button();
             this.pnlStartupOptions = new System.Windows.Forms.Panel();
             this.label47 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
@@ -283,18 +284,9 @@ namespace TeboCam
             this.button37 = new System.Windows.Forms.Button();
             this.button36 = new System.Windows.Forms.Button();
             this.bttnSetPrefixPublish = new System.Windows.Forms.Button();
-            this.bttncam9pub = new System.Windows.Forms.Button();
-            this.bttncam7pub = new System.Windows.Forms.Button();
             this.pubToWeb = new System.Windows.Forms.CheckBox();
-            this.bttncam8pub = new System.Windows.Forms.Button();
             this.pubToLocal = new System.Windows.Forms.CheckBox();
-            this.bttncam6pub = new System.Windows.Forms.Button();
             this.pubTimerOn = new System.Windows.Forms.CheckBox();
-            this.bttncam4pub = new System.Windows.Forms.Button();
-            this.bttncam5pub = new System.Windows.Forms.Button();
-            this.bttncam3pub = new System.Windows.Forms.Button();
-            this.bttncam2pub = new System.Windows.Forms.Button();
-            this.bttncam1pub = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label55 = new System.Windows.Forms.Label();
             this.pubTime = new System.Windows.Forms.TextBox();
@@ -450,6 +442,7 @@ namespace TeboCam
             // 
             // Webcam
             // 
+            this.Webcam.Controls.Add(this.btnMonitor);
             this.Webcam.Controls.Add(this.pnlStartupOptions);
             this.Webcam.Controls.Add(this.button23);
             this.Webcam.Controls.Add(this.lblCamAlert);
@@ -472,6 +465,13 @@ namespace TeboCam
             this.Webcam.Name = "Webcam";
             this.Webcam.UseVisualStyleBackColor = true;
             this.Webcam.Click += new System.EventHandler(this.Webcam_Click);
+            // 
+            // btnMonitor
+            // 
+            resources.ApplyResources(this.btnMonitor, "btnMonitor");
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.UseVisualStyleBackColor = true;
+            this.btnMonitor.Click += new System.EventHandler(this.button3_Click);
             // 
             // pnlStartupOptions
             // 
@@ -2530,18 +2530,9 @@ namespace TeboCam
             this.groupBox17.Controls.Add(this.button37);
             this.groupBox17.Controls.Add(this.button36);
             this.groupBox17.Controls.Add(this.bttnSetPrefixPublish);
-            this.groupBox17.Controls.Add(this.bttncam9pub);
-            this.groupBox17.Controls.Add(this.bttncam7pub);
             this.groupBox17.Controls.Add(this.pubToWeb);
-            this.groupBox17.Controls.Add(this.bttncam8pub);
             this.groupBox17.Controls.Add(this.pubToLocal);
-            this.groupBox17.Controls.Add(this.bttncam6pub);
             this.groupBox17.Controls.Add(this.pubTimerOn);
-            this.groupBox17.Controls.Add(this.bttncam4pub);
-            this.groupBox17.Controls.Add(this.bttncam5pub);
-            this.groupBox17.Controls.Add(this.bttncam3pub);
-            this.groupBox17.Controls.Add(this.bttncam2pub);
-            this.groupBox17.Controls.Add(this.bttncam1pub);
             this.groupBox17.Controls.Add(this.button14);
             this.groupBox17.Controls.Add(this.label55);
             this.groupBox17.Controls.Add(this.pubTime);
@@ -2593,24 +2584,6 @@ namespace TeboCam
             this.bttnSetPrefixPublish.UseVisualStyleBackColor = true;
             this.bttnSetPrefixPublish.Click += new System.EventHandler(this.bttnSetPrefixPublish_Click);
             // 
-            // bttncam9pub
-            // 
-            this.bttncam9pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam9pub, "bttncam9pub");
-            this.bttncam9pub.Name = "bttncam9pub";
-            this.toolTip1.SetToolTip(this.bttncam9pub, resources.GetString("bttncam9pub.ToolTip"));
-            this.bttncam9pub.UseVisualStyleBackColor = false;
-            this.bttncam9pub.Click += new System.EventHandler(this.bttncam9pub_Click);
-            // 
-            // bttncam7pub
-            // 
-            this.bttncam7pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam7pub, "bttncam7pub");
-            this.bttncam7pub.Name = "bttncam7pub";
-            this.toolTip1.SetToolTip(this.bttncam7pub, resources.GetString("bttncam7pub.ToolTip"));
-            this.bttncam7pub.UseVisualStyleBackColor = false;
-            this.bttncam7pub.Click += new System.EventHandler(this.bttncam7pub_Click);
-            // 
             // pubToWeb
             // 
             resources.ApplyResources(this.pubToWeb, "pubToWeb");
@@ -2619,15 +2592,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.pubToWeb, resources.GetString("pubToWeb.ToolTip"));
             this.pubToWeb.UseVisualStyleBackColor = false;
             this.pubToWeb.CheckedChanged += new System.EventHandler(this.pubWeb_CheckedChanged);
-            // 
-            // bttncam8pub
-            // 
-            this.bttncam8pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam8pub, "bttncam8pub");
-            this.bttncam8pub.Name = "bttncam8pub";
-            this.toolTip1.SetToolTip(this.bttncam8pub, resources.GetString("bttncam8pub.ToolTip"));
-            this.bttncam8pub.UseVisualStyleBackColor = false;
-            this.bttncam8pub.Click += new System.EventHandler(this.bttncam8pub_Click);
             // 
             // pubToLocal
             // 
@@ -2638,15 +2602,6 @@ namespace TeboCam
             this.pubToLocal.UseVisualStyleBackColor = false;
             this.pubToLocal.CheckedChanged += new System.EventHandler(this.pubLocal_CheckedChanged);
             // 
-            // bttncam6pub
-            // 
-            this.bttncam6pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam6pub, "bttncam6pub");
-            this.bttncam6pub.Name = "bttncam6pub";
-            this.toolTip1.SetToolTip(this.bttncam6pub, resources.GetString("bttncam6pub.ToolTip"));
-            this.bttncam6pub.UseVisualStyleBackColor = false;
-            this.bttncam6pub.Click += new System.EventHandler(this.bttncam6pub_Click);
-            // 
             // pubTimerOn
             // 
             resources.ApplyResources(this.pubTimerOn, "pubTimerOn");
@@ -2655,51 +2610,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.pubTimerOn, resources.GetString("pubTimerOn.ToolTip"));
             this.pubTimerOn.UseVisualStyleBackColor = false;
             this.pubTimerOn.CheckedChanged += new System.EventHandler(this.pubTimerOn_CheckedChanged);
-            // 
-            // bttncam4pub
-            // 
-            this.bttncam4pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam4pub, "bttncam4pub");
-            this.bttncam4pub.Name = "bttncam4pub";
-            this.toolTip1.SetToolTip(this.bttncam4pub, resources.GetString("bttncam4pub.ToolTip"));
-            this.bttncam4pub.UseVisualStyleBackColor = false;
-            this.bttncam4pub.Click += new System.EventHandler(this.bttncam4pub_Click);
-            // 
-            // bttncam5pub
-            // 
-            this.bttncam5pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam5pub, "bttncam5pub");
-            this.bttncam5pub.Name = "bttncam5pub";
-            this.toolTip1.SetToolTip(this.bttncam5pub, resources.GetString("bttncam5pub.ToolTip"));
-            this.bttncam5pub.UseVisualStyleBackColor = false;
-            this.bttncam5pub.Click += new System.EventHandler(this.bttncam5pub_Click);
-            // 
-            // bttncam3pub
-            // 
-            this.bttncam3pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam3pub, "bttncam3pub");
-            this.bttncam3pub.Name = "bttncam3pub";
-            this.toolTip1.SetToolTip(this.bttncam3pub, resources.GetString("bttncam3pub.ToolTip"));
-            this.bttncam3pub.UseVisualStyleBackColor = false;
-            this.bttncam3pub.Click += new System.EventHandler(this.bttncam3pub_Click);
-            // 
-            // bttncam2pub
-            // 
-            this.bttncam2pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam2pub, "bttncam2pub");
-            this.bttncam2pub.Name = "bttncam2pub";
-            this.toolTip1.SetToolTip(this.bttncam2pub, resources.GetString("bttncam2pub.ToolTip"));
-            this.bttncam2pub.UseVisualStyleBackColor = false;
-            this.bttncam2pub.Click += new System.EventHandler(this.bttncam2pub_Click);
-            // 
-            // bttncam1pub
-            // 
-            this.bttncam1pub.BackColor = System.Drawing.Color.Silver;
-            resources.ApplyResources(this.bttncam1pub, "bttncam1pub");
-            this.bttncam1pub.Name = "bttncam1pub";
-            this.toolTip1.SetToolTip(this.bttncam1pub, resources.GetString("bttncam1pub.ToolTip"));
-            this.bttncam1pub.UseVisualStyleBackColor = false;
-            this.bttncam1pub.Click += new System.EventHandler(this.bttncam1pub_Click);
             // 
             // button14
             // 
@@ -3497,15 +3407,6 @@ namespace TeboCam
         private System.Windows.Forms.TextBox txtMess;
         private System.Windows.Forms.TextBox actCount;
         private System.Windows.Forms.Label lblCameraName;
-        private System.Windows.Forms.Button bttncam9pub;
-        private System.Windows.Forms.Button bttncam7pub;
-        private System.Windows.Forms.Button bttncam8pub;
-        private System.Windows.Forms.Button bttncam6pub;
-        private System.Windows.Forms.Button bttncam4pub;
-        private System.Windows.Forms.Button bttncam5pub;
-        private System.Windows.Forms.Button bttncam3pub;
-        private System.Windows.Forms.Button bttncam2pub;
-        private System.Windows.Forms.Button bttncam1pub;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton freezeGuardOff;
         private System.Windows.Forms.RadioButton freezeGuardOn;
@@ -3581,5 +3482,6 @@ namespace TeboCam
         private System.Windows.Forms.NumericUpDown numFrameRateCalcOver;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.CheckBox chkFrameRateTrack;
+        private System.Windows.Forms.Button btnMonitor;
     }
 }

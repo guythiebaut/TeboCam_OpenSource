@@ -46,7 +46,7 @@ namespace TeboCam
         //****************************************************************************
 
         public bool haveTheFlag = false;
-
+   
         public enum CursPos : int
         {
             WithinSelectionArea = 0,
