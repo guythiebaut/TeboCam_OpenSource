@@ -50,7 +50,6 @@ namespace TeboCam
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblFrameRate = new System.Windows.Forms.Label();
             this.lblCameraName = new System.Windows.Forms.Label();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -257,14 +256,11 @@ namespace TeboCam
             this.logsKeepChk = new System.Windows.Forms.CheckBox();
             this.label44 = new System.Windows.Forms.Label();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
+            this.btnRunProfileCommand = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
+            this.ProfileCommandList = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.profileList = new System.Windows.Forms.ComboBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.btnrenameProfile = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -344,6 +340,7 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -594,15 +591,6 @@ namespace TeboCam
             resources.ApplyResources(this.lblCameraName, "lblCameraName");
             this.lblCameraName.Name = "lblCameraName";
             this.lblCameraName.Tag = "";
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            resources.ApplyResources(this.cameraWindow, "cameraWindow");
-            this.cameraWindow.Name = "cameraWindow";
-            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -2311,54 +2299,50 @@ namespace TeboCam
             // 
             // groupBox15
             // 
-            this.groupBox15.Controls.Add(this.button22);
-            this.groupBox15.Controls.Add(this.button19);
+            this.groupBox15.Controls.Add(this.btnRunProfileCommand);
+            this.groupBox15.Controls.Add(this.label65);
+            this.groupBox15.Controls.Add(this.ProfileCommandList);
             this.groupBox15.Controls.Add(this.label45);
-            this.groupBox15.Controls.Add(this.button10);
-            this.groupBox15.Controls.Add(this.button12);
             this.groupBox15.Controls.Add(this.profileList);
-            this.groupBox15.Controls.Add(this.button11);
-            this.groupBox15.Controls.Add(this.btnrenameProfile);
             resources.ApplyResources(this.groupBox15, "groupBox15");
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.TabStop = false;
             // 
-            // button22
+            // btnRunProfileCommand
             // 
-            resources.ApplyResources(this.button22, "button22");
-            this.button22.Name = "button22";
-            this.toolTip1.SetToolTip(this.button22, resources.GetString("button22.ToolTip"));
-            this.button22.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnRunProfileCommand, "btnRunProfileCommand");
+            this.btnRunProfileCommand.Name = "btnRunProfileCommand";
+            this.btnRunProfileCommand.UseVisualStyleBackColor = true;
+            this.btnRunProfileCommand.Click += new System.EventHandler(this.btnRunProfileCommand_Click);
             // 
-            // button19
+            // label65
             // 
-            resources.ApplyResources(this.button19, "button19");
-            this.button19.Name = "button19";
-            this.toolTip1.SetToolTip(this.button19, resources.GetString("button19.ToolTip"));
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click_1);
+            resources.ApplyResources(this.label65, "label65");
+            this.label65.ForeColor = System.Drawing.Color.Black;
+            this.label65.Name = "label65";
+            // 
+            // ProfileCommandList
+            // 
+            this.ProfileCommandList.BackColor = System.Drawing.Color.LemonChiffon;
+            this.ProfileCommandList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.ProfileCommandList, "ProfileCommandList");
+            this.ProfileCommandList.FormattingEnabled = true;
+            this.ProfileCommandList.Items.AddRange(new object[] {
+            resources.GetString("ProfileCommandList.Items"),
+            resources.GetString("ProfileCommandList.Items1"),
+            resources.GetString("ProfileCommandList.Items2"),
+            resources.GetString("ProfileCommandList.Items3"),
+            resources.GetString("ProfileCommandList.Items4"),
+            resources.GetString("ProfileCommandList.Items5"),
+            resources.GetString("ProfileCommandList.Items6")});
+            this.ProfileCommandList.Name = "ProfileCommandList";
+            this.toolTip1.SetToolTip(this.ProfileCommandList, resources.GetString("ProfileCommandList.ToolTip"));
             // 
             // label45
             // 
             resources.ApplyResources(this.label45, "label45");
             this.label45.ForeColor = System.Drawing.Color.Black;
             this.label45.Name = "label45";
-            // 
-            // button10
-            // 
-            resources.ApplyResources(this.button10, "button10");
-            this.button10.Name = "button10";
-            this.toolTip1.SetToolTip(this.button10, resources.GetString("button10.ToolTip"));
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click_1);
-            // 
-            // button12
-            // 
-            resources.ApplyResources(this.button12, "button12");
-            this.button12.Name = "button12";
-            this.toolTip1.SetToolTip(this.button12, resources.GetString("button12.ToolTip"));
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // profileList
             // 
@@ -2369,22 +2353,6 @@ namespace TeboCam
             this.profileList.Name = "profileList";
             this.toolTip1.SetToolTip(this.profileList, resources.GetString("profileList.ToolTip"));
             this.profileList.SelectedIndexChanged += new System.EventHandler(this.profileChanged);
-            // 
-            // button11
-            // 
-            resources.ApplyResources(this.button11, "button11");
-            this.button11.Name = "button11";
-            this.toolTip1.SetToolTip(this.button11, resources.GetString("button11.ToolTip"));
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // btnrenameProfile
-            // 
-            resources.ApplyResources(this.btnrenameProfile, "btnrenameProfile");
-            this.btnrenameProfile.Name = "btnrenameProfile";
-            this.toolTip1.SetToolTip(this.btnrenameProfile, resources.GetString("btnrenameProfile.ToolTip"));
-            this.btnrenameProfile.UseVisualStyleBackColor = true;
-            this.btnrenameProfile.Click += new System.EventHandler(this.button10_Click);
             // 
             // groupBox10
             // 
@@ -3034,6 +3002,15 @@ namespace TeboCam
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            resources.ApplyResources(this.cameraWindow, "cameraWindow");
+            this.cameraWindow.Name = "cameraWindow";
+            this.toolTip1.SetToolTip(this.cameraWindow, resources.GetString("cameraWindow.ToolTip"));
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            // 
             // preferences
             // 
             resources.ApplyResources(this, "$this");
@@ -3298,11 +3275,7 @@ namespace TeboCam
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button btnrenameProfile;
         private System.Windows.Forms.ComboBox profileList;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
@@ -3399,8 +3372,6 @@ namespace TeboCam
         private System.Windows.Forms.Button cameraShow;
         private System.Windows.Forms.Button levelShow;
         private System.Windows.Forms.ToolStripStatusLabel StripStatusLabel;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label lblCamAlert;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -3483,5 +3454,8 @@ namespace TeboCam
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.CheckBox chkFrameRateTrack;
         private System.Windows.Forms.Button btnMonitor;
+        private System.Windows.Forms.Button btnRunProfileCommand;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.ComboBox ProfileCommandList;
     }
 }

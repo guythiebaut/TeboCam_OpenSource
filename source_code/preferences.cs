@@ -487,6 +487,7 @@ namespace TeboCam
 
             config.WebcamSettingsPopulate();
             profileListRefresh(bubble.profileInUse);
+            ProfileCommandList.SelectedIndex = 0;
 
             bubble.connectedToInternet = bubble.internetConnected(config.getProfile(bubble.profileInUse).internetCheck);
             notConnected.Visible = !bubble.connectedToInternet;
@@ -2822,62 +2823,30 @@ namespace TeboCam
 
         }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            string newProfile = bubble.InputBox("Profile Name", "New Profile", "").Trim().Replace(" ", "");
 
-            if (newProfile.Trim() != "")
-            {
 
-                config.addProfile(newProfile);
-                profileListRefresh(bubble.profileInUse);
+        //private void button12_Click(object sender, EventArgs e)
+        //{
+        //    string newProfile = bubble.InputBox("Profile Name", "New Profile", "").Trim().Replace(" ", "");
 
-            }
-            else
-            {
+        //    if (newProfile.Trim() != "")
+        //    {
 
-                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+        //        config.addProfile(newProfile);
+        //        profileListRefresh(bubble.profileInUse);
 
-            }
+        //    }
+        //    else
+        //    {
 
-        }
+        //        MessageBox.Show("Profile name must have 1 or more characters.", "Error");
 
-        private void button10_Click(object sender, EventArgs e)
-        {
+        //    }
 
-            string origName = profileList.SelectedItem.ToString();
-            string tmpStr = bubble.InputBox("New Profile Name", "Rename Profile", "").Trim().Replace(" ", "");
+        //}
 
-            if (tmpStr.Trim() != "")
-            {
 
-                config.renameProfile(origName, tmpStr);
-                CameraRig.renameProfile(origName, tmpStr);
-                bubble.profileInUse = tmpStr;
-                profileListRefresh(bubble.profileInUse);
 
-            }
-            else
-            {
-
-                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
-
-            }
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            config.deleteProfile(profileList.SelectedItem.ToString());
-            profileList.Items.Clear();
-
-            foreach (string profile in config.getProfileList())
-            {
-                profileList.Items.Add(profile);
-            }
-
-            profileList.SelectedIndex = 0;
-        }
 
         private void profileChanged(object sender, EventArgs e)
         {
@@ -2890,20 +2859,7 @@ namespace TeboCam
 
         }
 
-        private void button10_Click_1(object sender, EventArgs e)
-        {
-            string tmpStr = bubble.InputBox("New Profile Name", "Copy Profile", "").ToLower().Replace(" ", "");
 
-            if (tmpStr.Trim() != "")
-            {
-                config.copyProfile(profileList.SelectedItem.ToString(), tmpStr);
-                profileListRefresh(bubble.profileInUse);
-            }
-            else
-            {
-                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
-            }
-        }
 
 
         private void profileListRefresh(string selectProfile)
@@ -3289,7 +3245,7 @@ namespace TeboCam
                             int camNo = camera.cam.camNo;
                             string friendlyName = camera.friendlyName;
                             //drop the camera                 
-                            CameraRig.cameraRemove(i,false);
+                            CameraRig.cameraRemove(i, false);
                             //reconnect the camera
                             VideoCaptureDevice localSource = new VideoCaptureDevice(filter.MonikerString);
                             Camera cam = OpenVideoSource(localSource, null, false, camNo);
@@ -3417,15 +3373,13 @@ namespace TeboCam
             if (tabControl1.SelectedTab.Name == "Images")
             {
                 updateThumbs();
+                onlineVal.Enabled = bubble.DatabaseCredentialsCorrect;
+                rdOnlinejpg.Enabled = bubble.DatabaseCredentialsCorrect;
+                alertVal.Text = config.getProfile(bubble.profileInUse).alertCompression.ToString();
+                pingVal.Text = config.getProfile(bubble.profileInUse).pingCompression.ToString();
+                publishVal.Text = config.getProfile(bubble.profileInUse).publishCompression.ToString();
+                onlineVal.Text = config.getProfile(bubble.profileInUse).onlineCompression.ToString();
             }
-
-            onlineVal.Enabled = bubble.DatabaseCredentialsCorrect;
-            rdOnlinejpg.Enabled = bubble.DatabaseCredentialsCorrect;
-            alertVal.Text = config.getProfile(bubble.profileInUse).alertCompression.ToString();
-            pingVal.Text = config.getProfile(bubble.profileInUse).pingCompression.ToString();
-            publishVal.Text = config.getProfile(bubble.profileInUse).publishCompression.ToString();
-            onlineVal.Text = config.getProfile(bubble.profileInUse).onlineCompression.ToString();
-
         }
 
 
@@ -4155,7 +4109,7 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).motionLevel = showLevel;
             LevelControlBox.Visible = showLevel;
         }
-    
+
 
 
         private static Point FindLocation(Control ctrl)
@@ -4357,21 +4311,7 @@ namespace TeboCam
             localSource.DisplayPropertyPage(IntPtr.Zero); // non-modal
         }
 
-        private void button19_Click_1(object sender, EventArgs e)
-        {
 
-            if (!Directory.Exists(bubble.vaultFolder)) Directory.CreateDirectory(bubble.vaultFolder);
-
-            string configVlt = bubble.vaultFolder + FileManager.configFile + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture) + ".xml";
-            string configXml = bubble.xmlFolder + FileManager.configFile + ".xml";
-
-            File.Copy(configXml, configVlt, true);
-            MessageBox.Show(FileManager.configFile + ".xml has been successfully vaulted in the vault folder.", "File Vaulted");
-
-
-
-
-        }
 
         private void button23_Click_1(object sender, EventArgs e)
         {
@@ -4382,7 +4322,7 @@ namespace TeboCam
             //i.Add(camButtons.buttons());
             bubble.motionLevelChanged -= new EventHandler(drawLevel);
             LevelControlBox.levelDraw(0);
-            webcamConfig webcamConfig = new webcamConfig(new formDelegate(webcamConfigCompleted), i, CameraButtonGroupInstance,saveChanges);
+            webcamConfig webcamConfig = new webcamConfig(new formDelegate(webcamConfigCompleted), i, CameraButtonGroupInstance, saveChanges);
             webcamConfig.StartPosition = FormStartPosition.CenterScreen;
             webcamConfig.ShowDialog();
         }
@@ -4482,10 +4422,10 @@ namespace TeboCam
             if (CameraRig.ConnectedCameras.Count > 0)
             {
 
+                int pubButton = CameraRig.idxFromButton(PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id);
+                if (PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).Count() == 0) return;
+
                 ArrayList i = new ArrayList();
-
-                int pubButton = PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id;
-
                 i.Add("Publish Web");
                 i.Add(config.getProfile(bubble.profileInUse).toolTips);
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubWeb));
@@ -4517,60 +4457,56 @@ namespace TeboCam
 
         private void filePrefixSet(ArrayList i)
         {
-            int pubButton = PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id;
-            CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
 
-            if (i[0].ToString() == "Publish Web")
+            if (new List<string>() { "Publish Web", "Publish Local" }.Contains(i[0].ToString()))
             {
 
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubWeb, i[1].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubWeb, Convert.ToInt32(i[2]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.startCyclePubWeb, Convert.ToInt32(i[3]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.endCyclePubWeb, Convert.ToInt32(i[4]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubWeb, Convert.ToInt32(i[5]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubWeb, Convert.ToBoolean(i[6]));
+                int pubButton = CameraRig.idxFromButton(PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.publishFirst, true);
 
-            }
+                if (i[0].ToString() == "Publish Web")
+                {
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubWeb, i[1].ToString());
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubWeb, Convert.ToInt32(i[2]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.startCyclePubWeb, Convert.ToInt32(i[3]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.endCyclePubWeb, Convert.ToInt32(i[4]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubWeb, Convert.ToInt32(i[5]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubWeb, Convert.ToBoolean(i[6]));
+                }
 
-            if (i[0].ToString() == "Publish Local")
-            {
-
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubLoc, i[1].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubLoc, Convert.ToInt32(i[2]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.startCyclePubLoc, Convert.ToInt32(i[3]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.endCyclePubLoc, Convert.ToInt32(i[4]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubLoc, Convert.ToInt32(i[5]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubLoc, Convert.ToBoolean(i[6]));
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.fileDirPubLoc, i[7].ToString());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.fileDirPubCust, Convert.ToBoolean(i[8]));
-
-
+                if (i[0].ToString() == "Publish Local")
+                {
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubLoc, i[1].ToString());
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.cycleStampCheckedPubLoc, Convert.ToInt32(i[2]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.startCyclePubLoc, Convert.ToInt32(i[3]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.endCyclePubLoc, Convert.ToInt32(i[4]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.currentCyclePubLoc, Convert.ToInt32(i[5]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.stampAppendPubLoc, Convert.ToBoolean(i[6]));
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.fileDirPubLoc, i[7].ToString());
+                    CameraRig.updateInfo(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.fileDirPubCust, Convert.ToBoolean(i[8]));
+                }
             }
 
             if (i[0].ToString() == "Alert")
             {
-
                 config.getProfile(bubble.profileInUse).filenamePrefix = i[1].ToString();
                 config.getProfile(bubble.profileInUse).cycleStampChecked = Convert.ToInt32(i[2]);
                 config.getProfile(bubble.profileInUse).startCycle = Convert.ToInt32(i[3]);
                 config.getProfile(bubble.profileInUse).endCycle = Convert.ToInt32(i[4]);
                 config.getProfile(bubble.profileInUse).currentCycle = Convert.ToInt32(i[5]);
-
                 lblImgPref.Text = "Image Prefix: " + i[1].ToString() + "   e.g " + i[1].ToString() + "1" + bubble.ImgSuffix;
-
             }
-
         }
 
 
         private void button36_Click(object sender, EventArgs e)
         {
 
+            if (PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).Count() == 0) return;
             if (CameraRig.ConnectedCameras.Count > 0)
             {
                 ArrayList i = new ArrayList();
-                int pubButton = PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id;
-
+                int pubButton = CameraRig.idxFromButton(PublishButtonGroupInstance.Where(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).First().id);
                 i.Add("Publish Local");
                 i.Add(config.getProfile(bubble.profileInUse).toolTips);
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.ConnectedCameras[pubButton].cameraName, CameraRig.infoEnum.filenamePrefixPubLoc));
@@ -4906,7 +4842,7 @@ namespace TeboCam
         private void button3_Click(object sender, EventArgs e)
         {
             List<Camera> cameras = new List<Camera>();
-            CameraRig.ConnectedCameras.ForEach(x=>cameras.Add(x.cam));
+            CameraRig.ConnectedCameras.ForEach(x => cameras.Add(x.cam));
             ControlRoomCntl controlRoom = new ControlRoomCntl(cameras);
             Form controlRoomForm = new Form();
             controlRoomForm.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -4916,6 +4852,130 @@ namespace TeboCam
             controlRoomForm.Controls.Add(controlRoom);
             controlRoomForm.ShowDialog();
         }
+
+        private void btnRunProfileCommand_Click(object sender, EventArgs e)
+        {
+            string command = ProfileCommandList.SelectedItem.ToString();
+            switch (command)
+            {
+                case "Vault profiles":
+                    VaultProfiles();
+                    break;
+                case "New profile":
+                    NewProfile();
+                    break;
+                case "Copy profile":
+                    CopyProfile();
+                    break;
+                case "Rename profile":
+                    RenameProfile();
+                    break;
+                case "Delete profile":
+                    DeleteProfile();
+                    break;
+                case "Remove unused camera profiles":
+                    RemoveUnusedCameraProfiles();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RemoveUnusedCameraProfiles()
+        {
+            var connectedCams = CameraRig.ConnectedCameras.Select(x => x.cam.name).ToList<string>();
+            var deleteList = CameraRig.CamsInfo.Where(x => x.profileName == bubble.profileInUse && !connectedCams.Contains(x.webcam));
+            var webcamsToDelete = deleteList.Select(x => x.webcam).ToList<string>();
+
+            for (int i = webcamsToDelete.Count() - 1; i >= 0; i--)
+            {
+                CameraRig.rigInfoRemove(bubble.profileInUse, webcamsToDelete[i]);
+            }
+        }
+
+        private void NewProfile()
+        {
+            string newProfile = bubble.InputBox("Profile Name", "New Profile", "").Trim().Replace(" ", "");
+
+            if (newProfile.Trim() != "")
+            {
+
+                config.addProfile(newProfile);
+                profileListRefresh(bubble.profileInUse);
+
+            }
+            else
+            {
+
+                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+
+            }
+        }
+
+        private void VaultProfiles()
+        {
+            if (!Directory.Exists(bubble.vaultFolder)) Directory.CreateDirectory(bubble.vaultFolder);
+
+            string configVlt = bubble.vaultFolder + FileManager.configFile + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture) + ".xml";
+            string configXml = bubble.xmlFolder + FileManager.configFile + ".xml";
+
+            File.Copy(configXml, configVlt, true);
+            MessageBox.Show(FileManager.configFile + ".xml has been successfully vaulted in the vault folder.", "File Vaulted");
+
+        }
+
+        private void CopyProfile()
+        {
+            string tmpStr = bubble.InputBox("New Profile Name", "Copy Profile", "").ToLower().Replace(" ", "");
+
+            if (tmpStr.Trim() != "")
+            {
+                config.copyProfile(profileList.SelectedItem.ToString(), tmpStr);
+                profileListRefresh(bubble.profileInUse);
+            }
+            else
+            {
+                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+            }
+        }
+
+        private void RenameProfile()
+        {
+
+            string origName = profileList.SelectedItem.ToString();
+            string tmpStr = bubble.InputBox("New Profile Name", "Rename Profile", "").Trim().Replace(" ", "");
+
+            if (tmpStr.Trim() != "")
+            {
+
+                config.renameProfile(origName, tmpStr);
+                CameraRig.renameProfile(origName, tmpStr);
+                bubble.profileInUse = tmpStr;
+                profileListRefresh(bubble.profileInUse);
+
+            }
+            else
+            {
+
+                MessageBox.Show("Profile name must have 1 or more characters.", "Error");
+
+            }
+
+        }
+
+        private void DeleteProfile()
+        {
+            config.deleteProfile(profileList.SelectedItem.ToString());
+            profileList.Items.Clear();
+
+            foreach (string profile in config.getProfileList())
+            {
+                profileList.Items.Add(profile);
+            }
+
+            profileList.SelectedIndex = 0;
+        }
+
     }
 
     class scheduleClass

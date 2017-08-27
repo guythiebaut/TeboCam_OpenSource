@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnMonitor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMonitor.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 353</value>
@@ -155,7 +159,6 @@
   <data name="label47.Font" type="System.Drawing.Font, System.Drawing">
     <value>Verdana, 8.25pt, style=Bold, Italic</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label47.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -761,7 +764,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.30018, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.16098, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -6666,10 +6669,10 @@ the framerate on each camera. </value>
     <value>3</value>
   </data>
   <data name="groupBox16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 461</value>
+    <value>10, 461</value>
   </data>
   <data name="groupBox16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 69</value>
+    <value>489, 69</value>
   </data>
   <data name="groupBox16.TabIndex" type="System.Int32, mscorlib">
     <value>73</value>
@@ -6873,7 +6876,7 @@ Consult your email provider instructions.
     <value>4</value>
   </data>
   <data name="groupBox12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 318</value>
+    <value>505, 311</value>
   </data>
   <data name="groupBox12.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 137</value>
@@ -7192,7 +7195,7 @@ TeboCam if it does not hear the pulse for a specified time period.</value>
     <value>6</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>505, 157</value>
+    <value>505, 146</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 155</value>
@@ -7401,84 +7404,119 @@ than the days specified below if this box is checked.</value>
   <data name="&gt;&gt;label44.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="button22.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="button22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnRunProfileCommand.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="button22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 52</value>
+  <data name="btnRunProfileCommand.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 80</value>
   </data>
-  <data name="button22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
+  <data name="btnRunProfileCommand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 37</value>
   </data>
-  <data name="button22.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
+  <data name="btnRunProfileCommand.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
   </data>
-  <data name="button22.Text" xml:space="preserve">
-    <value>Restore Profiles</value>
+  <data name="btnRunProfileCommand.Text" xml:space="preserve">
+    <value>Run profile command</value>
   </data>
-  <data name="button22.ToolTip" xml:space="preserve">
-    <value>Restore your vaulted profiles.</value>
+  <data name="&gt;&gt;btnRunProfileCommand.Name" xml:space="preserve">
+    <value>btnRunProfileCommand</value>
   </data>
-  <data name="&gt;&gt;button22.Name" xml:space="preserve">
-    <value>button22</value>
-  </data>
-  <data name="&gt;&gt;button22.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnRunProfileCommand.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button22.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnRunProfileCommand.Parent" xml:space="preserve">
     <value>groupBox15</value>
   </data>
-  <data name="&gt;&gt;button22.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnRunProfileCommand.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="button19.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="label65.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="button19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  </data>
+  <data name="label65.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label65.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="button19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 52</value>
+  <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 55</value>
   </data>
-  <data name="button19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
+  <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 13</value>
   </data>
-  <data name="button19.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
+  <data name="label65.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
   </data>
-  <data name="button19.Text" xml:space="preserve">
-    <value>Vault Profiles</value>
+  <data name="label65.Text" xml:space="preserve">
+    <value>Profile command</value>
   </data>
-  <data name="button19.ToolTip" xml:space="preserve">
-    <value>Sometimes things go wrong!
-
-The config file holds all your webcam(s) information, as well as other information relating to TeboCam.
-It also holds your encrypted password and email information.
-
-Under certain circumstances it is possible to corrupt the config file.
-By vaulting the config file you are storing a copy of config file in a place where it cannot be corrupted by TeboCam.
-The vault folder is a read only folder for TeboCam.
-
-You can recover the vaulted version at any point by clicking on the "Restore Profiles" button.</value>
+  <data name="&gt;&gt;label65.Name" xml:space="preserve">
+    <value>label65</value>
   </data>
-  <data name="&gt;&gt;button19.Name" xml:space="preserve">
-    <value>button19</value>
+  <data name="&gt;&gt;label65.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button19.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label65.Parent" xml:space="preserve">
     <value>groupBox15</value>
   </data>
-  <data name="&gt;&gt;button19.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label65.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="label45.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="ProfileCommandList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 8.25pt</value>
+  </data>
+  <data name="ProfileCommandList.Items" xml:space="preserve">
+    <value>Select a command to run...</value>
+  </data>
+  <data name="ProfileCommandList.Items1" xml:space="preserve">
+    <value>Vault profiles</value>
+  </data>
+  <data name="ProfileCommandList.Items2" xml:space="preserve">
+    <value>New profile</value>
+  </data>
+  <data name="ProfileCommandList.Items3" xml:space="preserve">
+    <value>Copy profile</value>
+  </data>
+  <data name="ProfileCommandList.Items4" xml:space="preserve">
+    <value>Rename profile</value>
+  </data>
+  <data name="ProfileCommandList.Items5" xml:space="preserve">
+    <value>Delete profile</value>
+  </data>
+  <data name="ProfileCommandList.Items6" xml:space="preserve">
+    <value>Remove unused camera profiles</value>
+  </data>
+  <data name="ProfileCommandList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 55</value>
+  </data>
+  <data name="ProfileCommandList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 21</value>
+  </data>
+  <data name="ProfileCommandList.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="ProfileCommandList.ToolTip" xml:space="preserve">
+    <value>Choose a profile...
+
+By creating new profiles you can save different settings for different occasions.
+
+For instance you may have a daytime profile that pings you every 60 minutes
+and a nighttime profile that has a very sensitive movement setting.</value>
+  </data>
+  <data name="&gt;&gt;ProfileCommandList.Name" xml:space="preserve">
+    <value>ProfileCommandList</value>
+  </data>
+  <data name="&gt;&gt;ProfileCommandList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProfileCommandList.Parent" xml:space="preserve">
+    <value>groupBox15</value>
+  </data>
+  <data name="&gt;&gt;ProfileCommandList.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="label45.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -7489,7 +7527,7 @@ You can recover the vaulted version at any point by clicking on the "Restore Pro
     <value>NoControl</value>
   </data>
   <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 28</value>
+    <value>4, 28</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 13</value>
@@ -7510,88 +7548,13 @@ You can recover the vaulted version at any point by clicking on the "Restore Pro
     <value>groupBox15</value>
   </data>
   <data name="&gt;&gt;label45.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="button10.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="button10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 89</value>
-  </data>
-  <data name="button10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
-  </data>
-  <data name="button10.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="button10.Text" xml:space="preserve">
-    <value>Copy Profile</value>
-  </data>
-  <data name="button10.ToolTip" xml:space="preserve">
-    <value>Copy an already existing profile to create a new profile.
-This is the best manner to create a new profile as your settings
-will be copied across to the new profile.
-</value>
-  </data>
-  <data name="&gt;&gt;button10.Name" xml:space="preserve">
-    <value>button10</value>
-  </data>
-  <data name="&gt;&gt;button10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button10.Parent" xml:space="preserve">
-    <value>groupBox15</value>
-  </data>
-  <data name="&gt;&gt;button10.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="button12.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="button12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 89</value>
-  </data>
-  <data name="button12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
-  </data>
-  <data name="button12.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="button12.Text" xml:space="preserve">
-    <value>New Profile</value>
-  </data>
-  <data name="button12.ToolTip" xml:space="preserve">
-    <value>By creating new profiles you can save different settings for different occasions.
-
-For instance you may have a daytime profile that pings you every 60 minutes
-and a nighttime profile that has a very sensitive movement setting.</value>
-  </data>
-  <data name="&gt;&gt;button12.Name" xml:space="preserve">
-    <value>button12</value>
-  </data>
-  <data name="&gt;&gt;button12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button12.Parent" xml:space="preserve">
-    <value>groupBox15</value>
-  </data>
-  <data name="&gt;&gt;button12.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="profileList.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="profileList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 24</value>
+    <value>125, 25</value>
   </data>
   <data name="profileList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 21</value>
+    <value>222, 21</value>
   </data>
   <data name="profileList.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -7614,81 +7577,13 @@ and a nighttime profile that has a very sensitive movement setting.</value>
     <value>groupBox15</value>
   </data>
   <data name="&gt;&gt;profileList.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="button11.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="button11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 89</value>
-  </data>
-  <data name="button11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
-  </data>
-  <data name="button11.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="button11.Text" xml:space="preserve">
-    <value>Delete Profile</value>
-  </data>
-  <data name="button11.ToolTip" xml:space="preserve">
-    <value>Delete the current profile.
-As a profile must always exist you cannot delete the profile
-if it is the only one in existence.</value>
-  </data>
-  <data name="&gt;&gt;button11.Name" xml:space="preserve">
-    <value>button11</value>
-  </data>
-  <data name="&gt;&gt;button11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button11.Parent" xml:space="preserve">
-    <value>groupBox15</value>
-  </data>
-  <data name="&gt;&gt;button11.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <metadata name="btnrenameProfile.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="btnrenameProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnrenameProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 89</value>
-  </data>
-  <data name="btnrenameProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 37</value>
-  </data>
-  <data name="btnrenameProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="btnrenameProfile.Text" xml:space="preserve">
-    <value>Rename Profile</value>
-  </data>
-  <data name="btnrenameProfile.ToolTip" xml:space="preserve">
-    <value>Rename the current profile.</value>
-  </data>
-  <data name="&gt;&gt;btnrenameProfile.Name" xml:space="preserve">
-    <value>btnrenameProfile</value>
-  </data>
-  <data name="&gt;&gt;btnrenameProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnrenameProfile.Parent" xml:space="preserve">
-    <value>groupBox15</value>
-  </data>
-  <data name="&gt;&gt;btnrenameProfile.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="groupBox15.Location" type="System.Drawing.Point, System.Drawing">
     <value>505, 10</value>
   </data>
   <data name="groupBox15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 141</value>
+    <value>353, 130</value>
   </data>
   <data name="groupBox15.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>

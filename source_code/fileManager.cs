@@ -504,7 +504,9 @@ namespace TeboCam
             }
             configFile.Close();
             config.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", config);
-            File.Move(fileName, bubble.xmlFolder + "configPre_3.2411.xml");
+            
+            string moveToFileName = string.Format("configPre_3.2411_{0}.xml", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            File.Move(fileName, bubble.xmlFolder + moveToFileName);
             File.Delete(bubble.xmlFolder + "config.bak");
             return true;
         }
