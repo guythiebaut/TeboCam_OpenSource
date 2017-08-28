@@ -117,23 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="btnMonitor.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMonitor.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnMonitor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMonitor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 353</value>
+    <value>114, 303</value>
   </data>
   <data name="btnMonitor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 25</value>
+    <value>20, 20</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnMonitor.TabIndex" type="System.Int32, mscorlib">
     <value>107</value>
-  </data>
-  <data name="btnMonitor.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;btnMonitor.Name" xml:space="preserve">
     <value>btnMonitor</value>
@@ -764,7 +767,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.16098, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.23281, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -6544,6 +6547,60 @@ Consult your ISP instructions.
   <data name="&gt;&gt;Email_Ftp.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="chkHideWhenMinimised.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHideWhenMinimised.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkHideWhenMinimised.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 20</value>
+  </data>
+  <data name="chkHideWhenMinimised.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 17</value>
+  </data>
+  <data name="chkHideWhenMinimised.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="chkHideWhenMinimised.Text" xml:space="preserve">
+    <value>Hide when minimised</value>
+  </data>
+  <data name="&gt;&gt;chkHideWhenMinimised.Name" xml:space="preserve">
+    <value>chkHideWhenMinimised</value>
+  </data>
+  <data name="&gt;&gt;chkHideWhenMinimised.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHideWhenMinimised.Parent" xml:space="preserve">
+    <value>grpMisc</value>
+  </data>
+  <data name="&gt;&gt;chkHideWhenMinimised.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpMisc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 454</value>
+  </data>
+  <data name="grpMisc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 76</value>
+  </data>
+  <data name="grpMisc.TabIndex" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <data name="grpMisc.Text" xml:space="preserve">
+    <value>Misc</value>
+  </data>
+  <data name="&gt;&gt;grpMisc.Name" xml:space="preserve">
+    <value>grpMisc</value>
+  </data>
+  <data name="&gt;&gt;grpMisc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMisc.Parent" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="&gt;&gt;grpMisc.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="chkFrameRateTrack.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6690,7 +6747,7 @@ the framerate on each camera. </value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox16.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnSecurityLockdownOn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6897,7 +6954,7 @@ Consult your email provider instructions.
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox12.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="infoMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6927,7 +6984,7 @@ Consult your email provider instructions.
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;infoMode.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="freezeGuardWindow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -7216,7 +7273,7 @@ TeboCam if it does not hear the pulse for a specified time period.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="txtInternetConnection.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -7273,7 +7330,7 @@ return a 'false positive'.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox22.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="logsKeep.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -7369,7 +7426,7 @@ than the days specified below if this box is checked.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox19.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label44.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7402,7 +7459,7 @@ than the days specified below if this box is checked.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;label44.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnRunProfileCommand.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -7601,7 +7658,7 @@ and a nighttime profile that has a very sensitive movement setting.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox15.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="label34.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -7836,7 +7893,7 @@ Go on... give it a go and see what happens!
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <metadata name="bttInstallUpdateAdmin.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -8014,7 +8071,7 @@ or if this box is not checked.</value>
     <value>Admin</value>
   </data>
   <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="Admin.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -9750,7 +9807,7 @@ This usually takes less than 1 minute.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>45</value>
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -14819,11 +14876,14 @@ This usually takes less than 1 minute.</value>
         AADAAwAAgAEAAMADAADAAwAAwAMAAOAHAADgBwAA8A8AAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>980, 700</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+    <value>Manual</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>TeboCam</value>

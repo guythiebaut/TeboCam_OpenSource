@@ -229,6 +229,8 @@ namespace TeboCam
             this.label24 = new System.Windows.Forms.Label();
             this.ftpRoot = new System.Windows.Forms.TextBox();
             this.Admin = new System.Windows.Forms.TabPage();
+            this.grpMisc = new System.Windows.Forms.GroupBox();
+            this.chkHideWhenMinimised = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.chkFrameRateTrack = new System.Windows.Forms.CheckBox();
             this.label64 = new System.Windows.Forms.Label();
@@ -402,6 +404,7 @@ namespace TeboCam
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Admin.SuspendLayout();
+            this.grpMisc.SuspendLayout();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFrameRateCalcOver)).BeginInit();
             this.groupBox12.SuspendLayout();
@@ -465,6 +468,7 @@ namespace TeboCam
             // 
             // btnMonitor
             // 
+            this.btnMonitor.Image = global::TeboCam.Properties.Resources.monitor;
             resources.ApplyResources(this.btnMonitor, "btnMonitor");
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.UseVisualStyleBackColor = true;
@@ -2058,6 +2062,7 @@ namespace TeboCam
             // Admin
             // 
             this.Admin.BackColor = System.Drawing.Color.Transparent;
+            this.Admin.Controls.Add(this.grpMisc);
             this.Admin.Controls.Add(this.groupBox16);
             this.Admin.Controls.Add(this.groupBox12);
             this.Admin.Controls.Add(this.infoMode);
@@ -2071,6 +2076,20 @@ namespace TeboCam
             resources.ApplyResources(this.Admin, "Admin");
             this.Admin.Name = "Admin";
             this.Admin.UseVisualStyleBackColor = true;
+            // 
+            // grpMisc
+            // 
+            this.grpMisc.Controls.Add(this.chkHideWhenMinimised);
+            resources.ApplyResources(this.grpMisc, "grpMisc");
+            this.grpMisc.Name = "grpMisc";
+            this.grpMisc.TabStop = false;
+            // 
+            // chkHideWhenMinimised
+            // 
+            resources.ApplyResources(this.chkHideWhenMinimised, "chkHideWhenMinimised");
+            this.chkHideWhenMinimised.Name = "chkHideWhenMinimised";
+            this.chkHideWhenMinimised.UseVisualStyleBackColor = true;
+            this.chkHideWhenMinimised.CheckedChanged += new System.EventHandler(this.chkHideWhenMinimised_CheckedChanged);
             // 
             // groupBox16
             // 
@@ -2119,7 +2138,7 @@ namespace TeboCam
             this.numFrameRateCalcOver.Name = "numFrameRateCalcOver";
             this.toolTip1.SetToolTip(this.numFrameRateCalcOver, resources.GetString("numFrameRateCalcOver.ToolTip"));
             this.numFrameRateCalcOver.Value = new decimal(new int[] {
-            100,
+            60,
             0,
             0,
             0});
@@ -3110,6 +3129,8 @@ namespace TeboCam
             this.panel2.PerformLayout();
             this.Admin.ResumeLayout(false);
             this.Admin.PerformLayout();
+            this.grpMisc.ResumeLayout(false);
+            this.grpMisc.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFrameRateCalcOver)).EndInit();
@@ -3457,5 +3478,7 @@ namespace TeboCam
         private System.Windows.Forms.Button btnRunProfileCommand;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.ComboBox ProfileCommandList;
+        private System.Windows.Forms.GroupBox grpMisc;
+        private System.Windows.Forms.CheckBox chkHideWhenMinimised;
     }
 }

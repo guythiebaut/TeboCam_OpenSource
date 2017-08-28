@@ -312,6 +312,7 @@
     <Content Include="Resources\level.bmp" />
     <None Include="Resources\nolevel.bmp" />
     <EmbeddedResource Include="Resources\noImage.bmp" />
+    <None Include="Resources\monitor.bmp" />
     <Content Include="Resources\nolandscape.bmp" />
     <None Include="Resources\nolandscape2.bmp" />
     <Content Include="TeboCam.ico" />

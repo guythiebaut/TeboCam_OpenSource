@@ -396,6 +396,7 @@ namespace TeboCam
         private void preferences_Load(object sender, EventArgs e)
         {
 
+            StartPosition = FormStartPosition.Manual;
             installationClean();
 
             LevelControlBox.Left = 6;
@@ -648,7 +649,7 @@ namespace TeboCam
 
             tabControl1.TabPages[0].Controls.Add(ButtonCameraControl);
             //this.Webcam.Controls.Add(ButtonCameraControl);
-            ButtonCameraControl.Location = new Point(120, 300);
+            ButtonCameraControl.Location = new Point(btnMonitor.Right + 2, btnMonitor.Top);
             ButtonCameraControl.BringToFront();
             groupBox17.Controls.Add(ButtonPublishControl);
             ButtonPublishControl.Location = new Point(2, 10);
@@ -722,7 +723,6 @@ namespace TeboCam
 
         private void CloseAllTeboCamPocesses()
         {
-
             int myProcessID = Process.GetCurrentProcess().Id;
             Process[] processes = Process.GetProcesses();
 
@@ -735,13 +735,10 @@ namespace TeboCam
 
         private void preferences_Loaded(object sender, EventArgs e)
         {
-
             if (config.getProfile(bubble.profileInUse).startTeboCamMinimized)
             {
-                WindowState = FormWindowState.Minimized;
-                Hide();
+                MinimiseTebocam(false);
             }
-
         }
 
 
@@ -2711,6 +2708,7 @@ namespace TeboCam
             pulseFreq.Text = data.pulseFreq.ToString();
             numFrameRateCalcOver.Value = data.framesSecsToCalcOver;
             chkFrameRateTrack.Checked = data.framerateTrack;
+            chkHideWhenMinimised.Checked = data.hideWhenMinimized;
 
             radioButton11.Checked = data.imageLocCust;
 
@@ -2879,20 +2877,40 @@ namespace TeboCam
 
         private void preferences_Resize(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized) Hide();
+            if (WindowState == FormWindowState.Minimized && config.getProfile(bubble.profileInUse).hideWhenMinimized)
+            {
+                MinimiseTebocam(false);
+            }
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Normal;
+            ShowTebocam();
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
-            Hide();
+            MinimiseTebocam(true);
         }
+
+
+        private void MinimiseTebocam(bool hide)
+        {
+            WindowState = FormWindowState.Minimized;
+            if (config.getProfile(bubble.profileInUse).hideWhenMinimized || hide)
+            {
+                Hide();
+            }
+        }
+
+        private void ShowTebocam()
+        {
+            WindowState = FormWindowState.Maximized;
+            Show();
+            this.BringToFront();
+        }
+
+
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
@@ -2913,8 +2931,7 @@ namespace TeboCam
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Normal;
+            ShowTebocam();
         }
 
         private void hideLog_Click(object sender, EventArgs e)
@@ -4802,8 +4819,7 @@ namespace TeboCam
         {
 
 
-            WindowState = FormWindowState.Minimized;
-            Hide();
+            MinimiseTebocam(false);
             this.Enabled = false;
 
             while (1 == 1)
@@ -4886,11 +4902,7 @@ namespace TeboCam
             var connectedCams = CameraRig.ConnectedCameras.Select(x => x.cam.name).ToList<string>();
             var deleteList = CameraRig.CamsInfo.Where(x => x.profileName == bubble.profileInUse && !connectedCams.Contains(x.webcam));
             var webcamsToDelete = deleteList.Select(x => x.webcam).ToList<string>();
-
-            for (int i = webcamsToDelete.Count() - 1; i >= 0; i--)
-            {
-                CameraRig.rigInfoRemove(bubble.profileInUse, webcamsToDelete[i]);
-            }
+            webcamsToDelete.ForEach(x => CameraRig.rigInfoRemove(bubble.profileInUse, x));
         }
 
         private void NewProfile()
@@ -4899,16 +4911,12 @@ namespace TeboCam
 
             if (newProfile.Trim() != "")
             {
-
                 config.addProfile(newProfile);
                 profileListRefresh(bubble.profileInUse);
-
             }
             else
             {
-
                 MessageBox.Show("Profile name must have 1 or more characters.", "Error");
-
             }
         }
 
@@ -4918,10 +4926,8 @@ namespace TeboCam
 
             string configVlt = bubble.vaultFolder + FileManager.configFile + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture) + ".xml";
             string configXml = bubble.xmlFolder + FileManager.configFile + ".xml";
-
             File.Copy(configXml, configVlt, true);
             MessageBox.Show(FileManager.configFile + ".xml has been successfully vaulted in the vault folder.", "File Vaulted");
-
         }
 
         private void CopyProfile()
@@ -4976,6 +4982,10 @@ namespace TeboCam
             profileList.SelectedIndex = 0;
         }
 
+        private void chkHideWhenMinimised_CheckedChanged(object sender, EventArgs e)
+        {
+            config.getProfile(bubble.profileInUse).hideWhenMinimized = chkHideWhenMinimised.Checked;
+        }
     }
 
     class scheduleClass

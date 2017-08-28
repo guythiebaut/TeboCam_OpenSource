@@ -200,6 +200,7 @@ namespace TeboCam
         public string thumbFolderCust = string.Empty;
         public bool areaOffAtMotion = false;
         public bool startTeboCamMinimized = false;
+        public bool hideWhenMinimized = true;
         public string internetCheck = "www.google.com";
         public bool toolTips = true;
         public int alertCompression = 100;
