@@ -36,6 +36,7 @@ namespace TeboCam
         private selected selectedValues = new selected();
         private ToolTip toolTip1;
         private IContainer components;
+        string currentDvc;
 
         // Device
         //public string Device
@@ -48,9 +49,6 @@ namespace TeboCam
             get { return selectedValues; }
         }
 
-
-
-
         // Constructor
         public CaptureDeviceForm(string dvc, bool tooltips)
         {
@@ -58,15 +56,18 @@ namespace TeboCam
             // Required for Windows Form Designer support
             //
             InitializeComponent();
-
             //
+            currentDvc = dvc;
+            toolTip1.Active = tooltips;
+            PopulateUsbWebcamList(currentDvc);
+        }
+
+        private void PopulateUsbWebcamList(string dvc)
+        {
             try
             {
-
-                toolTip1.Active = tooltips;
-
+                deviceCombo.Items.Clear();
                 filters = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
                 //remove cameras that are already attached
                 for (int i = filters.Count - 1; i >= 0; i--)
                 {
@@ -76,10 +77,8 @@ namespace TeboCam
                     }
                 }
 
-
                 if (filters.Count == 0)
                     throw new ApplicationException();
-
                 // add all devices to combo
                 for (int i = 0; i < filters.Count; i++)
                 {
@@ -100,24 +99,16 @@ namespace TeboCam
                         cnt++;
                     }
                     tmpInt++;
-
                 }
-
                 // set the selected index to the current webcam
                 if (dvc != null)
                 {
-
                     for (int i = 0; i < filters.Count; i++)
                     {
-
                         if (filters[i].MonikerString.ToString() == dvc)
                         { deviceCombo.SelectedIndex = i; }
-
                     }
-
                 }
-
-
             }
             catch (ApplicationException)
             {
@@ -283,58 +274,42 @@ namespace TeboCam
 
             if (rdUsbCam.Checked)
             {
-
                 selectedValues.name = filters[deviceCombo.SelectedIndex].MonikerString;
                 selectedValues.address = filters[deviceCombo.SelectedIndex].MonikerString;
-
             }
             else
             {
-
                 selectedValues.ipCam = true;
                 selectedValues.name = txtIpAddress.Text;
                 selectedValues.address = txtIpAddress.Text;
                 selectedValues.user = txtUsername.Text;
                 selectedValues.password = txtPassword.Text;
-
-
             }
-
-
             //device = filters[deviceCombo.SelectedIndex].MonikerString;
-
-
         }
 
         private void rdUsbCam_CheckedChanged(object sender, EventArgs e)
         {
-
-
             if (rdUsbCam.Checked)
             {
-
+                PopulateUsbWebcamList(currentDvc);
                 label1.Enabled = true;
                 deviceCombo.Enabled = true;
                 label2.Enabled = false;
                 txtIpAddress.Enabled = false;
                 txtUsername.Enabled = false;
                 txtPassword.Enabled = false;
-
-
             }
             else
             {
-
+                okButton.Enabled = true;
                 label1.Enabled = false;
                 deviceCombo.Enabled = false;
                 label2.Enabled = true;
                 txtIpAddress.Enabled = true;
                 txtUsername.Enabled = true;
                 txtPassword.Enabled = true;
-
             }
-
-
         }
 
         public class selected

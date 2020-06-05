@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace TeboCam
 {
 
-    public delegate void ButtonDelegate(int id, Button cameraButton, Button activeButton);
+    public delegate void ButtonDelegate(int id, Button cameraButton, Button activeButton, bool activate = true);
 
     public class CameraButtonGroup
     {
@@ -21,16 +21,18 @@ namespace TeboCam
 
         public int id;
         public Button CameraButton = new Button();
-        public ButtonState CameraButtonState = ButtonState.NotConnected;
+        public ButtonState CameraButtonState { get; private set; }
         public ButtonDelegate camDelegate;
         public Button ActiveButton = new Button();
-        public ButtonState ActiveButtonState;
+        public ButtonState ActiveButtonState { get; private set; }
         public ButtonDelegate actDelegate;
 
         public CameraButtonGroup()
         {
             CameraButton.Size = new Size(20, 20);
             ActiveButton.Size = new Size(20, 10);
+            CameraButtonState = ButtonState.NotConnected;
+            ActiveButtonState = ButtonState.NotConnected;
         }
 
         //need delegate for on click
@@ -41,7 +43,7 @@ namespace TeboCam
             CameraButtonState = ButtonState.ConnectedAndActive;
         }
 
-        public void CameraButtonIsInactive()
+        public void CameraButtonIsConnectedAndInactive()
         {
             CameraButton.BackColor = Color.SkyBlue;
             CameraButtonState = ButtonState.ConnectedAndInactive;
@@ -64,6 +66,6 @@ namespace TeboCam
             ActiveButton.BackColor = Color.Silver;
             ActiveButtonState = ButtonState.NotConnected;
         }
-         
+
     }
 }

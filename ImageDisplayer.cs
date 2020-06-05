@@ -180,8 +180,8 @@ namespace TeboCam
             int originalHeight = image.Height;
 
 
-            System.Drawing.Image thumbnail = new Bitmap(canvasWidth, canvasHeight); // changed parm names
-            System.Drawing.Graphics graphic = System.Drawing.Graphics.FromImage(thumbnail);
+            Image thumbnail = new Bitmap(canvasWidth, canvasHeight); // changed parm names
+            Graphics graphic = Graphics.FromImage(thumbnail);
 
             graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
             graphic.SmoothingMode = SmoothingMode.HighQuality;

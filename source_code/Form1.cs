@@ -22,7 +22,8 @@ namespace TeboCam
             InitializeComponent();
 
 
-            this.Text += "(version " + bubble.version + ")";
+            var version = Double.Parse(sensitiveInfo.ver, new System.Globalization.CultureInfo("en-GB")).ToString();
+            this.Text += "(version " + version + ")";
 
             newsTxt = newsIn;
             infoTxt = infoIn;
@@ -124,13 +125,8 @@ namespace TeboCam
 
         private void info_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-
-            bubble.openInternetBrowserAt(e.LinkText);
-
+            Internet.openInternetBrowserAt(e.LinkText);
         }
-
-
-
 
     }
 }

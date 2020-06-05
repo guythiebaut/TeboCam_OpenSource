@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.IO;
+using TeboCam;
 
 namespace teboweb
 {
@@ -43,6 +44,7 @@ namespace teboweb
     class webdata
     {
 
+        public static IException tebowebException;
         public static event BytesDownloadedEventHandler bytesDownloaded;
 
         public static bool downloadFromWeb(string URL, string file, string targetFolder)
@@ -73,7 +75,7 @@ namespace teboweb
                 byteArgs.downloaded = 0;
                 byteArgs.total = dataLength;
 
-                //we need to test for a null as if an event is not consumed we will get an exception
+                //we need to test for a null as if an event is not consumed we will get an TebocamState.tebowebException
                 if (bytesDownloaded != null) bytesDownloaded(byteArgs);
 
 
@@ -122,10 +124,11 @@ namespace teboweb
 
             }
 
-            catch (Exception)
+            catch (Exception e)
             {
                 //We may not be connected to the internet
                 //Or the URL may be incorrect
+                TebocamState.tebowebException.LogException(e);
                 return false;
             }
 

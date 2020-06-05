@@ -27,7 +27,7 @@ namespace TeboCam
 
         public static void openFile()
         {
-            
+
             debugWriter = new StreamWriter(filePath + fileName, true);
             Outline.Length = 0;
 
@@ -35,9 +35,10 @@ namespace TeboCam
 
         public static void closeFile()
         {
-
-            debugWriter.Close();
-
+            if (debugWriter != null)
+            {
+                debugWriter.Close();
+            }
         }
 
         public static void writeline(string val)
@@ -58,19 +59,15 @@ namespace TeboCam
         private static void write(string line)
         {
 
-            Outline.Length=0;
+            Outline.Length = 0;
             Outline.Append(DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss:fff", System.Globalization.CultureInfo.InvariantCulture));
             Outline.Append(" | " + line);
-            
+
             if (debugOn) Debug.WriteLine(Outline);
             if (debugToFile) debugWriter.WriteLine(Outline);
 
 
         }
-
-
-
-
 
 
     }

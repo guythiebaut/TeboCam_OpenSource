@@ -5,17 +5,24 @@ using System.IO;
 
 namespace TeboCam
 {
+    public interface ILog
+    {
+        Log ReadXMLFile(string filename);
+        void WriteXMLFile(string filename, ILog log);
+        void AddLine(string message);
+        void AddLine(DateTime dateTime, string message);
+    }
 
     [Serializable]
-    public class Log
+    public class Log : ILog
     {
 
         public List<logLine> Lines = new List<logLine>();
         public string FileName;
+        public event EventHandler LogAdded;
 
         public Log()
         { }
-
 
         public Log(string FileName)
         {
@@ -26,24 +33,27 @@ namespace TeboCam
 
         public Log ReadXMLFile(string filename)
         {
-            return (Log)Serialization.SerializeFromXMLFile(filename, this);
+            return (Log)Serialization.SerializeFromXmlFile(filename, this);
         }
 
-        public void WriteXMLFile(string filename, Log log)
+        public void WriteXMLFile(string filename, ILog log)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            Serialization.SerializeToXMLFile(filename, log);
+            Serialization.SerializeToXmlFile(filename, log);
         }
 
+        public void AddLine(string message)
+        {
+            AddLine(DateTime.Now, message);
+        }
 
         public void AddLine(DateTime dateTime, string message)
         {
-
             Lines.Add(new logLine() { DT = dateTime, Message = message });
-
+            LogAdded?.Invoke(null, new EventArgs());
         }
 
         public long Count()

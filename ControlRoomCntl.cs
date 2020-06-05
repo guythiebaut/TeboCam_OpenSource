@@ -15,9 +15,11 @@ namespace TeboCam
         private List<Monitor> monitors = new List<Monitor>();
         private int windowWidth = 150;
         private int windowHeight = 150;
+        Ping ping;
 
-        public ControlRoomCntl(List<Camera> cameras)
+        public ControlRoomCntl(List<Camera> cameras, Ping pinger)
         {
+            ping = pinger;
             InitializeComponent();
             LoadCameras(cameras);
         }
@@ -28,8 +30,9 @@ namespace TeboCam
             {
                 Monitor monitor = new Monitor();
                 CameraWindow window = new CameraWindow();
+                window.ping = ping;
                 monitor.window = window;
-                window.AutoSize = false;
+                window.AutoSizeCameraWindow = false;
                 window.Size = new Size(windowWidth, windowHeight);
                 if (cameras.Count - 1 >= i)
                 {

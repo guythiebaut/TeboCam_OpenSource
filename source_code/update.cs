@@ -5,14 +5,15 @@ using System.Diagnostics;
 using System.IO;
 using Ionic.Zip;
 using teboweb;
-
+using TeboCam;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace teboweb
 {
-
-
     class update
     {
+        public static IException tebowebException;
 
         /// <summary>Get update and version information from specified online file - returns a List</summary>
         /// <param name="downloadsURL">URL to download file from</param>
@@ -79,11 +80,10 @@ namespace teboweb
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                tebowebException.LogException(e);
                 return false;
-
             }
 
         }
@@ -202,8 +202,9 @@ namespace teboweb
                 //if (deleteZipOnCompletion) File.Delete(unZipTo + file);
 
             }
-            catch (System.Exception)
+            catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 return false;
             }
 
@@ -236,7 +237,83 @@ namespace teboweb
 
         }
 
+        public static List<string> check_for_updates(bool devMachine, 
+                                                     ref double newsSeq,
+                                                     ref Configuration configuration, 
+                                                     ref Button newsInfo)
+        {
+            List<string> updateDat = new List<string>();
+            string versionFile = "";
 
+            //set version file depending on machine installation
+            if (!devMachine)
+            {
+                versionFile = sensitiveInfo.versionFile;
+            }
+            else
+            {
+                versionFile = sensitiveInfo.versionFileDev;
+            }
+
+            //get the update information into a List
+            updateDat = update.getUpdateInfo(sensitiveInfo.downloadsURL, versionFile, TebocamState.resourceDownloadFolder, 1, true);
+
+            if (updateDat == null)
+            {
+                //error in update
+                List<string> err = new List<string>();
+                err.Add("");
+                err.Add("0");
+                return err;
+            }
+            else
+            {
+                //download the news information file if a new one is available
+                if (double.Parse(updateDat[4]) > newsSeq)
+                {
+                    update.installUpdateNow(updateDat[5], updateDat[6], TebocamState.resourceDownloadFolder, true);
+
+                    try
+                    {
+                        //move all the unzipped files out of the download folder into the parent resource folder
+                        //leave the zip file where it is to be deleted with the resource download folder
+                        DirectoryInfo di = new DirectoryInfo(TebocamState.resourceDownloadFolder);
+                        FileInfo[] files = di.GetFiles();
+
+                        foreach (FileInfo fi in files)
+                        {
+                            if (fi.Name != updateDat[6])
+                                File.Copy(TebocamState.resourceDownloadFolder + fi.Name, TebocamState.resourceFolder + fi.Name,
+                                    true);
+                        }
+
+                        newsSeq = double.Parse(updateDat[4]);
+                        configuration.newsSeq = double.Parse(updateDat[4]);
+                        newsInfo.BackColor = Color.Gold;
+                    }
+                    catch (Exception e)
+                    {
+                        TebocamState.tebowebException.LogException(e);
+                        return updateDat;
+                    }
+
+                    if (Directory.Exists(TebocamState.resourceDownloadFolder))
+                    {
+                        try
+                        {
+                            Directory.Delete(TebocamState.resourceDownloadFolder, true);
+                        }
+                        catch (Exception e)
+                        {
+                            TebocamState.tebowebException.LogException(e);
+                            return updateDat;
+                        }
+                    }
+                }
+            }
+
+            return updateDat;
+        }
 
     }
 }

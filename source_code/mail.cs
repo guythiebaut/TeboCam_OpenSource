@@ -1,222 +1,92 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Mail;
+﻿using System;
 using System.Collections;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using MailKit.Net.Smtp;
+using MimeKit;
+
+//https://stackoverflow.com/a/46203185
 
 namespace TeboCam
 {
-    public class mail
+    class Mail : IMail
     {
-
         public static bool spamStopped = false;
         public static ArrayList attachments = new ArrayList();
         public static List<int> emailTimeSent = new List<int>();
         public static List<EmailSent> EmailsSent = new List<EmailSent>();
+        public IException tebowebException;
 
-        public static void addAttachment(string file)
+        public void SetExceptionHandler(IException exceptionHandler)
         {
-            try
-            {
-                attachments.Add(file);
-            }
-            catch (Exception)
-            {
-                bubble.logAddLine("Error adding file to email: " + file);
-            }
+            TebocamState.tebowebException = exceptionHandler;
         }
 
-        public static void clearAttachments()
+        public void addAttachment(string a)
         {
-            try
-            {
-                attachments.Clear();
-            }
-            catch (Exception)
-            {
-                bubble.logAddLine("Error adding clearing attachments.");
-            }
+            throw new NotImplementedException();
         }
 
-
-
-
-        public static bool validEmail(string emailAddress)
+        public void clearAttachments()
         {
-
-            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-            + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
-            + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-
-            return regex.match(pattern, emailAddress);
-
+            throw new NotImplementedException();
         }
 
-        public static void sendEmail(string by,
-                                    string to,
-                                    string subj,
-                                    string body,
-                                    string replyTo,
-                                    bool hasAttachments,
-                                    int curTime,
-                                    string emailUser,
-                                    string emailPass,
-                                    string smtpHost,
-                                    int smtpPort,
-                                    bool EnableSsl)
+        public void sendEmail(EmailFields eml)
         {
+            var client = new SmtpClient();
+            client.Connect(eml.SmtpHost, eml.SmtpPort, false);
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            client.Authenticate(eml.User, eml.Password);
+            var msg = new MimeMessage();
+            msg.From.Add(new MailboxAddress(eml.ReplyTo));
+            msg.To.Add(new MailboxAddress(eml.SendTo));
+            msg.Subject = eml.Subject;
 
-            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-            string msgBody = string.Empty;
-            System.Net.Mail.SmtpClient smtp = new SmtpClient();
-
-            mail.From = new System.Net.Mail.MailAddress(by, config.getProfile(bubble.profileInUse).sentByName);
-
-            string[] emails = to.Split(';');
-
-            foreach (string email in emails)
+            msg.Body = new TextPart("plain")
             {
+                Text = eml.BodyText
+            };
 
-                mail.To.Add(email);
-
-            }
-
-            mail.Subject = subj;
-            mail.Body = body;
-            if (!hasAttachments && bubble.emailTestOk != 9)
-            {
-                mail.Body += Environment.NewLine + "No images attached option selected.";
-            }
-            mail.IsBodyHtml = true;
-            mail.ReplyTo = new MailAddress(replyTo);
-
-
-
-            if (hasAttachments)
-            {
-                int tmpCnt = 0;
-
-                foreach (string file in attachments)
-                {
-                    try
-                    {
-                        tmpCnt++;
-                        bubble.logAddLine("Adding file to email... " + tmpCnt.ToString());
-                        mail.Attachments.Add(new Attachment(file));
-                    }
-
-                    catch
-                    {
-                        bubble.logAddLine("Error adding file to email... " + tmpCnt.ToString());
-                    }
-
-                }
-
-            }
-
-
-
-            smtp.Host = smtpHost;
-            smtp.Port = smtpPort;
-            smtp.EnableSsl = EnableSsl;
-            smtp.Credentials = new System.Net.NetworkCredential(emailUser, emailPass);
-
-            try
-            {
-
-                //20160627 fix to prevent a bug where sometimes the same email is sent continuosly
-                EmailSent emsent = new EmailSent();
-                string contactInfo = by + to + subj + body + replyTo + emailUser + emailPass + smtpHost;
-
-                foreach (EmailSent item in EmailsSent)
-                {
-
-                    if (item.ConcatInfo == contactInfo && time.secondsSinceStart() - item.TimeSent < 4)
-                    {
-
-                        return;
-
-                    }
-
-                }
-
-                emsent.ConcatInfo = contactInfo;
-                emsent.TimeSent = curTime;
-                EmailsSent.Add(emsent);
-
-
-
-                smtp.Send(mail);
-                emailTimeSent.Add(curTime);
-                bubble.emailTestOk = 1;
-                bubble.logAddLine("Email sent.");
-
-            }
-
-            catch (System.Exception ex)
-            {
-                bubble.emailTestOk = 2;
-                bubble.logAddLine("Error in sending email.");
-            }
-        }
-
-        private static int mailsSentOverTime(int p_timeSpan, int p_currTime)
-        {
-
-            int emailsSent = 0;
-
-            foreach (int time in mail.emailTimeSent)
-            {
-
-                if (p_currTime - time <= p_timeSpan)
-                {
-
-                    emailsSent++;
-
-                }
-
-            }
-
-            return emailsSent;
+            client.Send(msg);
+            client.Disconnect(true);
 
         }
 
-
-        public static bool SpamAlert(int p_emails, int p_mins, bool p_deSpamify, int p_currTime)
+        public bool SpamAlert(int p_emails, int p_mins, bool p_deSpamify, int p_currTime)
         {
+            throw new NotImplementedException();
+        }
 
-            if (p_deSpamify)
-            {
+        public bool SpamIsStopped()
+        {
+            throw new NotImplementedException();
+        }
 
-                int emailsSent = mailsSentOverTime(p_mins * 60, p_currTime);
+        public void StopSpam(bool stop)
+        {
+            throw new NotImplementedException();
+        }
 
-                if (emailsSent >= p_emails)
-                {
+        public bool validEmail(string emailAddress)
+        {
+            throw new NotImplementedException();
+        }
 
-                    spamStopped = true;
+        public void SetTestStatus(int status)
+        {
+            throw new NotImplementedException();
+        }
 
-                }
+        public int GetTestStatus()
+        {
+            throw new NotImplementedException();
+        }
 
-                return emailsSent >= p_emails;
-
-            }
-
-            return false;
-
+        public class EmailSent
+        {
+            public string ConcatInfo = string.Empty;
+            public int TimeSent;
         }
 
     }
-
-    public class EmailSent
-    {
-
-        public string ConcatInfo = string.Empty;
-        public int TimeSent;
-
-    }
-
-
 }
-

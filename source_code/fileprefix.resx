@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -135,7 +135,7 @@
     <value>67</value>
   </data>
   <data name="filenamePrefix.Text" xml:space="preserve">
-    <value>webcam</value>
+    <value>webCamNo</value>
   </data>
   <data name="filenamePrefix.ToolTip" xml:space="preserve">
     <value>This sets the prefix for the image files saved.</value>
@@ -174,8 +174,8 @@
     <value>The start cycle number for the name of the
 image file saved. 
 
-If the prefix is set to "webcam" the first file 
-created will be called webcam1.jpg</value>
+If the prefix is set to "webCamNo" the first file 
+created will be called webCamNo1.jpg</value>
   </data>
   <data name="&gt;&gt;startCycle.Name" xml:space="preserve">
     <value>startCycle</value>
@@ -211,11 +211,11 @@ created will be called webcam1.jpg</value>
     <value>The last cycle number for the name of the
 image file saved. 
 
-If the prefix is set to "webcam" and the end 
+If the prefix is set to "webCamNo" and the end 
 cycle number is 9999 
-the last file created will be called webcam9999.jpg
+the last file created will be called webCamNo9999.jpg
 
-The next file will then revert to webcam1.jpg</value>
+The next file will then revert to webCamNo1.jpg</value>
   </data>
   <data name="&gt;&gt;endCycle.Name" xml:space="preserve">
     <value>endCycle</value>
@@ -401,7 +401,7 @@ Dropbox can store the image files online for you.</value>
     <value>72</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>Filename Prefix e.g. webcam</value>
+    <value>Filename Prefix e.g. webCamNo</value>
   </data>
   <data name="&gt;&gt;label13.Name" xml:space="preserve">
     <value>label13</value>

@@ -13,6 +13,7 @@ namespace TeboCam
         public static List<string> thumbPics = new List<string>();
         private static List<string[]> thumbFiles = new List<string[]>();
         private static bool noDataYet = true;
+        public static IException tebowebException;
 
         private static int firstFreeBlock = 0;
         public static int windowsFull = 0;
@@ -57,8 +58,9 @@ namespace TeboCam
                 }
                 return picsForWindow;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 string[,] errorBlank = new string[picsInWindowCount, 2];
                 return errorBlank;
             }

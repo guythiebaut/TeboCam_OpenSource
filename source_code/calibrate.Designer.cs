@@ -6,6 +6,7 @@ namespace TeboCam
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private bool testImagePublish = false;
 
         /// <summary>
         /// Clean up any resources being used.

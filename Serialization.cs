@@ -8,19 +8,20 @@ using System.Xml.Serialization;
 
 namespace TeboCam
 {
-    
-    public static class Serialization 
+
+    public static class Serialization
     {
 
+        public static IException tebowebException;
 
-        public static string SerializeToXML(object SerializeFrom)
+        public static string SerializeToXml(object serializeFrom)
         {
 
             return string.Empty;
 
         }
 
-        public static bool SerializeToXMLFile(string file, object SerializeFrom)
+        public static bool SerializeToXmlFile(string file, object serializeFrom)
         {
 
             try
@@ -29,11 +30,11 @@ namespace TeboCam
                 using (StreamWriter writer = new StreamWriter(file))
                 {
 
-                    XmlSerializer xmlSerializer = XmlSerializer.FromTypes(new[] { SerializeFrom.GetType() })[0];
+                    XmlSerializer xmlSerializer = XmlSerializer.FromTypes(new[] { serializeFrom.GetType() })[0];
                     StringWriter textWriter = new StringWriter();
-                    xmlSerializer.Serialize(textWriter, SerializeFrom);
-                    string SerializedXML = textWriter.ToString();
-                    writer.Write(SerializedXML);
+                    xmlSerializer.Serialize(textWriter, serializeFrom);
+                    string serializedXml = textWriter.ToString();
+                    writer.Write(serializedXml);
                     writer.Flush();
 
                 }
@@ -42,9 +43,8 @@ namespace TeboCam
             }
             catch (Exception e)
             {
-
+                TebocamState.tebowebException.LogException(e);
                 throw e;
-
             }
 
             return true;
@@ -52,14 +52,14 @@ namespace TeboCam
         }
 
 
-        public static object SerializeFromXML(string file, object SerializeTo)
+        public static object SerializeFromXml(string file, object serializeTo)
         {
 
             return new object();
 
         }
 
-        public static object SerializeFromXMLFile(string file, object SerializeTo)
+        public static object SerializeFromXmlFile(string file, object serializeTo)
         {
 
             try
@@ -71,7 +71,7 @@ namespace TeboCam
                     xmlIn = streamReader.ReadToEnd();
                 }
 
-                XmlSerializer xmlDeSerializer = XmlSerializer.FromTypes(new[] { SerializeTo.GetType() })[0];
+                XmlSerializer xmlDeSerializer = XmlSerializer.FromTypes(new[] { serializeTo.GetType() })[0];
                 StringReader textReader = new StringReader(xmlIn);
 
                 return xmlDeSerializer.Deserialize(textReader);
@@ -79,10 +79,8 @@ namespace TeboCam
             }
             catch (Exception e)
             {
-
+                TebocamState.tebowebException.LogException(e);
                 throw e;
-
-
             }
 
         }

@@ -62,7 +62,7 @@ namespace TeboCam
 
             if (startday == 0) setStart();
 
-            int thisday = Convert.ToInt32(currentDate());
+            int thisday = Convert.ToInt32(currentDateYYYYMMDD());
             int daysSinceStart = Math.Abs(thisday - startday);
 
 
@@ -76,7 +76,7 @@ namespace TeboCam
             DateTime dt = Convert.ToDateTime(dateTime);
             int firsttime = secondsSinceMidnight(dt);
 
-            int thisday = Convert.ToInt32(currentDate());
+            int thisday = Convert.ToInt32(currentDateYYYYMMDD());
             int firstday = Convert.ToInt32(dt.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture));
             int daysSinceStart = Math.Abs(thisday - firstday);
 
@@ -90,7 +90,7 @@ namespace TeboCam
 
             if (startday == 0) setStart();
 
-            int thisday = Convert.ToInt32(currentDate());
+            int thisday = Convert.ToInt32(currentDateYYYYMMDD());
             int daysSinceStart = Math.Abs(thisday - startday);
 
 
@@ -113,7 +113,7 @@ namespace TeboCam
             return DateTime.Now.ToString("HHmm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
-        public static string currentDate()
+        public static string currentDateYYYYMMDD()
         {
             return DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
         }

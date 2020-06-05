@@ -49,7 +49,7 @@ namespace TeboCam
 
         private void val_TextChanged(object sender, EventArgs e)
         {
-            val.Text = bubble.verifyInt(val.Text, 0, 100, "100");
+            val.Text = Valid.verifyInt(val.Text, 0, 100, "100");
             trackBar1.Value = Convert.ToInt32(val.Text);
         }
 

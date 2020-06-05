@@ -11,7 +11,11 @@ namespace TeboCam
 {
     public partial class fileprefix : Form
     {
-        private formDelegate prefixDelegate;
+        private const int cycleMin = 1;
+        private const int cycleMax = 9999;
+        private FilePrefixformDelegate prefixDelegate;
+        FilePrefixSettingsDto settings;
+
         private string fromString;
         private bool toolTip;
         private string p_fname;
@@ -26,26 +30,26 @@ namespace TeboCam
 
         private string fileLoc;
 
-        public fileprefix(formDelegate sender, ArrayList from)
+        public fileprefix(FilePrefixSettingsDto filePrefixSettings)
         {
             InitializeComponent();
+            settings = filePrefixSettings;
+            prefixDelegate = settings.ResultDelegate;
+            fromString = settings.FromString;
+            toolTip = settings.ToolTip;
+            p_fname = settings.FileName;
+            p_cycleStampChecked = settings.CycleStampChecked.ToString();
+            p_startCycle = settings.StartCycle.ToString();
+            p_endCycle = settings.EndCycle.ToString();
+            p_currentCycle = settings.CurrentCycle.ToString();
+            p_includeStamp = settings.IncludeStamp;
+            p_displayStamp = settings.DisplayStamp;
+            groupBox21.Enabled = settings.ImagesSavedFolderEnabled;
 
-            prefixDelegate = sender;
-            fromString = from[0].ToString();
-            toolTip = Convert.ToBoolean(from[1]);
-            p_fname = from[2].ToString();
-            p_cycleStampChecked = from[3].ToString();
-            p_startCycle = from[4].ToString();
-            p_endCycle = from[5].ToString();
-            p_currentCycle = from[6].ToString();
-            p_includeStamp = Convert.ToBoolean(from[7]);
-            p_displayStamp = Convert.ToBoolean(from[8]);
-            groupBox21.Enabled = Convert.ToBoolean(from[12]);
-
-            if (Convert.ToBoolean(from[12]))
+            if (settings.ImagesSavedFolderEnabled)
             {
-                p_fileLoc = from[9].ToString();
-                p_fileLocDefault = from[10].ToString();
+                p_fileLoc = settings.FileDir;
+                p_fileLocDefault = settings.FileDirDefault;
             }
 
 
@@ -92,9 +96,9 @@ namespace TeboCam
 
             filenamePrefix.Text = filenamePrefix.Text.Trim();
 
-            if (!bubble.filenamePrefixValid(filenamePrefix.Text))
+            if (!Valid.filenamePrefixValid(filenamePrefix.Text))
             {
-                bubble.messageAlert("Filename prefix can only contain a-z and 0-9.", "Invalid filename prefix");
+                MessageDialog.messageAlert("Filename prefix can only contain a-z and 0-9.", "Invalid filename prefix");
                 filenamePrefix.BackColor = Color.Red;
                 if (filenamePrefix.Text == "") { filenamePrefix.Text = "TeboCam"; }; filenamePrefix.Focus();
                 Invalidate();
@@ -112,36 +116,35 @@ namespace TeboCam
 
         private void fileprefix_FormClosing(object sender, FormClosingEventArgs e)
         {
+            var dto = new FilePrefixSettingsResultDto()
+            {
+                FromString = fromString,
+                FilenamePrefix = filenamePrefix.Text,
+                CycleStamp = cycleStamp.Checked ? 1 : 2,
+                StartCycle = startCycle.Text,
+                EndCycle = endCycle.Text,
+                CurrentCycle = currentCycle.Text,
+                AppendToFilename = checkBox1.Checked,
+                FileLoc = fileLoc,
+                CustomLocation = radioButton11.Checked
+            };
 
-            ArrayList i = new ArrayList();
-
-            i.Add(fromString);
-            i.Add(filenamePrefix.Text);
-            if (cycleStamp.Checked) i.Add(1); else i.Add(2);
-            i.Add(startCycle.Text);
-            i.Add(endCycle.Text);
-            i.Add(currentCycle.Text);
-            i.Add(checkBox1.Checked);
-            i.Add(fileLoc);
-            i.Add(radioButton11.Checked);
-
-            prefixDelegate(i); // This will call ReturnMethod in form1 and pass it val.
-
+            prefixDelegate(dto); // This will call ReturnMethod in form1 and pass it val.
         }
 
         private void startCycle_Leave(object sender, EventArgs e)
         {
-            startCycle.Text = bubble.verifyInt(startCycle.Text, bubble.cycleMin, bubble.cycleMax - 1, bubble.cycleMin.ToString());
+            startCycle.Text = Valid.verifyInt(startCycle.Text, cycleMin, cycleMax - 1, cycleMin.ToString());
         }
 
         private void endCycle_Leave(object sender, EventArgs e)
         {
-            endCycle.Text = bubble.verifyInt(endCycle.Text, bubble.cycleMin + 1, bubble.cycleMax, bubble.cycleMax.ToString());
+            endCycle.Text = Valid.verifyInt(endCycle.Text, cycleMin + 1, cycleMax, cycleMax.ToString());
         }
 
         private void currentCycle_Leave(object sender, EventArgs e)
         {
-            currentCycle.Text = bubble.verifyInt(currentCycle.Text, Convert.ToInt64(startCycle.Text), Convert.ToInt64(endCycle.Text), startCycle.Text);
+            currentCycle.Text = Valid.verifyInt(currentCycle.Text, Convert.ToInt64(startCycle.Text), Convert.ToInt64(endCycle.Text), startCycle.Text);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -172,7 +175,35 @@ namespace TeboCam
 
 
         }
+    }
 
+    public class FilePrefixSettingsDto
+    {
+        public FilePrefixformDelegate ResultDelegate;
+        public string FromString;
+        public bool ToolTip;
+        public string FileName;
+        public string FileDir;
+        public string FileDirDefault;
+        public int CycleStampChecked;
+        public int StartCycle;
+        public int EndCycle;
+        public int CurrentCycle;
+        public bool IncludeStamp;
+        public bool DisplayStamp;
+        public bool ImagesSavedFolderEnabled;
+    }
 
+    public class FilePrefixSettingsResultDto
+    {
+        public string FromString;
+        public string FilenamePrefix;
+        public int CycleStamp;
+        public string StartCycle;
+        public string EndCycle;
+        public string CurrentCycle;
+        public bool AppendToFilename;
+        public string FileLoc;
+        public bool CustomLocation;
     }
 }

@@ -7,6 +7,8 @@ namespace TeboCam
     class LeftRightMid
     {
 
+        public static IException tebowebException;
+
         public static string Left(string param, int length)
         {
             try
@@ -17,7 +19,11 @@ namespace TeboCam
                 //return the result of the operation
                 return result;
             }
-            catch { return ""; }
+            catch (Exception e)
+            {
+                TebocamState.tebowebException.LogException(e);
+                return "";
+            }
         }
         public static string Right(string param, int length)
         {

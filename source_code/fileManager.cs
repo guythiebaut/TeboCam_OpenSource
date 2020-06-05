@@ -8,19 +8,26 @@ using System.Windows.Forms;
 using System.IO;
 //using Microsoft.VisualBasic;
 using System.ComponentModel;
+using System.Linq;
+using Ionic.Zip;
 
 namespace TeboCam
 {
 
-    class FileManager
+    public class FileManager
     {
         static BackgroundWorker bw = new BackgroundWorker();
+
         public static string configFile = "configData";
+        private static List<string> DeletionRegex = new List<string>();
+
         //public static string graphFile = "graph";
         //public static string logFile = "log";
         public static string keyFile = "licence";
+
         public static string testFile = "test";
-        
+        public static IException tebowebException;
+
         #region ::::::::::::::::::::::::backupFile::::::::::::::::::::::::
 
         #endregion
@@ -35,44 +42,43 @@ namespace TeboCam
 
 
         #region ::::::::::::::::::::::::clearLog::::::::::::::::::::::::
+
         public static void clearLog()
         {
-            string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
-            bubble.logAddLine("Making copy of log file with time stamp - " + timeStamp);
+            string timeStamp =
+                DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+            TebocamState.log.AddLine("Making copy of log file with time stamp - " + timeStamp);
             WriteFile("log");
-            File.Copy(bubble.xmlFolder + "LogData.xml", bubble.logFolder + @"\log_" + timeStamp + ".xml");
-            bubble.log.Clear();
-            bubble.logAddLine("Previous log file archived.");
+            File.Copy(TebocamState.xmlFolder + "LogData.xml", TebocamState.logFolder + @"\log_" + timeStamp + ".xml");
+            TebocamState.log.Clear();
+            TebocamState.log.AddLine("Previous log file archived.");
             WriteFile("log");
         }
+
         #endregion
+
         #region ::::::::::::::::::::::::clearFiles::::::::::::::::::::::::
 
 
         public static void clearFiles(string folder)
         {
-
-            bubble.logAddLine("Getting list of computer files from " + folder);
+            TebocamState.log.AddLine("Getting list of computer files from " + folder);
             string[] files = Directory.GetFiles(folder);
-            bubble.logAddLine("Starting delete of computer files from " + folder);
+            TebocamState.log.AddLine("Starting delete of computer files from " + folder);
 
-            if (!bubble.fileBusy)
+            foreach (string file in files)
             {
-                bubble.fileBusy = true;
-                foreach (string file in files)
+                try
                 {
-                    try
-                    {
-                        File.Delete(file);
-                    }
-                    catch
-                    {
-                        bubble.logAddLine("Error in deleting files from " + folder);
-                    }
+                    File.Delete(file);
                 }
-                bubble.fileBusy = false;
+                catch (Exception e)
+                {
+                    TebocamState.tebowebException.LogException(e);
+                    TebocamState.log.AddLine("Error in deleting files from " + folder);
+                }
             }
-            bubble.logAddLine("Deletion of computer files completed from " + folder);
+            TebocamState.log.AddLine("Deletion of computer files completed from " + folder);
         }
 
         #endregion
@@ -83,48 +89,103 @@ namespace TeboCam
             try
             {
 
-                bubble.logAddLine("Getting list of web files.");
+                TebocamState.log.AddLine("Getting list of web files.");
                 ArrayList ftpFiles = ftp.GetFileList();
-
-                bubble.logAddLine("Starting delete of web files via ftp.");
+                TebocamState.log.AddLine("Starting delete of web files via ftp.");
                 int tmpInt = 0;
                 foreach (string img in ftpFiles)
                 {
-
-
-                    if (img.Length > config.getProfile(bubble.profileInUse).filenamePrefix.Length + bubble.ImgSuffix.Length)
-                    {
-                        if (LeftRightMid.Left(img, config.getProfile(bubble.profileInUse).filenamePrefix.Length) == config.getProfile(bubble.profileInUse).filenamePrefix && LeftRightMid.Right(img, bubble.ImgSuffix.Length) == bubble.ImgSuffix)
-                        {
-                            tmpInt++;
-                        }
-                    }
+                    if (FileIsCandidateForDeletion(img)) tmpInt++;
                 }
-                bubble.logAddLine(tmpInt.ToString() + " web files to delete via ftp.");
-
+                TebocamState.log.AddLine(tmpInt.ToString() + " web files to delete via ftp.");
 
                 //List of all files on ftp site
                 foreach (string img in ftpFiles)
                 {
-
                     //if the prefix and suffix correspond to TeboCam image files then delete this file
-                    if (img.Length > config.getProfile(bubble.profileInUse).filenamePrefix.Length + bubble.ImgSuffix.Length)
+                    if (FileIsCandidateForDeletion(img))
                     {
-                        if (LeftRightMid.Left(img, config.getProfile(bubble.profileInUse).filenamePrefix.Length) == config.getProfile(bubble.profileInUse).filenamePrefix && LeftRightMid.Right(img, bubble.ImgSuffix.Length) == bubble.ImgSuffix)
-                        {
-                            ftp.DeleteFTP(img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass, false);
-                            tmpInt--;
-                            bubble.logAddLine(tmpInt.ToString() + " web files left to delete via ftp.");
-                        }
+                        ftp.DeleteFTP(img, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass, false);
+                        tmpInt--;
+                        TebocamState.log.AddLine(tmpInt.ToString() + " web files left to delete via ftp.");
                     }
                 }
-                bubble.logAddLine("Deletion of web files via ftp completed.");
+                TebocamState.log.AddLine("Deletion of web files via ftp completed.");
             }
-            catch
+            catch (Exception ex)
             {
-                bubble.logAddLine("Error in deleting web files.");
+                TebocamState.tebowebException.LogException(ex);
+                TebocamState.log.AddLine("Error in deleting web files.");
             }
         }
+
+
+        public static string fileNameSet(string filenamePrefix, int cycleType, long startCycle, long endCycle, ref long currCycle, bool appendStamp, string ImgSuffix)
+        {
+            string fileName;
+
+            if (!appendStamp)
+            {
+                fileName = filenamePrefix.Trim() + TebocamState.ImgSuffix;
+            }
+            else
+            {
+                switch (cycleType)
+                {
+                    case 1:
+                        fileName = filenamePrefix.Trim() + currCycle.ToString() + TebocamState.ImgSuffix;
+                        if (currCycle >= endCycle)
+                        {
+                            currCycle = startCycle;
+                        }
+                        else
+                        {
+                            currCycle++;
+                        }
+                        break;
+                    case 2:
+                        string stampA = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                        fileName = filenamePrefix.Trim() + stampA + TebocamState.ImgSuffix;
+                        break;
+                    default:
+                        string stampB = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                        fileName = filenamePrefix.Trim() + stampB + TebocamState.ImgSuffix;
+                        break;
+                }
+            }
+            return fileName;
+        }
+
+
+
+        public static bool FileIsCandidateForDeletion(string filename)
+        {
+            return DeletionRegex.Any(x => regex.match(x, filename));
+        }
+
+        public static List<string> StandardRegexStrings()
+        {
+            return new List<string>
+            {
+                //starts with config.GetCurrentProfile().filenamePrefix
+                //followed by any number of characters
+                //ends with {TebocamState.ImgSuffix} matching the first character literally (in this case a dot ".")
+                $@"^{ConfigurationHelper.GetCurrentProfile().filenamePrefix}.*\{TebocamState.ImgSuffix}$",
+                $@"^{TebocamState.apiCameraImgPrefix}.*\{TebocamState.ImgSuffix}$",
+                $@"^{TebocamState.apiGraphImgPrefix}.*\{TebocamState.ImgSuffix}$"
+            };
+        }
+
+        public static void InitialiseDeletionRegex(bool addDefaults)
+        {
+            DeletionRegex.Clear();
+            if (addDefaults)
+            {
+                List<string> standardStrings = StandardRegexStrings();
+                standardStrings.ForEach(DeletionRegex.Add);
+            }
+        }
+
 
         public static void clearFtp()
         {
@@ -146,7 +207,7 @@ namespace TeboCam
             {
                 try
                 {
-                    string fileName = bubble.xmlFolder + "training.xml";
+                    string fileName = TebocamState.xmlFolder + "training.xml";
                     XmlTextWriter trainingData = new XmlTextWriter(fileName, null);
 
                     trainingData.Formatting = Formatting.Indented;
@@ -157,7 +218,7 @@ namespace TeboCam
                     trainingData.WriteStartElement("", "training", "");
 
                     //###
-                    foreach (double level in bubble.training)
+                    foreach (double level in TebocamState.training)
                     {
                         trainingData.WriteStartElement("", "level", "");
                         trainingData.WriteString(level.ToString());
@@ -170,9 +231,9 @@ namespace TeboCam
                     trainingData.Close();
 
                 }
-                catch
+                catch (Exception e)
                 {
-
+                    TebocamState.tebowebException.LogException(e);
                 }
             }
             #endregion
@@ -183,7 +244,7 @@ namespace TeboCam
                 try
                 {
 
-                    string fileName = bubble.xmlFolder + testFile + ".xml";
+                    string fileName = TebocamState.xmlFolder + testFile + ".xml";
                     XmlTextWriter testData = new XmlTextWriter(fileName, null);
 
                     testData.Formatting = Formatting.Indented;
@@ -211,8 +272,9 @@ namespace TeboCam
                     testData.Close();
 
                 }
-                catch
+                catch (Exception e)
                 {
+                    TebocamState.tebowebException.LogException(e);
                 }
             }
             #endregion
@@ -233,7 +295,7 @@ namespace TeboCam
         public static bool ConvertOldProfileIfExists(Configuration config)
         {
 
-            string fileName = bubble.xmlFolder + "config.xml";
+            string fileName = TebocamState.xmlFolder + "config.xml";
 
             if (!File.Exists(fileName)) { return true; }
 
@@ -264,96 +326,92 @@ namespace TeboCam
                     }
 
 
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.alarmActive.ToString())) { webcamInfo.alarmActive = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.publishActive.ToString())) { webcamInfo.publishActive = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.friendlyName.ToString())) { webcamInfo.friendlyName = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.displayButton.ToString())) { webcamInfo.displayButton = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.pubTime.ToString())) { webcamInfo.pubTime = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.pubHours.ToString())) { webcamInfo.pubHours = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.pubMins.ToString())) { webcamInfo.pubMins = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.pubSecs.ToString())) { webcamInfo.pubSecs = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.publishWeb.ToString())) { webcamInfo.publishWeb = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.publishLocal.ToString())) { webcamInfo.publishLocal = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.timerOn.ToString())) { webcamInfo.timerOn = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.fileURLPubWeb.ToString())) { webcamInfo.fileURLPubWeb = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.filenamePrefixPubWeb.ToString())) { webcamInfo.filenamePrefixPubWeb = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.cycleStampCheckedPubWeb.ToString())) { webcamInfo.cycleStampCheckedPubWeb = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.startCyclePubWeb.ToString())) { webcamInfo.startCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.endCyclePubWeb.ToString())) { webcamInfo.endCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.currentCyclePubWeb.ToString())) { webcamInfo.currentCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.stampAppendPubWeb.ToString())) { webcamInfo.stampAppendPubWeb = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.fileAlertPubLoc.ToString())) { webcamInfo.fileDirAlertLoc = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.fileAlertPubCust.ToString())) { webcamInfo.fileDirAlertCust = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.fileDirPubLoc.ToString())) { webcamInfo.fileDirPubLoc = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.fileDirPubCust.ToString())) { webcamInfo.fileDirPubCust = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.filenamePrefixPubLoc.ToString())) { webcamInfo.filenamePrefixPubLoc = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.cycleStampCheckedPubLoc.ToString())) { webcamInfo.cycleStampCheckedPubLoc = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.startCyclePubLoc.ToString())) { webcamInfo.startCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.endCyclePubLoc.ToString())) { webcamInfo.endCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.currentCyclePubLoc.ToString())) { webcamInfo.currentCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.stampAppendPubLoc.ToString())) { webcamInfo.stampAppendPubLoc = Convert.ToBoolean(configFile.ReadString()); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.ipWebcamAddress.ToString())) { webcamInfo.ipWebcamAddress = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.ipWebcamUser.ToString())) { webcamInfo.ipWebcamUser = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.ipWebcamPassword.ToString())) { webcamInfo.ipWebcamPassword = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("alarmActive")) { webcamInfo.alarmActive = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("publishActive")) { webcamInfo.publishActive = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("friendlyName")) { webcamInfo.friendlyName = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("displayButton")) { webcamInfo.displayButton = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("pubTime")) { webcamInfo.pubTime = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("pubHours")) { webcamInfo.pubHours = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("pubMins")) { webcamInfo.pubMins = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("pubSecs")) { webcamInfo.pubSecs = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("publishWeb")) { webcamInfo.publishWeb = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("publishLocal")) { webcamInfo.publishLocal = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("timerOn")) { webcamInfo.timerOn = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("fileURLPubWeb")) { webcamInfo.fileURLPubWeb = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("filenamePrefixPubWeb")) { webcamInfo.filenamePrefixPubWeb = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("cycleStampCheckedPubWeb")) { webcamInfo.cycleStampCheckedPubWeb = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("startCyclePubWeb")) { webcamInfo.startCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("endCyclePubWeb")) { webcamInfo.endCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("currentCyclePubWeb")) { webcamInfo.currentCyclePubWeb = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("stampAppendPubWeb")) { webcamInfo.stampAppendPubWeb = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("fileAlertPubLoc")) { webcamInfo.fileDirAlertLoc = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("fileAlertPubCust")) { webcamInfo.fileDirAlertCust = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("fileDirPubLoc")) { webcamInfo.fileDirPubLoc = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("fileDirPubCust")) { webcamInfo.fileDirPubCust = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("filenamePrefixPubLoc")) { webcamInfo.filenamePrefixPubLoc = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("cycleStampCheckedPubLoc")) { webcamInfo.cycleStampCheckedPubLoc = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("startCyclePubLoc")) { webcamInfo.startCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("endCyclePubLoc")) { webcamInfo.endCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("currentCyclePubLoc")) { webcamInfo.currentCyclePubLoc = Convert.ToInt32(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("stampAppendPubLoc")) { webcamInfo.stampAppendPubLoc = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("ipWebcamAddress")) { webcamInfo.ipWebcamAddress = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("ipWebcamUser")) { webcamInfo.ipWebcamUser = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("ipWebcamPassword")) { webcamInfo.ipWebcamPassword = configFile.ReadString(); }
 
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.areaDetection.ToString()))
+                    if (configFile.LocalName.Equals("areaDetection"))
                     {
                         appInfo.areaDetection = Convert.ToBoolean(configFile.ReadString());
                         webcamInfo.areaDetection = appInfo.areaDetection;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.areaDetectionWithin.ToString()))
+                    if (configFile.LocalName.Equals("areaDetectionWithin"))
                     {
                         appInfo.areaDetectionWithin = Convert.ToBoolean(configFile.ReadString());
                         webcamInfo.areaDetectionWithin = appInfo.areaDetectionWithin;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.areaOffAtMotion.ToString()))
+                    if (configFile.LocalName.Equals("areaOffAtMotion"))
                     {
                         appInfo.areaOffAtMotion = Convert.ToBoolean(configFile.ReadString());
                         webcamInfo.areaOffAtMotion = appInfo.areaOffAtMotion;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.rectX.ToString()))
+                    if (configFile.LocalName.Equals("rectX"))
                     {
                         appInfo.rectX = Convert.ToInt32(configFile.ReadString());
                         webcamInfo.rectX = appInfo.rectX;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.rectY.ToString()))
+                    if (configFile.LocalName.Equals("rectY"))
                     {
                         appInfo.rectY = Convert.ToInt32(configFile.ReadString());
                         webcamInfo.rectY = appInfo.rectY;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.rectWidth.ToString()))
+                    if (configFile.LocalName.Equals("rectWidth"))
                     {
                         appInfo.rectWidth = Convert.ToInt32(configFile.ReadString());
                         webcamInfo.rectWidth = appInfo.rectWidth;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.rectHeight.ToString()))
+                    if (configFile.LocalName.Equals("rectHeight"))
                     {
                         appInfo.rectHeight = Convert.ToInt32(configFile.ReadString());
                         webcamInfo.rectHeight = appInfo.rectHeight;
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.movementVal.ToString()))
+                    if (configFile.LocalName.Equals("movementVal"))
                     {
-                        appInfo.movementVal = Convert.ToDouble(configFile.ReadString());
-                        webcamInfo.movementVal = appInfo.movementVal;
+                        webcamInfo.movementVal = Convert.ToDouble(configFile.ReadString());
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.timeSpike.ToString()))
+                    if (configFile.LocalName.Equals("timeSpike"))
                     {
-                        appInfo.timeSpike = Convert.ToInt32(configFile.ReadString());
-                        webcamInfo.timeSpike = appInfo.timeSpike;
+                        webcamInfo.timeSpike = Convert.ToInt32(configFile.ReadString());
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.toleranceSpike.ToString()))
+                    if (configFile.LocalName.Equals("toleranceSpike"))
                     {
-                        appInfo.toleranceSpike = Convert.ToInt32(configFile.ReadString());
-                        webcamInfo.toleranceSpike = appInfo.toleranceSpike;
+                        webcamInfo.toleranceSpike = Convert.ToInt32(configFile.ReadString());
                     }
-                    if (configFile.LocalName.Equals(CameraRig.infoEnum.lightSpike.ToString()))
+                    if (configFile.LocalName.Equals("lightSpike"))
                     {
-                        appInfo.lightSpike = Convert.ToBoolean(configFile.ReadString());
-                        webcamInfo.lightSpike = appInfo.lightSpike;
+                        webcamInfo.lightSpike = Convert.ToBoolean(configFile.ReadString());
                     }
 
-                    if (configFile.LocalName.Equals("mysqlDriver")) { config.mysqlDriver = configFile.ReadString(); }
-                    if (configFile.LocalName.Equals("newsSeq")) { config.newsSeq = Convert.ToInt32(configFile.ReadString()); }
+                    //if (configFile.LocalName.Equals("mysqlDriver")) { config.authenticationEndpoint = configFile.ReadString(); }
+                    if (configFile.LocalName.Equals("newsSeq")) { config.newsSeq = Convert.ToDouble(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("version")) { config.version = configFile.ReadString(); }
                     if (configFile.LocalName.Equals("freezeGuard")) { appInfo.freezeGuard = Convert.ToBoolean(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("freezeGuardWindowShow")) { appInfo.freezeGuardWindowShow = Convert.ToBoolean(configFile.ReadString()); }
@@ -498,16 +556,17 @@ namespace TeboCam
             }
             catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 configFile.Close();
                 MessageBox.Show(e.ToString());
                 return false;
             }
             configFile.Close();
-            config.WriteXMLFile(bubble.xmlFolder + FileManager.configFile + ".xml", config);
-            
+            config.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".xml", config);
+
             string moveToFileName = string.Format("configPre_3.2411_{0}.xml", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-            File.Move(fileName, bubble.xmlFolder + moveToFileName);
-            File.Delete(bubble.xmlFolder + "config.bak");
+            File.Move(fileName, TebocamState.xmlFolder + moveToFileName);
+            File.Delete(TebocamState.xmlFolder + "config.bak");
             return true;
         }
 
@@ -529,7 +588,11 @@ namespace TeboCam
                     return ConvertFromAscii(inStr);
                 }
             }
-            catch { return ""; }
+            catch (Exception e)
+            {
+                TebocamState.tebowebException.LogException(e);
+                return string.Empty;
+            }
         }
 
         private static string ConvertFromAscii(string inStr)
@@ -551,5 +614,76 @@ namespace TeboCam
             return tmpStra;
         }
 
+        public static void CreateDirIfNotExists(string dir)
+        {
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+        }
+
+        public static bool unZip(string file, string unZipTo)//, bool deleteZipOnCompletion)
+        {
+            try
+            {
+                // Specifying Console.Out here causes diagnostic msgs to be sent to the Console
+                // In a WinForms or WPF or Web app, you could specify nothing, or an alternate
+                // TextWriter to capture diagnostic messages. 
+
+                using (ZipFile zip = ZipFile.Read(file))
+                {
+                    // This call to ExtractAll() assumes:
+                    //   - none of the entries are password-protected.
+                    //   - want to extract all entries to current working directory
+                    //   - none of the files in the zip already exist in the directory;
+                    //     if they do, the method will throw.
+                    zip.ExtractAll(unZipTo);
+                }
+
+                //if (deleteZipOnCompletion) File.Delete(unZipTo + file);
+
+            }
+            catch (Exception e)
+            {
+                TebocamState.tebowebException.LogException(e);
+                return false;
+            }
+
+            return true;
+
+        }
+
+        public static event EventHandler cycleChanged;
+
+        public static string pictureFile()
+        {
+            string fileName;
+
+            switch (ConfigurationHelper.GetCurrentProfile().cycleStampChecked)
+            {
+                case 1:
+                    fileName = ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() + ConfigurationHelper.GetCurrentProfile().currentCycle.ToString() + TebocamState.ImgSuffix;
+                    if (ConfigurationHelper.GetCurrentProfile().currentCycle >= ConfigurationHelper.GetCurrentProfile().endCycle)
+                    {
+                        ConfigurationHelper.GetCurrentProfile().currentCycle = ConfigurationHelper.GetCurrentProfile().startCycle;
+                    }
+                    else
+                    {
+                        ConfigurationHelper.GetCurrentProfile().currentCycle++;
+                    }
+                    cycleChanged(null, new EventArgs());
+                    break;
+                case 2:
+                    string stampA = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                    fileName = ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() + stampA + TebocamState.ImgSuffix;
+                    break;
+                default:
+                    string stampB = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                    fileName = ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() + stampB + TebocamState.ImgSuffix;
+                    break;
+            }
+
+            return fileName;
+        }
     }
 }

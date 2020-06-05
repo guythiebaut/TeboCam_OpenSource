@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,14 +12,17 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TeboCam</RootNamespace>
     <AssemblyName>TeboCam</AssemblyName>
-    <StartupObject>TeboCam.preferences</StartupObject>
+    <StartupObject>TeboCam.Preferences</StartupObject>
     <ApplicationIcon>TeboCam.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <ApplicationRevision>0</ApplicationRevision>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +44,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -48,6 +58,15 @@
   </Target>
   -->
   <ItemGroup>
+    <EmbeddedResource Include="AdminCntl.resx">
+      <DependentUpon>AdminCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\AlertFilenameCntl.resx">
+      <DependentUpon>AlertFilenameCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\AlertTimeSettingsCntl.resx">
+      <DependentUpon>AlertTimeSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="analysePictureControl.resx">
       <DependentUpon>analysePictureControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -69,11 +88,30 @@
     <EmbeddedResource Include="ControlRoomCntl.resx">
       <DependentUpon>ControlRoomCntl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\EmailHostSettingsCntl.resx">
+      <DependentUpon>EmailHostSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\EmailIntelligenceCntl.resx">
+      <DependentUpon>EmailIntelligenceCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\EmailSettingsCntl.resx">
+      <DependentUpon>EmailSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\FrameRateCntl.resx">
+      <DependentUpon>FrameRateCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\FreezeGuardCntl.resx">
+      <DependentUpon>FreezeGuardCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\FtpSettingsCntl.resx">
+      <DependentUpon>FtpSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageDisplayer.resx">
       <DependentUpon>ImageDisplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputBoxDialog.resx">
       <DependentUpon>InputBoxDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LevelControl.resx">
       <DependentUpon>LevelControl.cs</DependentUpon>
@@ -103,6 +141,48 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\GenerateWebpageCntl.resx">
+      <DependentUpon>GenerateWebpageCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\ImagesSavedFolderCntl.resx">
+      <DependentUpon>ImagesSavedFolderCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\InternetConnectionCheckCntl.resx">
+      <DependentUpon>InternetConnectionCheckCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\LogCntl.resx">
+      <DependentUpon>LogCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\LogFileManagementCntl.resx">
+      <DependentUpon>LogFileManagementCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\MiscCntl.resx">
+      <DependentUpon>MiscCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\MotionAlarmCntl.resx">
+      <DependentUpon>MotionAlarmCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\MovementStatisticsCntl.resx">
+      <DependentUpon>MovementStatisticsCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\NotificationSettingsCntl.resx">
+      <DependentUpon>NotificationSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\OnlineCntl.resx">
+      <DependentUpon>OnlineCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\ProfilesCntl.resx">
+      <DependentUpon>ProfilesCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\PublishSettingsCntl.resx">
+      <DependentUpon>PublishSettingsCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\SecurityLockdownCntl.resx">
+      <DependentUpon>SecurityLockdownCntl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabControls\UpdateOptionsCntl.resx">
+      <DependentUpon>UpdateOptionsCntl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="timestamp.resx">
       <DependentUpon>timestamp.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -117,6 +197,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminCntl.Designer.cs">
+      <DependentUpon>AdminCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenVideo.cs" />
+    <Compile Include="TabControls\AlertFilenameCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\AlertFilenameCntl.Designer.cs">
+      <DependentUpon>AlertFilenameCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\AlertTimeSettingsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\AlertTimeSettingsCntl.Designer.cs">
+      <DependentUpon>AlertTimeSettingsCntl.cs</DependentUpon>
+    </Compile>
     <Compile Include="analyse.cs" />
     <Compile Include="analysePictureControl.cs">
       <SubType>UserControl</SubType>
@@ -124,9 +223,47 @@
     <Compile Include="analysePictureControl.Designer.cs">
       <DependentUpon>analysePictureControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="API.cs" />
+    <Compile Include="ApiProcess.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="bubble.cs">
+    <Compile Include="TabControls\EmailHostSettingsCntl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TabControls\EmailHostSettingsCntl.Designer.cs">
+      <DependentUpon>EmailHostSettingsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\EmailIntelligenceCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\EmailIntelligenceCntl.Designer.cs">
+      <DependentUpon>EmailIntelligenceCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\EmailSettingsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\EmailSettingsCntl.Designer.cs">
+      <DependentUpon>EmailSettingsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\FrameRateCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\FrameRateCntl.Designer.cs">
+      <DependentUpon>FrameRateCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\FreezeGuardCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\FreezeGuardCntl.Designer.cs">
+      <DependentUpon>FreezeGuardCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\FtpSettingsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\FtpSettingsCntl.Designer.cs">
+      <DependentUpon>FtpSettingsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImagePub.cs" />
+    <Compile Include="Internet.cs" />
     <Compile Include="calibrate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +271,7 @@
       <DependentUpon>calibrate.cs</DependentUpon>
     </Compile>
     <Compile Include="Camera.cs" />
+    <Compile Include="CameraAlarm.cs" />
     <Compile Include="CameraButtonGroup.cs" />
     <Compile Include="CameraButtonsCntl.cs">
       <SubType>UserControl</SubType>
@@ -156,7 +294,99 @@
     <Compile Include="ControlRoomCntl.Designer.cs">
       <DependentUpon>ControlRoomCntl.cs</DependentUpon>
     </Compile>
-    <Compile Include="exception.cs" />
+    <Compile Include="IMail.cs" />
+    <Compile Include="Mail.cs" />
+    <Compile Include="MessageDialog.cs" />
+    <Compile Include="Movement.cs" />
+    <Compile Include="Ping.cs" />
+    <Compile Include="Publisher.cs" />
+    <Compile Include="Sound.cs" />
+    <Compile Include="TabControls\GenerateWebpageCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\GenerateWebpageCntl.Designer.cs">
+      <DependentUpon>GenerateWebpageCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\ImagesSavedFolderCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\ImagesSavedFolderCntl.Designer.cs">
+      <DependentUpon>ImagesSavedFolderCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\InternetConnectionCheckCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\InternetConnectionCheckCntl.Designer.cs">
+      <DependentUpon>InternetConnectionCheckCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\LogCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\LogCntl.Designer.cs">
+      <DependentUpon>LogCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\LogFileManagementCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\LogFileManagementCntl.Designer.cs">
+      <DependentUpon>LogFileManagementCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\MiscCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\MiscCntl.Designer.cs">
+      <DependentUpon>MiscCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\MotionAlarmCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\MotionAlarmCntl.Designer.cs">
+      <DependentUpon>MotionAlarmCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\MovementStatisticsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\MovementStatisticsCntl.Designer.cs">
+      <DependentUpon>MovementStatisticsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\NotificationSettingsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\NotificationSettingsCntl.Designer.cs">
+      <DependentUpon>NotificationSettingsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\OnlineCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\OnlineCntl.Designer.cs">
+      <DependentUpon>OnlineCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\ProfilesCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\ProfilesCntl.Designer.cs">
+      <DependentUpon>ProfilesCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\PublishSettingsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\PublishSettingsCntl.Designer.cs">
+      <DependentUpon>PublishSettingsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\SecurityLockdownCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\SecurityLockdownCntl.Designer.cs">
+      <DependentUpon>SecurityLockdownCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\UpdateOptionsCntl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\UpdateOptionsCntl.Designer.cs">
+      <DependentUpon>UpdateOptionsCntl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TebocamState.cs" />
+    <Compile Include="TebowebException.cs" />
     <Compile Include="extensions.cs" />
     <Compile Include="ImageDisplayer.cs">
       <SubType>UserControl</SubType>
@@ -165,6 +395,7 @@
       <DependentUpon>ImageDisplayer.cs</DependentUpon>
     </Compile>
     <Compile Include="imageFilter.cs" />
+    <Compile Include="ImageProcessor.cs" />
     <Compile Include="LevelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,7 +421,6 @@
       <DependentUpon>fileprefix.cs</DependentUpon>
     </Compile>
     <Compile Include="crypt.cs" />
-    <Compile Include="database.cs" />
     <Compile Include="fileManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -211,7 +441,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LeftRightMid.cs" />
-    <Compile Include="mail.cs" />
+    <Compile Include="mailOLD.cs" />
     <Compile Include="preferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,9 +458,11 @@
     <Compile Include="sensitiveInfo.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="ConfigData.cs" />
+    <Compile Include="StastisticalData.cs" />
     <Compile Include="statistics.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="teboDebug.cs" />
+    <Compile Include="Tests\Tests.cs" />
     <Compile Include="time.cs" />
     <Compile Include="timestamp.cs">
       <SubType>Form</SubType>
@@ -245,6 +477,8 @@
       <DependentUpon>train.cs</DependentUpon>
     </Compile>
     <Compile Include="update.cs" />
+    <Compile Include="Valid.cs" />
+    <Compile Include="WaitForCam.cs" />
     <Compile Include="webcamConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +506,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libraries\AForge.Vision.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="cuteButton, Version=1.0.4319.27512, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\custom_controls\ctlCuteButton\ctlCuteButton\bin\Release\cuteButton.dll</HintPath>
@@ -280,10 +518,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="MailKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.0.7\lib\net45\MailKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.0.6\lib\net45\MimeKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
@@ -295,6 +551,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Resources\landscape.bmp" />
     <Content Include="Resources\1.gif" />
     <Content Include="Resources\2.gif" />
@@ -321,4 +580,15 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
 </Project>

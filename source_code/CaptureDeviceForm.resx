@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -129,7 +129,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Select a usb webcam</value>
+    <value>Select a usb webCamNo</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -289,16 +289,16 @@
     <value>17, 17</value>
   </metadata>
   <data name="txtIpAddress.ToolTip" xml:space="preserve">
-    <value>The address of the webcam image.
+    <value>The address of the webCamNo image.
 
 It will look something like this:
 http://192.168.1.1/mjpg/video.mjpg
 
-Consult your webcam manual or google to find out 
-the precise setting for your webcam.
+Consult your webCamNo manual or google to find out 
+the precise setting for your webCamNo.
 
 Please note that you will need to ensure that your 
-webcam is configured to output an mjpeg stream.</value>
+webCamNo is configured to output an mjpeg stream.</value>
   </data>
   <data name="&gt;&gt;txtIpAddress.Name" xml:space="preserve">
     <value>txtIpAddress</value>
@@ -325,7 +325,7 @@ webcam is configured to output an mjpeg stream.</value>
     <value>13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>IP webcam address(mjpeg stream)</value>
+    <value>IP webCamNo address(mjpeg stream)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -355,10 +355,10 @@ webcam is configured to output an mjpeg stream.</value>
     <value>16</value>
   </data>
   <data name="txtPassword.ToolTip" xml:space="preserve">
-    <value>The password for your webcam
+    <value>The password for your webCamNo
 
 This will be set or you will have 
-set this from the IP webcam web page.</value>
+set this from the IP webCamNo web page.</value>
   </data>
   <data name="&gt;&gt;txtPassword.Name" xml:space="preserve">
     <value>txtPassword</value>
@@ -385,10 +385,10 @@ set this from the IP webcam web page.</value>
     <value>15</value>
   </data>
   <data name="txtUsername.ToolTip" xml:space="preserve">
-    <value>The login for your webcam.
+    <value>The login for your webCamNo.
 
 This will be set or you will have 
-set this from the IP webcam web page.</value>
+set this from the IP webCamNo web page.</value>
   </data>
   <data name="&gt;&gt;txtUsername.Name" xml:space="preserve">
     <value>txtUsername</value>
@@ -5497,7 +5497,7 @@ set this from the IP webcam web page.</value>
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Open Webcam</value>
+    <value>Open WebCamNo</value>
   </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>

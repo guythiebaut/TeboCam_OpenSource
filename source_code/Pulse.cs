@@ -8,9 +8,20 @@ using TeboCam;
 
 namespace TeboWeb
 {
+    public static class PulseEvents
+    {
+        public static event EventHandler pulseEvent;
+
+        public static void PulseEvent()
+        {
+            pulseEvent(null, new EventArgs());
+        }
+    }
 
     public class Pulse
     {
+
+        public IException tebowebException;
 
         private decimal beatsPerMinute;
         private decimal checksPerMinute;
@@ -60,7 +71,7 @@ namespace TeboWeb
             if (!restarted)
             {
 
-                //bubble.postProcessCommand = @" /profile " + bubble.profileInUse;
+                //bubble.postProcessCommand = @" /profile " + TebocamState.profileInUse;
 
                 string cmdLn = "";
 
@@ -80,24 +91,18 @@ namespace TeboWeb
                 startInfo.FileName = pulseAppLocation;
                 startInfo.Arguments = cmdLn;
                 //20111225 hidden freeguard window
-                if (config.getProfile(bubble.profileInUse).freezeGuardWindowShow)
+                if (ConfigurationHelper.GetCurrentProfile().freezeGuardWindowShow)
                 {
-
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-
+                    startInfo.WindowStyle = ProcessWindowStyle.Normal;
                 }
                 else
                 {
-
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 }
                 //startInfo.UseShellExecute = false;
                 //20111225 hidden freeguard window
                 Process.Start(startInfo);
-
             }
-
         }
 
 
@@ -134,11 +139,10 @@ namespace TeboWeb
                 return processKilled;
 
             }
-            catch
+            catch (Exception e)
             {
-
+                TebocamState.tebowebException.LogException(e);
                 return false;
-
             }
 
 
@@ -204,7 +208,6 @@ namespace TeboWeb
 
         private void writefile(int val)
         {
-
             try
             {
                 XmlTextWriter pulseData = new XmlTextWriter(directory + filename, null);
@@ -231,17 +234,11 @@ namespace TeboWeb
                 pulseData.Close();
 
             }
-
-            catch { }
+            catch (Exception e)
+            {
+                TebocamState.tebowebException.LogException(e);
+            }
         }
-
-
-
-
-
-
-
-
     }
 
 }

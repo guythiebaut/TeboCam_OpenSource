@@ -29,10 +29,23 @@ namespace TeboCam
         public static event EventHandler GetFileListSuccess;
         public static event EventHandler DeleteError;
         public static event EventHandler DeleteSuccess;
+        public static IException tebowebException;
+        public static bool testFtp = false;
+        public static bool testFtpError = false;
+        private WebClient _webClient;
+
+        #region ::::::::::::::::::::::::New Upload::::::::::::::::::::::::
+
+        public void UploadFiles(string[] args)
+        {
+        }
+
+        #endregion
 
 
-        #region ::::::::::::::::::::::::Upload::::::::::::::::::::::::
-        public static bool Upload(string filename, string ftpServerIP, string ftpUserID, string ftpPassword)
+
+            #region ::::::::::::::::::::::::Upload::::::::::::::::::::::::
+        public static bool Upload(string filename, string ftpServerIP, string ftpUserID, string ftpPassword, int checkTimes)
         {
 
             try
@@ -85,14 +98,31 @@ namespace TeboCam
                 // Close the file stream and the Request Stream
                 strm.Close();
                 fs.Close();
+
+
+                //deprecated 20180622
+                //if (checkTimes > 0)
+                //{
+                //    var files = GetFileList();
+                //    for (int i = 0; i < checkTimes; i++)
+                //    {
+                //        if (files.Contains(filename))
+                //        {
+                //            return true;
+                //        }
+                //        Thread.Sleep(1000);
+                //    }
+                //}
+
                 return true;
                 //UploadSuccess(null, new EventArgs());
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 //UploadError(null, new EventArgs()); 
-                bubble.logAddLine("FTP error: Upload");
-                if (bubble.testFtp) { bubble.testFtpError = true; }
+                TebocamState.tebowebException.LogException(e);
+                TebocamState.log.AddLine("FTP error: Upload");
+                if (testFtp) { testFtpError = true; }
                 return false;
                 //MessageBox.Show(ex.Message, "Upload Error");
             }
@@ -104,12 +134,9 @@ namespace TeboCam
         #region ::::::::::::::::::::::::GetFileList::::::::::::::::::::::::
         public static ArrayList GetFileList()
         {
-
-            bubble.fileBusy = true;
-
-            string ftpServerIP = config.getProfile(bubble.profileInUse).ftpRoot;
-            string ftpUserID = config.getProfile(bubble.profileInUse).ftpUser;
-            string ftpPassword = config.getProfile(bubble.profileInUse).ftpPass;
+            string ftpServerIP = ConfigurationHelper.GetCurrentProfile().ftpRoot;
+            string ftpUserID = ConfigurationHelper.GetCurrentProfile().ftpUser;
+            string ftpPassword = ConfigurationHelper.GetCurrentProfile().ftpPass;
             ArrayList tempList = new ArrayList();
 
             StringBuilder result = new StringBuilder();
@@ -131,15 +158,14 @@ namespace TeboCam
                 }
                 reader.Close();
                 response.Close();
-                bubble.fileBusy = false;
                 //GetFileListSuccess(null, new EventArgs()); 
                 return tempList;
             }
-            catch
+            catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 //GetFileListError(null, new EventArgs()); 
-                bubble.logAddLine("FTP error: GetFileList");
-                bubble.fileBusy = false;
+                TebocamState.log.AddLine("FTP error: GetFileList");
                 return tempList;
             }
 
@@ -150,24 +176,18 @@ namespace TeboCam
         #region ::::::::::::::::::::::::DeleteFTP::::::::::::::::::::::::
         public static bool DeleteFTP(string fileName, string ftpServerIP, string ftpUserID, string ftpPassword, bool getResponse)
         {
-            bubble.fileBusy = true;
-
             try
             {
                 string uri = "ftp://" + ftpServerIP + "/" + fileName;
                 FtpWebRequest reqFTP;
                 reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://" + ftpServerIP + "/" + fileName));
-
                 reqFTP.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
                 reqFTP.KeepAlive = false;
                 reqFTP.Method = WebRequestMethods.Ftp.DeleteFile;
-
-
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
 
                 if (getResponse)
                 {
-
                     long size = response.ContentLength;
                     Stream datastream = response.GetResponseStream();
                     StreamReader sr = new StreamReader(datastream);
@@ -175,23 +195,19 @@ namespace TeboCam
                     sr.Close();
                     datastream.Close();
                     response.Close();
-
                 }
-
-
                 //DeleteSuccess(null, new EventArgs()); 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 //DeleteError(null, new EventArgs()); 
-                bubble.fileBusy = false;
-                bubble.logAddLine("FTP file: " + fileName + " not deleted");
-                if (bubble.testFtp) { bubble.testFtpError = true; };
+                TebocamState.log.AddLine("FTP file: " + fileName + " not deleted");
+                if (testFtp) { testFtpError = true; };
                 //MessageBox.Show(ex.Message, "FTP 2.0 Delete");
                 return false;
             }
 
-            bubble.fileBusy = false;
             return true;
 
         }

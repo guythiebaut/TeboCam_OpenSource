@@ -361,6 +361,7 @@ namespace TeboCam
             // 
             // cameraWindow
             // 
+            this.cameraWindow.AutoSizeCameraWindow = true;
             this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
             this.cameraWindow.Camera = null;
             resources.ApplyResources(this.cameraWindow, "cameraWindow");

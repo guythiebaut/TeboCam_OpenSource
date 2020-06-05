@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Net;
 using System.Linq;
-
+using System.Runtime.Remoting;
 
 //using AForge.Video;
 using AForge.Video.DirectShow;
@@ -22,6 +22,8 @@ namespace TeboCam
 
     public partial class webcamConfig : Form
     {
+        private IException tebowebException;
+        private int detectionCountDown;
         public delegate void SaveChanges();
         private SaveChanges saveChanges;
         public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
@@ -33,9 +35,9 @@ namespace TeboCam
 
         public static event drawEventHandler drawInitialRectangle;
 
+        public static bool movementSetting;
 
-
-
+        public static bool exposeArea = false;
         private static string selectedWebcam;
         private static int mainSelectedWebcam;
         //private static List<camButtons.ButtonColourEnum> buttons;
@@ -43,17 +45,25 @@ namespace TeboCam
         private ArrayList returnList = new ArrayList();
         private bool autoscroll;
         private static bool toolTip;
+        Publisher publisher;
+        Ping ping;
+        bool baselineSetting;
+        int detectionTrain;
 
-        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance, SaveChanges save)
+        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance, SaveChanges save, IException exception, Publisher pub, Ping pinger)
         {
+            TebocamState.tebowebException = exception;
             saveChanges = save;
             toolTip = (bool)from[0];
             mainSelectedWebcam = (int)from[1];
             autoscroll = (bool)from[2];
             // buttons = (List<camButtons.ButtonColourEnum>)from[3];
             webcamConfigDelegate = sender;
+            publisher = pub;
+            ping = pinger;
             from.Clear();
             InitializeComponent();
+            cameraWindow.ping = ping;
 
             //this.Controls.Add(ButtonCameraControl);
             //ButtonCameraControl.Location = new Point(5, 480);
@@ -81,7 +91,7 @@ namespace TeboCam
             ButtonCameraControl.Location = new Point(10, 2);
         }
 
-        private void ButtonCameraDelegation(int id, Button cameraButton, Button activeButton)
+        private void ButtonCameraDelegation(int id, Button cameraButton, Button activeButton, bool activate = false)
         {
             cameraSwitch(id, false);
         }
@@ -93,10 +103,8 @@ namespace TeboCam
 
         private void camName_TextChanged(object sender, EventArgs e)
         {
-
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.friendlyName, camName.Text);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).friendlyName = camName.Text;
+            CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
         }
 
 
@@ -105,7 +113,7 @@ namespace TeboCam
 
             //hjfgjgf
 
-            if (CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.isIPCamera)
+            if (CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.isIPCamera)
             {
 
                 try
@@ -113,21 +121,19 @@ namespace TeboCam
 
                     IPAddress parsedIPAddress;
                     Uri parsedUri;
-                    string name = CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.name;
+                    string name = CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.name;
 
                     //check that the url resolves
                     if (Uri.TryCreate(name, UriKind.Absolute, out parsedUri) && IPAddress.TryParse(parsedUri.DnsSafeHost, out parsedIPAddress))
                     {
-
-                        bubble.openInternetBrowserAt("http:\\" + parsedIPAddress.ToString());
-
+                        Internet.openInternetBrowserAt("http:\\" + parsedIPAddress.ToString());
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    bubble.logAddLine("Unable to connect webcam index site.");
+                    TebocamState.tebowebException.LogException(ex);
+                    TebocamState.log.AddLine("Unable to connect webcam index site.");
 
                 }
 
@@ -150,19 +156,18 @@ namespace TeboCam
 
             if (drawModeOff.Checked)
             {
-
-                CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetection, radioButton4.Checked);
-                CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
+                ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaDetection = radioButton4.Checked;
+                CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
 
                 CameraRig.getCam(selectedWebcam).MotionDetector.Reset();
-                config.getProfile(bubble.profileInUse).areaDetection = radioButton4.Checked;
+                ConfigurationHelper.GetCurrentProfile().areaDetection = radioButton4.Checked;
                 CameraRig.getCam(selectedWebcam).areaDetection = radioButton4.Checked;
 
                 areaOffAtMotion.Enabled = radioButton4.Checked;
                 groupBox4.Enabled = radioButton4.Checked;
                 showSelection.Enabled = radioButton4.Checked;
 
-                CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.MotionDetector.Reset();
+                CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.MotionDetector.Reset();
 
 
             }
@@ -174,48 +179,51 @@ namespace TeboCam
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetectionWithin, radioButton1.Checked);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            config.getProfile(bubble.profileInUse).areaDetectionWithin = radioButton1.Checked;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaDetectionWithin = radioButton1.Checked;
+            CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
+            ConfigurationHelper.GetCurrentProfile().areaDetectionWithin = radioButton1.Checked;
             CameraRig.AreaDetectionWithin = radioButton1.Checked;
             CameraRig.getCam(selectedWebcam).MotionDetector.Reset();
         }
 
         private void areaOffAtMotion_CheckedChanged(object sender, EventArgs e)
         {
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaOffAtMotion = areaOffAtMotion.Checked;
+            CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.areaOffAtMotionTriggered = false;
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.areaOffAtMotionReset = false;
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion, areaOffAtMotion.Checked);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.areaOffAtMotionTriggered = false;
-            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.areaOffAtMotionReset = false;
+        }
 
+        public bool DrawMode()
+        {
+            return drawModeOn.Checked;
         }
 
         private void drawModeOn_CheckedChanged(object sender, EventArgs e)
         {
-
-
             bool drawMode = drawModeOn.Checked;
-            bubble.drawMode = drawModeOn.Checked;
 
             if (drawMode)
             {
 
                 System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
 
-                if (config.getProfile(bubble.profileInUse).imageToframe)
+                if (ConfigurationHelper.GetCurrentProfile().imageToframe)
                 {
                     cameraWindow.imageToFrame = false;
                     panel3.AutoScroll = true;
                 }
 
-                if (!config.getProfile(bubble.profileInUse).cameraShow)
+                cameraWindow.imageToFrame = true;
+                panel3.AutoScroll = false;
+
+                if (!ConfigurationHelper.GetCurrentProfile().cameraShow)
                 {
                     cameraWindow.showCam = true;
                 }
 
-
-                bubble.exposeArea = false;
+                exposeArea = false;
                 CameraRig.ExposeArea = false;
                 radioButton8.Checked = false;
 
@@ -245,7 +253,7 @@ namespace TeboCam
             {
                 System.Diagnostics.Debug.WriteLine(CameraRig.cameraCount());
 
-                if (config.getProfile(bubble.profileInUse).imageToframe)
+                if (ConfigurationHelper.GetCurrentProfile().imageToframe)
                 {
                     cameraWindow.imageToFrame = true;
                     panel3.AutoScroll = false;
@@ -256,7 +264,7 @@ namespace TeboCam
                     panel3.AutoScroll = true;
                 }
 
-                if (!config.getProfile(bubble.profileInUse).cameraShow)
+                if (!ConfigurationHelper.GetCurrentProfile().cameraShow)
                 {
                     cameraWindow.showCam = false;
                 }
@@ -270,25 +278,24 @@ namespace TeboCam
 
             }
 
-            if (config.getProfile(bubble.profileInUse).areaDetection) { cameraWindow.drawRectOnOpen(); }
+            if (ConfigurationHelper.GetCurrentProfile().areaDetection) { cameraWindow.drawRectOnOpen(); }
             cameraWindow.selectionOn = drawMode;
             cameraWindow.rectDrawn = true;
-
-
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
 
-            config.getProfile(bubble.profileInUse).rectX = 20;
-            config.getProfile(bubble.profileInUse).rectY = 20;
-            config.getProfile(bubble.profileInUse).rectWidth = 80;
-            config.getProfile(bubble.profileInUse).rectHeight = 80;
+            ConfigurationHelper.GetCurrentProfile().rectX = 20;
+            ConfigurationHelper.GetCurrentProfile().rectY = 20;
+            ConfigurationHelper.GetCurrentProfile().rectWidth = 80;
+            ConfigurationHelper.GetCurrentProfile().rectHeight = 80;
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectX, 20);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectY, 20);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectWidth, 80);
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.rectHeight, 80);
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).rectX = 20;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).rectY = 20;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).rectWidth = 80;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).rectHeight = 80;
+
 
             CameraRig.getCam(selectedWebcam).rectX = 20;
             CameraRig.getCam(selectedWebcam).rectY = 20;
@@ -303,7 +310,7 @@ namespace TeboCam
 
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            bubble.exposeArea = radioButton8.Checked;
+            exposeArea = radioButton8.Checked;
             CameraRig.ExposeArea = radioButton8.Checked;
             radioButton7.Checked = !radioButton8.Checked;
         }
@@ -313,12 +320,12 @@ namespace TeboCam
 
             ArrayList i = new ArrayList();
 
-            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+            //i.Add(config.GetCurrentProfile().toolTips);
             i.Add(toolTip1.Active);
             i.Add(CameraRig.getCam(selectedWebcam).camNo);
             //System.Diagnostics.Debug.WriteLine("cam sent: " + Convert.ToString(i[1]));
 
-            calibrate calibrate = new calibrate(postCalibrate, i);
+            calibrate calibrate = new calibrate(postCalibrate, i, publisher);
             calibrate.StartPosition = FormStartPosition.CenterScreen;
             calibrate.ShowDialog();
 
@@ -338,11 +345,11 @@ namespace TeboCam
         private void button8_Click(object sender, EventArgs e)
         {
 
-            if (!bubble.movementSetting)
+            if (!movementSetting)
             {
                 ArrayList i = new ArrayList();
 
-                i.Add(config.getProfile(bubble.profileInUse).toolTips);
+                i.Add(ConfigurationHelper.GetCurrentProfile().toolTips);
                 train train = new train(new formDelegate(trainDetection), i);
                 train.StartPosition = FormStartPosition.CenterScreen;
                 train.ShowDialog();
@@ -353,7 +360,7 @@ namespace TeboCam
 
         private void txtMov_TextChanged(object sender, EventArgs e)
         {
-            if (!bubble.IsNumeric(txtMov.Text))
+            if (!Valid.IsNumeric(txtMov.Text))
             {
                 txtMov.Text = "1";
             }
@@ -363,9 +370,9 @@ namespace TeboCam
 
             trkMov.Value = Convert.ToInt32(txtMov.Text);
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
-            CameraRig.ConnectedCameras[CameraRig.ConfigCam].cam.movementVal = Convert.ToDouble(txtMov.Text) / 100;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).movementVal = Convert.ToDouble(txtMov.Text) / 100;
+            CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
+            CameraRig.ConnectedCameras[CameraRig.ConfigCam].camera.movementVal = Convert.ToDouble(txtMov.Text) / 100;
 
         }
 
@@ -375,7 +382,7 @@ namespace TeboCam
             if (Convert.ToInt32(txtMov.Text) > 99 || Convert.ToInt32(txtMov.Text) < 1)
             {
                 txtMov.Focus();
-                bubble.messageAlert("Value must be >= 1 and <= 99", "Error with sensitivity value");
+                MessageDialog.messageAlert("Value must be >= 1 and <= 99", "Error with sensitivity value");
                 txtMov.Text = "1";
             }
 
@@ -389,12 +396,12 @@ namespace TeboCam
 
             CameraRig.TrainCam = CameraRig.getCam(selectedWebcam).camNo;
 
-            bubble.detectionCountDown = (int)i[0];
-            bubble.detectionTrain = (int)i[1];
+            detectionCountDown = (int)i[0];
+            detectionTrain = (int)i[1];
 
             actCount.Visible = true;
-            bubble.training.Clear();
-            bubble.movementSetting = true;
+            TebocamState.training.Clear();
+            movementSetting = true;
             dw.DoWork -= new DoWorkEventHandler(trainMovement);
             dw.DoWork += new DoWorkEventHandler(trainMovement);
             dw.WorkerSupportsCancellation = true;
@@ -412,10 +419,10 @@ namespace TeboCam
             int tmpInt;
             double tmpDbl, tmpVal;
 
-            while (bubble.baselineSetting || bubble.movementSetting)
+            while (baselineSetting || movementSetting)
             {
 
-                tmpInt = bubble.detectionCountDown;
+                tmpInt = detectionCountDown;
                 secondsToTrainStart = time.secondsSinceStart();
 
                 CameraRig.getCam(CameraRig.TrainCam).calibrating = false;
@@ -428,7 +435,7 @@ namespace TeboCam
                 while (tmpInt > 0)
                 {
 
-                    tmpInt = bubble.detectionCountDown + ((int)secondsToTrainStart - time.secondsSinceStart());
+                    tmpInt = detectionCountDown + ((int)secondsToTrainStart - time.secondsSinceStart());
                     if (secondsToLast != tmpInt)
                     {
                         actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(tmpInt));
@@ -437,7 +444,7 @@ namespace TeboCam
                     secondsToLast = tmpInt;
                 }
 
-                tmpInt = bubble.detectionTrain;
+                tmpInt = detectionTrain;
                 secondsToTrainStart = time.secondsSinceStart();
                 CameraRig.getCam(CameraRig.TrainCam).detectionOn = true;
                 CameraRig.getCam(CameraRig.TrainCam).calibrating = true;
@@ -449,7 +456,7 @@ namespace TeboCam
 
                 while (tmpInt > 0)
                 {
-                    tmpInt = bubble.detectionTrain + (secondsToTrainStart - time.secondsSinceStart());
+                    tmpInt = detectionTrain + (secondsToTrainStart - time.secondsSinceStart());
                     if (secondsToLast != tmpInt)
                     {
                         actCount.SynchronisedInvoke(() => actCount.Text = Convert.ToString(tmpInt));
@@ -464,7 +471,7 @@ namespace TeboCam
                 CameraRig.getCam(CameraRig.TrainCam).calibrating = false;
                 tmpDbl = 0;
                 tmpInt = 0;
-                foreach (double val in bubble.training)
+                foreach (double val in TebocamState.training)
                 {
                     if (val > 0)
                     {
@@ -479,7 +486,8 @@ namespace TeboCam
                     tmpVal = tmpDbl / (double)tmpInt;
                 }
 
-                config.getProfile(bubble.profileInUse).movementVal = tmpVal;
+                CameraRig.getCam(CameraRig.TrainCam).movementVal = tmpVal;
+                //config.GetCurrentProfile().movementVal = tmpVal;
                 txtMov.SynchronisedInvoke(() => txtMov.Text = Convert.ToString((int)Math.Floor(tmpVal * 100)));
                 //SetInfo(txtMov, Convert.ToString((int)Math.Floor(tmpVal * 100)));
 
@@ -490,8 +498,8 @@ namespace TeboCam
                 //SetInfo(txtMess, "");
                 //SetInfo(actCount, "");
                 FileManager.WriteFile("training");
-                bubble.baselineSetting = false;
-                bubble.movementSetting = false;
+                baselineSetting = false;
+                movementSetting = false;
 
                 dw.Dispose();
             }
@@ -534,7 +542,10 @@ namespace TeboCam
                 webcamConfigDelegate(returnList);
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                TebocamState.tebowebException.LogException(ex);
+            }
 
         }
 
@@ -542,7 +553,7 @@ namespace TeboCam
         private void drawLevel(object sender, MotionLevelArgs a, CamIdArgs b)
         {
 
-            if (b.cam == CameraRig.ConfigCam)
+            if (b.camNo == CameraRig.ConfigCam)
             {
 
                 double sensitivity = (double)Convert.ToInt32(txtMov.Text);
@@ -595,13 +606,13 @@ namespace TeboCam
 
         private bool camClick(int button)
         {
-            bool canClick = CameraButtons.Where(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).Count() > 0;
+            bool canClick = CameraButtons.Any(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected);
             if (!canClick) return false;
 
             var connected = CameraButtons.Where(x => x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).ToList();
-            connected.ForEach(x => x.CameraButtonState = CameraButtonGroup.ButtonState.ConnectedAndInactive);
-            var newActiveButton = CameraButtons.Where(x => x.id == button).First();
-            newActiveButton.CameraButtonState = CameraButtonGroup.ButtonState.ConnectedAndActive;
+            connected.ForEach(x => x.CameraButtonIsConnectedAndInactive());
+            var newActiveButton = CameraButtons.First(x => x.id == button);
+            newActiveButton.CameraButtonIsActive();
             return true;
 
         }
@@ -624,22 +635,22 @@ namespace TeboCam
                     CameraRig.ConfigCam = camId;
                     CameraRig.getCam(camId).MotionDetector.Reset();
 
-                    camName.Text = (string)CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.friendlyName);
+                    camName.Text = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).friendlyName;
                     drawModeOn.Checked = false;
                     drawModeOff.Checked = true;
-                    txtMov.Text = Convert.ToString((double)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal)) * 100);
-                    radioButton4.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetection));
+                    txtMov.Text = ((double)(ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).movementVal * 100)).ToString();
+                    radioButton4.Checked = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaDetection;
                     radioButton3.Checked = !radioButton4.Checked;
-                    areaOffAtMotion.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaOffAtMotion));
+                    areaOffAtMotion.Checked = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaOffAtMotion;
                     radioButton8.Checked = false;
                     radioButton7.Checked = true;
-                    radioButton1.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.areaDetectionWithin));
+                    radioButton1.Checked = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).areaDetectionWithin;
                     radioButton2.Checked = !radioButton1.Checked;
 
 
-                    trkTimeSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike));
-                    trkToleranceSpike.Value = (int)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike));
-                    rdSpikeOn.Checked = (bool)(CameraRig.rigInfoGet(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.lightSpike));
+                    trkTimeSpike.Value = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).timeSpike;
+                    trkToleranceSpike.Value = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).toleranceSpike;
+                    rdSpikeOn.Checked = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).lightSpike;
                     lblTimeSpike.Text = trkTimeSpike.Value.ToString();
                     lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
 
@@ -721,7 +732,7 @@ namespace TeboCam
                 {
                     if (CameraRig.CameraIsConnectedToButton(buttonGroup.id))
                     {
-                        buttonGroup.CameraButtonIsInactive();
+                        buttonGroup.CameraButtonIsConnectedAndInactive();
                     }
                     else
                     {
@@ -765,7 +776,7 @@ namespace TeboCam
                 nowButton = wasButton + 1;
             }
 
-            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.ConfigCam, nowButton);
+            CameraRig.changeDisplayButton(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam, CameraRig.ConfigCam, nowButton);
             cameraSwitch(nowButton, true);
         }
 
@@ -784,7 +795,7 @@ namespace TeboCam
                 nowButton = wasButton - 1;
             }
 
-            CameraRig.changeDisplayButton(bubble.profileInUse, selectedWebcam, CameraRig.ConfigCam, nowButton);
+            CameraRig.changeDisplayButton(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam, CameraRig.ConfigCam, nowButton);
             cameraSwitch(nowButton, true);
         }
 
@@ -831,10 +842,8 @@ namespace TeboCam
 
         private void rdSpikeOn_CheckedChanged(object sender, EventArgs e)
         {
-
             grpSpikeSettings.Enabled = rdSpikeOn.Checked;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.lightSpike, grpSpikeSettings.Enabled);
-
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).lightSpike = grpSpikeSettings.Enabled;
         }
 
         private void trkMov_ValueChanged(object sender, EventArgs e)
@@ -848,23 +857,24 @@ namespace TeboCam
                 txtMov.Text = trkMov.Value.ToString();
             }
 
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.movementVal, Convert.ToDouble(txtMov.Text) / 100);
-            CameraRig.rigInfoPopulateForCam(bubble.profileInUse, selectedWebcam);
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).movementVal = Convert.ToDouble(txtMov.Text) / 100;
+            CameraRig.ConnectedCameraPopulateForCam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam);
         }
 
         private void trkTimeSpike_ValueChanged(object sender, EventArgs e)
         {
             lblTimeSpike.Text = trkTimeSpike.Value.ToString();
-            config.getProfile(bubble.profileInUse).timeSpike = trkTimeSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.timeSpike, trkTimeSpike.Value);
+            //config.GetCurrentProfile().timeSpike = trkTimeSpike.Value;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).timeSpike = trkTimeSpike.Value;
         }
 
         private void trkToleranceSpike_ValueChanged(object sender, EventArgs e)
         {
             lblToleranceSpike.Text = trkToleranceSpike.Value.ToString() + "%";
-            config.getProfile(bubble.profileInUse).toleranceSpike = trkToleranceSpike.Value;
-            CameraRig.updateInfo(bubble.profileInUse, selectedWebcam, CameraRig.infoEnum.toleranceSpike, trkToleranceSpike.Value);
+            //config.GetCurrentProfile().toleranceSpike = trkToleranceSpike.Value;
+            ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), selectedWebcam).toleranceSpike = trkToleranceSpike.Value;
         }
+
 
     }
 }

@@ -5,23 +5,23 @@ using System.Text;
 
 namespace TeboCam
 {
-    class Queue
+
+    public class Queue
     {
 
+        public List<QueueItem> QueueItems = new List<QueueItem>();
 
-
-        class QueueItem
+        public class QueueItem
         {
-
-
-            int id;
-            DateTime datetime_added;
-            DateTime datetime_processed;
-            string instruction;
-            List<string> parms;
-                            
-        
+            public int? CamNo = null;
+            public DateTime DateTimeAdded = DateTime.Now;
+            public DateTime? DateTimeProcessed;
+            public string Instruction;
+            public List<string> Parms = new List<string>();
+            public List<int> CamsProcessed = new List<int>();
+            public bool RemoveFromQueue = false;
         }
+
 
     }
 }

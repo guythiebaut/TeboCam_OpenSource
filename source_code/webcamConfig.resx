@@ -1176,7 +1176,7 @@ Once the recording stage has finished a sensitivity value will automatically be 
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.7727, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.11698, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel3</value>

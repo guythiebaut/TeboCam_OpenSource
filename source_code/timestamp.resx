@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -420,7 +420,7 @@
     <value>Include Statistics</value>
   </data>
   <data name="statsChk.ToolTip" xml:space="preserve">
-    <value>Add statistics to image.
+    <value>Add Statistics to image.
 
 5 values are returned - reading from left to right:
 Average movement since startup.

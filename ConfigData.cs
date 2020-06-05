@@ -12,26 +12,25 @@ namespace TeboCam
     {
 
         public string version;
-        public string profileInUse;
-        public int newsSeq;
-        public string mysqlDriver;
+        public string profileInUse = "##newProf##";
+        public double newsSeq;
 
         public List<configApplication> appConfigs = new List<configApplication>();
 
         public Configuration() { }
 
-        public Configuration ReadXMLFile(string filename)
+        public Configuration ReadXmlFile(string filename)
         {
-            return (Configuration)Serialization.SerializeFromXMLFile(filename, this);
+            return (Configuration)Serialization.SerializeFromXmlFile(filename, this);
         }
 
-        public void WriteXMLFile(string filename, Configuration config)
+        public void WriteXmlFile(string filename, Configuration config)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            Serialization.SerializeToXMLFile(filename, config);
+            Serialization.SerializeToXmlFile(filename, config);
         }
 
     }
@@ -43,7 +42,9 @@ namespace TeboCam
         [NonSerialized]
         private Interfaces.IEncryption crypt = new crypt();
 
-        public configApplication() { }
+        public configApplication()
+        {
+        }
 
         public configApplication(Interfaces.IEncryption Icrypt)
         {
@@ -55,18 +56,14 @@ namespace TeboCam
             crypt = Icrypt;
         }
 
-        //public const string newProfile = "##newprof##";
-
         public string profileName = "##newProf##";
-
         public byte[] cryptKey;
         public byte[] cryptVector;
-
         public int activatecountdown = 15;
         public string activatecountdownTime = "0800";
         public bool AlertOnStartup = false;
         public bool areaDetection = false;
-        public bool areaDetectionWithin = false;//activate detection within/without selection area
+        public bool areaDetectionWithin = false;
         public double baselineVal = Double.Parse("0", new System.Globalization.CultureInfo("en-GB"));
         public bool countdownNow = false;
         public bool countdownTime = false;
@@ -74,7 +71,6 @@ namespace TeboCam
         public bool cycleStamp = false;
         public int cycleStampChecked = 1;
         public long emailNotifyInterval = 2;
-        //public string emailPass = string.Empty;
 
         public string _lockdownPassword = string.Empty;
         [XmlIgnore]
@@ -124,7 +120,6 @@ namespace TeboCam
             set { _webFtpPass = crypt.EncryptToString(value); }
         }
 
-
         public bool lockdownOn = false;
         public string emailUser = "anyone@googlemail.com";
         public bool EnableSsl = true;
@@ -137,10 +132,9 @@ namespace TeboCam
         public string mailBody = "Movement detected - image(s) attached";
         public string mailSubject = "Webcam Warning From TeboCam";
         public long maxImagesToEmail = 10;
-        public double movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
-        public int timeSpike = 100;
-        public int toleranceSpike = 50;
-        public bool lightSpike = false;
+        //public double movementVal = Double.Parse("0.3", new System.Globalization.CultureInfo("en-GB"));
+        //public int timeSpike = 100;
+        //public int toleranceSpike = 50;
         public bool ping = false;
         public bool pingAll = true;
         public int pingInterval = 120;
@@ -184,6 +178,10 @@ namespace TeboCam
         public string timerStartMov = "0500";
         public string timerEndMov = "2130";
         public bool webUpd = false;
+        public string AuthenticateEndpoint = string.Empty;
+        public string LocalAuthenticateEndpoint = string.Empty;
+        public string PickupDirectory = string.Empty;
+        public bool UseRemoteEndpoint = true;
         public string webUser = string.Empty;
         public int webPoll = 30;
         public string webInstance = "main";
@@ -281,8 +279,6 @@ namespace TeboCam
             ms.Close();
             return obj;
         }
-
-
     }
 
     [Serializable]
@@ -296,11 +292,18 @@ namespace TeboCam
         public string profileName = "";
         public string webcam = "";
 
-        public string friendlyName = "";
+        public string friendlyName = string.Empty;
         public bool areaDetection = false;
         public bool areaDetectionWithin = false;
         public bool areaOffAtMotion = false;
         public bool alarmActive = false;
+
+        //public bool alarmActive
+        //{
+        //    get { return true; }
+        //    set { alarmActive = value; }
+        //}
+
         public bool publishActive = false;
         public int rectX = 20;
         public int rectY = 20;
@@ -330,9 +333,9 @@ namespace TeboCam
         public int currentCyclePubWeb = 1;
         public bool stampAppendPubWeb = false;
 
-        public string fileDirAlertLoc = bubble.imageFolder;
+        public string fileDirAlertLoc = TebocamState.imageFolder;
         public bool fileDirAlertCust = false;
-        public string fileDirPubLoc = bubble.imageFolder;
+        public string fileDirPubLoc = TebocamState.imageFolder;
         public bool fileDirPubCust = false;
         public string filenamePrefixPubLoc = "webcamPublish";
         public int cycleStampCheckedPubLoc = 1;
@@ -343,7 +346,7 @@ namespace TeboCam
 
         public string ipWebcamAddress = "";
         public string ipWebcamUser = "";
-                
+
         public string _ipWebcamPassword = string.Empty;
         [XmlIgnore]
         public string ipWebcamPassword
@@ -351,7 +354,7 @@ namespace TeboCam
             get { return crypt.DecryptString(_ipWebcamPassword); }
             set { _ipWebcamPassword = crypt.EncryptToString(value); }
         }
-        
+
         //for monitoring publishing - does not need to be saved to xml file
         public bool publishFirst = true;
         public int lastPublished = 0;

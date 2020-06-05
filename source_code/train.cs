@@ -44,12 +44,12 @@ namespace TeboCam
 
         private void countVal_TextChanged(object sender, EventArgs e)
         {
-            countVal.Text = bubble.verifyInt(countVal.Text, 1, 9999, "10");
+            countVal.Text = Valid.verifyInt(countVal.Text, 1, 9999, "10");
         }
 
         private void trainVal_TextChanged(object sender, EventArgs e)
         {
-            trainVal.Text = bubble.verifyInt(trainVal.Text, 1, 9999, "10");
+            trainVal.Text = Valid.verifyInt(trainVal.Text, 1, 9999, "10");
         }
 
         private void train_Load(object sender, EventArgs e)

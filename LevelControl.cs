@@ -13,7 +13,7 @@ namespace TeboCam
     {
 
         private static System.Drawing.Bitmap levelBitmap;
-
+        public IException tebowebException;
 
         public LevelControl()
         {
@@ -41,7 +41,7 @@ namespace TeboCam
 
             if (CameraRig.camerasAreConnected())
             {
-                sensePerc = (int)Math.Floor(CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].cam.movementVal * (double)100);
+                sensePerc = (int)Math.Floor(CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].camera.movementVal * (double)100);
             }
             else
             {
@@ -169,6 +169,7 @@ namespace TeboCam
 
             catch (Exception e)
             {
+                TebocamState.tebowebException.LogException(e);
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
 

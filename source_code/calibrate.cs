@@ -17,11 +17,10 @@ namespace TeboCam
         private bool toolTip = new bool();
         private int cam = new int();
         int CountDownFrom = new int();
-
+        Publisher publisher;
         public analyse analysis = new analyse();
-
-
-        public calibrate(formDelegate postCalibrate, ArrayList from)
+        
+        public calibrate(formDelegate postCalibrate, ArrayList from, Publisher pub)
         {
             InitializeComponent();
             lblCountDown.Text = string.Empty;
@@ -29,6 +28,7 @@ namespace TeboCam
             toolTip = (bool)from[0];
             cam = (int)from[1];
             CameraRig.TrainCam = cam;
+            publisher = pub;
             from.Clear();
             //string tmpStr = "www.teboweb.com/calibrate.html";
             //linkLightSpike.Links.Add(tmpStr);
@@ -40,11 +40,11 @@ namespace TeboCam
 
         private void startCountdown_Click(object sender, EventArgs e)
         {
-            if (!bubble.testImagePublish)
+            if (!testImagePublish)
             {
                 startCountdown.Text = "Stop Calibration";
-                bubble.testImagePublishFirst = true;
-                bubble.testImagePublish = true;
+                TebocamState.testImagePublishFirst = true;
+                testImagePublish = true;
                 lblCountDown.Visible = true;
                 pnlControls.Controls.Clear();
                 lblCountDown.Text = string.Empty;
@@ -57,7 +57,7 @@ namespace TeboCam
             }
             else
             {
-                bubble.testImagePublish = false;
+                testImagePublish = false;
                 startCountdown.Text = "Start Calibration";
                 lblCountDown.Visible = false;
                 tw.CancelAsync();
@@ -69,7 +69,7 @@ namespace TeboCam
         {
 
 
-            string outFile = bubble.tmpFolder + "motionCalibrate.csv";
+            string outFile = TebocamState.tmpFolder + "motionCalibrate.csv";
 
             if (File.Exists(outFile))
             {
@@ -87,7 +87,7 @@ namespace TeboCam
             //CameraRig.getCam(CameraRig.trainCam).detectionOn = true;
             //CameraRig.getCam(CameraRig.trainCam).calibrating = true;
 
-            while (bubble.testImagePublish)
+            while (testImagePublish)
             {
 
                 int timeLeft = CountDownFrom - (time.secondsSinceStart() - startSecs);
@@ -96,11 +96,11 @@ namespace TeboCam
 
                 if (timeLeft <= 0)//Convert.ToInt32(countVal.Text))
                 {
-                    bubble.testImagePublish = false;
+                    testImagePublish = false;
                 }
 
                 //System.Diagnostics.Debug.WriteLine("sending to bubble: " + cam.ToString());
-                bubble.publishTestMotion(tm, cam);
+                publisher.publishTestMotion(tm, cam);
 
             }
 
@@ -118,28 +118,28 @@ namespace TeboCam
 
             analysis.images.Clear();
 
-            for (int i = 0; i < bubble.testImagePublishData.Count; i++)
+            for (int i = 0; i < TebocamState.testImagePublishData.Count; i++)
             {
 
-                if (!tw.CancellationPending && File.Exists(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]))
+                if (!tw.CancellationPending && File.Exists(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3]))
                 {
 
-                    sw.WriteLine(string.Concat(bubble.testImagePublishData[i], ",",
-                                 bubble.testImagePublishData[i + 1], ",",
-                                 bubble.testImagePublishData[i + 2], ",",
-                                 bubble.testImagePublishData[i + 3]));
+                    sw.WriteLine(string.Concat(TebocamState.testImagePublishData[i], ",",
+                                 TebocamState.testImagePublishData[i + 1], ",",
+                                 TebocamState.testImagePublishData[i + 2], ",",
+                                 TebocamState.testImagePublishData[i + 3]));
 
-                    analysis.newPictureControl(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3],
-                               (string)bubble.testImagePublishData[i + 4],
-                               (long)bubble.testImagePublishData[i + 5],
+                    analysis.newPictureControl(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3],
+                               (string)TebocamState.testImagePublishData[i + 4],
+                               (long)TebocamState.testImagePublishData[i + 5],
                                Color.DarkOrange,
-                               (int)bubble.testImagePublishData[i + 1]);
+                               (int)TebocamState.testImagePublishData[i + 1]);
 
-                    //analysis.newPictureControl(new Bitmap(bubble.tmpFolder + (string)bubble.testImagePublishData[i + 3]),
-                    //           (string)bubble.testImagePublishData[i + 4],
-                    //           (long)bubble.testImagePublishData[i + 5],
+                    //analysis.newPictureControl(new Bitmap(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3]),
+                    //           (string)TebocamState.testImagePublishData[i + 4],
+                    //           (long)TebocamState.testImagePublishData[i + 5],
                     //           Color.DarkOrange,
-                    //           (int)bubble.testImagePublishData[i + 1]);
+                    //           (int)TebocamState.testImagePublishData[i + 1]);
 
                 }
 
@@ -165,12 +165,12 @@ namespace TeboCam
 
         private void trainVal_Leave(object sender, EventArgs e)
         {
-            trainVal.Text = bubble.verifyDouble(trainVal.Text, 0.25, 9999, "1");
+            trainVal.Text = Valid.verifyDouble(trainVal.Text, 0.25, 9999, "1");
         }
 
         private void countVal_Leave(object sender, EventArgs e)
         {
-            countVal.Text = bubble.verifyInt(countVal.Text, 1, 9999, "1");
+            countVal.Text = Valid.verifyInt(countVal.Text, 1, 9999, "1");
         }
 
         private void calibrate_Load(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace TeboCam
 
         private void calibrate_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bubble.testImagePublish = false;
+            testImagePublish = false;
 
             if (tw.IsBusy)
             {
@@ -299,7 +299,7 @@ namespace TeboCam
                                                                           item.movLevel,
                                                                           trkTimeSpike.Value,
                                                                           trkToleranceSpike.Value,
-                                                                          bubble.profileInUse,
+                                                                          ConfigurationHelper.GetCurrentProfileName(),
                                                                           item.time);
 
                         spike = (bool)lightSpikeResults[0];
@@ -375,7 +375,7 @@ namespace TeboCam
         private void linkLightSpike_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            bubble.openInternetBrowserAt("www.teboweb.com/calibrate.html");
+            Internet.openInternetBrowserAt("www.teboweb.com/calibrate.html");
 
         }
 
