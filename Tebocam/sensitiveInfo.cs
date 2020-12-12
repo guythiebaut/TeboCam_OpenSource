@@ -1,5 +1,3 @@
-
-
 //EXAMPLE FOR CODE LIBRARY OPEN SOURCE
 //using System;
 //using System.Collections.Generic;

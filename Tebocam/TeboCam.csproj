@@ -206,6 +206,7 @@
     <Compile Include="AdminCntl.Designer.cs">
       <DependentUpon>AdminCntl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApiClient.cs" />
     <Compile Include="FileInfoClass.cs" />
     <Compile Include="OpenVideo.cs" />
     <Compile Include="TabControls\AlertFilenameCntl.cs">
@@ -227,7 +228,6 @@
     <Compile Include="analysePictureControl.Designer.cs">
       <DependentUpon>analysePictureControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="API.cs" />
     <Compile Include="ApiProcess.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TabControls\EmailHostSettingsCntl.cs">
