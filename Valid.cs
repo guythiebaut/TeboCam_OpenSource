@@ -40,12 +40,9 @@ namespace TeboCam
             return tmpBool;
 
         }
-
-
-
+               
         public static string verifyInt(string inVal, Int64 lowerLimit, Int64 upperLimit, string errorVal)
         {
-
             try
             {
 
@@ -55,7 +52,6 @@ namespace TeboCam
                 { return inVal; }
                 else
                 { return errorVal; }
-
             }
 
             catch (Exception e)
@@ -63,13 +59,10 @@ namespace TeboCam
                 TebocamState.tebowebException.LogException(e);
                 return errorVal;
             }
-
         }
-
 
         public static string verifyDouble(string inVal, double lowerLimit, double upperLimit, string errorVal)
         {
-
             double tmpDouble;
 
             if (!double.TryParse(inVal, out tmpDouble))
@@ -87,14 +80,11 @@ namespace TeboCam
                     return errorVal;
                 }
             }
-
         }
-
 
         public static string doubleConvert(string decString)
         {
             return Decimal.Parse(decString, new System.Globalization.CultureInfo("en-GB")).ToString();
         }
-
     }
 }
