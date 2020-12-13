@@ -68,7 +68,7 @@ namespace TeboCam
 
         public Graph ReadXMLFile(string filename)
         {
-            return (Graph)Serialization.SerializeFromXmlFile(filename, this);
+            return Serialization.SerializeFromXmlFile<Graph>(filename);
         }
 
         public void WriteXMLFile(string filename, Graph graph)

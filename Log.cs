@@ -33,7 +33,7 @@ namespace TeboCam
 
         public Log ReadXMLFile(string filename)
         {
-            return (Log)Serialization.SerializeFromXmlFile(filename, this);
+            return Serialization.SerializeFromXmlFile<Log>(filename);
         }
 
         public void WriteXMLFile(string filename, ILog log)
