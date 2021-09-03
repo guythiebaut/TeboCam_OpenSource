@@ -21,7 +21,7 @@ namespace TeboCam
 
         public Configuration ReadXmlFile(string filename)
         {
-            return (Configuration)Serialization.SerializeFromXmlFile(filename, this);
+            return Serialization.SerializeFromXmlFile<Configuration>(filename);
         }
 
         public void WriteXmlFile(string filename, Configuration config)

@@ -187,11 +187,19 @@ namespace TeboCam
         }
 
 
-        public static void clearFtp()
+        //public static void clearFtp(TeboCamDelegates.RunWorkerCompletedDelegate thenRun = null)
+        public static void clearFtp(TeboCamDelegates.EventDelegate<RunWorkerCompletedEventArgs> thenRun = null)
         {
+            bw.WorkerSupportsCancellation = true;
             bw.DoWork -= new DoWorkEventHandler(clearFtpWork);
             bw.DoWork += new DoWorkEventHandler(clearFtpWork);
-            bw.WorkerSupportsCancellation = true;
+
+            if (thenRun != null)
+            {
+                bw.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(thenRun);
+                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(thenRun);
+            }
+
             bw.RunWorkerAsync();
         }
         #endregion

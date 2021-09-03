@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 using teboweb;
-using Tiger.Video.VFW;
+using SharpAvi;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
@@ -15,6 +15,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using AForge.Video.DirectShow;
 using System.Threading.Tasks;
+using SharpAvi.Codecs;
+using SharpAvi.Output;
 
 enum enumCommandLine
 {
@@ -109,13 +111,12 @@ namespace TeboCam
 
         private int intervalsToSave = 0;
 
-
-        private AVIWriter writer = null;
+        private AviWriter writer = null;
         private bool saveOnMotion = false;
 
         public bool checkForMotion = false;
 
-        public int frameCount;
+        //public int frameCount;
         public int framePrevious = 0;
 
         private LevelControl LevelControlBox = new LevelControl();
@@ -199,14 +200,14 @@ namespace TeboCam
 
             long keepWorkingSequence = 0;
 
-            publisher = new Publisher(graph, email,
-                       TebocamState.tmpFolder, TebocamState.thumbPrefix, TebocamState.thumbFolder,
-                       TebocamState.imageFolder, TebocamState.xmlFolder, TebocamState.mosaicFile,
-                       ConfigurationHelper.GetCurrentProfileName(), configuration, log,
-                      Movement.moveStats, ImagePub.PubPicture);
+            //publisher = new Publisher(graph, email,
+            //           TebocamState.tmpFolder, TebocamState.thumbPrefix, TebocamState.thumbFolder,
+            //           TebocamState.imageFolder, TebocamState.xmlFolder, TebocamState.mosaicFile,
+            //           ConfigurationHelper.GetCurrentProfileName(), configuration, log,
+            //          Movement.moveStats, ImagePub.PubPicture);
 
-            publisher.redrawGraph += new EventHandler(drawGraph);
-            publisher.pulseEvent += new EventHandler(pulseProcess);
+            //publisher.redrawGraph += new EventHandler(drawGraph);
+            //publisher.pulseEvent += new EventHandler(pulseProcess);
 
             pinger = new Ping(email, log, graph, TebocamState.tmpFolder,
                               TebocamState.xmlFolder, ConfigurationHelper.GetCurrentProfileName(), drawGraphPing);
@@ -296,6 +297,12 @@ namespace TeboCam
             {
                 //FileManager.WriteFile("logInit");
                 //FileManager.backupFile("log");
+
+                if (log.Lines.Count == 0)
+                {
+                    log.AddLine("Initialising");
+                }
+
                 new Log().WriteXMLFile(TebocamState.xmlFolder + "LogData" + ".xml", log);
                 new Log().WriteXMLFile(TebocamState.xmlFolder + "LogData" + ".bak", log);
             }
@@ -437,6 +444,17 @@ namespace TeboCam
             return result;
         }
 
+        private void SetUpPublisher()
+        {
+            publisher = new Publisher(graph, email,
+            TebocamState.tmpFolder, TebocamState.thumbPrefix, TebocamState.thumbFolder,
+            TebocamState.imageFolder, TebocamState.xmlFolder, TebocamState.mosaicFile,
+            ConfigurationHelper.GetCurrentProfileName(), configuration, log,
+            Movement.moveStats, ImagePub.PubPicture);
+            publisher.redrawGraph += new EventHandler(drawGraph);
+            publisher.pulseEvent += new EventHandler(pulseProcess);
+        }
+
         private void preferences_Load(object sender, EventArgs e)
         {
             string exceptionFileSuffix = DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -527,13 +545,14 @@ namespace TeboCam
                                       SetWebCamAttached,
                                       SetbtnConfigWebcam);
 
-          
+
             waitForCamera = new WaitForCam(configuration, openVideo.OpenVideoSource);
             CameraRig.profiles = configuration.appConfigs;
             // Todo crashes here on fresh startup with null profile name
             ConfigurationHelper.SetCurrentProfileName(configuration.profileInUse);
             ConfigurationHelper.LoadCurrentProfile(configuration.profileInUse);
             newsSeq = configuration.newsSeq;
+            SetUpPublisher();
             PopulateTabsWithUserControls();
             profilesSettings.ProfileListRefresh(ConfigurationHelper.GetCurrentProfileName());
             profilesSettings.ProfileListSelectFirst();
@@ -621,9 +640,9 @@ namespace TeboCam
             updateOptionsSettings.GetLblCurVer().Text += version;
             string onlineVersion = version;
 
-#if !DEBUG
+///#if !DEBUG
             updates(ref onlineVersion);
-#endif
+//#endif
 
             if (ConfigurationHelper.GetCurrentProfile().logsKeepChk) clearOldLogs();
 
@@ -846,7 +865,7 @@ namespace TeboCam
             fileInfo.AddFileType(logId, "Log files");
             fileInfo.AddFileType(imageId, "Full size image files");
             fileInfo.AddFileType(thumbId, "Thumbnail image files");
-            
+
             fileInfo.AddFileDirectory(exceptionId, TebocamState.exceptionFolder);
             fileInfo.AddFileDirectory(logId, TebocamState.logFolder);
             fileInfo.AddFileDirectory(imageId, TebocamState.imageFolder);
@@ -856,7 +875,7 @@ namespace TeboCam
             fileInfo.AddFileNamePattern(logId, logFilePattern);
             fileInfo.AddFileNamePattern(imageId, imageFilePattern);
             fileInfo.AddFileNamePattern(thumbId, thumbFilePattern);
-            
+
             logFileManagementSettings = new LogFileManagementCntl(fileInfo);
             Admin.Controls.Add(logFileManagementSettings);
             logFileManagementSettings.Location = new Point(16, 157);
@@ -1048,7 +1067,9 @@ namespace TeboCam
             else
             {
                 if (decimal.Parse(version) >= decimal.Parse(onlineVersion))
-                { updateOptionsSettings.GetLblVerAvail().Text = "You have the most up-to-date version."; }
+                { 
+                    updateOptionsSettings.GetLblVerAvail().Text = "You have the most up-to-date version."; 
+                }
                 else
                 {
                     updateOptionsSettings.GetLblVerAvail().Text = "Most recent version available: " + onlineVersion;
@@ -1202,39 +1223,57 @@ namespace TeboCam
             }
         }
 
+        //https://github.com/baSSiLL/SharpAvi/wiki/Getting-Started
         private void camera_NewFrame(object sender, System.EventArgs e)
         {
+            throw new NotImplementedException();
 
-            frameCount++;
+            //#TODO
+            //Set up writer
+            //write frames
+            //close writer
 
-            if ((intervalsToSave != 0) && (saveOnMotion == true))
-            {
 
-                //lets save the frame
-                if (1 == 2)//writer == null)
-                {
-                    // create file name
-                    DateTime date = DateTime.Now;
-                    String fileName = String.Format("{0}-{1}-{2} {3}-{4}-{5}.avi", date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+            //frameCount++;
 
-                    try
-                    {
-                        // create AVI writer
-                        writer = new AVIWriter("wmv3");
-                        // open AVI file
-                        writer.Open(@"C:\" + fileName, cameraWindow.Camera.Width, cameraWindow.Camera.Height);
-                    }
-                    catch (ApplicationException ex)
-                    {
-                        if (writer != null)
-                        {
-                            writer.Dispose();
-                            writer = null;
-                        }
-                    }
-                }
+            //if ((intervalsToSave != 0) && (saveOnMotion == true))
+            //{
+            //    //lets save the frame
+            //    if (1 == 2)//writer == null)
+            //    {
+            //        // create file name
+            //        DateTime date = DateTime.Now;
+            //        String fileName = String.Format("{0}-{1}-{2} {3}-{4}-{5}.avi", date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
 
-            }
+            //        try
+            //        {
+            //            // create AVI writer
+            //            writer = new AviWriter("video.avi");
+            //            var stream = writer.AddVideoStream();
+            //            var codecs = Mpeg4VideoEncoderVcm.GetAvailableCodecs();
+            //            FourCC selectedCodec = KnownFourCCs.Codecs.Xvid;
+            //            var encoder = new Mpeg4VideoEncoderVcm(cameraWindow.Camera.Width, cameraWindow.Camera.Height,
+            //                        30, // frame rate
+            //                        0, // number of frames, if known beforehand, or zero
+            //                        70, // quality, though usually ignored :(
+            //                        selectedCodec // codecs preference
+            //                        );
+            //            stream.Codec = selectedCodec;
+
+            //            // open AVI file
+            //            writer.Open(@"C:\" + fileName, cameraWindow.Camera.Width, cameraWindow.Camera.Height);
+            //        }
+            //        catch (ApplicationException ex)
+            //        {
+            //            if (writer != null)
+            //            {
+            //                writer.Dispose();
+            //                writer = null;
+            //            }
+            //        }
+            //    }
+
+            //}
         }
 
         #endregion
@@ -1589,8 +1628,9 @@ namespace TeboCam
 
             if (writer != null)
             {
-                writer.Dispose();
-                writer = null;
+                throw new NotImplementedException();
+                //writer.Dispose();
+                //writer = null;
             }
 
             intervalsToSave = 0;
@@ -1697,7 +1737,7 @@ namespace TeboCam
         private void button7_Click(object sender, EventArgs e)
         {
             lblCountOnComputer.Text = $"Computer: {imageFilesCount().ToString()}";
-            lblCountOnWeb.Text = $"Website: {imageFilesCountWeb().ToString()}" ;
+            lblCountOnWeb.Text = $"Website: {imageFilesCountWeb().ToString()}";
             Invalidate();
         }
 
@@ -2405,7 +2445,7 @@ namespace TeboCam
         private void bttnToolTips_Click_1(object sender, EventArgs e)
         {
             toolTip1.Active = !toolTip1.Active;
-            bttnToolTips.Text = toolTip1.Active ? "Turn OFF Tool Tips"  : "Turn ON Tool Tips";
+            bttnToolTips.Text = toolTip1.Active ? "Turn OFF Tool Tips" : "Turn ON Tool Tips";
             ConfigurationHelper.GetCurrentProfile().toolTips = toolTip1.Active;
         }
 
@@ -3017,13 +3057,14 @@ namespace TeboCam
         {
             List<Camera> cameras = new List<Camera>();
             CameraRig.ConnectedCameras.ForEach(x => cameras.Add(x.camera));
-            var test = pinger;
             ControlRoomCntl controlRoom = new ControlRoomCntl(cameras, pinger);
-            Form controlRoomForm = new Form();
-            controlRoomForm.FormBorderStyle = FormBorderStyle.FixedSingle;
-            controlRoomForm.MinimizeBox = false;
-            controlRoomForm.MaximizeBox = false;
-            controlRoomForm.Size = new Size(controlRoom.Width + 10, controlRoom.Height + 30);
+            Form controlRoomForm = new Form()
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                MinimizeBox = false,
+                MaximizeBox = false,
+                Size = new Size(controlRoom.Width + 10, controlRoom.Height + 30)
+            };
             controlRoomForm.Controls.Add(controlRoom);
             controlRoomForm.ShowDialog();
         }
@@ -3032,11 +3073,14 @@ namespace TeboCam
         {
             if (!devMachine) return;
             var adm = new AdminCntl(this);
-            Form frm = new Form();
+            var border = 50;
+            Form frm = new Form()
+            {
+                Width = adm.Width + border,
+                Height = adm.Height + border,
+                FormBorderStyle = FormBorderStyle.FixedSingle
+            };
             frm.Controls.Add(adm);
-            frm.Width = adm.Width + 50;
-            frm.Height = adm.Height + 50;
-            frm.FormBorderStyle = FormBorderStyle.FixedSingle;
             frm.Show();
         }
 

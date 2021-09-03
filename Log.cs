@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace TeboCam
 {
     public interface ILog
     {
         Log ReadXMLFile(string filename);
-        void WriteXMLFile(string filename, ILog log);
+        void WriteXMLFile(string filename, Log log);
         void AddLine(string message);
         void AddLine(DateTime dateTime, string message);
     }
@@ -18,7 +19,7 @@ namespace TeboCam
     {
 
         public List<logLine> Lines = new List<logLine>();
-        public string FileName;
+        public string FileName = "no name";
         public event EventHandler LogAdded;
 
         public Log()
@@ -36,7 +37,7 @@ namespace TeboCam
             return Serialization.SerializeFromXmlFile<Log>(filename);
         }
 
-        public void WriteXMLFile(string filename, ILog log)
+        public void WriteXMLFile(string filename, Log log)
         {
             if (File.Exists(filename))
             {

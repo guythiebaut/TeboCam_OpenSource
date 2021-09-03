@@ -140,6 +140,7 @@ namespace TeboCam
             this.Online = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
             this.Test = new System.Windows.Forms.TabPage();
+            this.btn_TestUpdate = new System.Windows.Forms.Button();
             this.btnTestAccessCameras = new System.Windows.Forms.Button();
             this.bttnToolTips = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -158,7 +159,6 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_TestUpdate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -1034,6 +1034,13 @@ namespace TeboCam
             this.Test.Name = "Test";
             this.Test.UseVisualStyleBackColor = true;
             // 
+            // btn_TestUpdate
+            // 
+            resources.ApplyResources(this.btn_TestUpdate, "btn_TestUpdate");
+            this.btn_TestUpdate.Name = "btn_TestUpdate";
+            this.btn_TestUpdate.UseVisualStyleBackColor = true;
+            this.btn_TestUpdate.Click += new System.EventHandler(this.btn_TestUpdate_Click);
+            // 
             // btnTestAccessCameras
             // 
             resources.ApplyResources(this.btnTestAccessCameras, "btnTestAccessCameras");
@@ -1164,13 +1171,6 @@ namespace TeboCam
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // btn_TestUpdate
-            // 
-            resources.ApplyResources(this.btn_TestUpdate, "btn_TestUpdate");
-            this.btn_TestUpdate.Name = "btn_TestUpdate";
-            this.btn_TestUpdate.UseVisualStyleBackColor = true;
-            this.btn_TestUpdate.Click += new System.EventHandler(this.btn_TestUpdate_Click);
             // 
             // Preferences
             // 

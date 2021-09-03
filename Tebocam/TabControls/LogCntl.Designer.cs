@@ -33,8 +33,9 @@
             // 
             // txtLog
             // 
-            this.txtLog.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtLog.BackColor = System.Drawing.Color.Black;
+            this.txtLog.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLog.ForeColor = System.Drawing.Color.White;
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
