@@ -26,7 +26,8 @@ namespace TeboCam
         public Label GetLblVerAvail() { return lblVerAvail; }
         public CheckBox GetUpdateNotify() { return updateNotify; }
         public Button GetBttInstallUpdateAdmin() { return bttInstallUpdateAdmin; }
-        
+        public TextBox GetUpdateDebugLocationn() { return updateDebugLocation; }
+
         public void TriggerUpdate()
         {
             updaterInstall(true);
@@ -42,6 +43,11 @@ namespace TeboCam
         private void updateNotify_CheckedChanged(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().updatesNotify = updateNotify.Checked;
+        }
+
+        private void updateDebugLocation_TextChanged(object sender, EventArgs e)
+        {
+            ConfigurationHelper.GetCurrentProfile().updateDebugLocation = updateDebugLocation.Text;
         }
     }
 }

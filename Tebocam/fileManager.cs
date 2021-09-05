@@ -424,6 +424,7 @@ namespace TeboCam
                     if (configFile.LocalName.Equals("freezeGuard")) { appInfo.freezeGuard = Convert.ToBoolean(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("freezeGuardWindowShow")) { appInfo.freezeGuardWindowShow = Convert.ToBoolean(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("updatesNotify")) { appInfo.updatesNotify = Convert.ToBoolean(configFile.ReadString()); }
+                    if (configFile.LocalName.Equals("updateDebugLocation")) { appInfo.updateDebugLocation = configFile.ReadString(); }
                     if (configFile.LocalName.Equals("countdownNow")) { appInfo.countdownNow = Convert.ToBoolean(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("cycleStamp")) { appInfo.cycleStamp = Convert.ToBoolean(configFile.ReadString()); }
                     if (configFile.LocalName.Equals("activatecountdown")) { appInfo.activatecountdown = Convert.ToInt32(configFile.ReadString()); }

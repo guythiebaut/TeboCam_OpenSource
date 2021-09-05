@@ -31,13 +31,13 @@
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.lblendpub = new System.Windows.Forms.Label();
             this.lblstartpub = new System.Windows.Forms.Label();
-            this.button37 = new System.Windows.Forms.Button();
-            this.button36 = new System.Windows.Forms.Button();
+            this.bttnSetPublishSchedule = new System.Windows.Forms.Button();
+            this.bttnSetLocalFileName = new System.Windows.Forms.Button();
             this.bttnSetPrefixPublish = new System.Windows.Forms.Button();
             this.pubToWeb = new System.Windows.Forms.CheckBox();
             this.pubToLocal = new System.Windows.Forms.CheckBox();
             this.pubTimerOn = new System.Windows.Forms.CheckBox();
-            this.button14 = new System.Windows.Forms.Button();
+            this.bttnCopyFtpSettings = new System.Windows.Forms.Button();
             this.label55 = new System.Windows.Forms.Label();
             this.pubTime = new System.Windows.Forms.TextBox();
             this.pubSecs = new System.Windows.Forms.RadioButton();
@@ -57,13 +57,13 @@
             // 
             this.groupBox17.Controls.Add(this.lblendpub);
             this.groupBox17.Controls.Add(this.lblstartpub);
-            this.groupBox17.Controls.Add(this.button37);
-            this.groupBox17.Controls.Add(this.button36);
+            this.groupBox17.Controls.Add(this.bttnSetPublishSchedule);
+            this.groupBox17.Controls.Add(this.bttnSetLocalFileName);
             this.groupBox17.Controls.Add(this.bttnSetPrefixPublish);
             this.groupBox17.Controls.Add(this.pubToWeb);
             this.groupBox17.Controls.Add(this.pubToLocal);
             this.groupBox17.Controls.Add(this.pubTimerOn);
-            this.groupBox17.Controls.Add(this.button14);
+            this.groupBox17.Controls.Add(this.bttnCopyFtpSettings);
             this.groupBox17.Controls.Add(this.label55);
             this.groupBox17.Controls.Add(this.pubTime);
             this.groupBox17.Controls.Add(this.pubSecs);
@@ -107,27 +107,27 @@
             this.lblstartpub.TabIndex = 97;
             this.lblstartpub.Text = "Scheduled start: ";
             // 
-            // button37
+            // bttnSetPublishSchedule
             // 
-            this.button37.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button37.Location = new System.Drawing.Point(5, 201);
-            this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(345, 26);
-            this.button37.TabIndex = 96;
-            this.button37.Text = "Set Publish Schedule";
-            this.button37.UseVisualStyleBackColor = true;
-            this.button37.Click += new System.EventHandler(this.button37_Click);
+            this.bttnSetPublishSchedule.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.bttnSetPublishSchedule.Location = new System.Drawing.Point(5, 201);
+            this.bttnSetPublishSchedule.Name = "bttnSetPublishSchedule";
+            this.bttnSetPublishSchedule.Size = new System.Drawing.Size(345, 26);
+            this.bttnSetPublishSchedule.TabIndex = 96;
+            this.bttnSetPublishSchedule.Text = "Set Publish Schedule";
+            this.bttnSetPublishSchedule.UseVisualStyleBackColor = true;
+            this.bttnSetPublishSchedule.Click += new System.EventHandler(this.button37_Click);
             // 
-            // button36
+            // bttnSetLocalFileName
             // 
-            this.button36.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button36.Location = new System.Drawing.Point(132, 124);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(152, 23);
-            this.button36.TabIndex = 95;
-            this.button36.Text = "Set Local File Name";
-            this.button36.UseVisualStyleBackColor = true;
-            this.button36.Click += new System.EventHandler(this.button36_Click);
+            this.bttnSetLocalFileName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.bttnSetLocalFileName.Location = new System.Drawing.Point(132, 124);
+            this.bttnSetLocalFileName.Name = "bttnSetLocalFileName";
+            this.bttnSetLocalFileName.Size = new System.Drawing.Size(152, 23);
+            this.bttnSetLocalFileName.TabIndex = 95;
+            this.bttnSetLocalFileName.Text = "Set Local File Name";
+            this.bttnSetLocalFileName.UseVisualStyleBackColor = true;
+            this.bttnSetLocalFileName.Click += new System.EventHandler(this.bttnSetLocalFileName_Click);
             // 
             // bttnSetPrefixPublish
             // 
@@ -182,16 +182,16 @@
             this.pubTimerOn.UseVisualStyleBackColor = false;
             this.pubTimerOn.CheckedChanged += new System.EventHandler(this.pubTimerOn_CheckedChanged);
             // 
-            // button14
+            // bttnCopyFtpSettings
             // 
-            this.button14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button14.Location = new System.Drawing.Point(6, 236);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(344, 25);
-            this.button14.TabIndex = 62;
-            this.button14.Text = "Copy FTP Settings from Email and Ftp";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.bttnCopyFtpSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.bttnCopyFtpSettings.Location = new System.Drawing.Point(6, 236);
+            this.bttnCopyFtpSettings.Name = "bttnCopyFtpSettings";
+            this.bttnCopyFtpSettings.Size = new System.Drawing.Size(344, 25);
+            this.bttnCopyFtpSettings.TabIndex = 62;
+            this.bttnCopyFtpSettings.Text = "Copy FTP Settings from Email and Ftp";
+            this.bttnCopyFtpSettings.UseVisualStyleBackColor = true;
+            this.bttnCopyFtpSettings.Click += new System.EventHandler(this.button14_Click);
             // 
             // label55
             // 
@@ -356,13 +356,13 @@
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.Label lblendpub;
         private System.Windows.Forms.Label lblstartpub;
-        private System.Windows.Forms.Button button37;
-        private System.Windows.Forms.Button button36;
+        private System.Windows.Forms.Button bttnSetPublishSchedule;
+        private System.Windows.Forms.Button bttnSetLocalFileName;
         private System.Windows.Forms.Button bttnSetPrefixPublish;
         private System.Windows.Forms.CheckBox pubToWeb;
         private System.Windows.Forms.CheckBox pubToLocal;
         private System.Windows.Forms.CheckBox pubTimerOn;
-        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button bttnCopyFtpSettings;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.TextBox pubTime;
         private System.Windows.Forms.RadioButton pubSecs;

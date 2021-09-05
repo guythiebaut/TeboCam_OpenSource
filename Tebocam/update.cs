@@ -119,7 +119,7 @@ namespace teboweb
         /// <param name="startupCommand">Command line to be passed to the process to restart</param>
         /// <param name="updater"></param>
         /// <returns>Void</returns>
-        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, bool webUpdate,string debugFile)
+        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, int webUpdate,string debugFile)
         {
 
             string cmdLn = "";
@@ -139,7 +139,6 @@ namespace teboweb
             startInfo.FileName = updater;
             startInfo.Arguments = cmdLn;
             Process.Start(startInfo);
-
         }
 
 

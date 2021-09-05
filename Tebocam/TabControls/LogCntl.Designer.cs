@@ -48,7 +48,9 @@
             // LogCntl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.Red;
             this.Controls.Add(this.txtLog);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "LogCntl";
             this.Size = new System.Drawing.Size(405, 217);
             this.ResumeLayout(false);

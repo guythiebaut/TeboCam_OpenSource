@@ -157,6 +157,7 @@ namespace TeboCam
         public int smtpPort = 25;
         public long startCycle = 1;
         public bool updatesNotify = true;
+        public string updateDebugLocation = string.Empty;
         public string webcam = string.Empty;
         public bool pubImage = false;
         public int pubTime = 2;
@@ -356,7 +357,10 @@ namespace TeboCam
         }
 
         //for monitoring publishing - does not need to be saved to xml file
+        //[System.Xml.Serialization.XmlIgnore]
+        [XmlIgnore]
         public bool publishFirst = true;
+        [XmlIgnore]
         public int lastPublished = 0;
         //for monitoring publishing - does not need to be saved to xml file        
 

@@ -137,7 +137,6 @@
             this.logsKeep.Size = new System.Drawing.Size(65, 21);
             this.logsKeep.TabIndex = 73;
             this.logsKeep.Text = "30";
-            this.logsKeep.TextChanged += new System.EventHandler(this.logsKeep_TextChanged);
             // 
             // logsKeepChk
             // 

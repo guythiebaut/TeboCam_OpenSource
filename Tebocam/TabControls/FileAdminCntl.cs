@@ -84,10 +84,6 @@ namespace TeboCam
             FileInfo.DeleteFiles(SelectedId());
         }
 
-        private void logsKeep_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void logsKeepChk_CheckedChanged(object sender, EventArgs e)
         {

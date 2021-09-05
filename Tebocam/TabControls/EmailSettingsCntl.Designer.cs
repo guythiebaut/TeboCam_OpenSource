@@ -150,6 +150,7 @@
             this.label5.Size = new System.Drawing.Size(99, 13);
             this.label5.TabIndex = 15;
             this.label5.Text = "Send Email To";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label7
             // 

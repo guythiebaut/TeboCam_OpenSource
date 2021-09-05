@@ -207,5 +207,6 @@ namespace TeboCam
         {
             ConfigurationHelper.GetCurrentProfile().pingAll = rdPingAllCameras.Checked;
         }
+
     }
 }

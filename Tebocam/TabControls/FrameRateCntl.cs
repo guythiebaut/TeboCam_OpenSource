@@ -23,5 +23,6 @@ namespace TeboCam
         {
             ConfigurationHelper.GetCurrentProfile().framesSecsToCalcOver = (int)numFrameRateCalcOver.Value;
         }
+
     }
 }

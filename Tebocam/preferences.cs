@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 using teboweb;
-using SharpAvi;
+//using SharpAvi;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
@@ -15,8 +15,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using AForge.Video.DirectShow;
 using System.Threading.Tasks;
-using SharpAvi.Codecs;
-using SharpAvi.Output;
+//using SharpAvi.Codecs;
+//using SharpAvi.Output;
 
 enum enumCommandLine
 {
@@ -111,7 +111,7 @@ namespace TeboCam
 
         private int intervalsToSave = 0;
 
-        private AviWriter writer = null;
+        //private AviWriter writer = null;
         private bool saveOnMotion = false;
 
         public bool checkForMotion = false;
@@ -450,7 +450,7 @@ namespace TeboCam
             TebocamState.tmpFolder, TebocamState.thumbPrefix, TebocamState.thumbFolder,
             TebocamState.imageFolder, TebocamState.xmlFolder, TebocamState.mosaicFile,
             ConfigurationHelper.GetCurrentProfileName(), configuration, log,
-            Movement.moveStats, ImagePub.PubPicture);
+            Movement.moveStats);
             publisher.redrawGraph += new EventHandler(drawGraph);
             publisher.pulseEvent += new EventHandler(pulseProcess);
         }
@@ -543,10 +543,11 @@ namespace TeboCam
                                       camButtonSetColours,
                                       cameraSwitch,
                                       SetWebCamAttached,
-                                      SetbtnConfigWebcam);
+                                      SetbtnConfigWebcam,
+                                      pubcam);
 
 
-            waitForCamera = new WaitForCam(configuration, openVideo.OpenVideoSource);
+            waitForCamera = new WaitForCam(configuration, openVideo.OpenVideoSource, pubcam);
             CameraRig.profiles = configuration.appConfigs;
             // Todo crashes here on fresh startup with null profile name
             ConfigurationHelper.SetCurrentProfileName(configuration.profileInUse);
@@ -634,7 +635,6 @@ namespace TeboCam
                 cw.RunWorkerAsync();
             }
 
-            workInit(true);
             string test = time.currentTime();
             Loading = false;
             updateOptionsSettings.GetLblCurVer().Text += version;
@@ -926,7 +926,7 @@ namespace TeboCam
 
         void PublishSettings()
         {
-            publishSettings = new PublishSettingsCntl(PublishButtonGroupInstance,
+            publishSettings = new PublishSettingsCntl(GetPublishButtonGroupInstance,
                                                       filePrefixSet,
                                                       scheduleSet,
                                                       publisher,
@@ -934,6 +934,11 @@ namespace TeboCam
             Publish.Controls.Add(publishSettings);
             publishSettings.Location = new Point(3, 3);
             publishSettings.BringToFront();
+        }
+
+        public List<CameraButtonGroup> GetPublishButtonGroupInstance()
+        {
+            return PublishButtonGroupInstance;
         }
 
         void MovementStatisticsSettings()
@@ -1026,6 +1031,9 @@ namespace TeboCam
         void UpdaterInstall(bool val)
         {
             updaterInstall = val;
+            if (updaterInstall) { 
+                CloseTebocam(); 
+            }
         }
 
         void KeepWorking(bool val)
@@ -1041,19 +1049,6 @@ namespace TeboCam
         void SetPublishFirst(bool val)
         {
             publishFirst = val;
-        }
-
-        private void workInit(bool start)
-        {
-            if (start)
-            {
-                pubPicture -= new ImagePub.ImagePubEventHandler(Publisher.take_picture_publish);
-                pubPicture += new ImagePub.ImagePubEventHandler(Publisher.take_picture_publish);
-            }
-            else
-            {
-                keepWorking = false;
-            }
         }
 
         private void updates(ref string onlineVersion)
@@ -1583,7 +1578,7 @@ namespace TeboCam
                 motionAlarmSettings.GetBttnMotionInactive().Checked = true;
                 motionAlarmSettings.GetBttnMotionActive().Checked = false;
                 motionAlarmSettings.GetBttnMotionAtStartup().Checked = false;
-                workInit(false);
+                keepWorking = false;
                 closeAllCameras();
                 TebocamState.log.AddLine("Application will remain frozen until exit.");
                 Application.DoEvents();
@@ -1606,8 +1601,8 @@ namespace TeboCam
                         postProcess,
                         postProcessCommand,
                         updater,
-                        true,
-                        "");
+                        1,
+                        ConfigurationHelper.GetCurrentProfile().updateDebugLocation);
                 }
 
             }
@@ -1626,12 +1621,12 @@ namespace TeboCam
                 rigCam.camera.WaitForStop();
             }
 
-            if (writer != null)
-            {
-                throw new NotImplementedException();
-                //writer.Dispose();
-                //writer = null;
-            }
+            //if (writer != null)
+            //{
+            //    throw new NotImplementedException();
+            //    //writer.Dispose();
+            //    //writer = null;
+            //}
 
             intervalsToSave = 0;
         }
@@ -1915,6 +1910,7 @@ namespace TeboCam
             emailSettings.SetSentByName(data.sentByName);
 
             updateOptionsSettings.GetUpdateNotify().Checked = data.updatesNotify;
+            updateOptionsSettings.GetUpdateDebugLocationn().Text = data.updateDebugLocation;
 
             publishSettings.SetPubImage(data.pubImage);
             if (decimal.Parse(data.profileVersion) < 2.6m) //m forces number to be interpreted as decimal
@@ -2269,7 +2265,11 @@ namespace TeboCam
                         cam.frameRateTrack = ConfigurationHelper.GetCurrentProfile().framerateTrack;
                         TebocamState.log.AddLine(string.Format("Reconnecting lost [{0}] camera no. {1}.", friendlyName, cam.camNo.ToString()));
                         selcam(camera.displayButton, true);
-                        //selcam(camNo, true);
+
+                        if(cam.publishActive)
+                        {
+                            pubcam(camera.displayButton);
+                        }
                     }
                 }
             }
@@ -2294,6 +2294,11 @@ namespace TeboCam
                         cam.frameRateTrack = ConfigurationHelper.GetCurrentProfile().framerateTrack;
                         TebocamState.log.AddLine(string.Format("Connecting [{0}] camera not found at startup.", expectedCamera.friendlyName));
                         selcam(expectedCamera.displayButton, true);
+
+                        if (cam.publishActive)
+                        {
+                            pubcam(expectedCamera.displayButton);
+                        }
                     }
                 }
             }
@@ -2798,7 +2803,6 @@ namespace TeboCam
             if (activateDetection ||
                 (activeButtonState == CameraButtonGroup.ButtonState.NotConnected || activeButtonState == CameraButtonGroup.ButtonState.ConnectedAndInactive))
             {
-
                 licence.selectCam(cam + 1);
                 NotConnectedCameras.First(x => x.id == button).ActiveButtonIsActive();
                 CameraRig.ConnectedCameras[cam].camera.alarmActive = true;

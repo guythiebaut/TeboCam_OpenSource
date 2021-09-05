@@ -111,5 +111,10 @@ namespace TeboCam
         {
             ConfigurationHelper.GetCurrentProfile().sentByName = sentByName.Text;
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -33,11 +33,15 @@
             this.lblVerAvail = new System.Windows.Forms.Label();
             this.lblCurVer = new System.Windows.Forms.Label();
             this.updateNotify = new System.Windows.Forms.CheckBox();
+            this.updateDebugLocation = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.label1);
+            this.groupBox7.Controls.Add(this.updateDebugLocation);
             this.groupBox7.Controls.Add(this.bttInstallUpdateAdmin);
             this.groupBox7.Controls.Add(this.lblVerAvail);
             this.groupBox7.Controls.Add(this.lblCurVer);
@@ -59,9 +63,9 @@
             this.bttInstallUpdateAdmin.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.bttInstallUpdateAdmin.ForeColor = System.Drawing.Color.Black;
             this.bttInstallUpdateAdmin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bttInstallUpdateAdmin.Location = new System.Drawing.Point(6, 99);
+            this.bttInstallUpdateAdmin.Location = new System.Drawing.Point(6, 113);
             this.bttInstallUpdateAdmin.Name = "bttInstallUpdateAdmin";
-            this.bttInstallUpdateAdmin.Size = new System.Drawing.Size(249, 31);
+            this.bttInstallUpdateAdmin.Size = new System.Drawing.Size(249, 20);
             this.bttInstallUpdateAdmin.TabIndex = 67;
             this.bttInstallUpdateAdmin.Text = "Download And Install Update";
             this.bttInstallUpdateAdmin.UseVisualStyleBackColor = false;
@@ -105,6 +109,29 @@
             this.updateNotify.UseVisualStyleBackColor = true;
             this.updateNotify.CheckedChanged += new System.EventHandler(this.updateNotify_CheckedChanged);
             // 
+            // updateDebugLocation
+            // 
+            this.updateDebugLocation.BackColor = System.Drawing.Color.LemonChiffon;
+            this.updateDebugLocation.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.updateDebugLocation.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.updateDebugLocation.Location = new System.Drawing.Point(166, 86);
+            this.updateDebugLocation.Name = "updateDebugLocation";
+            this.updateDebugLocation.Size = new System.Drawing.Size(267, 21);
+            this.updateDebugLocation.TabIndex = 69;
+            this.updateDebugLocation.TextChanged += new System.EventHandler(this.updateDebugLocation_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(6, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 70;
+            this.label1.Text = "Update debug location:";
+            // 
             // UpdateOptionsCntl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -124,5 +151,7 @@
         private System.Windows.Forms.Label lblVerAvail;
         private System.Windows.Forms.Label lblCurVer;
         private System.Windows.Forms.CheckBox updateNotify;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox updateDebugLocation;
     }
 }
