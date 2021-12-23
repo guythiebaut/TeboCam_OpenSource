@@ -51,9 +51,15 @@ namespace TeboCam
         private static readonly List<movement> statList = new List<movement>();
         private static List<LastMovement> lastMovementList = new List<LastMovement>();
 
-        public static void AddStatistic(int p_cameraId, string p_cameraName, int p_motionLevel, int p_alarmLevel,
-            long p_milliSsecondsSinceStart, string p_profile, bool p_outputToFile, string p_fileName,
-            double p_maxLength)
+        public static void AddStatistic(int p_cameraId, 
+                                        string p_cameraName, 
+                                        int p_motionLevel, 
+                                        int p_alarmLevel,
+                                        long p_milliSsecondsSinceStart, 
+                                        string p_profile, 
+                                        bool p_outputToFile, 
+                                        string p_fileName,
+                                        double p_maxLength)
         {
             insertIfValueChanged(p_cameraId, p_cameraName, p_motionLevel, p_alarmLevel, p_milliSsecondsSinceStart,
                 p_profile, p_outputToFile, p_fileName, p_maxLength);

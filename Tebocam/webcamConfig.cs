@@ -27,7 +27,7 @@ namespace TeboCam
         public delegate void SaveChanges();
         private SaveChanges saveChanges;
         public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
-        List<CameraButtonGroup> CameraButtons = new List<CameraButtonGroup>();
+        List<GroupCameraButton> CameraButtons = new List<GroupCameraButton>();
         private formDelegate webcamConfigDelegate;
         private int currentlySelectedButton;
 
@@ -50,7 +50,7 @@ namespace TeboCam
         bool baselineSetting;
         int detectionTrain;
 
-        public webcamConfig(formDelegate sender, ArrayList from, List<CameraButtonGroup> CameraButtonGroupInstance, SaveChanges save, Publisher pub, Ping pinger)
+        public webcamConfig(formDelegate sender, ArrayList from, List<GroupCameraButton> CameraButtonGroupInstance, SaveChanges save, Publisher pub, Ping pinger)
         {
             saveChanges = save;
             toolTip = (bool)from[0];
@@ -80,11 +80,11 @@ namespace TeboCam
 
         }
 
-        private void ConfigureCameraButtons(List<CameraButtonGroup> CameraButtonGroupInstance)
+        private void ConfigureCameraButtons(List<GroupCameraButton> CameraButtonGroupInstance)
         {
-            foreach (CameraButtonGroup group in CameraButtonGroupInstance)
+            foreach (GroupCameraButton group in CameraButtonGroupInstance)
             {
-                ButtonCameraControl.AddButton(CameraButtons, ButtonCameraDelegation, null, false, 18);
+                ButtonCameraControl.AddButton(CameraButtons, ButtonCameraDelegation, null, false, new Size(18, 20), new Size(0, 0));
             }
             panel2.Controls.Add(ButtonCameraControl);
             ButtonCameraControl.Location = new Point(10, 2);
@@ -601,10 +601,10 @@ namespace TeboCam
 
         private bool camClick(int button)
         {
-            bool canClick = CameraButtons.Any(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected);
+            bool canClick = CameraButtons.Any(x => x.id == button && x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected);
             if (!canClick) return false;
 
-            var connected = CameraButtons.Where(x => x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).ToList();
+            var connected = CameraButtons.Where(x => x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected).ToList();
             connected.ForEach(x => x.CameraButtonIsConnectedAndInactive());
             var newActiveButton = CameraButtons.First(x => x.id == button);
             newActiveButton.CameraButtonIsActive();
@@ -797,7 +797,7 @@ namespace TeboCam
         private void button5_Click(object sender, EventArgs e)
         {
             if (button5.Enabled &&
-                CameraButtons.Where(x => x.id == currentlySelectedButton).First().CameraButtonState != CameraButtonGroup.ButtonState.NotConnected
+                CameraButtons.Where(x => x.id == currentlySelectedButton).First().CameraButtonState != GroupCameraButton.ButtonState.NotConnected
                 )
             {
                 var response = MessageBox.Show("Are you sure you want to remove this camera and all the associated information?" +

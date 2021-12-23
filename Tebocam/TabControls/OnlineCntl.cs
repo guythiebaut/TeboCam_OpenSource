@@ -69,7 +69,7 @@ namespace TeboCam
         private void sqlPoll_Leave(object sender, EventArgs e)
         {
             int tmpInt = ConfigurationHelper.GetCurrentProfile().webPoll;
-            sqlPoll.Text = Valid.verifyInt(sqlPoll.Text, 30, 9999, "30");
+            sqlPoll.Text = Valid.verifyInt(sqlPoll.Text, 5, 9999, "5");
 
             if (Convert.ToInt32(sqlPoll.Text) != tmpInt)
             {

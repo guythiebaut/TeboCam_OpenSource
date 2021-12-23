@@ -277,7 +277,7 @@
     </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="CameraAlarm.cs" />
-    <Compile Include="CameraButtonGroup.cs" />
+    <Compile Include="GroupCameraButton.cs" />
     <Compile Include="CameraButtonsCntl.cs">
       <SubType>UserControl</SubType>
     </Compile>

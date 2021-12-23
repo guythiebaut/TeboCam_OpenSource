@@ -4,6 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Drawing;
 
 namespace TeboCam
@@ -19,18 +20,30 @@ namespace TeboCam
     }
 
     //[Serializable]
-    public class graphHist
+    public class GraphHist
     {
         public string date;
         public ArrayList vals = new ArrayList();
-        //public graphHist() { }
-        //public graphHist(string date, ArrayList vals)
-        //{
-        //    this.date = date;
-        //    this.vals = vals;
-        //}
+
+        public GraphHist() { }
     }
 
+    public class HistoryExport
+    {
+        public List<HistoryDay> history = new List<HistoryDay>();
+    }
+
+    public class HistoryDay
+    {
+        public string yyyymmdd;
+        public List<HistoryDataPoint> dataPoints = new List<HistoryDataPoint>();
+    }
+
+    public class HistoryDataPoint
+    {
+        public string timePeriod;
+        public int movementCount;
+    }
 
     [Serializable]
     public class GraphData
@@ -56,15 +69,49 @@ namespace TeboCam
     [Serializable]
     public class Graph
     {
-        public List<graphHist> graphHistory = new List<graphHist>();
+        public List<GraphHist> graphHistory = new List<GraphHist>();
         [XmlIgnore]
+        [JsonIgnore]
         public IException tebowebException;
         [XmlIgnore]
+        [JsonIgnore]
         public int graphSeq = 0;
         [XmlIgnore]
+        [JsonIgnore]
         public string graphCurrentDate;
 
         public Graph() { }
+
+        public HistoryExport HistoryUiFriendly(int daysToExport = 1)
+        {
+            var today = DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+            var historyExport = new HistoryExport();
+            var historySortedDescending = graphHistory.OrderByDescending(x => int.Parse(x.date));
+            var daysAddedToExport = 0;
+
+            foreach (var graphDay in historySortedDescending)
+            {
+                if (daysAddedToExport >= daysToExport) break;
+
+                var historyDay = new HistoryDay() { yyyymmdd = graphDay.date };
+                var hour = 0;
+
+                foreach (var hourValue in graphDay.vals)
+                {
+                    var dataPoint = new HistoryDataPoint();
+                    var calculatedTime = hour + 2; 
+                    dataPoint.timePeriod =  $"{hour} - {calculatedTime}";
+                    dataPoint.movementCount = (int)hourValue;
+                    historyDay.dataPoints.Add(dataPoint);
+                    hour = calculatedTime;
+                }
+
+                historyExport.history.Add(historyDay);
+                daysAddedToExport++;
+            }
+
+            return historyExport;
+        }
 
         public Graph ReadXMLFile(string filename)
         {
@@ -79,12 +126,21 @@ namespace TeboCam
             }
             Serialization.SerializeToXmlFile(filename, graph);
         }
+        
+        public void WriteXMLFile(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            Serialization.SerializeToXmlFile(filename, this);
+        }
 
         private void AddGraphHist(string date, ArrayList vals)
         {
             ArrayList newVals = new ArrayList();
             newVals.AddRange(vals);
-            graphHist hist = new graphHist
+            GraphHist hist = new GraphHist
             {
                 date = date,
                 vals = newVals,

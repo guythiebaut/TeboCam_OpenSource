@@ -39,8 +39,8 @@ namespace TeboCam
         //http://msdn.microsoft.com/en-us/library/aa984408(v=vs.71).aspx
         System.Resources.ResourceManager resourceManager;
 
-        public List<CameraButtonGroup> NotConnectedCameras = new List<CameraButtonGroup>();
-        public List<CameraButtonGroup> PublishButtonGroupInstance = new List<CameraButtonGroup>();
+        public List<GroupCameraButton> NotConnectedCameras = new List<GroupCameraButton>();
+        public List<GroupCameraButton> PublishButtonGroupInstance = new List<GroupCameraButton>();
         public CameraButtonsCntl ButtonCameraControl = new CameraButtonsCntl();
         public CameraButtonsCntl ButtonPublishControl = new CameraButtonsCntl();
 
@@ -446,7 +446,7 @@ namespace TeboCam
 
         private void SetUpPublisher()
         {
-            publisher = new Publisher(graph, email,
+            publisher = new Publisher(ref graph, email,
             TebocamState.tmpFolder, TebocamState.thumbPrefix, TebocamState.thumbFolder,
             TebocamState.imageFolder, TebocamState.xmlFolder, TebocamState.mosaicFile,
             ConfigurationHelper.GetCurrentProfileName(), configuration, log,
@@ -553,7 +553,6 @@ namespace TeboCam
             ConfigurationHelper.SetCurrentProfileName(configuration.profileInUse);
             ConfigurationHelper.LoadCurrentProfile(configuration.profileInUse);
             newsSeq = configuration.newsSeq;
-            SetUpPublisher();
             PopulateTabsWithUserControls();
             profilesSettings.ProfileListRefresh(ConfigurationHelper.GetCurrentProfileName());
             profilesSettings.ProfileListSelectFirst();
@@ -592,6 +591,7 @@ namespace TeboCam
                 }
             }
 
+            SetUpPublisher();
             graph.WriteXMLFile(TebocamState.xmlFolder + "GraphData.bak", graph);
 
             //allows testing of movement detection
@@ -640,9 +640,9 @@ namespace TeboCam
             updateOptionsSettings.GetLblCurVer().Text += version;
             string onlineVersion = version;
 
-///#if !DEBUG
+            ///#if !DEBUG
             updates(ref onlineVersion);
-//#endif
+            //#endif
 
             if (ConfigurationHelper.GetCurrentProfile().logsKeepChk) clearOldLogs();
 
@@ -688,8 +688,8 @@ namespace TeboCam
 
             for (int i = 0; i < 9; i++)
             {
-                ButtonCameraControl.AddButton(NotConnectedCameras, ButtonCameraDelegation, ButtonActiveDelegation, true, null);
-                ButtonPublishControl.AddButton(PublishButtonGroupInstance, ButtonPublishDelegation, ButtonActiveDelegation, false, null);
+                ButtonCameraControl.AddButton(NotConnectedCameras, ButtonCameraDelegation, ButtonActiveDelegation, true, new Size(20, 20), new Size(20, 10));
+                ButtonPublishControl.AddButton(PublishButtonGroupInstance, ButtonPublishDelegation, ButtonActiveDelegation, false, new Size(20, 20), new Size(20, 10));
             }
 
             notificationSettings.SetPlSnd(ConfigurationHelper.GetCurrentProfile().soundAlert != "");
@@ -780,6 +780,17 @@ namespace TeboCam
             MotionAlarmSettings();
         }
 
+        void AddControl(Control controlToAdd, Control.ControlCollection addTo, Point position, bool bringToFront = true)
+        {
+            addTo.Add(controlToAdd);
+            controlToAdd.Location = position;
+
+            if (bringToFront)
+            {
+                controlToAdd.BringToFront();
+            }
+        }
+
         void MotionAlarmSettings()
         {
             motionAlarmSettings = new MotionAlarmCntl(selcam,
@@ -792,17 +803,13 @@ namespace TeboCam
                                                       bw,
                                                       NotConnectedCameras
                                                       );
-            Webcam.Controls.Add(motionAlarmSettings);
-            motionAlarmSettings.Location = new Point(6, 398);
-            motionAlarmSettings.BringToFront();
+            AddControl(motionAlarmSettings, Webcam.Controls, new Point(6, 398));
         }
 
         void LogControl()
         {
             logControl = new LogCntl(log);
-            Webcam.Controls.Add(logControl);
-            logControl.Location = new Point(511, 343);
-            logControl.BringToFront();
+            AddControl(logControl, Webcam.Controls, new Point(511, 343));
         }
 
         void NotificationSettings()
@@ -812,41 +819,31 @@ namespace TeboCam
                                                                 alertTimeSettings,
                                                                 graphDate,
                                                                 DrawGraph);
-            Alerts.Controls.Add(notificationSettings);
-            notificationSettings.Location = new Point(6, 6);
-            notificationSettings.BringToFront();
+            AddControl(notificationSettings, Alerts.Controls, new Point(6, 6));
         }
 
         void OnlineSettings()
         {
             onlineSettings = new OnlineCntl();
-            Online.Controls.Add(onlineSettings);
-            onlineSettings.Location = new Point(12, 14);
-            onlineSettings.BringToFront();
+            AddControl(onlineSettings, Online.Controls, new Point(12, 14));
         }
 
         void MiscSettings()
         {
             miscSettings = new MiscCntl();
-            Admin.Controls.Add(miscSettings);
-            miscSettings.Location = new Point(505, 454);
-            miscSettings.BringToFront();
+            AddControl(miscSettings, Admin.Controls, new Point(505, 454));
         }
 
         void InternetConnectionCheckSettings()
         {
             internetConnectionCheckSettings = new InternetConnectionCheckCntl();
-            Admin.Controls.Add(internetConnectionCheckSettings);
-            internetConnectionCheckSettings.Location = new Point(16, 252);
-            internetConnectionCheckSettings.BringToFront();
+            AddControl(internetConnectionCheckSettings, Admin.Controls, new Point(16, 252));
         }
 
         void FrameRateSettings()
         {
             frameRateSettings = new FrameRateCntl();
-            Admin.Controls.Add(frameRateSettings);
-            frameRateSettings.Location = new Point(10, 461);
-            frameRateSettings.BringToFront();
+            AddControl(frameRateSettings, Admin.Controls, new Point(10, 461));
         }
 
         void LogFileManagementSettings()
@@ -877,9 +874,7 @@ namespace TeboCam
             fileInfo.AddFileNamePattern(thumbId, thumbFilePattern);
 
             logFileManagementSettings = new LogFileManagementCntl(fileInfo);
-            Admin.Controls.Add(logFileManagementSettings);
-            logFileManagementSettings.Location = new Point(16, 157);
-            logFileManagementSettings.BringToFront();
+            AddControl(logFileManagementSettings, Admin.Controls, new Point(16, 157));
         }
 
         void UpdateOptionsSettings()
@@ -887,41 +882,31 @@ namespace TeboCam
             updateOptionsSettings = new UpdateOptionsCntl(UpdaterInstall,
                                                           KeepWorking,
                                                           SetAPiInstanceToOff);
-            Admin.Controls.Add(updateOptionsSettings);
-            updateOptionsSettings.Location = new Point(10, 318);
-            updateOptionsSettings.BringToFront();
+            AddControl(updateOptionsSettings, Admin.Controls, new Point(10, 318));
         }
 
         void GenerateWebpageSettings()
         {
             generateWebpageSettings = new GenerateWebpageCntl();
-            Admin.Controls.Add(generateWebpageSettings);
-            generateWebpageSettings.Location = new Point(16, 10);
-            generateWebpageSettings.BringToFront();
+            AddControl(generateWebpageSettings, Admin.Controls, new Point(16, 10));
         }
 
         void SecurityLockdownSettings()
         {
-            securityLockdownSettings = new SecurityLockdownCntl(MinimiseTebocam, ShowTebocam, LockDown);
-            Admin.Controls.Add(securityLockdownSettings);
-            securityLockdownSettings.Location = new Point(505, 311);
-            securityLockdownSettings.BringToFront();
+            securityLockdownSettings = new SecurityLockdownCntl(lockTebocam, LockDown);
+            AddControl(securityLockdownSettings, Admin.Controls, new Point(505, 311));
         }
 
         void ImagesSavedFolderSettings()
         {
             imagesSavedFolderSettings = new ImagesSavedFolderCntl();
-            Alerts.Controls.Add(imagesSavedFolderSettings);
-            imagesSavedFolderSettings.Location = new Point(307, 122);
-            imagesSavedFolderSettings.BringToFront();
+            AddControl(imagesSavedFolderSettings, Alerts.Controls, new Point(307, 122));
         }
 
         void AlertFilenameSettings()
         {
             alertFilenameSettings = new AlertFilenameCntl(filePrefixSet);
-            Alerts.Controls.Add(alertFilenameSettings);
-            alertFilenameSettings.Location = new Point(307, 6);
-            alertFilenameSettings.BringToFront();
+            AddControl(alertFilenameSettings, Alerts.Controls, new Point(307, 6));
         }
 
         void PublishSettings()
@@ -931,12 +916,10 @@ namespace TeboCam
                                                       scheduleSet,
                                                       publisher,
                                                       SetPublishFirst);
-            Publish.Controls.Add(publishSettings);
-            publishSettings.Location = new Point(3, 3);
-            publishSettings.BringToFront();
+            AddControl(publishSettings, Publish.Controls, new Point(3, 3));
         }
 
-        public List<CameraButtonGroup> GetPublishButtonGroupInstance()
+        public List<GroupCameraButton> GetPublishButtonGroupInstance()
         {
             return PublishButtonGroupInstance;
         }
@@ -944,25 +927,19 @@ namespace TeboCam
         void MovementStatisticsSettings()
         {
             movementStatisticsSettings = new MovementStatisticsCntl();
-            Alerts.Controls.Add(movementStatisticsSettings);
-            movementStatisticsSettings.Location = new Point(312, 409);
-            movementStatisticsSettings.BringToFront();
+            AddControl(movementStatisticsSettings, Alerts.Controls, new Point(312, 409));
         }
 
         void EmailIntelligenceSettings()
         {
             emailIntelligenceSettings = new EmailIntelligenceCntl();
-            Alerts.Controls.Add(emailIntelligenceSettings);
-            emailIntelligenceSettings.Location = new Point(312, 209);
-            emailIntelligenceSettings.BringToFront();
+            AddControl(emailIntelligenceSettings, Alerts.Controls, new Point(312, 209));
         }
 
         void FreezeGuardSettings()
         {
             freezeGuardSettings = new FreezeGuardCntl(PulseStop);
-            Admin.Controls.Add(freezeGuardSettings);
-            freezeGuardSettings.Location = new Point(505, 146);
-            freezeGuardSettings.BringToFront();
+            AddControl(freezeGuardSettings, Admin.Controls, new Point(505, 146));
         }
 
         void ProfilesSettings()
@@ -971,41 +948,31 @@ namespace TeboCam
                                                 cameraNewProfile,
                                                 saveChanges,
                                                 configuration);
-            Admin.Controls.Add(profilesSettings);
-            profilesSettings.Location = new Point(505, 10);
-            profilesSettings.BringToFront();
+            AddControl(profilesSettings, Admin.Controls, new Point(505, 10));
         }
 
         void AlertTimeSettings()
         {
             alertTimeSettings = new AlertTimeSettingsCntl();
-            Alerts.Controls.Add(alertTimeSettings);
-            alertTimeSettings.Location = new Point(6, 375);
-            alertTimeSettings.BringToFront();
+            AddControl(alertTimeSettings, Alerts.Controls, new Point(6, 375));
         }
 
         void EmailSettings()
         {
             emailSettings = new EmailSettingsCntl(email);
-            Email_Ftp.Controls.Add(emailSettings);
-            emailSettings.Location = new Point(376, 12);
-            emailSettings.BringToFront();
+            AddControl(emailSettings, Email_Ftp.Controls, new Point(376, 12));
         }
 
         void FtpSettings()
         {
             ftpSettings = new FtpSettingsCntl(TebocamState.log);
-            Email_Ftp.Controls.Add(ftpSettings);
-            ftpSettings.Location = new Point(23, 302);
-            ftpSettings.BringToFront();
+            AddControl(ftpSettings, Email_Ftp.Controls, new Point(23, 302));
         }
 
         void EmailHostSettings()
         {
             emailHostSettings = new EmailHostSettingsCntl(email);
-            Email_Ftp.Controls.Add(emailHostSettings);
-            emailHostSettings.Location = new Point(23, 12);
-            emailHostSettings.BringToFront();
+            AddControl(emailHostSettings, Email_Ftp.Controls, new Point(23, 12));
         }
 
         void SetActCount(bool val)
@@ -1031,8 +998,9 @@ namespace TeboCam
         void UpdaterInstall(bool val)
         {
             updaterInstall = val;
-            if (updaterInstall) { 
-                CloseTebocam(); 
+            if (updaterInstall)
+            {
+                CloseTebocam();
             }
         }
 
@@ -1053,17 +1021,18 @@ namespace TeboCam
 
         private void updates(ref string onlineVersion)
         {
-            List<string> updateDat = new List<string>();
-            updateDat = update.check_for_updates(devMachine, ref newsSeq, ref configuration, ref newsInfo);
-            onlineVersion = Double.Parse(updateDat[1], new System.Globalization.CultureInfo("en-GB")).ToString();
+            var updateDateInfo = update.check_for_updates(devMachine, ref newsSeq, ref configuration, ref newsInfo);
+            onlineVersion = Double.Parse(updateDateInfo.version, new System.Globalization.CultureInfo("en-GB")).ToString();
 
             if (decimal.Parse(onlineVersion) == 0)
-            { updateOptionsSettings.GetLblVerAvail().Text = "Unable to determine the most up-to-date version."; }
+            {
+                updateOptionsSettings.GetLblVerAvail().Text = "Unable to determine the most up-to-date version.";
+            }
             else
             {
                 if (decimal.Parse(version) >= decimal.Parse(onlineVersion))
-                { 
-                    updateOptionsSettings.GetLblVerAvail().Text = "You have the most up-to-date version."; 
+                {
+                    updateOptionsSettings.GetLblVerAvail().Text = "You have the most up-to-date version.";
                 }
                 else
                 {
@@ -1072,8 +1041,8 @@ namespace TeboCam
                     bttnUpdateFooter.Visible = true;
                 }
 
-                upd_url = updateDat[2];
-                upd_file = updateDat[3];
+                upd_url = updateDateInfo.downloadFileUrl;
+                upd_file = updateDateInfo.downloadFile;
             }
 
             //pass the version of the update available to statusUpdate
@@ -1431,17 +1400,17 @@ namespace TeboCam
             {
                 if (off)
                 {
-                    API.UpdateInstance("Off", true);
+                    API.UpdateInstance("Off");
                 }
                 else
                 {
                     if (TebocamState.Alert.on)
                     {
-                        API.UpdateInstance("Active", false);
+                        API.UpdateInstance("Active");
                     }
                     else
                     {
-                        API.UpdateInstance("Inactive", false);
+                        API.UpdateInstance("Inactive");
                     }
                 }
             }
@@ -1541,7 +1510,7 @@ namespace TeboCam
             if (ApiProcess.apiCredentialsValidated)
             {
                 //Task.Run(() => API.UpdateInstance("Off", true)).Wait();
-                await Task.Run(() => API.UpdateInstance("Off", true));
+                await Task.Run(() => API.UpdateInstance("Off"));
             }
         }
 
@@ -2115,16 +2084,38 @@ namespace TeboCam
             SetAPiInstanceToOff();
         }
 
-        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        private void rightClickMenuActivate_Click(object sender, EventArgs e)
         {
             motionAlarmSettings.GetBttnMotionActive().Checked = true;
             motionAlarmSettings.GetBttnMotionInactive().Checked = false;
         }
 
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        private void rightClickInactivate_Click(object sender, EventArgs e)
         {
             motionAlarmSettings.GetBttnMotionInactive().Checked = true;
             motionAlarmSettings.GetBttnMotionActive().Checked = false;
+        }
+
+        private void rightClickMenuLock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lockTebocam()
+        {
+            MinimiseTebocam(false);
+            this.Enabled = false;
+
+            while (true)
+            {
+
+                if (Prompt.ShowDialog("Password", "Enter password to unlock") == ConfigurationHelper.GetCurrentProfile().lockdownPassword)
+                {
+                    this.Enabled = true;
+                    ShowTebocam();
+                    break;
+                }
+            }
         }
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
@@ -2266,7 +2257,7 @@ namespace TeboCam
                         TebocamState.log.AddLine(string.Format("Reconnecting lost [{0}] camera no. {1}.", friendlyName, cam.camNo.ToString()));
                         selcam(camera.displayButton, true);
 
-                        if(cam.publishActive)
+                        if (cam.publishActive)
                         {
                             pubcam(camera.displayButton);
                         }
@@ -2743,10 +2734,10 @@ namespace TeboCam
 
         private bool camClick(int button)
         {
-            bool canClick = NotConnectedCameras.Any(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected);
+            bool canClick = NotConnectedCameras.Any(x => x.id == button && x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected);
             if (!canClick) return false;
 
-            var connected = NotConnectedCameras.Where(x => x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).ToList();
+            var connected = NotConnectedCameras.Where(x => x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected).ToList();
             connected.ForEach(x => x.CameraButtonIsConnectedAndInactive());
             var newActiveButton = NotConnectedCameras.First(x => x.id == button);
             newActiveButton.CameraButtonIsConnectedAndInactive();
@@ -2779,29 +2770,29 @@ namespace TeboCam
             }
         }
 
-        public CameraButtonGroup.ButtonState motionSenseClick(int p_bttn)
+        public GroupCameraButton.ButtonState motionSenseClick(int p_bttn)
         {
-            if (NotConnectedCameras.Any(x => x.id == p_bttn && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected))
+            if (NotConnectedCameras.Any(x => x.id == p_bttn && x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected))
             {
-                if (NotConnectedCameras.Any(x => x.id == p_bttn && x.ActiveButtonState == CameraButtonGroup.ButtonState.NotConnected))
+                if (NotConnectedCameras.Any(x => x.id == p_bttn && x.ActiveButtonState == GroupCameraButton.ButtonState.NotConnected))
                 {
-                    return CameraButtonGroup.ButtonState.NotConnected;
+                    return GroupCameraButton.ButtonState.NotConnected;
                 }
                 else
                 {
-                    return CameraButtonGroup.ButtonState.ConnectedAndActive;
+                    return GroupCameraButton.ButtonState.ConnectedAndActive;
                 }
             }
-            return CameraButtonGroup.ButtonState.ConnectedAndInactive;
+            return GroupCameraButton.ButtonState.ConnectedAndInactive;
         }
 
         private void selcam(int button, bool activateDetection)
         {
             int cam = CameraRig.idxFromButton(button);
-            CameraButtonGroup.ButtonState activeButtonState = motionSenseClick(button);
+            GroupCameraButton.ButtonState activeButtonState = motionSenseClick(button);
 
             if (activateDetection ||
-                (activeButtonState == CameraButtonGroup.ButtonState.NotConnected || activeButtonState == CameraButtonGroup.ButtonState.ConnectedAndInactive))
+                (activeButtonState == GroupCameraButton.ButtonState.NotConnected || activeButtonState == GroupCameraButton.ButtonState.ConnectedAndInactive))
             {
                 licence.selectCam(cam + 1);
                 NotConnectedCameras.First(x => x.id == button).ActiveButtonIsActive();
@@ -2812,7 +2803,7 @@ namespace TeboCam
                 return;
             }
 
-            if (activeButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive)
+            if (activeButtonState == GroupCameraButton.ButtonState.ConnectedAndActive)
             {
                 licence.deselectCam(cam + 1);
                 NotConnectedCameras.First(x => x.id == button).ActiveButtonIsInactive();
@@ -2840,7 +2831,7 @@ namespace TeboCam
 
         private void pubcam(int button)
         {
-            if (NotConnectedCameras.Where(x => x.id == button && x.CameraButtonState != CameraButtonGroup.ButtonState.NotConnected).Count() > 0)
+            if (NotConnectedCameras.Where(x => x.id == button && x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected).Count() > 0)
             {
                 int cam = CameraRig.idxFromButton(button);
                 PublishButtonGroupInstance.ForEach(x => x.CameraButtonIsNotConnected());
@@ -2863,17 +2854,17 @@ namespace TeboCam
                     }
                 }
 
-                bool currentlyPublishing = PublishButtonGroupInstance.Any(x => x.id == button && x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                bool currentlyPublishing = PublishButtonGroupInstance.Any(x => x.id == button && x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
 
                 if (!currentlyPublishing)
                 {
-                    PublishButtonGroupInstance.First(x => x.id == button && x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).CameraButtonIsConnectedAndInactive();
+                    PublishButtonGroupInstance.First(x => x.id == button && x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).CameraButtonIsConnectedAndInactive();
                     CameraRig.ConnectedCameras[cam].camera.publishActive = false;
                     ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[cam].cameraName).publishActive = false;
                 }
                 else
                 {
-                    PublishButtonGroupInstance.First(x => x.id == button && x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).CameraButtonIsActive();
+                    PublishButtonGroupInstance.First(x => x.id == button && x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).CameraButtonIsActive();
                     CameraRig.ConnectedCameras[cam].camera.publishActive = true;
                     ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[cam].cameraName).publishActive = true;
                 }
@@ -2990,7 +2981,7 @@ namespace TeboCam
         {
             if (new List<string>() { "Publish Web", "Publish Local" }.Contains(result.FromString))
             {
-                int pubButton = CameraRig.idxFromButton(PublishButtonGroupInstance.First(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).id);
+                int pubButton = CameraRig.idxFromButton(PublishButtonGroupInstance.First(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).id);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[pubButton].cameraName).publishFirst = true;
 
                 if (result.FromString == "Publish Web")
@@ -3123,6 +3114,8 @@ namespace TeboCam
         {
             sensitiveInfo.ver = "1";
         }
+
+
     }
 
     public class ListArgs : EventArgs

@@ -19,7 +19,7 @@ namespace TeboCam
     public static class Token
     {
         public static TokenResponse TokenForSession;
-        public static List<CommandQueue> commands = new List<CommandQueue>();
+        public static List<CommandQueueElement> commands = new List<CommandQueueElement>();
     }
 
     public static class AuthenticationSuccess
@@ -92,6 +92,12 @@ namespace TeboCam
         public string currentState { get; set; }
     }
 
+    public class ResponseObject
+    {
+        public string token { get; set; }
+        public string responseObject { get; set; }
+    }
+
     public class GraphModel
     {
         public string date { get; set; }
@@ -109,7 +115,7 @@ namespace TeboCam
     {
         public string token { get; set; }
         public string commandGuid { get; set; }
-        public string commandResult { get; set; }
+        public object commandResult { get; set; }
     }
 
     public class ResponseWrapper
@@ -125,7 +131,7 @@ namespace TeboCam
         }
     }
 
-    public class CommandQueue
+    public class CommandQueueElement
     {
         public int idCommandQueue { get; set; }
         public string commandGuid { get; set; }
@@ -192,7 +198,7 @@ namespace TeboCam
             return token;
         }
 
-        public static void UpdateCommandResult(string result, string guid)
+        public static void UpdateCommandResult(object result, string guid)
         {
             var commandResult = new CommandResultModel
             {
@@ -218,12 +224,12 @@ namespace TeboCam
         public static InstanceSummaryInfoModel RetrieveInstance()
         {
             string endpoint = EndpointFormat(Token.TokenForSession.endpoints.First(x => x.endpointName == "getInstance").url);
-            ResponseWrapper wrappedInstance = GetInstaSummaryAsync(Token.TokenForSession.token, endpoint).GetAwaiter().GetResult();
+            ResponseWrapper wrappedInstance = GetInstanceSummaryAsync(Token.TokenForSession.token, endpoint).GetAwaiter().GetResult();
             AuthenticationSuccess.Success = wrappedInstance.TokenIsValid;
             return new InstanceSummaryInfoModel();
             //return (InstanceSummaryInfoModel)wrappedInstance.Package;
         }
-        public static async Task<ResponseWrapper> GetInstaSummaryAsync(string token, string instanceSummaryEndpoint)
+        public static async Task<ResponseWrapper> GetInstanceSummaryAsync(string token, string instanceSummaryEndpoint)
         {
             ResponseWrapper instanceSummary = new ResponseWrapper();
             string path = $"{instanceSummaryEndpoint}?token={token}";
@@ -235,7 +241,7 @@ namespace TeboCam
             return instanceSummary;
         }
 
-        public static void UpdateInstance(string status, bool wait)
+        public static void UpdateInstance(string status)
         {
             string endpoint = EndpointFormat(Token.TokenForSession.endpoints.First(x => x.endpointName == "updateInstance").url);
 
@@ -244,10 +250,10 @@ namespace TeboCam
                 currentState = status,
                 token = Token.TokenForSession.token
             };
-            ResponseWrapper wrappedInstance = UpdateInstanceSummaryAsync(endpoint, summary,wait).GetAwaiter().GetResult();
+            ResponseWrapper wrappedInstance = UpdateInstanceSummaryAsync(endpoint, summary).GetAwaiter().GetResult();
             AuthenticationSuccess.Success = wrappedInstance.TokenIsValid;
         }
-        public static async Task<ResponseWrapper> UpdateInstanceSummaryAsync(string instanceSummaryEndpoint, InstanceSummaryUpdateModel instanceSummaryUpdateModel, bool wait)
+        public static async Task<ResponseWrapper> UpdateInstanceSummaryAsync(string instanceSummaryEndpoint, InstanceSummaryUpdateModel instanceSummaryUpdateModel)
         {
             ResponseWrapper instanceSummary = new ResponseWrapper();
             //client.Timeout = new TimeSpan(0,0,0,0,5000);
@@ -259,11 +265,35 @@ namespace TeboCam
             return instanceSummary;
         }
 
+        //public static void ReturnObject(object objetToSerialise)
+        //{
+        //    string endpoint = EndpointFormat(Token.TokenForSession.endpoints.First(x => x.endpointName == "updateInstance").url);
+
+        //    var responseObject = new ResponseObject
+        //    {
+        //        responseObject = JsonConvert.SerializeObject(objetToSerialise),
+        //        token = Token.TokenForSession.token
+        //    };
+        //    ResponseWrapper wrappedInstance = ReturnObjectAsync(endpoint, responseObject).GetAwaiter().GetResult();
+        //    AuthenticationSuccess.Success = wrappedInstance.TokenIsValid;
+        //}
+
+        //public static async Task<ResponseWrapper> ReturnObjectAsync(string instanceSummaryEndpoint, ResponseObject responseObject)
+        //{
+        //    ResponseWrapper wrappedResponse = new ResponseWrapper();
+        //    HttpResponseMessage response = await client.PostAsJsonAsync(instanceSummaryEndpoint, responseObject);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        wrappedResponse = await response.Content.ReadAsAsync<ResponseWrapper>();
+        //    }
+        //    return wrappedResponse;
+        //}
+
         public static bool RetrieveCommands(int number = 0)
         {
             string endpoint = EndpointFormat(Token.TokenForSession.endpoints.First(x => x.endpointName == "getCommand").url);
             ResponseWrapper wrappedCommands = GetCommandsAsync(Token.TokenForSession.token, number, endpoint).GetAwaiter().GetResult();
-            List<CommandQueue> commands = JsonConvert.DeserializeObject<List<CommandQueue>>(wrappedCommands.Package.ToString());
+            List<CommandQueueElement> commands = JsonConvert.DeserializeObject<List<CommandQueueElement>>(wrappedCommands.Package.ToString());
             Token.commands.AddRange(commands);
             AuthenticationSuccess.Success = wrappedCommands.TokenIsValid;
             return AuthenticationSuccess.Success;

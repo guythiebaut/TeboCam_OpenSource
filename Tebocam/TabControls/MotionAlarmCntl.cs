@@ -25,7 +25,7 @@ namespace TeboCam
         public delegate void selcambleDelegate(int a, bool b);
         selcambleDelegate selcam;
         BackgroundWorker bw;
-        List<CameraButtonGroup> NotConnectedCameras;
+        List<GroupCameraButton> NotConnectedCameras;
 
         public MotionAlarmCntl(selcambleDelegate selcam,
                                ActCountVisibleDelegate actCountVisible,
@@ -35,7 +35,7 @@ namespace TeboCam
                                LoadingDelegate Loading,
                                CountingdownDelegate countingdown,
                                BackgroundWorker bw,
-                               List<CameraButtonGroup> NotConnectedCameras)
+                               List<GroupCameraButton> NotConnectedCameras)
         {
             InitializeComponent();
             this.selcam = selcam;
@@ -94,7 +94,7 @@ namespace TeboCam
 
                     if (!licence.aCameraIsSelected())
                     {
-                        var availableCameraButtons = NotConnectedCameras.Where(x => x.CameraButtonState != CameraButtonGroup.ButtonState.ConnectedAndActive).ToList();
+                        var availableCameraButtons = NotConnectedCameras.Where(x => x.CameraButtonState != GroupCameraButton.ButtonState.ConnectedAndActive).ToList();
                         availableCameraButtons.ForEach(x => selcam(x.id, true));
                     }
 

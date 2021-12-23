@@ -16,7 +16,7 @@ namespace TeboCam
         ScheduleSetDelegate scheduleSet;
         public delegate void SetPublishFirstDelegate(bool val);
         SetPublishFirstDelegate publishFirst;
-        public delegate List<CameraButtonGroup> GetPublishButtonGroupDelegate();
+        public delegate List<GroupCameraButton> GetPublishButtonGroupDelegate();
         GetPublishButtonGroupDelegate GetPublishButtonGroup;
 
         Publisher publisher;
@@ -71,7 +71,7 @@ namespace TeboCam
             pubTime.Text = Valid.verifyInt(pubTime.Text.ToString(), 1, 99999, "1");
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
                 var publishingCamera = CameraRig.ConnectedCameras.Find(x => x.displayButton == publishSelectedButton.id);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).pubTime = Convert.ToInt32(pubTime.Text);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).publishFirst = true;
@@ -82,7 +82,7 @@ namespace TeboCam
         {
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
                 var publishingCamera = CameraRig.ConnectedCameras.Find(x => x.displayButton == publishSelectedButton.id);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).pubHours = pubHours.Checked;
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).publishFirst = true;
@@ -93,7 +93,7 @@ namespace TeboCam
         {
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
                 var publishingCamera = CameraRig.ConnectedCameras.Find(x => x.displayButton == publishSelectedButton.id);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).pubMins = pubMins.Checked;
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).publishFirst = true;
@@ -104,7 +104,7 @@ namespace TeboCam
         {
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
                 var publishingCamera = CameraRig.ConnectedCameras.First(x => x.displayButton == publishSelectedButton.id);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).pubSecs = pubSecs.Checked;
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), publishingCamera.cameraName).publishFirst = true;
@@ -118,7 +118,7 @@ namespace TeboCam
 
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
 
                 if (publishSelectedButton == null)
                 {
@@ -137,7 +137,7 @@ namespace TeboCam
             ConfigurationHelper.GetCurrentProfile().publishLocal = pubToLocal.Checked;
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive);
+                var publishSelectedButton = GetPublishButtonGroup().Find(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive);
 
                 if (publishSelectedButton == null)
                 {
@@ -156,8 +156,8 @@ namespace TeboCam
         {
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive)) return;
-                int pubButton = CameraRig.idxFromButton(GetPublishButtonGroup().First(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).id);
+                if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive)) return;
+                int pubButton = CameraRig.idxFromButton(GetPublishButtonGroup().First(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).id);
                 var record = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[pubButton].cameraName);
 
                 FilePrefixSettingsDto settings = new FilePrefixSettingsDto()
@@ -185,10 +185,10 @@ namespace TeboCam
 
         private void bttnSetLocalFileName_Click(object sender, EventArgs e)
         {
-            if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive)) return;
+            if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive)) return;
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                int pubButton = CameraRig.idxFromButton(GetPublishButtonGroup().First(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).id);
+                int pubButton = CameraRig.idxFromButton(GetPublishButtonGroup().First(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).id);
                 var record = ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[pubButton].cameraName);
 
                 FilePrefixSettingsDto settings = new FilePrefixSettingsDto()
@@ -217,7 +217,7 @@ namespace TeboCam
         private void pubTimerOn_CheckedChanged(object sender, EventArgs e)
         {
 
-             if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive)) 
+             if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive)) 
             {
                 pubTimerOn.Checked = false;
                 return;
@@ -227,7 +227,7 @@ namespace TeboCam
 
             if (CameraRig.ConnectedCameras.Count > 0)
             {
-                int pubButton = GetPublishButtonGroup().First(x => x.CameraButtonState == CameraButtonGroup.ButtonState.ConnectedAndActive).id;
+                int pubButton = GetPublishButtonGroup().First(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).id;
                var buttonId = CameraRig.idxFromButton(pubButton);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[buttonId].cameraName).timerOn = pubTimerOn.Checked;
             }

@@ -10,6 +10,7 @@ namespace TeboCam
 
         public static bool match(string pattern, string val)
         {
+            if (val == null) return false;
 
             try
             {

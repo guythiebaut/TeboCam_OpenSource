@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.updateDebugLocation = new System.Windows.Forms.TextBox();
             this.bttInstallUpdateAdmin = new ctlCuteButton.cuteButton();
             this.lblVerAvail = new System.Windows.Forms.Label();
             this.lblCurVer = new System.Windows.Forms.Label();
             this.updateNotify = new System.Windows.Forms.CheckBox();
-            this.updateDebugLocation = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,29 @@
             this.groupBox7.TabIndex = 62;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Update Options";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(6, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 70;
+            this.label1.Text = "Update debug location:";
+            // 
+            // updateDebugLocation
+            // 
+            this.updateDebugLocation.BackColor = System.Drawing.Color.LemonChiffon;
+            this.updateDebugLocation.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.updateDebugLocation.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.updateDebugLocation.Location = new System.Drawing.Point(166, 86);
+            this.updateDebugLocation.Name = "updateDebugLocation";
+            this.updateDebugLocation.Size = new System.Drawing.Size(267, 21);
+            this.updateDebugLocation.TabIndex = 69;
+            this.updateDebugLocation.TextChanged += new System.EventHandler(this.updateDebugLocation_TextChanged);
             // 
             // bttInstallUpdateAdmin
             // 
@@ -108,29 +131,6 @@
             this.updateNotify.Text = "Notify when updates are available";
             this.updateNotify.UseVisualStyleBackColor = true;
             this.updateNotify.CheckedChanged += new System.EventHandler(this.updateNotify_CheckedChanged);
-            // 
-            // updateDebugLocation
-            // 
-            this.updateDebugLocation.BackColor = System.Drawing.Color.LemonChiffon;
-            this.updateDebugLocation.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.updateDebugLocation.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.updateDebugLocation.Location = new System.Drawing.Point(166, 86);
-            this.updateDebugLocation.Name = "updateDebugLocation";
-            this.updateDebugLocation.Size = new System.Drawing.Size(267, 21);
-            this.updateDebugLocation.TabIndex = 69;
-            this.updateDebugLocation.TextChanged += new System.EventHandler(this.updateDebugLocation_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(6, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
-            this.label1.TabIndex = 70;
-            this.label1.Text = "Update debug location:";
             // 
             // UpdateOptionsCntl
             // 

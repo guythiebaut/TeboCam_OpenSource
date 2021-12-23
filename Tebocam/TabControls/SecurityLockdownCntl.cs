@@ -5,18 +5,15 @@ namespace TeboCam
 {
     public partial class SecurityLockdownCntl : UserControl
     {
-        public delegate void MinimiseTebocamDelegate(bool hide);
-        MinimiseTebocamDelegate MinimiseTebocam;
-        public delegate void ShowTebocamDelegate();
-        ShowTebocamDelegate ShowTebocam;
+        public delegate void LockTebocamDelegate();
+        LockTebocamDelegate LockTebocam;
         public delegate void LockDownDelegate(bool hide);
         LockDownDelegate LockDown;
 
-        public SecurityLockdownCntl(MinimiseTebocamDelegate minimise, ShowTebocamDelegate show, LockDownDelegate lockDown)
+        public SecurityLockdownCntl(LockTebocamDelegate lockTebocam, LockDownDelegate lockDown)
         {
             InitializeComponent();
-            MinimiseTebocam = minimise;
-            ShowTebocam = show;
+            LockTebocam = lockTebocam;
             LockDown = lockDown;
         }
 
@@ -26,19 +23,7 @@ namespace TeboCam
 
         private void btnSecurityLockdownOn_Click(object sender, EventArgs e)
         {
-            MinimiseTebocam(false);
-            this.Enabled = false;
-
-            while (true)
-            {
-
-                if (Prompt.ShowDialog("Password", "Enter password to unlock") == ConfigurationHelper.GetCurrentProfile().lockdownPassword)
-                {
-                    this.Enabled = true;
-                    ShowTebocam();
-                    break;
-                }
-            }
+            LockTebocam();
         }
 
         private void rdLockdownOff_CheckedChanged(object sender, EventArgs e)

@@ -8,9 +8,22 @@ using teboweb;
 using TeboCam;
 using System.Drawing;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace teboweb
 {
+    public class UpdateInfo
+    {
+        public string app;
+        public string version;
+        public string downloadFileUrl;
+        public string downloadFile;
+        public string newsSeq;
+        public string newsFileUrl;
+        public string newsFile;
+    }
+
     class update
     {
         public static IException tebowebException;
@@ -21,47 +34,40 @@ namespace teboweb
         /// <param name="resourceDownloadFolder">Folder on the local machine to download the version file to</param>
         /// <param name="startLine">Line number, of the version file, to read the version information from</param>
         /// <returns>List containing the information from the pipe delimited version file</returns>
-        public static List<string> getUpdateInfo(string downloadsURL, string versionFile, string resourceDownloadFolder, int startLine, bool webDownload)
+        public static UpdateInfo getUpdateInfo(string product, string downloadsURL, string versionFile, string resourceDownloadFolder, int startLine, bool webDownload)
         {
 
-            bool updateChecked = false;
+            var tebocamInfo = new UpdateInfo();
 
             //create download folder if it does not exist
             if (!Directory.Exists(resourceDownloadFolder))
             {
-
                 Directory.CreateDirectory(resourceDownloadFolder);
-
             }
 
-            //let's try and download update information from the web
-            if (webDownload)
+            try
             {
-                updateChecked = webdata.downloadFromWeb(downloadsURL, versionFile, resourceDownloadFolder);
+                //let's try and download update information from the web
+                if (webDownload)
+                {
+                    webdata.downloadFromWeb(downloadsURL, sensitiveInfo.versionFile, resourceDownloadFolder);
+                }
+                //let's try and download update information from the network
+                else
+                {
+                    downloadFromNetwork(downloadsURL, versionFile, resourceDownloadFolder);
+                }
+
+                string versionJson = File.ReadAllText(resourceDownloadFolder + "\\" + versionFile);
+                var info = JsonConvert.DeserializeObject<List<UpdateInfo>>(versionJson);
+                tebocamInfo = info.Where(x => x.app.ToLower() == product.ToLower()).FirstOrDefault();
             }
-            //let's try and download update information from the network
-            else
+            catch (Exception ex)
             {
-                updateChecked = downloadFromNetwork(downloadsURL, versionFile, resourceDownloadFolder);
+                TebocamState.tebowebException.LogException(ex);
             }
 
-
-            //if the download of the file was successful
-            if (updateChecked)
-            {
-
-                //get information out of download info file
-                return populateInfoFromWeb(versionFile, resourceDownloadFolder, startLine);
-
-            }
-            //there is a chance that the download of the file was not successful
-            else
-            {
-
-                return null;
-
-            }
-
+            return tebocamInfo;
         }
 
 
@@ -119,7 +125,7 @@ namespace teboweb
         /// <param name="startupCommand">Command line to be passed to the process to restart</param>
         /// <param name="updater"></param>
         /// <returns>Void</returns>
-        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, int webUpdate,string debugFile)
+        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, int webUpdate, string debugFile)
         {
 
             string cmdLn = "";
@@ -140,44 +146,6 @@ namespace teboweb
             startInfo.Arguments = cmdLn;
             Process.Start(startInfo);
         }
-
-
-
-        private static List<string> populateInfoFromWeb(string versionFile, string resourceDownloadFolder, int line)
-        {
-
-            List<string> tempList = new List<string>();
-            int ln;
-
-            ln = 0;
-
-            foreach (string strline in File.ReadAllLines(resourceDownloadFolder + versionFile))
-            {
-
-                if (ln == line)
-                {
-
-                    string[] parts = strline.Split('|');
-                    foreach (string part in parts)
-                    {
-
-                        tempList.Add(part);
-
-                    }
-
-                    return tempList;
-
-                }
-
-                ln++;
-            }
-
-
-            return null;
-
-        }
-
-
 
         private static bool unZip(string file, string unZipTo)//, bool deleteZipOnCompletion)
         {
@@ -236,12 +204,11 @@ namespace teboweb
 
         }
 
-        public static List<string> check_for_updates(bool devMachine, 
+        public static UpdateInfo check_for_updates(bool devMachine,
                                                      ref double newsSeq,
-                                                     ref Configuration configuration, 
+                                                     ref Configuration configuration,
                                                      ref Button newsInfo)
         {
-            List<string> updateDat = new List<string>();
             string versionFile = "";
 
             //set version file depending on machine installation
@@ -255,25 +222,23 @@ namespace teboweb
             }
 
             //get the update information into a List
-            updateDat = update.getUpdateInfo(sensitiveInfo.downloadsURL, versionFile, TebocamState.resourceDownloadFolder, 1, true);
+            var updateInfo = update.getUpdateInfo(sensitiveInfo.product, sensitiveInfo.downloadsURL, versionFile, TebocamState.resourceDownloadFolder, 1, true);
 
-            if (updateDat == null)
+            if (updateInfo == null)
             {
                 //error in update
-                List<string> err = new List<string>();
-                err.Add("");
-                err.Add("0");
-                return err;
+                updateInfo.version = "0";
+                return updateInfo;
             }
             else
             {
                 //download the news information file if a new one is available
-                if (double.Parse(updateDat[4]) > newsSeq)
+                if (double.Parse(updateInfo.newsSeq) > newsSeq)
                 {
-                    update.installUpdateNow(updateDat[5], updateDat[6], TebocamState.resourceDownloadFolder, true);
-
                     try
                     {
+                        installUpdateNow(updateInfo.newsFileUrl, updateInfo.newsFile, TebocamState.resourceDownloadFolder, true);
+
                         //move all the unzipped files out of the download folder into the parent resource folder
                         //leave the zip file where it is to be deleted with the resource download folder
                         DirectoryInfo di = new DirectoryInfo(TebocamState.resourceDownloadFolder);
@@ -281,19 +246,18 @@ namespace teboweb
 
                         foreach (FileInfo fi in files)
                         {
-                            if (fi.Name != updateDat[6])
-                                File.Copy(TebocamState.resourceDownloadFolder + fi.Name, TebocamState.resourceFolder + fi.Name,
-                                    true);
+                            if (fi.Name != updateInfo.newsFile)
+                                File.Copy(TebocamState.resourceDownloadFolder + fi.Name, TebocamState.resourceFolder + fi.Name, true);
                         }
 
-                        newsSeq = double.Parse(updateDat[4]);
-                        configuration.newsSeq = double.Parse(updateDat[4]);
+                        newsSeq = double.Parse(updateInfo.newsSeq);
+                        configuration.newsSeq = newsSeq;
                         newsInfo.BackColor = Color.Gold;
                     }
                     catch (Exception e)
                     {
                         TebocamState.tebowebException.LogException(e);
-                        return updateDat;
+                        return updateInfo;
                     }
 
                     if (Directory.Exists(TebocamState.resourceDownloadFolder))
@@ -305,13 +269,13 @@ namespace teboweb
                         catch (Exception e)
                         {
                             TebocamState.tebowebException.LogException(e);
-                            return updateDat;
+                            return updateInfo;
                         }
                     }
                 }
             }
 
-            return updateDat;
+            return updateInfo;
         }
 
     }

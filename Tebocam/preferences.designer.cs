@@ -152,13 +152,14 @@ namespace TeboCam
             this.StripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.rightClickMenuHide = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuActivate = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickInactivate = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuLock = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -208,7 +209,7 @@ namespace TeboCam
             this.Test.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
             this.statusStrip.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.rightClickMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1120,57 +1121,64 @@ namespace TeboCam
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.ContextMenuStrip = this.rightClickMenu;
             resources.ApplyResources(this.notifyIcon1, "notifyIcon1");
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
-            // contextMenuStrip1
+            // rightClickMenu
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem4,
+            this.rightClickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rightClickMenuHide,
+            this.rightClickMenuShow,
+            this.rightClickMenuActivate,
+            this.rightClickInactivate,
+            this.rightClickMenuLock,
             this.toolStripMenuItem6,
-            this.toolStripMenuItem3});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.ShowImageMargin = false;
-            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            this.rightClickMenuExit});
+            this.rightClickMenu.Name = "contextMenuStrip1";
+            this.rightClickMenu.ShowImageMargin = false;
+            resources.ApplyResources(this.rightClickMenu, "rightClickMenu");
             // 
-            // toolStripMenuItem2
+            // rightClickMenuHide
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.rightClickMenuHide.Name = "rightClickMenuHide";
+            resources.ApplyResources(this.rightClickMenuHide, "rightClickMenuHide");
+            this.rightClickMenuHide.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-            // toolStripMenuItem1
+            // rightClickMenuShow
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.rightClickMenuShow.Name = "rightClickMenuShow";
+            resources.ApplyResources(this.rightClickMenuShow, "rightClickMenuShow");
+            this.rightClickMenuShow.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // toolStripMenuItem5
+            // rightClickMenuActivate
             // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            this.rightClickMenuActivate.Name = "rightClickMenuActivate";
+            resources.ApplyResources(this.rightClickMenuActivate, "rightClickMenuActivate");
+            this.rightClickMenuActivate.Click += new System.EventHandler(this.rightClickMenuActivate_Click);
             // 
-            // toolStripMenuItem4
+            // rightClickInactivate
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            this.rightClickInactivate.Name = "rightClickInactivate";
+            resources.ApplyResources(this.rightClickInactivate, "rightClickInactivate");
+            this.rightClickInactivate.Click += new System.EventHandler(this.rightClickInactivate_Click);
+            // 
+            // rightClickMenuLock
+            // 
+            this.rightClickMenuLock.Name = "rightClickMenuLock";
+            resources.ApplyResources(this.rightClickMenuLock, "rightClickMenuLock");
+            this.rightClickMenuLock.Click += new System.EventHandler(this.rightClickMenuLock_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             // 
-            // toolStripMenuItem3
+            // rightClickMenuExit
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            this.rightClickMenuExit.Name = "rightClickMenuExit";
+            resources.ApplyResources(this.rightClickMenuExit, "rightClickMenuExit");
+            this.rightClickMenuExit.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // Preferences
             // 
@@ -1249,7 +1257,7 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.rightClickMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1305,12 +1313,12 @@ namespace TeboCam
         private System.Windows.Forms.PictureBox t15;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenu;
+        private System.Windows.Forms.ToolStripMenuItem rightClickMenuHide;
+        private System.Windows.Forms.ToolStripMenuItem rightClickMenuShow;
+        private System.Windows.Forms.ToolStripMenuItem rightClickMenuActivate;
+        private System.Windows.Forms.ToolStripMenuItem rightClickInactivate;
+        private System.Windows.Forms.ToolStripMenuItem rightClickMenuExit;
         private System.Windows.Forms.Button hideLog;
         private System.Windows.Forms.TabPage Publish;
         private System.Windows.Forms.Button button5;
@@ -1386,5 +1394,6 @@ namespace TeboCam
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btn_TestUpdate;
+        private System.Windows.Forms.ToolStripMenuItem rightClickMenuLock;
     }
 }
