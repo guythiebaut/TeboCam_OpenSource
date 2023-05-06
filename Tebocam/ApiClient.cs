@@ -198,13 +198,28 @@ namespace TeboCam
             return token;
         }
 
-        public static void UpdateCommandResult(object result, string guid)
+        public class Result
         {
+            public string ResultType;
+            public object Data;
+        }
+
+        public static void UpdateCommandResult(string commandType, object result, string guid)
+        {
+
+            var jsonObject = JsonConvert.SerializeObject(
+                new Result()
+                {
+                    ResultType = commandType,
+                    Data = result
+                }
+            );
+            
             var commandResult = new CommandResultModel
             {
                 token = Token.TokenForSession.token,
                 commandGuid = guid,
-                commandResult = result
+                commandResult = jsonObject
             };
             string endpoint = EndpointFormat(Token.TokenForSession.endpoints.First(x => x.endpointName == "updateCommandResult").url);
             ResponseWrapper wrappedInstance = UpdateCommandResultAsync(endpoint, commandResult).GetAwaiter().GetResult();

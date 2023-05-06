@@ -1680,15 +1680,11 @@ namespace TeboCam
 
         private int imageFilesCount()
         {
-            Int32 fileCount = 0;
-
-            DirectoryInfo diA = new DirectoryInfo(TebocamState.imageFolder);
-            FileInfo[] imageFilesA = diA.GetFiles("*" + TebocamState.ImgSuffix);
-            fileCount += imageFilesA.Length;
-            DirectoryInfo diB = new DirectoryInfo(TebocamState.thumbFolder);
-            FileInfo[] imageFilesB = diB.GetFiles("*" + TebocamState.ImgSuffix);
-            fileCount += imageFilesB.Length;
-
+            DirectoryInfo imageInfo = new DirectoryInfo(TebocamState.imageFolder);
+            FileInfo[] imageFiles = imageInfo.GetFiles("*" + TebocamState.ImgSuffix);
+            DirectoryInfo thumbInfo = new DirectoryInfo(TebocamState.thumbFolder);
+            FileInfo[] thumbFiles = thumbInfo.GetFiles("*" + TebocamState.ImgSuffix);
+            var fileCount = imageFiles.Length + thumbFiles.Length;
             return fileCount;
         }
 

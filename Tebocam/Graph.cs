@@ -82,8 +82,21 @@ namespace TeboCam
 
         public Graph() { }
 
-        public HistoryExport HistoryUiFriendly(int daysToExport = 1)
+        private bool isDate(string dateCandidate)
         {
+            return dateCandidate.Length == 10 && dateCandidate.Substring(4, 1) == "-" && dateCandidate.Substring(7, 1) == "-";
+        }
+
+        public HistoryExport HistoryUiFriendly(int exportParm = 1)
+        {
+            var testtestForDate = exportParm.ToString();
+
+            if (isDate(testtestForDate))
+            {
+                //we probably have a date
+
+            }
+
             var today = DateTime.Now.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
             var historyExport = new HistoryExport();
             var historySortedDescending = graphHistory.OrderByDescending(x => int.Parse(x.date));
@@ -91,7 +104,7 @@ namespace TeboCam
 
             foreach (var graphDay in historySortedDescending)
             {
-                if (daysAddedToExport >= daysToExport) break;
+                if (daysAddedToExport >= exportParm) break;
 
                 var historyDay = new HistoryDay() { yyyymmdd = graphDay.date };
                 var hour = 0;
@@ -100,7 +113,7 @@ namespace TeboCam
                 {
                     var dataPoint = new HistoryDataPoint();
                     var calculatedTime = hour + 2; 
-                    dataPoint.timePeriod =  $"{hour} - {calculatedTime}";
+                    dataPoint.timePeriod =  $"{hour}-{calculatedTime}";
                     dataPoint.movementCount = (int)hourValue;
                     historyDay.dataPoints.Add(dataPoint);
                     hour = calculatedTime;
