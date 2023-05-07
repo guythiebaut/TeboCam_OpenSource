@@ -1,4 +1,7 @@
 copy "C:\Dropbox\projects\TeboCam\TeboCam.sln" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam.sln"
+copy "C:\Dropbox\projects\TeboCam\TeboCam\AdminCntl.cs" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\AdminCntl.cs"
+copy "C:\Dropbox\projects\TeboCam\TeboCam\AdminCntl.Designer.cs" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\AdminCntl.Designer.cs"
+copy "C:\Dropbox\projects\TeboCam\TeboCam\AdminCntl.resx" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\AdminCntl.resx"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\licence.cs" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\licence.cs"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\AssemblyInfo.cs" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\AssemblyInfo.cs"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\ApiClient.cs" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam\ApiClient.cs"
