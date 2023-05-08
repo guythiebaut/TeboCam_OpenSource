@@ -1,0 +1,1 @@
+copy "C:\Dropbox\projects\TeboCam_OpenSource\sensitiveInfo\sensitiveInfo.cs" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\sensitiveInfo.cs"
