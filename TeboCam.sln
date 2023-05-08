@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeboCam", "TeboCam\TeboCam.csproj", "{0FF635C0-695D-467C-B13D-BCA92E137D4B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vfw", "vfw\vfw.csproj", "{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,12 +15,11 @@ Global
 		{0FF635C0-695D-467C-B13D-BCA92E137D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FF635C0-695D-467C-B13D-BCA92E137D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF635C0-695D-467C-B13D-BCA92E137D4B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECAA3D55-19AB-440B-B82E-221AE06C4A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17B9B080-2FE7-40D4-B478-8BBC8AAE4B81}
 	EndGlobalSection
 EndGlobal
