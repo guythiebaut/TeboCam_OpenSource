@@ -126,6 +126,8 @@ copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\AForge.Video.xml" "C:\Dropbo
 copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\AForge.Vision.dll" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\libraries\AForge.Vision.dll"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\AForge.Vision.xml" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\libraries\AForge.Vision.xml"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\AForge.xml" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\libraries\AForge.xml"
+copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\cuteButton.dll" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\libraries\cuteButton.dll"
+copy "C:\Dropbox\projects\TeboCam\TeboCam\libraries\cuteButton.pdb" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\libraries\cuteButton.pdb"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\Properties\Resources.Designer.cs" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\Properties\Resources.Designer.cs"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\Properties\Resources.resx" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\Properties\Resources.resx"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\Properties\Settings.Designer.cs" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\Properties\Settings.Designer.cs"
