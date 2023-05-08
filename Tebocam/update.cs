@@ -224,7 +224,7 @@ namespace teboweb
             //get the update information into a List
             var updateInfo = update.getUpdateInfo(sensitiveInfo.product, sensitiveInfo.downloadsURL, versionFile, TebocamState.resourceDownloadFolder, 1, true);
 
-            if (updateInfo == null)
+            if (updateInfo == null || updateInfo.version == null)
             {
                 //error in update
                 updateInfo.version = "0";

@@ -1,0 +1,425 @@
+﻿using System;
+using System.IO;
+using System.Collections;
+
+namespace TeboCam
+{
+    public static class ApiProcess
+    {
+        private static string update_result = "";
+        private static string user = config.getProfile(bubble.profileInUse).webUser;
+        private static string instance = config.getProfile(bubble.profileInUse).webInstance;
+
+
+        private static void Authenticate()
+        {
+            bubble.apiCredentialsValidated = API.LogOn(config.getProfile(bubble.profileInUse).AuthenticateEndpoint, "test", "test", "main");
+        }
+
+        private static void GetCommands()
+        {
+        }
+
+        private static void ProcessCommands()
+        {
+        }
+
+        private static void ProcessCommand(string tmpStr, Preferences preferences)
+        {
+            bool securityCode = regex.match("111+$", tmpStr);
+            bool shutDownCmd = regex.match("^shutdown", tmpStr);
+            bool restartCmd = regex.match("^restart", tmpStr);
+            bool activateCmd = regex.match("^activate$", tmpStr);
+            bool inactivateCmd = regex.match("^inactivate$", tmpStr);
+            bool imageCmd = regex.match("^image$", tmpStr);
+            bool pingonCmd = regex.match("^pingon", tmpStr);
+            bool pingoffCmd = regex.match("^pingoff", tmpStr);
+            bool pollCmd = regex.match("^poll", tmpStr);
+            bool logCmd = regex.match("^log$", tmpStr);
+            bool publishCmd = regex.match("^publish$", tmpStr);
+            bool publishoffCmd = regex.match(@"^publishoff$", tmpStr);
+            bool deleteImagesCmd = regex.match(@"^deleteimages$", tmpStr);
+
+            if (deleteImagesCmd) DeleteImages();
+            if (shutDownCmd || restartCmd) ShutdownRestart(shutDownCmd, securityCode);
+            if (activateCmd) Activate();
+            if (inactivateCmd) Inactivate();
+            if (pingonCmd) PingOn(tmpStr);
+            if (pingoffCmd) PingOff();
+            if (pollCmd) Poll(tmpStr, preferences);
+            if (logCmd) Log();
+            if (imageCmd) Image();
+
+
+        }
+
+        private static void DeleteImages()
+        {
+            FileManager.clearFtp();
+            FileManager.clearFiles(bubble.thumbFolder);
+            bubble.fileBusy = false;
+            FileManager.clearFiles(bubble.imageFolder);
+        }
+
+        private static void ShutdownRestart(bool shutDownCmd, bool securityCode)
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 12);
+            if (securityCode)
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 13);
+                bubble.logAddLine("Web request restart/shutdown started...");
+                bubble.logAddLine("Motion detection inactivated.");
+                bubble.MotionDetectionInactivate();
+                bubble.logAddLine("Config data saved.");
+                //FileManager.WriteFile("config");
+                //config.WebcamSettingsConfigDataPopulate();
+                bubble.configuration.WriteXmlFile(bubble.xmlFolder + FileManager.configFile + ".xml", bubble.configuration);
+
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "statusoff", bubble.logForSql()) + " records affected.";
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+                if (shutDownCmd)
+                {
+                    bubble.ShutDown();
+                }
+                else
+                {
+                    bubble.Restart();
+                }
+            }
+            else
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 14);
+                bubble.logAddLine("Web request restart/shutdown error - 111 code not issued!");
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+            }
+        }
+
+        private static void Activate()
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 15);
+            bubble.logAddLine("Web request motion detection activated.");
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "statusactive", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+            bubble.MotionDetectionActivate();
+        }
+
+        private static void Inactivate()
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 16);
+            bubble.logAddLine("Web request motion detection inactivated.");
+
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "statusinactive", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+            bubble.MotionDetectionInactivate();
+        }
+
+        private static void PingOn(string tmpStr)
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 17);
+            config.getProfile(bubble.profileInUse).ping = true;
+            bubble.pings = 0;
+
+            bubble.logAddLine("Web request ping activated.");
+
+            if (tmpStr.Trim().Length > 6)
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 18);
+                string trString = tmpStr.Trim();
+                string Num = LeftRightMid.Right(trString, trString.Length - 6).Trim();
+                if (bubble.IsNumeric(Num))
+                {
+                    teboDebug.writeline(teboDebug.webUpdateVal + 19);
+                    Num = bubble.verifyInt(Num, 1, 9999, config.getProfile(bubble.profileInUse).pingInterval.ToString());
+                    bubble.logAddLine("Web request ping every " + Num + " minutes.");
+                    config.getProfile(bubble.profileInUse).pingInterval = Convert.ToInt32(Num);
+                }
+            }
+
+            teboDebug.writeline(teboDebug.webUpdateVal + 20);
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+        }
+
+        private static void PingOff()
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 21);
+            config.getProfile(bubble.profileInUse).ping = false; ;
+            bubble.pings = 0;
+
+            bubble.logAddLine("Web request ping inactivated.");
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+        }
+
+        private static void Poll(string tmpStr, Preferences preferences)
+        {
+            teboDebug.writeline(teboDebug.webUpdateVal + 22);
+            string trString = tmpStr.Trim();
+            string Num = LeftRightMid.Right(trString, trString.Length - 4).Trim();
+            if (bubble.IsNumeric(Num))
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 23);
+                Num = bubble.verifyInt(Num, 30, 9999, "30");
+                preferences.sqlPoll.Text = Num;
+                bubble.logAddLine("Web request poll every " + Num + " seconds.");
+                config.getProfile(bubble.profileInUse).webPoll = Convert.ToInt32(Num);
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+            }
+
+        }
+
+        private static void Log()
+        {
+
+            teboDebug.writeline(teboDebug.webUpdateVal + 24);
+            bubble.logAddLine("Web log request sent to database.");
+
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+        }
+
+        private static void Image()
+        {
+
+            teboDebug.writeline(teboDebug.webUpdateVal + 25);
+            ArrayList tmpRes = database.database_get_data(bubble.authenticationEndpoint, user, instance, "picloc");
+            string imageLoc = tmpRes[0].ToString();
+
+
+            string dateStamp = DateTime.Now.ToString("dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string timeStamp = DateTime.Now.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+
+            ImagePubArgs a = new ImagePubArgs();
+            a.option = "onl";
+            a.CamNo = CameraRig.idxFromButton(CameraRig.CurrentlyDisplayingCamera);
+            //a.cam = CameraRig.activeCam;
+
+            try { bubble.PubPicture(a); }
+            catch (Exception e)
+            {
+                bubble.tebowebException.LogException(e);
+            }
+            try
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 26);
+                string pubFile = bubble.tmpFolder + config.getProfile(bubble.profileInUse).webImageFileName + ".jpg";
+                ftp.Upload(pubFile, config.getProfile(bubble.profileInUse).webImageRoot, config.getProfile(bubble.profileInUse).webFtpUser, config.getProfile(bubble.profileInUse).webFtpPass);
+                File.Delete(bubble.tmpFolder + "bubble.pubPicture.jpg");
+                bubble.logAddLine("Web image request image published.");
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "log", bubble.logForSql()) + " records affected.";
+                update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+            }
+            catch (Exception e)
+            {
+                bubble.tebowebException.LogException(e);
+            }
+        }
+
+        private static void CleanUp()
+        {
+        }
+
+        public static void webUpdate(Preferences preferences)
+        {
+            if (
+                bubble.LicensedToConnectToApi &&
+                bubble.ApiAuthenticationAttemptCount < bubble.databaseTimeOutCount &&
+                config.getProfile(bubble.profileInUse).webUpd &&
+                (
+                    (bubble.webCredsJustChecked ||
+                    (time.secondsSinceStart() - bubble.webUpdLastChecked > config.getProfile(bubble.profileInUse).webPoll)) ||
+                    bubble.webFirstTimeThru
+                )
+                )
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 1);
+                if (!bubble.apiCredentialsValidated)
+                {
+
+                    teboDebug.writeline(teboDebug.webUpdateVal + 2);
+                    bubble.PulseEvent();
+
+                    bubble.logAddLine("Checking API credentials...");
+
+                    Authenticate();
+
+                    //apiCredentialsValidated = database.credentials_correct(bubble.authenticationEndpoint, config.getProfile(bubble.profileInUse).webUser, config.getProfile(bubble.profileInUse).webPass);
+                    bubble.webUpdLastChecked = time.secondsSinceStart();
+                    bubble.ApiAuthenticationAttemptCount++;
+                    if (bubble.apiCredentialsValidated)
+                    {
+                        teboDebug.writeline(teboDebug.webUpdateVal + 3);
+                        bubble.logAddLine("API authentication passed.");
+                        bubble.webCredsJustChecked = true;
+                    }
+                    if (bubble.ApiAuthenticationAttemptCount == bubble.databaseTimeOutCount)
+                    {
+                        teboDebug.writeline(teboDebug.webUpdateVal + 4);
+                        bubble.logAddLine("API authentication attempted " + bubble.databaseTimeOutCount.ToString() + " times and found to be incorrect!");
+                    }
+                }
+                else
+                {
+
+                    bubble.webUpdLastChecked = time.secondsSinceStart();
+                    teboDebug.writeline(teboDebug.webUpdateVal + 5);
+                    bubble.PulseEvent();
+
+                    bubble.webCredsJustChecked = false;
+                    bubble.ApiAuthenticationAttemptCount = 0;
+
+
+                    ArrayList data_result = new ArrayList();
+                    //string update_result = "";
+
+
+                    if (!API.RetrieveCommands()) return;
+
+
+
+                    //20160627 if the command has already been processed jump out of this routine
+                    ArrayList command_guid = new ArrayList();
+                    command_guid = database.database_get_data(bubble.authenticationEndpoint, user, instance, "command_guid");
+
+                    if (bubble.OnlineCommandGuids.Contains(command_guid[0].ToString()))
+                    {
+
+                        //let's clear the command
+                        //update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusinactive", bubble.logForSql()) + " records affected.";
+                        //update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", bubble.logForSql()) + " records affected.";
+                        update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+                        return;
+
+                    }
+                    else
+                    {
+
+                        bubble.OnlineCommandGuids.Clear();
+                        bubble.OnlineCommandGuids.Add(command_guid[0].ToString());
+
+                    }
+
+                    //20120331 check for restriction on processing old commands
+                    //if a command has been sitting online for longer than a given number of seconds
+                    //clear the online command and do not act on it
+                    if (config.getProfile(bubble.profileInUse).disCommOnline)
+                    {
+
+                        data_result = database.database_get_data(bubble.authenticationEndpoint, user, instance, "online_request_dt");
+                        int timeSinceCommandIssued = time.secondsSinceStart((string)data_result[0]);
+
+                        if (timeSinceCommandIssued > config.getProfile(bubble.profileInUse).disCommOnlineSecs)
+                        {
+
+                            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+                        }
+
+                    }
+
+
+
+
+                    data_result = database.database_get_data(bubble.authenticationEndpoint, user, instance, "online_request");
+                    string tmpStr = "";
+
+                    if (data_result.Count >= 1)
+                    {
+
+                        tmpStr = data_result[0].ToString().Trim();
+
+                    }
+
+
+                    //bool securityCode = regex.match("111+$", tmpStr);
+                    //bool shutDownCmd = regex.match("^shutdown", tmpStr);
+                    //bool restartCmd = regex.match("^restart", tmpStr);
+                    //bool activateCmd = regex.match("^activate$", tmpStr);
+                    //bool inactivateCmd = regex.match("^inactivate$", tmpStr);
+                    //bool imageCmd = regex.match("^image$", tmpStr);
+                    //bool pingonCmd = regex.match("^pingon", tmpStr);
+                    //bool pingoffCmd = regex.match("^pingoff", tmpStr);
+                    //bool pollCmd = regex.match("^poll", tmpStr);
+                    //bool logCmd = regex.match("^log$", tmpStr);
+                    //bool publishCmd = regex.match("^publish$", tmpStr);
+                    //bool publishoffCmd = regex.match(@"^publishoff$", tmpStr);
+                    //bool deleteImagesCmd = regex.match(@"^deleteimages$", tmpStr);
+
+
+                    //get settings to see if we need to email
+
+                    bool email = API.RetrieveInstance().emailConfirmation;
+
+                    if (email)
+                    {
+
+                        teboDebug.writeline(teboDebug.webUpdateVal + 6);
+                        mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
+                                       config.getProfile(bubble.profileInUse).sendTo,
+                                       "Online Request Confirmation",
+                                       @"'" + tmpStr + @"'" + " being actioned.",
+                                       config.getProfile(bubble.profileInUse).replyTo,
+                                       false,
+                                       time.secondsSinceStart(),
+                                       config.getProfile(bubble.profileInUse).emailUser,
+                                       config.getProfile(bubble.profileInUse).emailPass,
+                                       config.getProfile(bubble.profileInUse).smtpHost,
+                                       config.getProfile(bubble.profileInUse).smtpPort,
+                                       config.getProfile(bubble.profileInUse).EnableSsl
+                                       );
+                        bubble.logAddLine("Online Request Confirmation email sent.");
+                    }
+
+                    if (bubble.webFirstTimeThru)
+                    {
+                        //update_result = database.database_update_data(user, instance, "on", bubble.logForSql()) + " records affected.";
+
+                        teboDebug.writeline(teboDebug.webUpdateVal + 7);
+
+                        if (bubble.Alert.on)
+                        {
+                            teboDebug.writeline(teboDebug.webUpdateVal + 8);
+                            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "statusactive", bubble.logForSql()) + " records affected.";
+                        }
+                        else
+                        {
+                            teboDebug.writeline(teboDebug.webUpdateVal + 9);
+                            update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "statusinactive", bubble.logForSql()) + " records affected.";
+                        }
+
+                        teboDebug.writeline(teboDebug.webUpdateVal + 10);
+                        bubble.webFirstTimeThru = false;
+
+                    }
+
+                    teboDebug.writeline(teboDebug.webUpdateVal + 11);
+                    update_result = database.database_update_data(bubble.authenticationEndpoint, user, instance, "poll", time.currentDateTimeSql()) + " records affected.";
+                    string tmpDateTime = Convert.ToDateTime(time.currentDateTimeSql()).AddSeconds(config.getProfile(bubble.profileInUse).webPoll).ToString();
+                    update_result = "";
+
+                    ProcessCommand(tmpStr, preferences);
+
+                    //Process Command
+                    //Process Command
+                    //Process Command
+                    //Process Command
+                    //Process Command
+
+                    teboDebug.writeline(teboDebug.webUpdateVal + 47);
+
+                    bubble.PulseEvent();
+
+                }
+            }
+        }
+    }
+}

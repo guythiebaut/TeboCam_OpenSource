@@ -1,0 +1,6 @@
+
+cd C:\Dropbox\projects\TeboCam_OpenSource\copy_commands
+
+PowerShell -ExecutionPolicy Bypass
+
+.\get_files.ps1
