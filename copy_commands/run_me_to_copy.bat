@@ -4,4 +4,4 @@
 CALL copy_sensitiveInfo
 
 :run_powershell_copy
-run_powershell_copy
+CALL run_powershell_copy

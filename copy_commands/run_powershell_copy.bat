@@ -2,4 +2,4 @@
 Powershell.exe -executionpolicy remotesigned -File .\get_files.ps1
 
 :run_copy_commands
-copyCommands
+CALL copyCommands
