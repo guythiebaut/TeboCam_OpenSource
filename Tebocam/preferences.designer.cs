@@ -146,7 +146,6 @@ namespace TeboCam
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button24 = new System.Windows.Forms.Button();
             this.notConnected = new System.Windows.Forms.Label();
-            this.bttnUpdateFooter = new ctlCuteButton.cuteButton();
             this.timer = new System.Timers.Timer();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.StripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -160,6 +159,7 @@ namespace TeboCam
             this.rightClickMenuLock = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.rightClickMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.bttnUpdateFooter = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -1081,20 +1081,6 @@ namespace TeboCam
             this.notConnected.Name = "notConnected";
             this.toolTip1.SetToolTip(this.notConnected, resources.GetString("notConnected.ToolTip"));
             // 
-            // bttnUpdateFooter
-            // 
-            this.bttnUpdateFooter.BackColor = System.Drawing.Color.White;
-            this.bttnUpdateFooter.cuteColor1 = System.Drawing.Color.Gold;
-            this.bttnUpdateFooter.cuteColor2 = System.Drawing.Color.Red;
-            this.bttnUpdateFooter.cuteTransparent1 = 100;
-            this.bttnUpdateFooter.cuteTransparent2 = 100;
-            resources.ApplyResources(this.bttnUpdateFooter, "bttnUpdateFooter");
-            this.bttnUpdateFooter.ForeColor = System.Drawing.Color.Black;
-            this.bttnUpdateFooter.Name = "bttnUpdateFooter";
-            this.toolTip1.SetToolTip(this.bttnUpdateFooter, resources.GetString("bttnUpdateFooter.ToolTip"));
-            this.bttnUpdateFooter.UseVisualStyleBackColor = false;
-            this.bttnUpdateFooter.Click += new System.EventHandler(this.bttnUpdateFooter_Click);
-            // 
             // timer
             // 
             this.timer.Interval = 1000D;
@@ -1180,16 +1166,23 @@ namespace TeboCam
             resources.ApplyResources(this.rightClickMenuExit, "rightClickMenuExit");
             this.rightClickMenuExit.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // bttnUpdateFooter
+            // 
+            resources.ApplyResources(this.bttnUpdateFooter, "bttnUpdateFooter");
+            this.bttnUpdateFooter.Name = "bttnUpdateFooter";
+            this.bttnUpdateFooter.UseVisualStyleBackColor = true;
+            this.bttnUpdateFooter.Click += new System.EventHandler(this.bttnUpdateFooter_Click);
+            // 
             // Preferences
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bttnUpdateFooter);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bttnToolTips);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.notConnected);
             this.Controls.Add(this.button24);
-            this.Controls.Add(this.bttnUpdateFooter);
             this.Name = "Preferences";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.preferences_FormClosing);
             this.Load += new System.EventHandler(this.preferences_Load);
@@ -1360,7 +1353,6 @@ namespace TeboCam
         private System.Windows.Forms.TextBox txtMess;
         private System.Windows.Forms.TextBox actCount;
         private System.Windows.Forms.Label lblCameraName;
-        private ctlCuteButton.cuteButton bttnUpdateFooter;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Panel pnlStartupOptions;
         private System.Windows.Forms.Label label47;
@@ -1395,5 +1387,6 @@ namespace TeboCam
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btn_TestUpdate;
         private System.Windows.Forms.ToolStripMenuItem rightClickMenuLock;
+        private System.Windows.Forms.Button bttnUpdateFooter;
     }
 }

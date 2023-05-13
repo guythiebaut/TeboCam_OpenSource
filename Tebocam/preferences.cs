@@ -3039,11 +3039,6 @@ namespace TeboCam
             }
         }
 
-        private void bttnUpdateFooter_Click(object sender, EventArgs e)
-        {
-            updateOptionsSettings.TriggerUpdate();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             List<Camera> cameras = new List<Camera>();
@@ -3111,7 +3106,10 @@ namespace TeboCam
             sensitiveInfo.ver = "1";
         }
 
-
+        private void bttnUpdateFooter_Click(object sender, EventArgs e)
+        {
+            updateOptionsSettings.TriggerUpdate();
+        }
     }
 
     public class ListArgs : EventArgs

@@ -35,11 +35,6 @@ namespace TeboCam
             setAPiInstanceToOff();
         }
 
-        private void bttInstallUpdateAdmin_Click(object sender, EventArgs e)
-        {
-            TriggerUpdate();
-        }
-
         private void updateNotify_CheckedChanged(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().updatesNotify = updateNotify.Checked;
@@ -48,6 +43,11 @@ namespace TeboCam
         private void updateDebugLocation_TextChanged(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().updateDebugLocation = updateDebugLocation.Text;
+        }
+
+        private void bttInstallUpdateAdmin_Click(object sender, EventArgs e)
+        {
+            TriggerUpdate();
         }
     }
 }

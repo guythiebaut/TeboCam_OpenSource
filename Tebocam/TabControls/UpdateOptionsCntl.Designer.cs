@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.bttInstallUpdateAdmin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.updateDebugLocation = new System.Windows.Forms.TextBox();
-            this.bttInstallUpdateAdmin = new ctlCuteButton.cuteButton();
             this.lblVerAvail = new System.Windows.Forms.Label();
             this.lblCurVer = new System.Windows.Forms.Label();
             this.updateNotify = new System.Windows.Forms.CheckBox();
@@ -40,9 +40,9 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.bttInstallUpdateAdmin);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.updateDebugLocation);
-            this.groupBox7.Controls.Add(this.bttInstallUpdateAdmin);
             this.groupBox7.Controls.Add(this.lblVerAvail);
             this.groupBox7.Controls.Add(this.lblCurVer);
             this.groupBox7.Controls.Add(this.updateNotify);
@@ -52,6 +52,16 @@
             this.groupBox7.TabIndex = 62;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Update Options";
+            // 
+            // bttInstallUpdateAdmin
+            // 
+            this.bttInstallUpdateAdmin.Location = new System.Drawing.Point(9, 111);
+            this.bttInstallUpdateAdmin.Name = "bttInstallUpdateAdmin";
+            this.bttInstallUpdateAdmin.Size = new System.Drawing.Size(235, 21);
+            this.bttInstallUpdateAdmin.TabIndex = 71;
+            this.bttInstallUpdateAdmin.Text = "Download And Install Update";
+            this.bttInstallUpdateAdmin.UseVisualStyleBackColor = true;
+            this.bttInstallUpdateAdmin.Click += new System.EventHandler(this.bttInstallUpdateAdmin_Click);
             // 
             // label1
             // 
@@ -75,24 +85,6 @@
             this.updateDebugLocation.Size = new System.Drawing.Size(267, 21);
             this.updateDebugLocation.TabIndex = 69;
             this.updateDebugLocation.TextChanged += new System.EventHandler(this.updateDebugLocation_TextChanged);
-            // 
-            // bttInstallUpdateAdmin
-            // 
-            this.bttInstallUpdateAdmin.BackColor = System.Drawing.Color.White;
-            this.bttInstallUpdateAdmin.cuteColor1 = System.Drawing.Color.Gold;
-            this.bttInstallUpdateAdmin.cuteColor2 = System.Drawing.Color.Red;
-            this.bttInstallUpdateAdmin.cuteTransparent1 = 100;
-            this.bttInstallUpdateAdmin.cuteTransparent2 = 100;
-            this.bttInstallUpdateAdmin.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.bttInstallUpdateAdmin.ForeColor = System.Drawing.Color.Black;
-            this.bttInstallUpdateAdmin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bttInstallUpdateAdmin.Location = new System.Drawing.Point(6, 113);
-            this.bttInstallUpdateAdmin.Name = "bttInstallUpdateAdmin";
-            this.bttInstallUpdateAdmin.Size = new System.Drawing.Size(249, 20);
-            this.bttInstallUpdateAdmin.TabIndex = 67;
-            this.bttInstallUpdateAdmin.Text = "Download And Install Update";
-            this.bttInstallUpdateAdmin.UseVisualStyleBackColor = false;
-            this.bttInstallUpdateAdmin.Click += new System.EventHandler(this.bttInstallUpdateAdmin_Click);
             // 
             // lblVerAvail
             // 
@@ -147,11 +139,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox7;
-        private ctlCuteButton.cuteButton bttInstallUpdateAdmin;
         private System.Windows.Forms.Label lblVerAvail;
         private System.Windows.Forms.Label lblCurVer;
         private System.Windows.Forms.CheckBox updateNotify;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox updateDebugLocation;
+        private System.Windows.Forms.Button bttInstallUpdateAdmin;
     }
 }

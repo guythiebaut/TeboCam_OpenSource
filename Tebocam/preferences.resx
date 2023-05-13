@@ -812,7 +812,7 @@ or any other function in TeboCam.
     <value>14, 227</value>
   </data>
   <data name="lblFrameRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
+    <value>55, 16</value>
   </data>
   <data name="lblFrameRate.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
@@ -848,7 +848,7 @@ or any other function in TeboCam.
     <value>14, 206</value>
   </data>
   <data name="lblCameraName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
+    <value>55, 16</value>
   </data>
   <data name="lblCameraName.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
@@ -887,7 +887,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.27913, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.24038, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -3528,7 +3528,7 @@ Warning once you delete the image files you cannot recover them!</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="bttnToolTips.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3565,7 +3565,7 @@ balloons which contain tips.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bttnToolTips.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="button24.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3603,7 +3603,7 @@ Changes are also saved automatically on exit.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button24.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="notConnected.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3646,48 +3646,7 @@ if you this is displayed and you know you are connected.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;notConnected.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="bttnUpdateFooter.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="bttnUpdateFooter.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Verdana, 12pt, style=Bold</value>
-  </data>
-  <data name="bttnUpdateFooter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bttnUpdateFooter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>550, 609</value>
-  </data>
-  <data name="bttnUpdateFooter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 28</value>
-  </data>
-  <data name="bttnUpdateFooter.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="bttnUpdateFooter.Text" xml:space="preserve">
-    <value>UPDATE</value>
-  </data>
-  <data name="bttnUpdateFooter.ToolTip" xml:space="preserve">
-    <value>An update is available - clicking on this button will:
-
-Download the latest update by first closing
-then downloading the most recent update.
-The new version of TeboCam will then start.
-This usually takes less than 1 minute.</value>
-  </data>
-  <data name="&gt;&gt;bttnUpdateFooter.Name" xml:space="preserve">
-    <value>bttnUpdateFooter</value>
-  </data>
-  <data name="&gt;&gt;bttnUpdateFooter.Type" xml:space="preserve">
-    <value>ctlCuteButton.cuteButton, cuteButton, Version=1.0.4319.27512, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;bttnUpdateFooter.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bttnUpdateFooter.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>216, 17</value>
@@ -3696,7 +3655,7 @@ This usually takes less than 1 minute.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>75</value>
+    <value>83</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -3706,6 +3665,33 @@ This usually takes less than 1 minute.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>964, 661</value>
+  </data>
+  <metadata name="bttnUpdateFooter.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="bttnUpdateFooter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>535, 609</value>
+  </data>
+  <data name="bttnUpdateFooter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 28</value>
+  </data>
+  <data name="bttnUpdateFooter.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="bttnUpdateFooter.Text" xml:space="preserve">
+    <value>UPDATE</value>
+  </data>
+  <data name="&gt;&gt;bttnUpdateFooter.Name" xml:space="preserve">
+    <value>bttnUpdateFooter</value>
+  </data>
+  <data name="&gt;&gt;bttnUpdateFooter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bttnUpdateFooter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bttnUpdateFooter.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>293, 17</value>
@@ -3735,7 +3721,7 @@ This usually takes less than 1 minute.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
