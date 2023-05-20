@@ -4,8 +4,7 @@ $commandFile = "C:\Dropbox\projects\TeboCam_OpenSource\copy_commands\copyCommand
 $SourceDirectory =  "C:\Dropbox\projects\TeboCam\TeboCam";
 $DestinationDirectory = "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam";
 $SupplementalSourceDirectory =  "C:\Dropbox\projects\TeboCam";
-$SupplemnentalDestinationDirectory = "C:\Dropbox\projects\TeboCam_OpenSource";
-
+$SupplementalDestinationDirectory = "C:\Dropbox\projects\TeboCam_OpenSource";
 
 class FileInformation {
 	[String] $FileName
@@ -22,7 +21,7 @@ class FileInformation {
 }	
 
 $fileCollection = New-Object System.Collections.Generic.List[FileInformation];
-$SuplementalItemsArray = @("TeboCam.sln", "TeboCam.suo","TeboCam.v12.suo"); 
+$SuplementalItemsArray = @("README.md", "TeboCam.sln", "TeboCam.suo","TeboCam.v12.suo"); 
 
 function WaitForKeypress {
 	$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
@@ -51,7 +50,7 @@ function AddSuplementaryLines {
 
 	foreach ($item in $SuplementalItemsArray)
 	{
-		$item = [FileInformation]::new($item, $SupplementalSourceDirectory, $SupplemnentalDestinationDirectory, $true);
+		$item = [FileInformation]::new($item, $SupplementalSourceDirectory, $SupplementalDestinationDirectory, $true);
 		$fileCollection.add($item);
 	}
 }

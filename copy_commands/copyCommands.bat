@@ -222,6 +222,7 @@ copy "C:\Dropbox\projects\TeboCam\TeboCam\TabControls\UpdateOptionsCntl.cs" "C:\
 copy "C:\Dropbox\projects\TeboCam\TeboCam\TabControls\UpdateOptionsCntl.Designer.cs" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\TabControls\UpdateOptionsCntl.Designer.cs"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\TabControls\UpdateOptionsCntl.resx" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\TabControls\UpdateOptionsCntl.resx"
 copy "C:\Dropbox\projects\TeboCam\TeboCam\Tests\Tests.cs" "C:\Dropbox\projects\TeboCam_OpenSource\Tebocam\Tests\Tests.cs"
+copy "C:\Dropbox\projects\TeboCam\README.md" "C:\Dropbox\projects\TeboCam_OpenSource\README.md"
 copy "C:\Dropbox\projects\TeboCam\TeboCam.sln" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam.sln"
 copy "C:\Dropbox\projects\TeboCam\TeboCam.suo" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam.suo"
 copy "C:\Dropbox\projects\TeboCam\TeboCam.v12.suo" "C:\Dropbox\projects\TeboCam_OpenSource\TeboCam.v12.suo"
