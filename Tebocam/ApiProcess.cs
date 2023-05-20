@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,7 @@ namespace TeboCam
         public static bool apiCredentialsValidated = false;
         public static int webUpdLastChecked = 0;
         public static bool LicensedToConnectToApi = false;
+        public static List<string> GuidSeen =  new  List<string>();
 
         const string securityCodeStr = "111+$";
         const string shutDownCmdStr = "^shutdown";
@@ -75,6 +76,11 @@ namespace TeboCam
             return runAt?.ToUniversalTime() <= DateTime.UtcNow;
         }
 
+        private static bool hasRunTime(DateTime? runAt)
+        {
+            return runAt != null;
+        }
+
         private static void ProcessCommand(string commandToRun, string parms, string guid, Preferences preferences, CommandQueueElement rawCommand)
         {
             bool securityCode = matched(parms, securityCodeStr);
@@ -111,7 +117,7 @@ namespace TeboCam
 
             if (deleteImagesCmd) DeleteImages();
             if (deleteAndshutDownCmd) DeleteImagesAndShutDown(securityCode);
-            if (shutDownCmd || restartCmd) ShutdownRestart(shutDownCmd, securityCode, rawCommand.requestedRunDtm);
+            if (shutDownCmd || restartCmd) ShutdownRestart(shutDownCmd, securityCode, rawCommand.requestedRunDtm, GuidSeen.Contains(guid));
             if (activateCmd) Activate();
             if (inactivateCmd) Inactivate();
             if (pingonCmd) PingOn(commandToRun, preferences.pinger);
@@ -123,6 +129,15 @@ namespace TeboCam
             if (statsAllCmd) StatsAll(guid);
             if (graphCmd) Graph(preferences.graph, guid, parms);
             if (imageCmd) Image(guid);
+
+            if (hasRunTime(rawCommand.requestedRunDtm))
+            {
+                //We want to store the guid in a list of already seen guids
+                //so that we don't keep processing the same initial commands until the
+                //runAt time arrives.
+
+                GuidSeen.Add(guid);
+            }
         }
 
         private static bool DisregardCommand(CommandQueueElement rawCommand)
@@ -270,7 +285,7 @@ namespace TeboCam
             //last restart time
         }
 
-        private static void ShutdownRestart(bool shutDownCmd, bool securityCode, DateTime? runAt)
+        private static void ShutdownRestart(bool shutDown, bool securityCode, DateTime? runAt, bool firstTime)
         {
             teboDebug.writeline(teboDebug.webUpdateVal + 12);
             if (!securityCode)
@@ -279,24 +294,27 @@ namespace TeboCam
                 return;
             }
 
-            if (!runNow(runAt))
+            if (!firstTime)
             {
+                if (!runNow(runAt))
+                {
+                    teboDebug.writeline(teboDebug.webUpdateVal + 13);
+                    var message = string.Format("Web request restart/shutdown sceduled for {0}", runAt.ToString());
+                    TebocamState.log.AddLine(message);
+                    TebocamState.log.AddLine("Motion detection inactivated.");
+                    Movement.MotionDetectionInactivate();
+                }
+
                 teboDebug.writeline(teboDebug.webUpdateVal + 13);
-                var message = string.Format("Web request restart/shutdown sceduled for {0}", runAt.ToString());
-                TebocamState.log.AddLine(message);
+                TebocamState.log.AddLine("Web request restart/shutdown started...");
                 TebocamState.log.AddLine("Motion detection inactivated.");
                 Movement.MotionDetectionInactivate();
+                TebocamState.log.AddLine("Config data saved.");
+                TebocamState.configuration.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".xml", TebocamState.configuration);
+                API.UpdateInstance("Off");
             }
 
-            teboDebug.writeline(teboDebug.webUpdateVal + 13);
-            TebocamState.log.AddLine("Web request restart/shutdown started...");
-            TebocamState.log.AddLine("Motion detection inactivated.");
-            Movement.MotionDetectionInactivate();
-            TebocamState.log.AddLine("Config data saved.");
-            TebocamState.configuration.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".xml", TebocamState.configuration);
-            API.UpdateInstance("Off");
-
-            if (shutDownCmd)
+            if (shutDown)
             {
                 if (!runNow(runAt))
                 {
