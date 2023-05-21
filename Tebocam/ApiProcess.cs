@@ -288,15 +288,17 @@ namespace TeboCam
         private static void ShutdownRestart(bool shutDown, bool securityCode, DateTime? runAt, bool firstTime)
         {
             teboDebug.writeline(teboDebug.webUpdateVal + 12);
+            var runCommand = runNow(runAt);
+
             if (!securityCode)
             {
                 IncorrectSecurityCode("Web request restart/shutdown error - 111 code not issued!");
                 return;
             }
 
-            if (!firstTime)
+            if (firstTime)
             {
-                if (!runNow(runAt))
+                if (!runCommand)
                 {
                     teboDebug.writeline(teboDebug.webUpdateVal + 13);
                     var message = string.Format("Web request restart/shutdown sceduled for {0}", runAt.ToString());
@@ -304,8 +306,11 @@ namespace TeboCam
                     TebocamState.log.AddLine("Motion detection inactivated.");
                     Movement.MotionDetectionInactivate();
                 }
+            }
 
-                teboDebug.writeline(teboDebug.webUpdateVal + 13);
+            if (runCommand)
+            {
+                teboDebug.writeline(teboDebug.webUpdateVal + 131);
                 TebocamState.log.AddLine("Web request restart/shutdown started...");
                 TebocamState.log.AddLine("Motion detection inactivated.");
                 Movement.MotionDetectionInactivate();
@@ -316,7 +321,7 @@ namespace TeboCam
 
             if (shutDown)
             {
-                if (!runNow(runAt))
+                if (!runCommand)
                 {
                     return;
                 }
