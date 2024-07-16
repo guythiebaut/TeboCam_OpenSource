@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
 namespace TeboCam
@@ -71,6 +71,8 @@ namespace TeboCam
         public bool cycleStamp = false;
         public int cycleStampChecked = 1;
         public long emailNotifyInterval = 2;
+        public bool includeMotionLevel = false;
+
 
         public string _lockdownPassword = string.Empty;
         [XmlIgnore]
@@ -179,6 +181,7 @@ namespace TeboCam
         public string timerStartMov = "0500";
         public string timerEndMov = "2130";
         public bool webUpd = false;
+        public string HealthEndpoint = string.Empty;
         public string AuthenticateEndpoint = string.Empty;
         public string LocalAuthenticateEndpoint = string.Empty;
         public string PickupDirectory = string.Empty;
@@ -333,6 +336,7 @@ namespace TeboCam
         public int endCyclePubWeb = 999;
         public int currentCyclePubWeb = 1;
         public bool stampAppendPubWeb = false;
+        public bool includeMotionLevel = false;
 
         public string fileDirAlertLoc = TebocamState.imageFolder;
         public bool fileDirAlertCust = false;

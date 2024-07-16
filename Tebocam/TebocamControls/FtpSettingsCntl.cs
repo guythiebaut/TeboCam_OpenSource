@@ -15,13 +15,11 @@ namespace TeboCam
         }
 
         public void SetUser(string val) { ftpUser.Text = val; }
-        public void SetPassword(string val) { ftpPass.Text = val; }
         public void SetRoot(string val) { ftpRoot.Text = val; }
 
         private void SetFieldValues()
         {
             ftpUser.Text = ConfigurationHelper.GetCurrentProfile().ftpUser;
-            ftpPass.Text = ConfigurationHelper.GetCurrentProfile().ftpPass;
             ftpRoot.Text = ConfigurationHelper.GetCurrentProfile().ftpRoot;
         }
 
@@ -32,7 +30,7 @@ namespace TeboCam
             ftp.testFtpError = false;
             FileManager.WriteFile("test");
             log.AddLine("ftp test: uploading file");
-            ftp.Upload(TebocamState.xmlFolder + FileManager.testFile + ".xml", ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass, 0);
+            ftp.Upload(TebocamState.xmlFolder + FileManager.testFile + ".xml", ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass);
 
             if (!ftp.testFtpError)
             {
@@ -62,11 +60,6 @@ namespace TeboCam
         private void ftpUser_TextChanged(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().ftpUser = ftpUser.Text;
-        }
-
-        private void ftpPass_TextChanged(object sender, EventArgs e)
-        {
-            ConfigurationHelper.GetCurrentProfile().ftpPass = ftpPass.Text;
         }
 
         private void ftpRoot_TextChanged(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace TeboCam
             this.setAPiInstanceToOff = setAPiInstanceToOff;
         }
 
-        public Label GetLblCurVer() {return lblCurVer; }
+        public Label GetLblCurVer() { return lblCurVer; }
         public Label GetLblVerAvail() { return lblVerAvail; }
         public CheckBox GetUpdateNotify() { return updateNotify; }
         public Button GetBttInstallUpdateAdmin() { return bttInstallUpdateAdmin; }

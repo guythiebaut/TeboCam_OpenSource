@@ -3,8 +3,6 @@ using AForge.Vision.Motion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -25,14 +23,14 @@ namespace TeboCam
         public delegate void publishOnDelegate(int buttonId);
         publishOnDelegate publishOn;
 
-        public OpenVideo(CameraAlarm cameraAlarm, 
-                         Configuration configuration, 
-                         List<GroupCameraButton> NotConnectedCameras, 
-                         Queue CommandQueue, 
-                         camButtonSetColoursDelegate camButtonSetColours, 
-                         cameraSwitchDelegate cameraSwitch, 
-                         webcamAttachedDelegate webcamAttached, 
-                         btnConfigWebcamEnabledDelegate btnConfigWebcamEnabled, 
+        public OpenVideo(CameraAlarm cameraAlarm,
+                         Configuration configuration,
+                         List<GroupCameraButton> NotConnectedCameras,
+                         Queue CommandQueue,
+                         camButtonSetColoursDelegate camButtonSetColours,
+                         cameraSwitchDelegate cameraSwitch,
+                         webcamAttachedDelegate webcamAttached,
+                         btnConfigWebcamEnabledDelegate btnConfigWebcamEnabled,
                          publishOnDelegate publishOn)
         {
             this.cameraAlarm = cameraAlarm;
@@ -124,7 +122,7 @@ namespace TeboCam
                     NotConnectedCameras.First(x => x.id == connectedCamera.displayButton).ActiveButtonIsActive();
                     CameraRig.ConnectedCameras[connectedCamera.camera.camNo].camera.alert = true;
                     CameraRig.ConnectedCameras[connectedCamera.camera.camNo].camera.alarmActive = true;
-                    ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(),CameraRig.ConnectedCameras[connectedCamera.camera.camNo].cameraName).alarmActive = true;
+                    ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[connectedCamera.camera.camNo].cameraName).alarmActive = true;
                     CameraRig.ConnectedCameras[connectedCamera.camera.camNo].camera.detectionOn = true;
                     //CameraRig.alert(true);
                     queueItem.CamsProcessed.Add(connectedCamera.camera.camNo);

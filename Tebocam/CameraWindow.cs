@@ -5,15 +5,12 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Data;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace TeboCam
 {
@@ -285,7 +282,7 @@ namespace TeboCam
                     }
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //TebocamState.tebowebException.LogException(e);
                     camera.Unlock();
@@ -376,7 +373,7 @@ namespace TeboCam
                 // unlock
                 Monitor.Exit(this);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //TebocamState.tebowebException.LogException(e);
                 Monitor.Exit(this);
@@ -471,7 +468,7 @@ namespace TeboCam
                 haveTheFlag = false;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TebocamState.tebowebException.LogException(ex);
                 haveTheFlag = false;
@@ -813,7 +810,7 @@ namespace TeboCam
 
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //TebocamState.tebowebException.LogException(e);
             }

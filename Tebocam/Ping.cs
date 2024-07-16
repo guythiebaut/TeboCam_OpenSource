@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -33,7 +29,7 @@ namespace TeboCam
         public bool pingedBefore = false;
 
 
-        public Ping(IMail email, Log logger, Graph grph, 
+        public Ping(IMail email, Log logger, Graph grph,
             string tempFolder, string xmlFld, string profile, pingGraphDelegate pinGraphDel)
         {
             graph = grph;
@@ -49,13 +45,13 @@ namespace TeboCam
         {
             if (
                 (
-                webcamAttached && ConfigurationHelper.GetCurrentProfile().ping 
-                && ConfigurationHelper.GetCurrentProfile().pingInterval > 0 
+                webcamAttached && ConfigurationHelper.GetCurrentProfile().ping
+                && ConfigurationHelper.GetCurrentProfile().pingInterval > 0
                 && !pingedBefore
-                ) || 
+                ) ||
                 (
-                webcamAttached && ConfigurationHelper.GetCurrentProfile().ping 
-                && ConfigurationHelper.GetCurrentProfile().pingInterval > 0 
+                webcamAttached && ConfigurationHelper.GetCurrentProfile().ping
+                && ConfigurationHelper.GetCurrentProfile().pingInterval > 0
                 && Math.Abs(pingLast - time.secondsSinceStart()) >= Convert.ToDouble(ConfigurationHelper.GetCurrentProfile().pingInterval * 60)
                 )
             )
@@ -66,10 +62,10 @@ namespace TeboCam
                 takePingPicture(null, new EventArgs());
                 Thread.Sleep(2000);
                 teboDebug.writeline(teboDebug.pingVal + 2);
-                log.AddLine( "Preparing ping email.");
+                log.AddLine("Preparing ping email.");
                 pingedBefore = true;
                 mail.clearAttachments();
-                log.AddLine( "Attachments cleared.");
+                log.AddLine("Attachments cleared.");
                 graph.graphSeq++;
 
                 if (graph.graphCurrentDate != time.currentDateYYYYMMDD())
@@ -81,7 +77,7 @@ namespace TeboCam
                     Size size = new Size(windowSize.Width, windowSize.Height);
                     GraphToSave.graphBitmap = new Bitmap(size.Width, size.Height, PixelFormat.Format24bppRgb);
                     GraphToSave.graphBitmap.Save(tmpFolder + "graphCurrent" + graph.graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
-                    log.AddLine( "Adding graph attachment.");
+                    log.AddLine("Adding graph attachment.");
 
                     if (File.Exists(tmpFolder + "graphCurrent" + graph.graphSeq.ToString() + ".jpg"))
                     {
@@ -96,7 +92,7 @@ namespace TeboCam
                     teboDebug.writeline(teboDebug.pingVal + 4);
                     redrawGraph(null, new EventArgs());
                     GraphToSave.graphBitmap.Save(tmpFolder + "graphCurrent" + graph.graphSeq.ToString() + ".jpg", ImageFormat.Jpeg);
-                    log.AddLine( "Adding graph attachment.");
+                    log.AddLine("Adding graph attachment.");
 
                     if (File.Exists(tmpFolder + "graphCurrent" + graph.graphSeq.ToString() + ".jpg"))
                     {
@@ -113,7 +109,7 @@ namespace TeboCam
                     File.Copy(xmlFolder + "LogData.xml", tmpFolder + "pinglog" + graph.graphSeq.ToString() + ".xml", true);
                 }
 
-                log.AddLine( "Adding log attachment.");
+                log.AddLine("Adding log attachment.");
 
                 if (File.Exists(tmpFolder + "pinglog" + graph.graphSeq.ToString() + ".xml"))
                 {
@@ -121,7 +117,7 @@ namespace TeboCam
                 }
 
                 File.Copy(tmpFolder + "pingPicture.jpg", tmpFolder + "pingPicture" + graph.graphSeq.ToString() + ".jpg", true);
-                log.AddLine( "Adding image attachment.");
+                log.AddLine("Adding image attachment.");
 
                 if (File.Exists(tmpFolder + "pingPicture" + graph.graphSeq.ToString() + ".jpg"))
                 {
@@ -153,7 +149,7 @@ namespace TeboCam
                 //#todo too late to update pinglast?
                 pingLast = time.secondsSinceStart();
                 Thread.Sleep(2000);
-                log.AddLine( "Ping email sent.");
+                log.AddLine("Ping email sent.");
 
                 //}
 

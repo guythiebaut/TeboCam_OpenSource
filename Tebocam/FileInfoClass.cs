@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Ionic.Zip;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Ionic.Zip;
 
 namespace TeboCam
 {
@@ -42,7 +42,7 @@ namespace TeboCam
             //https://stackoverflow.com/q/15291337
             var filesDirectory = store[fileDirectory][id];
             var dirName = store[fileType][id].ToLower().Replace(' ', '_');
-            var timeStamp =  DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+            var timeStamp = DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
             var zipFileName = $"{dirName}_{timeStamp}";
             var patternToZip = store[filePattern][id];
             var files = Directory.EnumerateFiles(filesDirectory, patternToZip);
@@ -58,7 +58,7 @@ namespace TeboCam
                 }
 
                 File.Move($"{filesDirectory}{zipFileName}.zip", $"{TebocamState.vaultFolder}{zipFileName}.zip");
-              
+
                 //todo unzip the file in a temporary folder to check the files have been correctly zipped
                 //before deleting the files then also delete the temporary folder
 
@@ -102,7 +102,7 @@ namespace TeboCam
         {
             var dataTypeExists = store.ContainsKey(dataType);
 
-            if(dataTypeExists)
+            if (dataTypeExists)
             {
                 store[dataType].Remove(id);
             }
@@ -125,7 +125,7 @@ namespace TeboCam
             }
         }
 
-        public void AddFileType(string id, string type) 
+        public void AddFileType(string id, string type)
         {
             dictionaryCreateOrAdd(fileType, id, type);
         }
@@ -149,7 +149,7 @@ namespace TeboCam
             var count = Directory.GetFiles(directoryToCountWithin, filePat, SearchOption.TopDirectoryOnly).Length;
             dictionaryCreateOrAdd(fileCount, id, count.ToString());
         }
-        
+
         public void AddFileSize(string id)
         {
             dictionaryDelete(fileSize, id);
@@ -175,9 +175,9 @@ namespace TeboCam
         }
         public string GetSizeForId(string id)
         {
-            return store[fileSize][id]; 
+            return store[fileSize][id];
         }
-        public string GetTypeForId(string id) 
+        public string GetTypeForId(string id)
         {
             return store[fileType][id];
         }

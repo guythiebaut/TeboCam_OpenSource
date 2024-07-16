@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
 namespace TeboCam
 {
 
@@ -42,7 +38,7 @@ namespace TeboCam
         {
             using (StreamWriter w = new StreamWriter(Path.Combine(_exceptionFilePath, _exceptionFileName), true))
             {
-                string time =  string.Format("[{0}]", DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture));
+                string time = string.Format("[{0}]", DateTime.Now.ToString("yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture));
                 w.WriteLine();
                 w.WriteLine(time);
                 w.WriteLine(exception);

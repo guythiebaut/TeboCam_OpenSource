@@ -1,13 +1,10 @@
 ﻿using AForge.Video.DirectShow;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -120,7 +117,7 @@ namespace TeboCam
             var publishButtonsSet = 0;
             foreach (var connectedCamera in CameraRig.ConnectedCameras)
             {
-                if(connectedCamera.camera.publishActive)
+                if (connectedCamera.camera.publishActive)
                 {
                     publishCam(connectedCamera.displayButton);
                     publishButtonsSet++;

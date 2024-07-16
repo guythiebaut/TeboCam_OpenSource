@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace TeboCam
@@ -48,7 +46,7 @@ namespace TeboCam
             FileType = FileInfo.GetFileTypes();
         }
 
-        private void PopulateFileTypesDropdown() 
+        private void PopulateFileTypesDropdown()
         {
             //https://stackoverflow.com/a/3063421
             foreach (var keyValuePair in FileType)

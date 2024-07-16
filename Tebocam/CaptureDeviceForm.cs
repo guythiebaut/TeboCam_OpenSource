@@ -1,10 +1,8 @@
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
 using AForge.Video.DirectShow;
+using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 //using dshow;
 //using dshow.Core;
 

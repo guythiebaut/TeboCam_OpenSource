@@ -160,6 +160,7 @@ namespace TeboCam
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.rightClickMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.bttnUpdateFooter = new System.Windows.Forms.Button();
+            this.testPasswordFieldLength = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.pnlStartupOptions.SuspendLayout();
@@ -1029,6 +1030,7 @@ namespace TeboCam
             // 
             // Test
             // 
+            this.Test.Controls.Add(this.testPasswordFieldLength);
             this.Test.Controls.Add(this.btn_TestUpdate);
             this.Test.Controls.Add(this.btnTestAccessCameras);
             resources.ApplyResources(this.Test, "Test");
@@ -1173,6 +1175,11 @@ namespace TeboCam
             this.bttnUpdateFooter.UseVisualStyleBackColor = true;
             this.bttnUpdateFooter.Click += new System.EventHandler(this.bttnUpdateFooter_Click);
             // 
+            // testPasswordFieldLength
+            // 
+            resources.ApplyResources(this.testPasswordFieldLength, "testPasswordFieldLength");
+            this.testPasswordFieldLength.Name = "testPasswordFieldLength";
+            // 
             // Preferences
             // 
             resources.ApplyResources(this, "$this");
@@ -1247,6 +1254,7 @@ namespace TeboCam
             this.Online.ResumeLayout(false);
             this.Online.PerformLayout();
             this.Test.ResumeLayout(false);
+            this.Test.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -1388,5 +1396,6 @@ namespace TeboCam
         private System.Windows.Forms.Button btn_TestUpdate;
         private System.Windows.Forms.ToolStripMenuItem rightClickMenuLock;
         private System.Windows.Forms.Button bttnUpdateFooter;
+        private System.Windows.Forms.TextBox testPasswordFieldLength;
     }
 }

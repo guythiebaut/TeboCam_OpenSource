@@ -1,11 +1,11 @@
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
-using System.Drawing;
 
 namespace TeboCam
 {
@@ -112,8 +112,8 @@ namespace TeboCam
                 foreach (var hourValue in graphDay.vals)
                 {
                     var dataPoint = new HistoryDataPoint();
-                    var calculatedTime = hour + 2; 
-                    dataPoint.timePeriod =  $"{hour}-{calculatedTime}";
+                    var calculatedTime = hour + 2;
+                    dataPoint.timePeriod = $"{hour}-{calculatedTime}";
                     dataPoint.movementCount = (int)hourValue;
                     historyDay.dataPoints.Add(dataPoint);
                     hour = calculatedTime;
@@ -139,7 +139,7 @@ namespace TeboCam
             }
             Serialization.SerializeToXmlFile(filename, graph);
         }
-        
+
         public void WriteXMLFile(string filename)
         {
             if (File.Exists(filename))
@@ -252,7 +252,7 @@ namespace TeboCam
             {
                 dates.Add(graphHistory[i].date);
             }
-            
+
             //date is in format yyyyMMdd
             return dates;
         }
@@ -266,7 +266,7 @@ namespace TeboCam
             {
                 dates.Add(graphHistory[i].date);
             }
-            
+
             //date is in format yyyyMMdd
             return dates;
         }

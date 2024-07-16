@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace TeboCam
 {
@@ -28,7 +26,7 @@ namespace TeboCam
             }
             Serialization.SerializeToXmlFile(filename, config);
         }
-        
+
         public void NewStat(Statistic stat)
         {
             StatisticCollection.Add(stat);
@@ -38,7 +36,6 @@ namespace TeboCam
         [Serializable]
         public class Statistic
         {
-            private string profile;
             private int cameraId;
             private string cameraName;
             private int motionLevel;
@@ -47,7 +44,7 @@ namespace TeboCam
         }
 
 
-        
+
 
 
     }

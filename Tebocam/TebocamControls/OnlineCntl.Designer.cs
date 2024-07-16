@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.btnHealthcheck = new System.Windows.Forms.Button();
+            this.txtEndpointHealth = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtPickupDirectory = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -66,6 +69,9 @@
             // 
             // groupBox20
             // 
+            this.groupBox20.Controls.Add(this.btnHealthcheck);
+            this.groupBox20.Controls.Add(this.txtEndpointHealth);
+            this.groupBox20.Controls.Add(this.label1);
             this.groupBox20.Controls.Add(this.txtPickupDirectory);
             this.groupBox20.Controls.Add(this.label67);
             this.groupBox20.Controls.Add(this.panel8);
@@ -97,16 +103,45 @@
             this.groupBox20.Controls.Add(this.sqlImageRoot);
             this.groupBox20.Location = new System.Drawing.Point(0, 0);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(421, 539);
+            this.groupBox20.Size = new System.Drawing.Size(447, 539);
             this.groupBox20.TabIndex = 79;
             this.groupBox20.TabStop = false;
+            // 
+            // btnHealthcheck
+            // 
+            this.btnHealthcheck.Location = new System.Drawing.Point(367, 194);
+            this.btnHealthcheck.Name = "btnHealthcheck";
+            this.btnHealthcheck.Size = new System.Drawing.Size(74, 21);
+            this.btnHealthcheck.TabIndex = 96;
+            this.btnHealthcheck.Text = "Check";
+            this.btnHealthcheck.UseVisualStyleBackColor = true;
+            this.btnHealthcheck.Click += new System.EventHandler(this.btnHealthcheck_Click);
+            // 
+            // txtEndpointHealth
+            // 
+            this.txtEndpointHealth.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtEndpointHealth.Location = new System.Drawing.Point(157, 195);
+            this.txtEndpointHealth.Name = "txtEndpointHealth";
+            this.txtEndpointHealth.Size = new System.Drawing.Size(204, 20);
+            this.txtEndpointHealth.TabIndex = 94;
+            this.txtEndpointHealth.Leave += new System.EventHandler(this.txtEndpointHealth_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(38, 195);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 95;
+            this.label1.Text = "Health endpoint";
             // 
             // txtPickupDirectory
             // 
             this.txtPickupDirectory.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtPickupDirectory.Location = new System.Drawing.Point(163, 171);
+            this.txtPickupDirectory.Location = new System.Drawing.Point(157, 169);
             this.txtPickupDirectory.Name = "txtPickupDirectory";
-            this.txtPickupDirectory.Size = new System.Drawing.Size(244, 20);
+            this.txtPickupDirectory.Size = new System.Drawing.Size(284, 20);
             this.txtPickupDirectory.TabIndex = 92;
             this.txtPickupDirectory.Leave += new System.EventHandler(this.txtPickupDirectory_Leave);
             // 
@@ -114,7 +149,7 @@
             // 
             this.label67.AutoSize = true;
             this.label67.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label67.Location = new System.Drawing.Point(44, 171);
+            this.label67.Location = new System.Drawing.Point(38, 169);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(83, 13);
             this.label67.TabIndex = 93;
@@ -124,7 +159,7 @@
             // 
             this.panel8.Controls.Add(this.rdApiLocal);
             this.panel8.Controls.Add(this.rdApiRemote);
-            this.panel8.Location = new System.Drawing.Point(9, 192);
+            this.panel8.Location = new System.Drawing.Point(3, 219);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(30, 54);
             this.panel8.TabIndex = 79;
@@ -155,9 +190,9 @@
             // txtEndpointLocal
             // 
             this.txtEndpointLocal.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtEndpointLocal.Location = new System.Drawing.Point(163, 225);
+            this.txtEndpointLocal.Location = new System.Drawing.Point(157, 252);
             this.txtEndpointLocal.Name = "txtEndpointLocal";
-            this.txtEndpointLocal.Size = new System.Drawing.Size(244, 20);
+            this.txtEndpointLocal.Size = new System.Drawing.Size(284, 20);
             this.txtEndpointLocal.TabIndex = 90;
             this.txtEndpointLocal.Leave += new System.EventHandler(this.txtEndpointLocal_Leave);
             // 
@@ -165,7 +200,7 @@
             // 
             this.label66.AutoSize = true;
             this.label66.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label66.Location = new System.Drawing.Point(45, 225);
+            this.label66.Location = new System.Drawing.Point(39, 252);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(77, 13);
             this.label66.TabIndex = 91;
@@ -174,9 +209,9 @@
             // txtEndpoint
             // 
             this.txtEndpoint.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtEndpoint.Location = new System.Drawing.Point(163, 198);
+            this.txtEndpoint.Location = new System.Drawing.Point(157, 225);
             this.txtEndpoint.Name = "txtEndpoint";
-            this.txtEndpoint.Size = new System.Drawing.Size(244, 20);
+            this.txtEndpoint.Size = new System.Drawing.Size(284, 20);
             this.txtEndpoint.TabIndex = 88;
             this.txtEndpoint.Leave += new System.EventHandler(this.txtEndpoint_Leave);
             // 
@@ -184,7 +219,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label30.Location = new System.Drawing.Point(44, 198);
+            this.label30.Location = new System.Drawing.Point(38, 225);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(88, 13);
             this.label30.TabIndex = 89;
@@ -194,7 +229,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label39.Location = new System.Drawing.Point(119, 487);
+            this.label39.Location = new System.Drawing.Point(113, 485);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(49, 13);
             this.label39.TabIndex = 87;
@@ -205,7 +240,7 @@
             this.disCommOnlineSecs.BackColor = System.Drawing.Color.LemonChiffon;
             this.disCommOnlineSecs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.disCommOnlineSecs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.disCommOnlineSecs.Location = new System.Drawing.Point(48, 479);
+            this.disCommOnlineSecs.Location = new System.Drawing.Point(42, 477);
             this.disCommOnlineSecs.Name = "disCommOnlineSecs";
             this.disCommOnlineSecs.Size = new System.Drawing.Size(65, 21);
             this.disCommOnlineSecs.TabIndex = 86;
@@ -218,7 +253,7 @@
             this.disCommOnline.BackColor = System.Drawing.SystemColors.Control;
             this.disCommOnline.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.disCommOnline.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.disCommOnline.Location = new System.Drawing.Point(48, 456);
+            this.disCommOnline.Location = new System.Drawing.Point(42, 454);
             this.disCommOnline.Name = "disCommOnline";
             this.disCommOnline.Size = new System.Drawing.Size(236, 17);
             this.disCommOnline.TabIndex = 85;
@@ -232,7 +267,7 @@
             this.label51.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.label51.ForeColor = System.Drawing.Color.Black;
             this.label51.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label51.Location = new System.Drawing.Point(52, 365);
+            this.label51.Location = new System.Drawing.Point(46, 387);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(126, 13);
             this.label51.TabIndex = 84;
@@ -244,7 +279,7 @@
             this.label58.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.label58.ForeColor = System.Drawing.Color.Black;
             this.label58.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label58.Location = new System.Drawing.Point(52, 335);
+            this.label58.Location = new System.Drawing.Point(46, 357);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(94, 13);
             this.label58.TabIndex = 83;
@@ -256,7 +291,7 @@
             this.label63.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.label63.ForeColor = System.Drawing.Color.Black;
             this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label63.Location = new System.Drawing.Point(52, 303);
+            this.label63.Location = new System.Drawing.Point(46, 325);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(62, 13);
             this.label63.TabIndex = 82;
@@ -265,26 +300,26 @@
             // SqlFtpUser
             // 
             this.SqlFtpUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.SqlFtpUser.Location = new System.Drawing.Point(181, 300);
+            this.SqlFtpUser.Location = new System.Drawing.Point(175, 322);
             this.SqlFtpUser.Name = "SqlFtpUser";
-            this.SqlFtpUser.Size = new System.Drawing.Size(226, 20);
+            this.SqlFtpUser.Size = new System.Drawing.Size(266, 20);
             this.SqlFtpUser.TabIndex = 81;
             this.SqlFtpUser.Leave += new System.EventHandler(this.SqlFtpUser_Leave);
             // 
             // SqlFtpPwd
             // 
             this.SqlFtpPwd.BackColor = System.Drawing.Color.LemonChiffon;
-            this.SqlFtpPwd.Location = new System.Drawing.Point(181, 327);
+            this.SqlFtpPwd.Location = new System.Drawing.Point(175, 349);
             this.SqlFtpPwd.Name = "SqlFtpPwd";
             this.SqlFtpPwd.PasswordChar = '*';
-            this.SqlFtpPwd.Size = new System.Drawing.Size(226, 20);
+            this.SqlFtpPwd.Size = new System.Drawing.Size(266, 20);
             this.SqlFtpPwd.TabIndex = 79;
             this.SqlFtpPwd.Leave += new System.EventHandler(this.SqlFtpPwd_Leave);
             // 
             // button20
             // 
             this.button20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button20.Location = new System.Drawing.Point(55, 259);
+            this.button20.Location = new System.Drawing.Point(49, 281);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(352, 25);
             this.button20.TabIndex = 78;
@@ -298,7 +333,7 @@
             this.webUpd.BackColor = System.Drawing.SystemColors.Control;
             this.webUpd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.webUpd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.webUpd.Location = new System.Drawing.Point(16, 29);
+            this.webUpd.Location = new System.Drawing.Point(10, 27);
             this.webUpd.Name = "webUpd";
             this.webUpd.Size = new System.Drawing.Size(104, 17);
             this.webUpd.TabIndex = 69;
@@ -310,7 +345,7 @@
             // 
             this.label57.AutoSize = true;
             this.label57.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label57.Location = new System.Drawing.Point(45, 116);
+            this.label57.Location = new System.Drawing.Point(39, 114);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(48, 13);
             this.label57.TabIndex = 77;
@@ -319,7 +354,7 @@
             // sqlUser
             // 
             this.sqlUser.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlUser.Location = new System.Drawing.Point(163, 54);
+            this.sqlUser.Location = new System.Drawing.Point(157, 52);
             this.sqlUser.Name = "sqlUser";
             this.sqlUser.Size = new System.Drawing.Size(125, 20);
             this.sqlUser.TabIndex = 0;
@@ -329,7 +364,7 @@
             // 
             this.sqlInstance.BackColor = System.Drawing.Color.LemonChiffon;
             this.sqlInstance.Enabled = false;
-            this.sqlInstance.Location = new System.Drawing.Point(163, 108);
+            this.sqlInstance.Location = new System.Drawing.Point(157, 106);
             this.sqlInstance.Name = "sqlInstance";
             this.sqlInstance.Size = new System.Drawing.Size(125, 20);
             this.sqlInstance.TabIndex = 76;
@@ -339,7 +374,7 @@
             // 
             this.label46.AutoSize = true;
             this.label46.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label46.Location = new System.Drawing.Point(45, 62);
+            this.label46.Location = new System.Drawing.Point(39, 60);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(29, 13);
             this.label46.TabIndex = 5;
@@ -348,7 +383,7 @@
             // sqlPwd
             // 
             this.sqlPwd.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlPwd.Location = new System.Drawing.Point(163, 81);
+            this.sqlPwd.Location = new System.Drawing.Point(157, 79);
             this.sqlPwd.Name = "sqlPwd";
             this.sqlPwd.PasswordChar = '*';
             this.sqlPwd.Size = new System.Drawing.Size(125, 20);
@@ -359,7 +394,7 @@
             // 
             this.label54.AutoSize = true;
             this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label54.Location = new System.Drawing.Point(294, 146);
+            this.label54.Location = new System.Drawing.Point(288, 144);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(53, 13);
             this.label54.TabIndex = 74;
@@ -369,7 +404,7 @@
             // 
             this.label52.AutoSize = true;
             this.label52.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label52.Location = new System.Drawing.Point(45, 89);
+            this.label52.Location = new System.Drawing.Point(39, 87);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(53, 13);
             this.label52.TabIndex = 11;
@@ -378,7 +413,7 @@
             // sqlPoll
             // 
             this.sqlPoll.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlPoll.Location = new System.Drawing.Point(163, 138);
+            this.sqlPoll.Location = new System.Drawing.Point(157, 136);
             this.sqlPoll.Name = "sqlPoll";
             this.sqlPoll.Size = new System.Drawing.Size(125, 20);
             this.sqlPoll.TabIndex = 12;
@@ -388,7 +423,7 @@
             // 
             this.label50.AutoSize = true;
             this.label50.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label50.Location = new System.Drawing.Point(48, 392);
+            this.label50.Location = new System.Drawing.Point(42, 414);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(81, 13);
             this.label50.TabIndex = 72;
@@ -398,7 +433,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label53.Location = new System.Drawing.Point(45, 146);
+            this.label53.Location = new System.Drawing.Point(39, 144);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(87, 13);
             this.label53.TabIndex = 13;
@@ -407,18 +442,18 @@
             // sqlImageFilename
             // 
             this.sqlImageFilename.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlImageFilename.Location = new System.Drawing.Point(181, 384);
+            this.sqlImageFilename.Location = new System.Drawing.Point(175, 406);
             this.sqlImageFilename.Name = "sqlImageFilename";
-            this.sqlImageFilename.Size = new System.Drawing.Size(226, 20);
+            this.sqlImageFilename.Size = new System.Drawing.Size(266, 20);
             this.sqlImageFilename.TabIndex = 71;
             this.sqlImageFilename.Leave += new System.EventHandler(this.sqlImageFilename_Leave);
             // 
             // sqlImageRoot
             // 
             this.sqlImageRoot.BackColor = System.Drawing.Color.LemonChiffon;
-            this.sqlImageRoot.Location = new System.Drawing.Point(181, 357);
+            this.sqlImageRoot.Location = new System.Drawing.Point(175, 379);
             this.sqlImageRoot.Name = "sqlImageRoot";
-            this.sqlImageRoot.Size = new System.Drawing.Size(226, 20);
+            this.sqlImageRoot.Size = new System.Drawing.Size(266, 20);
             this.sqlImageRoot.TabIndex = 70;
             this.sqlImageRoot.Leave += new System.EventHandler(this.sqlImageRoot_Leave);
             // 
@@ -427,7 +462,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.groupBox20);
             this.Name = "OnlineCntl";
-            this.Size = new System.Drawing.Size(421, 539);
+            this.Size = new System.Drawing.Size(450, 539);
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -470,5 +505,8 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.TextBox sqlImageFilename;
         private System.Windows.Forms.TextBox sqlImageRoot;
+        private System.Windows.Forms.TextBox txtEndpointHealth;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnHealthcheck;
     }
 }

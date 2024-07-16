@@ -32,8 +32,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.ftpUser = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.ftpPass = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.ftpRoot = new System.Windows.Forms.TextBox();
@@ -46,8 +44,6 @@
             this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.label22);
             this.panel2.Controls.Add(this.ftpUser);
-            this.panel2.Controls.Add(this.label23);
-            this.panel2.Controls.Add(this.ftpPass);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label24);
             this.panel2.Controls.Add(this.ftpRoot);
@@ -90,30 +86,6 @@
             this.ftpUser.Size = new System.Drawing.Size(294, 21);
             this.ftpUser.TabIndex = 5;
             this.ftpUser.TextChanged += new System.EventHandler(this.ftpUser_TextChanged);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label23.Location = new System.Drawing.Point(16, 118);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(94, 13);
-            this.label23.TabIndex = 28;
-            this.label23.Text = "Ftp Password";
-            // 
-            // ftpPass
-            // 
-            this.ftpPass.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ftpPass.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ftpPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ftpPass.Location = new System.Drawing.Point(16, 140);
-            this.ftpPass.Name = "ftpPass";
-            this.ftpPass.PasswordChar = '*';
-            this.ftpPass.Size = new System.Drawing.Size(294, 21);
-            this.ftpPass.TabIndex = 6;
-            this.ftpPass.TextChanged += new System.EventHandler(this.ftpPass_TextChanged);
             // 
             // button2
             // 
@@ -167,8 +139,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox ftpUser;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox ftpPass;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox ftpRoot;

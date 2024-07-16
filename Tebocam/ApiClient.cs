@@ -1,9 +1,9 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 //order of processing
 //get token
@@ -166,6 +166,30 @@ namespace TeboCam
             return $"{BaseUri()}{endpoint}";
         }
 
+        public static string HealthCheck(string endpoint)
+        {
+            var result = GetHealth(endpoint);
+            return result.Result;
+        }
+
+        public static async Task<string> HealthCheckAsync(string endpoint)
+        {
+            var result = await GetHealth(endpoint);
+            return result;
+        }
+
+        public static async Task<string> GetHealth(string healthEndpoint)
+        {
+            string result = string.Empty;
+            string path = $"{healthEndpoint}";
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                result = await response.Content.ReadAsAsync<string>();
+            }
+            return result;
+        }
+
         public static bool LogOn(string endpoint, string username, string password, string instance, bool renew)
         {
             if (string.IsNullOrWhiteSpace(endpoint))
@@ -214,7 +238,7 @@ namespace TeboCam
                     Data = result
                 }
             );
-            
+
             var commandResult = new CommandResultModel
             {
                 token = Token.TokenForSession.token,

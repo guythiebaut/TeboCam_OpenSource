@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
 
 namespace TeboCam
 {
@@ -58,7 +58,7 @@ namespace TeboCam
         private void profileList_SelectedIndexChanged(object sender, EventArgs e)
         {
             saveChanges();
-            ConfigurationHelper.SetCurrentProfileName( profileList.SelectedItem.ToString());
+            ConfigurationHelper.SetCurrentProfileName(profileList.SelectedItem.ToString());
             ConfigurationHelper.LoadCurrentProfile(profileList.SelectedItem.ToString());
             configuration.profileInUse = profileList.SelectedItem.ToString();
             populateFromProfile(configuration.profileInUse);

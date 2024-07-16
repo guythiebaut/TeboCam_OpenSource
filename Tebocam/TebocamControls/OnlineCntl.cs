@@ -31,6 +31,7 @@ namespace TeboCam
         public TextBox GetSqlUser() { return sqlUser; }
         public TextBox GetSqlPwd() { return sqlPwd; }
         public TextBox GetSqlPoll() { return sqlPoll; }
+        public TextBox GetTxtHealthEndpoint() { return txtEndpointHealth; }
         public TextBox GetTxtEndpoint() { return txtEndpoint; }
         public TextBox GetTxtEndpointLocal() { return txtEndpointLocal; }
 
@@ -82,6 +83,10 @@ namespace TeboCam
         private void txtPickupDirectory_Leave(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().PickupDirectory = txtPickupDirectory.Text.Trim();
+        }
+        private void txtEndpointHealth_Leave(object sender, EventArgs e)
+        {
+            ConfigurationHelper.GetCurrentProfile().HealthEndpoint = txtEndpointHealth.Text.Trim();
         }
 
         private void txtEndpoint_Leave(object sender, EventArgs e)
@@ -149,6 +154,21 @@ namespace TeboCam
         {
             disCommOnlineSecs.Text = Valid.verifyInt(disCommOnlineSecs.Text, 1, 86400, "1");
             ConfigurationHelper.GetCurrentProfile().disCommOnlineSecs = Convert.ToInt32(disCommOnlineSecs.Text);
+        }
+
+        private async void btnHealthcheck_Click(object sender, EventArgs e)
+        {
+            var health = API.HealthCheckAsync(txtEndpointHealth.Text.Trim());
+            await health;
+
+            if (health.Result != string.Empty)
+            {
+                MessageDialog.messageInform($"Health check result: {health.Result}", "Health check");
+            }
+            else
+            {
+                MessageDialog.messageError($"Health check result: Not healthy!", "Health check");
+            }
         }
     }
 }

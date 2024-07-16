@@ -1,11 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
 
 namespace TeboCam
 {
@@ -13,15 +8,7 @@ namespace TeboCam
     {
 
         private formDelegateList timestampDelegate;
-        private string fromString;
-        private bool addTimeStamp;
-        private string inFormat;
-        private string inColour;
-        private string inPosition;
-        private bool txtRect;
         private bool toolTip;
-        private bool showStats;
-        private bool includeStats;
         private string previousImage = "Alert";
         private bool initializing = true;
 
@@ -41,7 +28,6 @@ namespace TeboCam
 
 
         }
-
 
         private void populateFromList(string name)
         {
@@ -81,25 +67,16 @@ namespace TeboCam
                         statsBox.Enabled = false;
 
                     }
-
                 }
-
             }
-
-
         }
-
 
         private void updateList(string name)
         {
-
-
             for (int i = 0; i < stampList.Count; i++)
             {
-
                 if (stampList[i][0].ToString() == name)
                 {
-
                     stampList[i][1] = addStamp.Checked;
                     stampList[i][2] = stampTypesetting();
                     stampList[i][3] = stampColoursetting();
@@ -109,34 +86,21 @@ namespace TeboCam
                     //in main call
                     //stampList[i][6] = statsBox.Enabled;
                     stampList[i][7] = statsChk.Checked;
-
-
                 }
-
             }
-
         }
-
 
         private bool showStatsVal(string name)
         {
-
             foreach (List<object> item in stampList)
             {
-
                 if (item[0].ToString() == name)
                 {
-
                     return (bool)item[6];
-
                 }
-
             }
-
             return true;
-
         }
-
 
         private void apply_Click(object sender, EventArgs e)
         {

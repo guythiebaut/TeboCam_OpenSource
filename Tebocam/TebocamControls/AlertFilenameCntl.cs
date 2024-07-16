@@ -25,14 +25,15 @@ namespace TeboCam
                 ToolTip = record.toolTips,
                 FileName = record.filenamePrefix,
                 CycleStampChecked = record.cycleStampChecked,
-                StartCycle = (int)record.startCycle,
-                EndCycle = (int)record.endCycle,
-                CurrentCycle = (int)record.currentCycle,
+                StartCycle = record.startCycle,
+                EndCycle = record.endCycle,
+                CurrentCycle = record.currentCycle,
                 IncludeStamp = true,
                 DisplayStamp = false,
                 FileDir = string.Empty,
                 FileDirDefault = string.Empty,
-                ImagesSavedFolderEnabled = false
+                ImagesSavedFolderEnabled = false,
+                includeMotionLevel = record.includeMotionLevel
             };
 
             fileprefix fileprefix = new fileprefix(settings);

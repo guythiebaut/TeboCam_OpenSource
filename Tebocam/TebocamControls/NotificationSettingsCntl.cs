@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace TeboCam
 {
@@ -121,7 +121,7 @@ namespace TeboCam
                 sendMosaic.Checked = false;
                 ConfigurationHelper.GetCurrentProfile().sendMosaicImages = false;
             }
-            alertTimeSettings.GetImageFileInterval().Enabled= sendFullSize.Checked || sendThumb.Checked || sendMosaic.Checked || loadToFtp.Checked;
+            alertTimeSettings.GetImageFileInterval().Enabled = sendFullSize.Checked || sendThumb.Checked || sendMosaic.Checked || loadToFtp.Checked;
             sendEmail.Checked = ConfigurationHelper.GetCurrentProfile().sendThumbnailImages || ConfigurationHelper.GetCurrentProfile().sendFullSizeImages || ConfigurationHelper.GetCurrentProfile().sendMosaicImages;
             ConfigurationHelper.GetCurrentProfile().sendNotifyEmail = sendEmail.Checked;
 

@@ -5,17 +5,15 @@
 //
 namespace TeboCam
 {
-    using System;
-    using System.Drawing;
-    using System.Threading;
-    //using VideoSource;
-    using System.Diagnostics;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using AForge.Video;
     using AForge.Video.DirectShow;
     using AForge.Vision.Motion;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.Linq;
+    using System.Threading;
 
     public delegate void alarmEventHandler(object source, CamIdArgs e, LevelArgs l);
     public delegate void motionLevelEventHandler(object source, MotionLevelArgs a, CamIdArgs b);
@@ -169,12 +167,8 @@ namespace TeboCam
 
         private IVideoSource videoSource = null;
         private MotionDetector motionDetector = null;
-        //private Bitmap lastFrame = null;
-        public Bitmap pubFrame = null;
-        //public Bitmap motionFrame = null;
-
         private bool _detectionOn = false;
-
+        public Bitmap pubFrame = null;
         public IException tebowebException;
 
         public bool detectionOn
@@ -217,15 +211,6 @@ namespace TeboCam
 
         public bool alert = false;
         public bool alarmActive = false;
-
-        //private bool _alarmActive;
-        //public bool alarmActive
-        //{
-        //    get { return true; }
-        //    set { _alarmActive = value; }
-        //}
-
-
         public bool publishActive = false;
 
         // image width and height
@@ -234,29 +219,13 @@ namespace TeboCam
         // alarm level
         public int camNo = 0;
         public double movementVal = 1;
-        //public int timeSpike = 0;
-        //public int toleranceSpike = 0;
         public bool triggeredBySpike = false;
         public bool certifiedTriggeredByNonSpike = true;
-
-
 
         //
         public event motionLevelEventHandler motionLevelEvent;
         public event alarmEventHandler motionAlarm;
         public event EventHandler NewFrame;
-
-
-
-
-
-
-        // LastFrame property
-        //public Bitmap LastFrame
-        //{
-        //    get { return lastFrame; }
-        //}
-        // Width property
 
         public string name
         {
@@ -300,12 +269,6 @@ namespace TeboCam
         }
 
         public List<DateTime> framesDt = new List<DateTime>();
-
-
-
-
-        //Carried over from motiondetector3optimized class
-
         private bool Calibrating = false;
         private bool AreaOffAtMotionTriggered = false;
         private bool AreaOffAtMotionReset = false;
@@ -371,8 +334,6 @@ namespace TeboCam
             get { return RectY; }
             set { RectY = value; }
         }
-
-        //Carried over from motiondetector3optimized class
 
         public bool frameRateTrack = false;
         public class FrameRateInfo
@@ -462,8 +423,8 @@ namespace TeboCam
             this.motionDetector = detector;
             videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
 
-        }   
-        
+        }
+
         // Start video source
         public void Start()
         {
@@ -536,13 +497,6 @@ namespace TeboCam
             }
         }
 
-
-
-
-
-
-
-
         // On new frame
         private void video_NewFrame(object sender, NewFrameEventArgs e)
         {
@@ -557,7 +511,6 @@ namespace TeboCam
                     pubFrame.Dispose();
                 }
 
-
                 //lastFrame = (Bitmap)e.Frame.Clone();
 
                 try
@@ -568,9 +521,6 @@ namespace TeboCam
                     {
                         frames.addFrame();
                     }
-                    //purge outside of this on a semi-regular basis
-                    //framesDtCount.purge(100);
-                    //framesDt.Add(DateTime.Now);
                 }
                 catch (Exception ex)
                 {
@@ -579,11 +529,8 @@ namespace TeboCam
                 }
 
 
-
                 if (_detectionOn)
                 {
-
-
                     if ((calibrating && camNo == CameraRig.TrainCam) || (alarmActive && alert))
                     {
 
@@ -624,14 +571,7 @@ namespace TeboCam
                             //pre-process bitmap for area detection
                             //*************************************
 
-
-
                             motionDetector.ProcessFrame(areaDetectionPreparedImage);
-
-                            // motionFrame.Dispose();
-                            //motionFrame = (Bitmap)motionDetector.MotionDetectionAlgorithm.MotionFrame.ToManagedImage().Clone();
-
-
                             MotionLevelArgs a = new MotionLevelArgs();
                             CamIdArgs b = new CamIdArgs();
                             a.lvl = motionDetector.MotionDetectionAlgorithm.MotionLevel;
@@ -669,24 +609,15 @@ namespace TeboCam
                                     triggeredBySpike = false;
                                 }
                             }
-
                         }
-
-
-
                     }
 
                 }//if (_detectionOn)
 
-
-
                 // image dimension
                 width = pubFrame.Width;
                 height = pubFrame.Height;
-
                 //#ref5617
-
-
             }
             catch (Exception ex)
             {
@@ -777,12 +708,6 @@ namespace TeboCam
             }
 
             return processedBitmap;
-
         }
-
-
-
-
-
     }
 }

@@ -887,7 +887,7 @@ or any other function in TeboCam.
     <value>cameraWindow</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Type" xml:space="preserve">
-    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.24038, Culture=neutral, PublicKeyToken=null</value>
+    <value>TeboCam.CameraWindow, TeboCam, Version=1.5.0.29835, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cameraWindow.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -3428,6 +3428,27 @@ Warning once you delete the image files you cannot recover them!</value>
   <data name="&gt;&gt;Online.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="testPasswordFieldLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 161</value>
+  </data>
+  <data name="testPasswordFieldLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 21</value>
+  </data>
+  <data name="testPasswordFieldLength.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;testPasswordFieldLength.Name" xml:space="preserve">
+    <value>testPasswordFieldLength</value>
+  </data>
+  <data name="&gt;&gt;testPasswordFieldLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;testPasswordFieldLength.Parent" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="&gt;&gt;testPasswordFieldLength.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btn_TestUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3453,7 +3474,7 @@ Warning once you delete the image files you cannot recover them!</value>
     <value>Test</value>
   </data>
   <data name="&gt;&gt;btn_TestUpdate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnTestAccessCameras.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3480,7 +3501,7 @@ Warning once you delete the image files you cannot recover them!</value>
     <value>Test</value>
   </data>
   <data name="&gt;&gt;btnTestAccessCameras.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="Test.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

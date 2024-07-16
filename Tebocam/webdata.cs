@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
 using System.IO;
+using System.Net;
 using TeboCam;
 
 namespace teboweb
@@ -59,7 +57,7 @@ namespace teboweb
 
                 //open a data stream from the supplied URL
                 WebRequest webReq = WebRequest.Create(URL + file);
-                webReq.Timeout = 5000;   
+                webReq.Timeout = 5000;
                 WebResponse webResponse = webReq.GetResponse();
                 Stream dataStream = webResponse.GetResponseStream();
 

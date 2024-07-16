@@ -1,20 +1,17 @@
-﻿ using System;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using AForge.Imaging;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
-using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace TeboCam
 {
     public static class ApiProcess
     {
         private const int databaseTimeOutCount = 5;
-        private static string update_result = "";
         public static IMail mail;
         private static bool webCredsJustChecked = false;
         public static bool webFirstTimeThru = true;
@@ -22,11 +19,12 @@ namespace TeboCam
         public static bool apiCredentialsValidated = false;
         public static int webUpdLastChecked = 0;
         public static bool LicensedToConnectToApi = false;
-        public static List<string> GuidSeen =  new  List<string>();
+        public static List<string> GuidSeen = new List<string>();
 
         const string securityCodeStr = "111+$";
         const string shutDownCmdStr = "^shutdown";
         const string movementStatsCmdStr = "^movementstats$";
+        const string movementImagesCmdStr = "^movementimages$";
         const string deleteAndshutDownCmdStr = "^delete_and_shutdown";
         const string restartCmdStr = "^restart";
         const string activateCmdStr = "^activate$";
@@ -48,16 +46,26 @@ namespace TeboCam
         //private static string user = config.GetCurrentProfile().webUser;
         //private static string instance = config.GetCurrentProfile().webInstance;
 
+        private static string HealthCheck(string endpoint)
+        {
+            return API.HealthCheck(endpoint);
+        }
 
         private static void Authenticate(bool renew)
         {
-
             var endPoint = ConfigurationHelper.GetCurrentProfile().UseRemoteEndpoint ?
                 ConfigurationHelper.GetCurrentProfile().AuthenticateEndpoint :
                 ConfigurationHelper.GetCurrentProfile().LocalAuthenticateEndpoint;
             var user = ConfigurationHelper.GetCurrentProfile().webUser;
             var password = ConfigurationHelper.GetCurrentProfile().webPass;
             var instance = ConfigurationHelper.GetCurrentProfile().webInstance;
+
+            //TebocamState.log.AddLine($"endPoint {endPoint}");
+            //TebocamState.log.AddLine($"user {user}");
+            //TebocamState.log.AddLine($"password {password}");
+            //TebocamState.log.AddLine($"instance {instance}");
+            //TebocamState.log.AddLine($"renew {renew}");
+
             apiCredentialsValidated = API.LogOn(endPoint, user, password, instance, renew);
         }
 
@@ -86,6 +94,7 @@ namespace TeboCam
             bool securityCode = matched(parms, securityCodeStr);
             bool shutDownCmd = matched(commandToRun, shutDownCmdStr);
             bool movementStats = matched(commandToRun, movementStatsCmdStr);
+            bool movementImages = matched(commandToRun, movementImagesCmdStr);
             bool deleteAndshutDownCmd = matched(commandToRun, deleteAndshutDownCmdStr);
             bool restartCmd = matched(commandToRun, restartCmdStr);
             bool activateCmd = matched(commandToRun, activateCmdStr);
@@ -125,6 +134,7 @@ namespace TeboCam
             if (pollCmd) Poll(commandToRun, preferences);
             if (logCmd) Log();
             if (movementStats) MovementStats(guid, preferences, parms);
+            if (movementImages) MovementImages(guid);
             if (statsCmd) Statistics(guid);
             if (statsAllCmd) StatsAll(guid);
             if (graphCmd) Graph(preferences.graph, guid, parms);
@@ -136,7 +146,10 @@ namespace TeboCam
                 //so that we don't keep processing the same initial commands until the
                 //runAt time arrives.
 
-                GuidSeen.Add(guid);
+                if (!GuidSeen.Contains(guid))
+                {
+                    GuidSeen.Add(guid);
+                }
             }
         }
 
@@ -160,7 +173,64 @@ namespace TeboCam
         {
             public string fileName;
             public string filePath;
+            public int movementLevel;
+            public string dateTime;
+            public string dateTimeDay;
+            public string dateTimeMonth;
+            public string dateTimeYear;
+            public string dateTimeHour;
+            public string dateTimeMinute;
+            public string dateTimeSeconds;
+            public string dateTimeMilliseconds;
         };
+
+        private static void MovementImages(string guid)
+        {
+            var onlineFiles = ftp.GetFileList();
+            var files = new List<fileObject>();
+            var levelSuffix = "-lev-";
+
+            foreach (var file in onlineFiles)
+            {
+                int levelVal = -1;
+
+                if (file.Contains(levelSuffix))
+                {
+                    var startAt = file.IndexOf(levelSuffix) + levelSuffix.Length;
+                    var endAt = file.LastIndexOf(".");
+                    var level = file.Substring(startAt, endAt - startAt);
+                    int.TryParse(level, out levelVal);
+                }
+
+                var dateTime = string.Empty;
+
+                if (file.Contains(levelSuffix) && file.Any(x => char.IsDigit(x)))
+                {
+                    var dateStart = file.IndexOf(file.First(x => char.IsDigit(x)));
+                    dateTime = file.Substring(dateStart, file.IndexOf(levelSuffix) - dateStart);
+                }
+
+                var fileObj = new fileObject()
+                {
+                    dateTime = dateTime,
+                    fileName = file,
+                    filePath = $"{ConfigurationHelper.GetCurrentProfile().PickupDirectory.TrimEnd('/')}{"/"}{file}",
+                    movementLevel = levelVal,
+                    dateTimeYear = dateTime != string.Empty ? dateTime.Substring(0, 4) : "0",
+                    dateTimeMonth = dateTime != string.Empty ? dateTime.Substring(4, 2) : "0",
+                    dateTimeDay = dateTime != string.Empty ? dateTime.Substring(6, 2) : "0",
+                    dateTimeHour = dateTime != string.Empty ? dateTime.Substring(8, 2) : "0",
+                    dateTimeMinute = dateTime != string.Empty ? dateTime.Substring(10, 2) : "0",
+                    dateTimeSeconds = dateTime != string.Empty ? dateTime.Substring(12, 2) : "0",
+                    dateTimeMilliseconds = dateTime != string.Empty ? dateTime.Substring(14, 3) : "0",
+                };
+
+                files.Add(fileObj);
+            }
+
+            TebocamState.log.AddLine("Movement images request sent to API");
+            API.UpdateCommandResult("movementImages", files, guid);
+        }
 
         private static void Image(string guid)
         {
@@ -181,17 +251,16 @@ namespace TeboCam
                 ftp.Upload(localFilename,
                     pubdDir,
                     ConfigurationHelper.GetCurrentProfile().ftpUser,
-                    ConfigurationHelper.GetCurrentProfile().ftpPass,
-                    5
-                    );
+                    ConfigurationHelper.GetCurrentProfile().ftpPass
+                );
 
                 files.Add(
                     new fileObject()
                     {
                         fileName = bitmap[0].ToString(),
-                        filePath = $"{ ConfigurationHelper.GetCurrentProfile().PickupDirectory.TrimEnd('/')}{"/"}{ filename }"
+                        filePath = $"{ConfigurationHelper.GetCurrentProfile().PickupDirectory.TrimEnd('/')}{"/"}{filename}"
                     }
-                    );
+                );
             }
 
             if (files.Any()) API.UpdateCommandResult("images", files, guid);
@@ -217,8 +286,8 @@ namespace TeboCam
                 string filename = $"{TebocamState.apiGraphImgPrefix}{Guid.NewGuid()}{TebocamState.ImgSuffix}";
                 string localFilename = Path.Combine(TebocamState.tmpFolder, filename);
                 graphBitmap.Save(localFilename);
-                ftp.Upload(localFilename, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass, 5);
-                List<string> dataPoint = new List<string> { date, $"{ ConfigurationHelper.GetCurrentProfile().PickupDirectory.TrimEnd('/')}{"/"}{ filename }" };
+                ftp.Upload(localFilename, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass);
+                List<string> dataPoint = new List<string> { date, $"{ConfigurationHelper.GetCurrentProfile().PickupDirectory.TrimEnd('/')}{"/"}{filename}" };
                 files.Add(dataPoint);
             }
 
@@ -231,7 +300,6 @@ namespace TeboCam
         private static void DeleteImages()
         {
             TebocamState.log.AddLine("ClearFtp from API");
-            FileManager.InitialiseDeletionRegex(true);
             FileManager.clearFtp();
             FileManager.clearFiles(TebocamState.thumbFolder);
             FileManager.clearFiles(TebocamState.imageFolder);
@@ -249,7 +317,6 @@ namespace TeboCam
             Inactivate();
             var shutdownDelegate = new TeboCamDelegates.EventDelegate<RunWorkerCompletedEventArgs>(ShutDown);
             TebocamState.log.AddLine("ClearFtp from API");
-            FileManager.InitialiseDeletionRegex(true);
             FileManager.clearFiles(TebocamState.thumbFolder);
             FileManager.clearFiles(TebocamState.imageFolder);
             FileManager.clearFtp(shutdownDelegate);
@@ -375,6 +442,15 @@ namespace TeboCam
             Movement.MotionDetectionInactivate();
         }
 
+        private static void DelayedCommand(string command)
+        {
+            TebocamState.log.AddLine($"Delayed command '{command}' from API");
+            teboDebug.writeline(teboDebug.webUpdateVal + 16);
+            TebocamState.log.AddLine($"Web request delayed command '${command}' sent.");
+            API.UpdateInstance(command);
+            Movement.MotionDetectionInactivate();
+        }
+
         private static void PingOn(string tmpStr, Ping ping)
         {
             TebocamState.log.AddLine("PingOn from API");
@@ -449,7 +525,7 @@ namespace TeboCam
             return now >= renewBefore;
         }
 
-        //todo if the authentication is unsuccessfull - email and try again every 10 minutes or renew token?
+        //todo if the authentication is unsuccessful - email and try again every 10 minutes or renew token?
         public static void webUpdate(Preferences preferences)
         {
             if (
@@ -466,10 +542,32 @@ namespace TeboCam
                 if (!apiCredentialsValidated)
                 {
                     TeboWeb.PulseEvents.PulseEvent();
-                    TebocamState.log.AddLine("Checking API credentials...");
-                    Authenticate(false);
-                    webUpdLastChecked = time.secondsSinceStart();
-                    ApiAuthenticationAttemptCount++;
+                    TebocamState.log.AddLine("Getting health...");
+
+                    try
+                    {
+                        var health = HealthCheck(ConfigurationHelper.GetCurrentProfile().HealthEndpoint);
+                        TebocamState.log.AddLine($"Healthcheck result: {health}");
+                    }
+                    catch (Exception)
+                    {
+                        ApiAuthenticationAttemptCount++;
+                        throw;
+                    }
+
+                    try
+                    {
+                        TebocamState.log.AddLine("Checking API credentials...");
+                        Authenticate(false);
+                        webUpdLastChecked = time.secondsSinceStart();
+                        ApiAuthenticationAttemptCount++;
+                    }
+                    catch (Exception)
+                    {
+                        ApiAuthenticationAttemptCount++;
+                        throw;
+                    }
+
                     if (apiCredentialsValidated)
                     {
                         TebocamState.log.AddLine("API authentication passed.");
@@ -506,7 +604,7 @@ namespace TeboCam
                     }
 
 
-                    if (!API.RetrieveCommands(1))
+                    if (!API.RetrieveCommands(10))
                     {
                         return;
                     }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -37,7 +34,7 @@ namespace TeboCam
             }
         }
 
-         public static void PubPicture(ImagePub.ImagePubArgs a)
+        public static void PubPicture(ImagePub.ImagePubArgs a)
         {
             publishPicture(null, a);
         }

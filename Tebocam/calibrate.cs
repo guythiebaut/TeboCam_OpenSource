@@ -1,12 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
-using System.Collections;
+using System.Windows.Forms;
 
 namespace TeboCam
 {
@@ -19,24 +17,17 @@ namespace TeboCam
         int CountDownFrom = new int();
         Publisher publisher;
         public analyse analysis = new analyse();
-        
-        public calibrate(formDelegate postCalibrate, ArrayList from, Publisher pub)
+
+        public calibrate(formDelegate postCalibrate, bool tip, int camNo, Publisher pub)
         {
             InitializeComponent();
             lblCountDown.Text = string.Empty;
             calibrateDelegate = postCalibrate;
-            toolTip = (bool)from[0];
-            cam = (int)from[1];
+            toolTip = tip;
+            cam = camNo;
             CameraRig.TrainCam = cam;
             publisher = pub;
-            from.Clear();
-            //string tmpStr = "www.teboweb.com/calibrate.html";
-            //linkLightSpike.Links.Add(tmpStr);
-
-            //System.Diagnostics.Debug.WriteLine("calibrate received: " + cam.ToString());
-
         }
-
 
         private void startCountdown_Click(object sender, EventArgs e)
         {
@@ -64,11 +55,8 @@ namespace TeboCam
             }
         }
 
-
         private void testMotion(object sender, DoWorkEventArgs e)
         {
-
-
             string outFile = TebocamState.tmpFolder + "motionCalibrate.csv";
 
             if (File.Exists(outFile))
@@ -78,9 +66,6 @@ namespace TeboCam
 
             int startSecs = time.secondsSinceStart();
             int tm = (int)(Convert.ToDouble(trainVal.Text) * Convert.ToDouble(1000));
-
-
-
 
             CameraRig.getCam(cam).detectionOn = true;
             CameraRig.getCam(cam).calibrating = true;
@@ -121,41 +106,29 @@ namespace TeboCam
             for (int i = 0; i < TebocamState.testImagePublishData.Count; i++)
             {
 
-                if (!tw.CancellationPending && File.Exists(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3]))
+                if (!tw.CancellationPending && File.Exists(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i].ImageFile))
                 {
 
-                    sw.WriteLine(string.Concat(TebocamState.testImagePublishData[i], ",",
-                                 TebocamState.testImagePublishData[i + 1], ",",
-                                 TebocamState.testImagePublishData[i + 2], ",",
-                                 TebocamState.testImagePublishData[i + 3]));
+                    sw.WriteLine(string.Concat(TebocamState.testImagePublishData[i].Sequence, ",",
+                        TebocamState.testImagePublishData[i].MotionLevel, ",",
+                        TebocamState.testImagePublishData[i].LowestValueOverTime, ",",
+                        TebocamState.testImagePublishData[i].ImageFile));
 
-                    analysis.newPictureControl(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3],
-                               (string)TebocamState.testImagePublishData[i + 4],
-                               (long)TebocamState.testImagePublishData[i + 5],
-                               Color.DarkOrange,
-                               (int)TebocamState.testImagePublishData[i + 1]);
-
-                    //analysis.newPictureControl(new Bitmap(TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i + 3]),
-                    //           (string)TebocamState.testImagePublishData[i + 4],
-                    //           (long)TebocamState.testImagePublishData[i + 5],
-                    //           Color.DarkOrange,
-                    //           (int)TebocamState.testImagePublishData[i + 1]);
-
+                    analysis.newPictureControl(
+                        TebocamState.tmpFolder + (string)TebocamState.testImagePublishData[i].ImageFile,
+                        TebocamState.testImagePublishData[i].CameraName,
+                        TebocamState.testImagePublishData[i].MillisecondsSinceStart,
+                        Color.DarkOrange,
+                        TebocamState.testImagePublishData[i].MotionLevel);
                 }
 
                 i = i + 5;
-
             }
 
-
             sw.Close();
-
             populate();
-
             startCountdown.SynchronisedInvoke(() => startCountdown.Text = "Start Calibration");
             lblCountDown.SynchronisedInvoke(() => lblCountDown.Visible = false);
-
-
         }
 
         private void cancel_Click(object sender, EventArgs e)

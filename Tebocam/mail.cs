@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using MailKit.Net.Smtp;
-using MimeKit;
 
 //https://stackoverflow.com/a/46203185
 
@@ -38,8 +38,8 @@ namespace TeboCam
             client.AuthenticationMechanisms.Remove("XOAUTH2");
             client.Authenticate(eml.User, eml.Password);
             var msg = new MimeMessage();
-            msg.From.Add(new MailboxAddress(eml.ReplyTo));
-            msg.To.Add(new MailboxAddress(eml.SendTo));
+            msg.From.Add(new MailboxAddress("mailboxReplyTo", eml.ReplyTo));
+            msg.To.Add(new MailboxAddress("mailboxSendTo", eml.SendTo));
             msg.Subject = eml.Subject;
 
             msg.Body = new TextPart("plain")

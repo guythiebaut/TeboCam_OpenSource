@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
 
 namespace TeboCam
 {
@@ -45,14 +40,13 @@ namespace TeboCam
             p_includeStamp = settings.IncludeStamp;
             p_displayStamp = settings.DisplayStamp;
             groupBox21.Enabled = settings.ImagesSavedFolderEnabled;
+            chkIncludeMotionLevel.Checked = settings.includeMotionLevel;
 
             if (settings.ImagesSavedFolderEnabled)
             {
                 p_fileLoc = settings.FileDir;
                 p_fileLocDefault = settings.FileDirDefault;
             }
-
-
         }
 
         private void fileprefix_Load(object sender, EventArgs e)
@@ -92,8 +86,6 @@ namespace TeboCam
 
         private void filenamePrefix_Leave(object sender, EventArgs e)
         {
-
-
             filenamePrefix.Text = filenamePrefix.Text.Trim();
 
             if (!Valid.filenamePrefixValid(filenamePrefix.Text))
@@ -103,15 +95,10 @@ namespace TeboCam
                 if (filenamePrefix.Text == "") { filenamePrefix.Text = "TeboCam"; }; filenamePrefix.Focus();
                 Invalidate();
             }
-
             else
             {
                 filenamePrefix.BackColor = Color.LemonChiffon;
             }
-
-
-
-
         }
 
         private void fileprefix_FormClosing(object sender, FormClosingEventArgs e)
@@ -126,7 +113,8 @@ namespace TeboCam
                 CurrentCycle = currentCycle.Text,
                 AppendToFilename = checkBox1.Checked,
                 FileLoc = fileLoc,
-                CustomLocation = radioButton11.Checked
+                CustomLocation = radioButton11.Checked,
+                IncludeMotionLevel = chkIncludeMotionLevel.Checked,
             };
 
             prefixDelegate(dto); // This will call ReturnMethod in form1 and pass it val.
@@ -185,13 +173,14 @@ namespace TeboCam
         public string FileName;
         public string FileDir;
         public string FileDirDefault;
-        public int CycleStampChecked;
-        public int StartCycle;
-        public int EndCycle;
-        public int CurrentCycle;
+        public long CycleStampChecked;
+        public long StartCycle;
+        public long EndCycle;
+        public long CurrentCycle;
         public bool IncludeStamp;
         public bool DisplayStamp;
         public bool ImagesSavedFolderEnabled;
+        public bool includeMotionLevel;
     }
 
     public class FilePrefixSettingsResultDto
@@ -205,5 +194,6 @@ namespace TeboCam
         public bool AppendToFilename;
         public string FileLoc;
         public bool CustomLocation;
+        public bool IncludeMotionLevel;
     }
 }

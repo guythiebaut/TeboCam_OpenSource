@@ -12,7 +12,7 @@ namespace TeboCam
         public const int statisticsCountLimit = 1000000;
         private const string tab = "\t";
 
-        private const string timestamp = "yyyyMMddHHmmfff";
+        private const string timestamp = "yyyyMMddHHmmssfff";
 
         //this is the filename that will be used for writing Statistics
         public static string fileName = string.Empty;
@@ -49,15 +49,14 @@ namespace TeboCam
 
 
         private static readonly List<movement> statList = new List<movement>();
-        private static List<LastMovement> lastMovementList = new List<LastMovement>();
 
-        public static void AddStatistic(int p_cameraId, 
-                                        string p_cameraName, 
-                                        int p_motionLevel, 
+        public static void AddStatistic(int p_cameraId,
+                                        string p_cameraName,
+                                        int p_motionLevel,
                                         int p_alarmLevel,
-                                        long p_milliSsecondsSinceStart, 
-                                        string p_profile, 
-                                        bool p_outputToFile, 
+                                        long p_milliSsecondsSinceStart,
+                                        string p_profile,
+                                        bool p_outputToFile,
                                         string p_fileName,
                                         double p_maxLength)
         {
@@ -156,9 +155,8 @@ namespace TeboCam
         {
             var lowestVal = 100;
             var startMilli = new long();
-            var lastMilli = new long();
 
-            //start from teh most recenbt statistic
+            //start from thw most recenbt statistic
             for (var i = statList.Count - 1; i >= 0; i--)
                 //we have a match on camera and profile
                 if (statList[i].cameraId == p_cameraId
@@ -168,7 +166,9 @@ namespace TeboCam
                     //first time through so we set the last time to the 
                     //most recent time recorded
                     if (startMilli == 0)
+                    {
                         startMilli = statList[i].milliSecondsSinceStart;
+                    }
 
                     //the time between the start time and current stat is less than 
                     //or equal to the time frame 
@@ -178,7 +178,6 @@ namespace TeboCam
                         if (statList[i].motionLevel < lowestVal)
                         {
                             lowestVal = statList[i].motionLevel;
-                            lastMilli = statList[i].milliSecondsSinceStart;
 
                             //System.Diagnostics.Debug.Print(lowestVal.ToString());
 
@@ -195,7 +194,9 @@ namespace TeboCam
                         //find if there is a lower value just before the current value
                         // as we need to account for gaps where values remain the same
                         if (i > 0)
+                        {
                             for (var a = i - 1; a >= 0; a--)
+                            {
                                 if (statList[a].cameraId == p_cameraId
                                     && statList[a].profile == p_profile
                                     && statList[a].motionLevel < lowestVal)
@@ -203,7 +204,8 @@ namespace TeboCam
                                     lowestVal = statList[a].motionLevel;
                                     break;
                                 }
-
+                            }
+                        }
                         break;
                     }
                 }
@@ -239,34 +241,27 @@ namespace TeboCam
             var lastRecordedStatSinceChange =
                 statList.LastOrDefault(x => x.cameraId == p_cameraId && x.profile == p_profile);
 
-            if (lastRecordedStatSinceChange == null)
+            if (lastRecordedStatSinceChange == null ||
+                lastRecordedStatSinceChange.motionLevel != p_motionLevel)
             {
-                var mv = new movement();
-                mv.cameraId = p_cameraId;
-                mv.cameraName = p_cameraName;
-                mv.motionLevel = p_motionLevel;
-                mv.alarmLevel = p_alarmLevel;
-                mv.milliSecondsSinceStart = p_milliSsecondsSinceStart;
-                mv.dateTime = DateTime.Now;
-                mv.profile = p_profile;
-                statList.Add(mv);
-                return;
-            }
+                var movement = new movement
+                {
+                    cameraId = p_cameraId,
+                    cameraName = p_cameraName,
+                    motionLevel = p_motionLevel,
+                    alarmLevel = p_alarmLevel,
+                    milliSecondsSinceStart = p_milliSsecondsSinceStart,
+                    dateTime = DateTime.Now,
+                    profile = p_profile
+                };
 
-            if (lastRecordedStatSinceChange.motionLevel != p_motionLevel)
-            {
-                var mv = new movement();
-                mv.cameraId = p_cameraId;
-                mv.cameraName = p_cameraName;
-                mv.motionLevel = p_motionLevel;
-                mv.alarmLevel = p_alarmLevel;
-                mv.milliSecondsSinceStart = p_milliSsecondsSinceStart;
-                mv.dateTime = DateTime.Now;
-                mv.profile = p_profile;
-                statList.Add(mv);
+                statList.Add(movement);
 
-                if (p_outputToFile)
+                if (lastRecordedStatSinceChange.motionLevel != p_motionLevel &&
+                    p_outputToFile)
+                {
                     WriteToFile(p_fileName, p_maxLength, statList.Last());
+                }
             }
         }
 
@@ -351,17 +346,15 @@ namespace TeboCam
                 }
             }
 
-            var mvR = new movementResults();
-            mvR.avgMvLast = (int)Math.Floor(lastSum / (double)lastCount);
-            mvR.avgMvStart = (int)Math.Floor(firstSum / (double)firstCount);
-
+            var mvR = new movementResults
+            {
+                avgMvLast = (int)Math.Floor(lastSum / (double)lastCount),
+                avgMvStart = (int)Math.Floor(firstSum / (double)firstCount),
+                mvNow = currMv,
+                camera = friendlyName
+            };
             mvR.avgMvLast = mvR.avgMvLast > 0 ? mvR.avgMvLast : 0;
             mvR.avgMvStart = mvR.avgMvStart > 0 ? mvR.avgMvStart : 0;
-
-            mvR.mvNow = currMv;
-
-            mvR.camera = friendlyName;
-
             return mvR;
         }
     }

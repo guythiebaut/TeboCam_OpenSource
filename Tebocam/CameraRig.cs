@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace TeboCam
@@ -25,7 +22,6 @@ namespace TeboCam
         public static int CurrentlyDisplayingCamera = 0;
         public static int ConfigCam = 0;
         public static int TrainCam = 0;
-        private static int infoIdx = -1;
         public static List<bool> camSel = new List<bool>();
         private const int CamLicense = 9;
         //public static bool reconfiguring = false;

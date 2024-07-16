@@ -6,7 +6,7 @@ namespace TeboCam
 {
     public static class ConfigurationHelper
     {
-        public static List<configApplication> profiles; 
+        public static List<configApplication> profiles;
         private static configApplication CurrentProfile;
         private static string CurrentProfileName = "main";
 
@@ -152,7 +152,7 @@ namespace TeboCam
                 .First()
                 .Where(x => x.webcam == webcam).Any();
         }
-        
+
         public static configWebcam InfoForProfileWebcam(string profileName, string webcam)
         {
             return profiles

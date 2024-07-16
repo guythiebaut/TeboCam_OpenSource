@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 
@@ -29,11 +30,21 @@ namespace TeboCam
         public const string ImgSuffix = ".jpg";
         public const string mosaicFile = "mosaic.jpg";
         public static bool testImagePublishFirst = false;
-        public static ArrayList testImagePublishData = new ArrayList();
+        public static List<ImagePublishData> testImagePublishData = new List<ImagePublishData>();
         public static Movement.AlertClass Alert = new Movement.AlertClass();
         public static Configuration configuration;
         public static Log log = new Log();
         public static IException tebowebException;
         public static ArrayList training = new ArrayList();
+    }
+
+    public class ImagePublishData
+    {
+        public int Sequence;
+        public int MotionLevel;
+        public int LowestValueOverTime;
+        public string ImageFile;
+        public string CameraName;
+        public long MillisecondsSinceStart;
     }
 }

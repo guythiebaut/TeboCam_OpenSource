@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading;
-using System.Net;
-using System.Linq;
-using System.Runtime.Remoting;
-
 //using AForge.Video;
 using AForge.Video.DirectShow;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Windows.Forms;
 
 
 namespace TeboCam
@@ -22,7 +19,6 @@ namespace TeboCam
 
     public partial class webcamConfig : Form
     {
-        private IException tebowebException;
         private int detectionCountDown;
         public delegate void SaveChanges();
         private SaveChanges saveChanges;
@@ -312,18 +308,11 @@ namespace TeboCam
 
         private void calibrate_Click(object sender, EventArgs e)
         {
-
-            ArrayList i = new ArrayList();
-
-            //i.Add(config.GetCurrentProfile().toolTips);
-            i.Add(toolTip1.Active);
-            i.Add(CameraRig.getCam(selectedWebcam).camNo);
-            //System.Diagnostics.Debug.WriteLine("cam sent: " + Convert.ToString(i[1]));
-
-            calibrate calibrate = new calibrate(postCalibrate, i, publisher);
-            calibrate.StartPosition = FormStartPosition.CenterScreen;
+            var calibrate = new calibrate(postCalibrate, toolTip1.Active, CameraRig.getCam(selectedWebcam).camNo, publisher)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
             calibrate.ShowDialog();
-
         }
 
         private void postCalibrate(ArrayList results)

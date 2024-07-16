@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace TeboCam
@@ -11,7 +10,7 @@ namespace TeboCam
         public LogFileManagementCntl(IFileInfo fileInfo)
         {
             InitializeComponent();
-            FileInfo = fileInfo; 
+            FileInfo = fileInfo;
         }
 
         private void btnAdvancedFileManagement_Click(object sender, EventArgs e)

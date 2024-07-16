@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
+using TeboCam.TebocamControls;
 
 namespace TeboCam
 {
-    public partial class EmailHostSettingsCntl : UserControl
+    public partial class EmailHostSettingsCntl : TebocamCntl
     {
         IMail mail;
         public Size PanelSize;
@@ -14,18 +14,33 @@ namespace TeboCam
             InitializeComponent();
             mail = imail;
             SetFieldValues();
+            SetExtraControls();
         }
 
         public void SetUser(string val) { emailUser.Text = val; }
-        public void SetPassword(string val) { emailPass.Text = val; }
         public void SetHost(string val) { smtpHost.Text = val; }
         public void SetPort(string val) { smtpPort.Text = val; }
         public void SetSsl(bool val) { SSL.Checked = val; }
 
+        private void SetExtraControls()
+        {
+            //var emailPasswordCntl = new PasswordCntl("Email Password", data.emailPass, delegate (Object sender, PasswordChangedArgs args) { ConfigurationHelper.GetCurrentProfile().emailPass = args.password; }, 294);
+            //AddControl(emailPasswordCntl, emailHostSettings.Controls, new Point(16,120));
+            emailPasswordCntl.SetDesiredWidth(294);
+            emailPasswordCntl.SetTitle("Email Password");
+            emailPasswordCntl.SetPaswordFieldColour(Color.LemonChiffon);
+            emailPasswordCntl.SetValue(ConfigurationHelper.GetCurrentProfile().emailPass);
+            emailPasswordCntl.SetPasswordChanged(delegate (Object sender, PasswordChangedArgs args) { ConfigurationHelper.GetCurrentProfile().emailPass = args.password; });
+        }
+
+        public override void AfterControlAdded()
+        {
+            emailPasswordCntl.AfterControlAdded();
+        }
+
         private void SetFieldValues()
         {
             emailUser.Text = ConfigurationHelper.GetCurrentProfile().emailUser;
-            emailPass.Text = ConfigurationHelper.GetCurrentProfile().emailPass;
             smtpHost.Text = ConfigurationHelper.GetCurrentProfile().smtpHost;
             smtpPort.Text = ConfigurationHelper.GetCurrentProfile().smtpPort.ToString();
             SSL.Checked = ConfigurationHelper.GetCurrentProfile().EnableSsl;
@@ -72,11 +87,6 @@ namespace TeboCam
         private void emailUser_TextChanged(object sender, EventArgs e)
         {
             ConfigurationHelper.GetCurrentProfile().emailUser = emailUser.Text;
-        }
-
-        private void emailPass_TextChanged(object sender, EventArgs e)
-        {
-            ConfigurationHelper.GetCurrentProfile().emailPass = emailPass.Text;
         }
 
         private void smtpHost_TextChanged(object sender, EventArgs e)

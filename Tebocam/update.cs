@@ -1,15 +1,13 @@
+using Ionic.Zip;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
-using System.IO;
-using Ionic.Zip;
-using teboweb;
-using TeboCam;
 using System.Drawing;
-using System.Windows.Forms;
-using Newtonsoft.Json;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
+using TeboCam;
 
 namespace teboweb
 {
@@ -58,9 +56,28 @@ namespace teboweb
                     downloadFromNetwork(downloadsURL, versionFile, resourceDownloadFolder);
                 }
 
-                string versionJson = File.ReadAllText(resourceDownloadFolder + "\\" + versionFile);
-                var info = JsonConvert.DeserializeObject<List<UpdateInfo>>(versionJson);
-                tebocamInfo = info.Where(x => x.app.ToLower() == product.ToLower()).FirstOrDefault();
+                string versionJson = string.Empty;
+                List<UpdateInfo> info = new List<UpdateInfo>();
+                try
+                {
+                    versionFile = File.ReadAllText(resourceDownloadFolder + "\\" + versionFile);
+                    info = JsonConvert.DeserializeObject<List<UpdateInfo>>(versionJson);
+                    tebocamInfo = info.Where(x => x.app.ToLower() == product.ToLower()).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    TebocamState.tebowebException.LogException(e);
+                    tebocamInfo = new UpdateInfo()
+                    {
+                        app = product,
+                        version = "0",
+                        downloadFile = string.Empty,
+                        downloadFileUrl = string.Empty,
+                        newsFile = string.Empty,
+                        newsFileUrl = string.Empty,
+                        newsSeq = "0"
+                    };
+                }
             }
             catch (Exception ex)
             {
@@ -125,7 +142,7 @@ namespace teboweb
         /// <param name="startupCommand">Command line to be passed to the process to restart</param>
         /// <param name="updater"></param>
         /// <returns>Void</returns>
-        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, int webUpdate, string debugFile)
+        public static void InstallUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, int webUpdate, string debugFile)
         {
 
             string cmdLn = "";

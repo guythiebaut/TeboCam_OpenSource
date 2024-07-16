@@ -16,11 +16,10 @@ namespace TeboCam
 
 
         public bool keepPublishing;
-        public  static bool pubError;
+        public static bool pubError;
 
         Graph graph;
         long lastProcessedTime;
-        IException tebowebException;
         IMail mail;
         string tmpFolder;
         string thumbFolder;
@@ -36,11 +35,20 @@ namespace TeboCam
         int testImagePublishCount = 0;
         static bool haveTheFlag = false;
 
-        public Publisher(ref Graph gp, IMail imail,
-                        string tempFolder, string tmbPrfx, string thumbFld,
-                        string imageFld, string xmlFld, string mosaicFl,
-                        string profile, Configuration config, Log lg,
-                        ArrayList move)
+        public Publisher(
+            ref Graph gp,
+            IMail imail,
+            string tempFolder,
+            string tmbPrfx,
+            string thumbFld,
+            string imageFld,
+            string xmlFld,
+            string mosaicFl,
+            string profile,
+            Configuration config,
+            Log lg,
+            ArrayList move
+            )
         {
             graph = gp;
             mail = imail;
@@ -86,7 +94,7 @@ namespace TeboCam
                 && !ConfigurationHelper.GetCurrentProfile().loadImagesToFtp)
             {
                 teboDebug.writeline(teboDebug.movementPublishVal + 3);
-                log.AddLine( "Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
+                log.AddLine("Email and ftp set to OFF(see images folder), files created: " + emailToProcess.ToString());
                 Movement.imagesFromMovement.listsClear(Movement.imagesFromMovement.TypeEnum.All);
                 graph.updateGraphHist(time.currentDateYYYYMMDD(), moveStats);
                 if (graph.graphCurrentDate == time.currentDateYYYYMMDD()) { redrawGraph(null, new EventArgs()); }
@@ -114,8 +122,8 @@ namespace TeboCam
                             {
                                 item.ftp = true;
                                 teboDebug.writeline(teboDebug.movementPublishVal + 7);
-                                log.AddLine( "Uploading to ftp site");
-                                ftp.Upload(imageFolder + item.fileName, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass, 0);
+                                log.AddLine("Uploading to ftp site");
+                                ftp.Upload(imageFolder + item.fileName, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass);
                                 pulseCount++;
 
                                 if (pulseCount > 4)
@@ -162,7 +170,7 @@ namespace TeboCam
                 }
 
                 teboDebug.writeline(teboDebug.movementPublishVal + 4);
-                log.AddLine( "Images to process: " + emailToProcess.ToString());
+                log.AddLine("Images to process: " + emailToProcess.ToString());
                 graph.updateGraphHist(time.currentDateYYYYMMDD(), moveStats);
                 if (graph.graphCurrentDate == time.currentDateYYYYMMDD()) { redrawGraph(null, new EventArgs()); }
 
@@ -322,7 +330,7 @@ namespace TeboCam
                     catch (Exception e)
                     {
                         TebocamState.tebowebException.LogException(e);
-                        log.AddLine( "Error saving graph for emailing;");
+                        log.AddLine("Error saving graph for emailing;");
                     }
 
                     teboDebug.writeline(teboDebug.movementPublishVal + 19);
@@ -333,9 +341,9 @@ namespace TeboCam
                         mail.addAttachment(tmpFolder + "graphCurrent" + graph.graphSeq.ToString() + ".jpg");
                     }
 
-                    log.AddLine( "graphCurrent" + graph.graphSeq.ToString() + ".jpg" + " added to email");
+                    log.AddLine("graphCurrent" + graph.graphSeq.ToString() + ".jpg" + " added to email");
                     Thread.Sleep(500);
-                    log.AddLine( "Sending Email");
+                    log.AddLine("Sending Email");
 
                     var eml = new EmailFields()
                     {
@@ -360,10 +368,10 @@ namespace TeboCam
                     pulseEvent(null, new EventArgs());
                     lastProcessedTime = time.secondsSinceStart();
                     log.WriteXMLFile(xmlFolder + "LogData" + ".xml", log);
-                    log.AddLine( "Log data saved.");
+                    log.AddLine("Log data saved.");
                     graph.WriteXMLFile(xmlFolder + "GraphData.xml", graph);
-                    log.AddLine( "Graph data saved.");
-                    log.AddLine( "Config data saved.");
+                    log.AddLine("Graph data saved.");
+                    log.AddLine("Config data saved.");
                     configuration.WriteXmlFile(xmlFolder + FileManager.configFile + ".xml", configuration);
                     Thread.Sleep(500);
 
@@ -463,7 +471,8 @@ namespace TeboCam
                             a.CamNo = item.camera.camNo;
                             a.lst = lst;
 
-                            try {
+                            try
+                            {
                                 take_picture_publish(a);
                                 //pubPicture(a); 
                             }
@@ -500,7 +509,8 @@ namespace TeboCam
                                                               ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).endCyclePubLoc,
                                                               ref tmpCycleLoc,
                                                               ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).stampAppendPubLoc,
-                                                              ".jpg");
+                                                              ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).includeMotionLevel,
+                                                              item.camera.MotionDetector.MotionDetectionAlgorithm.MotionLevel);
 
 
                                         ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).currentCyclePubLoc = Convert.ToInt32(tmpCycleLoc);
@@ -522,19 +532,20 @@ namespace TeboCam
                                                               ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).endCyclePubWeb,
                                                               ref tmpCycleWeb,
                                                               ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).stampAppendPubWeb,
-                                                              ".jpg");
+                                                              ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).includeMotionLevel,
+                                                              item.camera.MotionDetector.MotionDetectionAlgorithm.MotionLevel);
 
                                         ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).currentCyclePubWeb = Convert.ToInt32(tmpCycleWeb);
                                         File.Copy(tmpFolder + "pubPicture.jpg", tmpFolder + webFile, true);
                                         ftp.DeleteFTP(webFile, ConfigurationHelper.GetCurrentProfile().pubFtpRoot, ConfigurationHelper.GetCurrentProfile().pubFtpUser, ConfigurationHelper.GetCurrentProfile().pubFtpPass, false);
-                                        ftp.Upload(tmpFolder + webFile, ConfigurationHelper.GetCurrentProfile().pubFtpRoot, ConfigurationHelper.GetCurrentProfile().pubFtpUser, ConfigurationHelper.GetCurrentProfile().pubFtpPass, 0);
+                                        ftp.Upload(tmpFolder + webFile, ConfigurationHelper.GetCurrentProfile().pubFtpRoot, ConfigurationHelper.GetCurrentProfile().pubFtpUser, ConfigurationHelper.GetCurrentProfile().pubFtpPass);
                                         pubFile = webFile;
                                     }
 
                                     teboDebug.writeline(teboDebug.publishImageVal + 7);
                                     File.Delete(tmpFolder + "pubPicture.jpg");
                                     ConfigurationHelper.InfoForProfileWebcam(profileInUse, item.cameraName).lastPublished = time.secondsSinceStart();
-                                    log.AddLine( "Webcam image " + pubFile + " published.");
+                                    log.AddLine("Webcam image " + pubFile + " published.");
                                     pulseEvent(null, new EventArgs());
                                 }
                                 catch (Exception e)
@@ -567,23 +578,24 @@ namespace TeboCam
                 a.option = "tst" + "motionCalibration" + testImagePublishCount.ToString();
                 a.CamNo = camNo;
 
-
                 try
                 {
 
                     take_picture_publish(a);
                     //pubPicture(a);
-                    TebocamState.testImagePublishData.Add(testImagePublishCount);
+                    var imagePublishData = new ImagePublishData();
+                    imagePublishData.Sequence = testImagePublishCount;
 
                     int motLevel = Convert.ToInt32((int)Math.Floor(CameraRig.getCam(camNo).MotionDetector.MotionDetectionAlgorithm.MotionLevel * 100));
                     int reportLevel = motLevel >= 0 ? motLevel : 0;
 
-                    TebocamState.testImagePublishData.Add(reportLevel);
-                    TebocamState.testImagePublishData.Add(statistics.lowestValTime(camNo, 2000, ConfigurationHelper.GetCurrentProfileName(), time.millisecondsSinceStart()));
-                    TebocamState.testImagePublishData.Add(LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1));
-                    TebocamState.testImagePublishData.Add(CameraRig.getCam(camNo).name);
-                    TebocamState.testImagePublishData.Add(time.millisecondsSinceStart());
+                    imagePublishData.MotionLevel = reportLevel;
+                    imagePublishData.LowestValueOverTime = statistics.lowestValTime(camNo, 2000, ConfigurationHelper.GetCurrentProfileName(), time.millisecondsSinceStart());
+                    imagePublishData.ImageFile = LeftRightMid.Right(a.option + ".jpg", a.option.Length + 1);
+                    imagePublishData.CameraName = CameraRig.getCam(camNo).name;
+                    imagePublishData.MillisecondsSinceStart = time.millisecondsSinceStart();
 
+                    TebocamState.testImagePublishData.Add(imagePublishData);
 
                     TebocamState.testImagePublishFirst = false;
                     testImagePublishLast = time.millisecondsSinceStart();
@@ -666,9 +678,18 @@ namespace TeboCam
 
                 if (test)
                 {
-                    fName =  $"{LeftRightMid.Mid(stamp, 3, stamp.Length - 3)}{TebocamState.ImgSuffix}";
+                    fName = $"{LeftRightMid.Mid(stamp, 3, stamp.Length - 3)}{TebocamState.ImgSuffix}";
 
-                    imgBmp = (Bitmap)CameraRig.getCam(e.CamNo).pubFrame.Clone();
+                    try
+                    {
+                        imgBmp = (Bitmap)CameraRig.getCam(e.CamNo).pubFrame.Clone();
+                    }
+                    catch (Exception ex)
+                    {
+                        TebocamState.tebowebException.LogException(ex);
+                        imgBmp = (Bitmap)Properties.Resources.imagenotavailable.Clone();
+                    }
+
                     compression = ConfigurationHelper.GetCurrentProfile().alertCompression;
                 }
 

@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.Diagnostics;
 using System.Threading;
+using System.Xml;
 using TeboCam;
 
 namespace TeboWeb
@@ -211,28 +209,21 @@ namespace TeboWeb
             try
             {
                 XmlTextWriter pulseData = new XmlTextWriter(directory + filename, null);
-
                 pulseData.Formatting = Formatting.Indented;
                 pulseData.Indentation = 4;
                 pulseData.Namespaces = false;
                 pulseData.WriteStartDocument();
-
                 pulseData.WriteStartElement("", "Pulse_Data", "");
-
                 pulseData.WriteStartElement("", "beat", "");
                 pulseData.WriteString(val.ToString());
                 pulseData.WriteEndElement();
-
                 pulseData.WriteStartElement("", "restartCommand", "");
                 pulseData.WriteString(restartCommand);
                 pulseData.WriteEndElement();
-
                 pulseData.WriteEndElement();
-
                 pulseData.WriteEndDocument();
                 pulseData.Flush();
                 pulseData.Close();
-
             }
             catch (Exception e)
             {
@@ -240,5 +231,4 @@ namespace TeboWeb
             }
         }
     }
-
 }

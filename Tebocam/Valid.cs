@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -40,7 +36,7 @@ namespace TeboCam
             return tmpBool;
 
         }
-               
+
         public static string verifyInt(string inVal, Int64 lowerLimit, Int64 upperLimit, string errorVal)
         {
             try

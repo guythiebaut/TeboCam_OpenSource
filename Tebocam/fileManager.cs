@@ -1,15 +1,16 @@
 
+using Ionic.Zip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.Windows.Forms;
-using System.IO;
 //using Microsoft.VisualBasic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using Ionic.Zip;
+using System.Runtime.CompilerServices;
+using System.Web.SessionState;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace TeboCam
 {
@@ -19,7 +20,7 @@ namespace TeboCam
         static BackgroundWorker bw = new BackgroundWorker();
 
         public static string configFile = "configData";
-        private static List<string> DeletionRegex = new List<string>();
+        //private static List<string> DeletionRegex = new List<string>();
 
         //public static string graphFile = "graph";
         //public static string logFile = "log";
@@ -27,6 +28,8 @@ namespace TeboCam
 
         public static string testFile = "test";
         public static IException tebowebException;
+
+        public const string LongDateTimeFormat = "yyyyMMddHHmmssfff";
 
         #region ::::::::::::::::::::::::backupFile::::::::::::::::::::::::
 
@@ -45,8 +48,7 @@ namespace TeboCam
 
         public static void clearLog()
         {
-            string timeStamp =
-                DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+            string timeStamp = DateTime.Now.ToString(LongDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
             TebocamState.log.AddLine("Making copy of log file with time stamp - " + timeStamp);
             WriteFile("log");
             File.Copy(TebocamState.xmlFolder + "LogData.xml", TebocamState.logFolder + @"\log_" + timeStamp + ".xml");
@@ -88,14 +90,15 @@ namespace TeboCam
         {
             try
             {
-
+                var regexList = ImageFileNameRegexList();
                 TebocamState.log.AddLine("Getting list of web files.");
-                ArrayList ftpFiles = ftp.GetFileList();
+                var ftpFiles = ftp.GetFileList();
                 TebocamState.log.AddLine("Starting delete of web files via ftp.");
                 int tmpInt = 0;
+
                 foreach (string img in ftpFiles)
                 {
-                    if (FileIsCandidateForDeletion(img)) tmpInt++;
+                    if (RegexMatch(img, regexList)) tmpInt++;
                 }
                 TebocamState.log.AddLine(tmpInt.ToString() + " web files to delete via ftp.");
 
@@ -103,7 +106,7 @@ namespace TeboCam
                 foreach (string img in ftpFiles)
                 {
                     //if the prefix and suffix correspond to TeboCam image files then delete this file
-                    if (FileIsCandidateForDeletion(img))
+                    if (RegexMatch(img, regexList))
                     {
                         ftp.DeleteFTP(img, ConfigurationHelper.GetCurrentProfile().ftpRoot, ConfigurationHelper.GetCurrentProfile().ftpUser, ConfigurationHelper.GetCurrentProfile().ftpPass, false);
                         tmpInt--;
@@ -120,9 +123,11 @@ namespace TeboCam
         }
 
 
-        public static string fileNameSet(string filenamePrefix, int cycleType, long startCycle, long endCycle, ref long currCycle, bool appendStamp, string ImgSuffix)
+        public static string fileNameSet(string filenamePrefix, int cycleType, long startCycle, long endCycle, ref long currCycle, bool appendStamp, bool includeMotionLevel, double motionLevel)
         {
-            string fileName;
+            var fileName = string.Empty;
+            var level = (int)(motionLevel * 100);
+            var motionLev = includeMotionLevel ? $"-lev-{level}" : string.Empty;
 
             if (!appendStamp)
             {
@@ -133,23 +138,12 @@ namespace TeboCam
                 switch (cycleType)
                 {
                     case 1:
-                        fileName = filenamePrefix.Trim() + currCycle.ToString() + TebocamState.ImgSuffix;
-                        if (currCycle >= endCycle)
-                        {
-                            currCycle = startCycle;
-                        }
-                        else
-                        {
-                            currCycle++;
-                        }
-                        break;
-                    case 2:
-                        string stampA = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
-                        fileName = filenamePrefix.Trim() + stampA + TebocamState.ImgSuffix;
+                        fileName = filenamePrefix.Trim() + currCycle.ToString() + motionLev + TebocamState.ImgSuffix;
+                        currCycle = currCycle >= endCycle ? startCycle : currCycle++;
                         break;
                     default:
-                        string stampB = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
-                        fileName = filenamePrefix.Trim() + stampB + TebocamState.ImgSuffix;
+                        var stamp = DateTime.Now.ToString(LongDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
+                        fileName = filenamePrefix.Trim() + stamp + motionLev + TebocamState.ImgSuffix;
                         break;
                 }
             }
@@ -158,12 +152,12 @@ namespace TeboCam
 
 
 
-        public static bool FileIsCandidateForDeletion(string filename)
+        public static bool RegexMatch(string filename, List<string> regexList)
         {
-            return DeletionRegex.Any(x => regex.match(x, filename));
+            return regexList.Any(x => regex.match(x, filename));
         }
 
-        public static List<string> StandardRegexStrings()
+        public static List<string> ImageFileNameRegexList()
         {
             return new List<string>
             {
@@ -176,21 +170,12 @@ namespace TeboCam
             };
         }
 
-        public static void InitialiseDeletionRegex(bool addDefaults)
-        {
-            DeletionRegex.Clear();
-            if (addDefaults)
-            {
-                List<string> standardStrings = StandardRegexStrings();
-                standardStrings.ForEach(DeletionRegex.Add);
-            }
-        }
-
-
         //public static void clearFtp(TeboCamDelegates.RunWorkerCompletedDelegate thenRun = null)
         public static void clearFtp(TeboCamDelegates.EventDelegate<RunWorkerCompletedEventArgs> thenRun = null)
         {
             bw.WorkerSupportsCancellation = true;
+            var regexStrings = ImageFileNameRegexList();
+            var args = new DoWorkEventArgs(regexStrings);
             bw.DoWork -= new DoWorkEventHandler(clearFtpWork);
             bw.DoWork += new DoWorkEventHandler(clearFtpWork);
 
@@ -300,12 +285,12 @@ namespace TeboCam
 
 
 
-        public static bool ConvertOldProfileIfExists(Configuration config)
+        public static void ConvertOldProfileIfExists(Configuration config)
         {
 
             string fileName = TebocamState.xmlFolder + "config.xml";
 
-            if (!File.Exists(fileName)) { return true; }
+            if (!File.Exists(fileName)) { return; }
 
             Interfaces.IEncryption crypt = new crypt();
             XmlTextReader configFile = new XmlTextReader(fileName);
@@ -568,15 +553,15 @@ namespace TeboCam
                 TebocamState.tebowebException.LogException(e);
                 configFile.Close();
                 MessageBox.Show(e.ToString());
-                return false;
+                return;
             }
             configFile.Close();
             config.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".xml", config);
 
-            string moveToFileName = string.Format("configPre_3.2411_{0}.xml", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string moveToFileName = string.Format("configPre_3.2411_{0}.xml", DateTime.Now.ToString(LongDateTimeFormat));
             File.Move(fileName, TebocamState.xmlFolder + moveToFileName);
             File.Delete(TebocamState.xmlFolder + "config.bak");
-            return true;
+            return;
         }
 
         private static string decrypt(Interfaces.IEncryption crypt, string inStr)
@@ -683,11 +668,11 @@ namespace TeboCam
                     cycleChanged(null, new EventArgs());
                     break;
                 case 2:
-                    string stampA = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                    string stampA = DateTime.Now.ToString(LongDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
                     fileName = ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() + stampA + TebocamState.ImgSuffix;
                     break;
                 default:
-                    string stampB = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+                    string stampB = DateTime.Now.ToString(LongDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
                     fileName = ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() + stampB + TebocamState.ImgSuffix;
                     break;
             }

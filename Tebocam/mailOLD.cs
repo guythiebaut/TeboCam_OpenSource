@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
-using System.Collections;
 
 
 namespace TeboCam
@@ -116,7 +116,7 @@ namespace TeboCam
             try
             {
 
-                //20160627 fix to prevent a bug where sometimes the same email is sent continuosly
+                //20160627 fix to prevent a bug where sometimes the same email is sent continuously
                 EmailSent emsent = new EmailSent();
                 string contactInfo = eml.SentBy + eml.SendTo + eml.Subject + eml.BodyText + eml.ReplyTo + eml.User + eml.Password + eml.SmtpHost;
 

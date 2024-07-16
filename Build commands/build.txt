@@ -1,0 +1,5 @@
+cd C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\
+
+msbuild.exe C:\Dropbox\projects\TeboCam_OpenSource\tebocam.sln /property:Configuration=Release
+
+

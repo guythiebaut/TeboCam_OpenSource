@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections;
 
 namespace TeboCam
 {
@@ -217,7 +217,7 @@ namespace TeboCam
         private void pubTimerOn_CheckedChanged(object sender, EventArgs e)
         {
 
-             if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive)) 
+            if (!GetPublishButtonGroup().Any(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive))
             {
                 pubTimerOn.Checked = false;
                 return;
@@ -228,7 +228,7 @@ namespace TeboCam
             if (CameraRig.ConnectedCameras.Count > 0)
             {
                 int pubButton = GetPublishButtonGroup().First(x => x.CameraButtonState == GroupCameraButton.ButtonState.ConnectedAndActive).id;
-               var buttonId = CameraRig.idxFromButton(pubButton);
+                var buttonId = CameraRig.idxFromButton(pubButton);
                 ConfigurationHelper.InfoForProfileWebcam(ConfigurationHelper.GetCurrentProfileName(), CameraRig.ConnectedCameras[buttonId].cameraName).timerOn = pubTimerOn.Checked;
             }
 

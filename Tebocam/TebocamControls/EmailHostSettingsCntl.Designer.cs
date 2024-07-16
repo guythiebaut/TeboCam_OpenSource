@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.EmailHostPanel = new System.Windows.Forms.Panel();
+            this.emailPasswordCntl = new TeboCam.TebocamControls.PasswordCntl();
             this.TestBtn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.SSL = new System.Windows.Forms.CheckBox();
@@ -36,9 +37,7 @@
             this.smtpHost = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.smtpPort = new System.Windows.Forms.TextBox();
-            this.emailPass = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.EmailHostPanel.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +45,7 @@
             // EmailHostPanel
             // 
             this.EmailHostPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmailHostPanel.Controls.Add(this.emailPasswordCntl);
             this.EmailHostPanel.Controls.Add(this.TestBtn);
             this.EmailHostPanel.Controls.Add(this.label10);
             this.EmailHostPanel.Controls.Add(this.SSL);
@@ -53,14 +53,20 @@
             this.EmailHostPanel.Controls.Add(this.smtpHost);
             this.EmailHostPanel.Controls.Add(this.label1);
             this.EmailHostPanel.Controls.Add(this.label3);
-            this.EmailHostPanel.Controls.Add(this.label2);
             this.EmailHostPanel.Controls.Add(this.smtpPort);
-            this.EmailHostPanel.Controls.Add(this.emailPass);
             this.EmailHostPanel.Controls.Add(this.label4);
             this.EmailHostPanel.Location = new System.Drawing.Point(0, 0);
             this.EmailHostPanel.Name = "EmailHostPanel";
             this.EmailHostPanel.Size = new System.Drawing.Size(338, 286);
             this.EmailHostPanel.TabIndex = 63;
+            // 
+            // emailPasswordCntl
+            // 
+            this.emailPasswordCntl.BackColor = System.Drawing.Color.Transparent;
+            this.emailPasswordCntl.Location = new System.Drawing.Point(16, 115);
+            this.emailPasswordCntl.Name = "emailPasswordCntl";
+            this.emailPasswordCntl.Size = new System.Drawing.Size(198, 40);
+            this.emailPasswordCntl.TabIndex = 56;
             // 
             // TestBtn
             // 
@@ -146,17 +152,6 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "SMTP Host";
             // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(13, 114);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Email Password";
-            // 
             // smtpPort
             // 
             this.smtpPort.BackColor = System.Drawing.Color.LemonChiffon;
@@ -167,20 +162,6 @@
             this.smtpPort.Size = new System.Drawing.Size(80, 21);
             this.smtpPort.TabIndex = 3;
             this.smtpPort.Leave += new System.EventHandler(this.smtpPort_Leave);
-            // 
-            // emailPass
-            // 
-            this.emailPass.BackColor = System.Drawing.Color.LemonChiffon;
-            this.emailPass.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.emailPass.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.emailPass.Location = new System.Drawing.Point(16, 138);
-            this.emailPass.MaximumSize = new System.Drawing.Size(294, 21);
-            this.emailPass.MinimumSize = new System.Drawing.Size(294, 21);
-            this.emailPass.Name = "emailPass";
-            this.emailPass.PasswordChar = '*';
-            this.emailPass.Size = new System.Drawing.Size(294, 21);
-            this.emailPass.TabIndex = 1;
-            this.emailPass.TextChanged += new System.EventHandler(this.emailPass_TextChanged);
             // 
             // label4
             // 
@@ -193,11 +174,11 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "SMTP Port";
             // 
-            // EmailHostCntl
+            // EmailHostSettingsCntl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.EmailHostPanel);
-            this.Name = "EmailHostCntl";
+            this.Name = "EmailHostSettingsCntl";
             this.Size = new System.Drawing.Size(338, 286);
             this.EmailHostPanel.ResumeLayout(false);
             this.EmailHostPanel.PerformLayout();
@@ -215,9 +196,8 @@
         private System.Windows.Forms.TextBox smtpHost;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox smtpPort;
-        private System.Windows.Forms.TextBox emailPass;
         private System.Windows.Forms.Label label4;
+        private TebocamControls.PasswordCntl emailPasswordCntl;
     }
 }

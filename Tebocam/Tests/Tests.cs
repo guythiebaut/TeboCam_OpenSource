@@ -87,7 +87,7 @@ namespace TeboCam.Tests
             public string User;
             public String Password;
             public string SentBy;
-            public string SentByName ;
+            public string SentByName;
             public string SendTo;
             public string ReplyTo;
             public int SmtpPort;

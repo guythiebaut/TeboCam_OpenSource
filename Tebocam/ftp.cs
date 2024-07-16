@@ -1,8 +1,9 @@
 using System;
-using System.Text;
-using System.Net;
-using System.IO;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace TeboCam
 {
@@ -23,8 +24,8 @@ namespace TeboCam
 
 
 
-            #region ::::::::::::::::::::::::Upload::::::::::::::::::::::::
-        public static bool Upload(string filename, string ftpServerIP, string ftpUserID, string ftpPassword, int checkTimes)
+        #region ::::::::::::::::::::::::Upload::::::::::::::::::::::::
+        public static bool Upload(string filename, string ftpServerIP, string ftpUserID, string ftpPassword)
         {
 
             try
@@ -92,18 +93,17 @@ namespace TeboCam
         #endregion
 
         #region ::::::::::::::::::::::::GetFileList::::::::::::::::::::::::
-        public static ArrayList GetFileList()
+        public static List<string> GetFileList()
         {
-            string ftpServerIP = ConfigurationHelper.GetCurrentProfile().ftpRoot;
+            string ftpRootDirectory = ConfigurationHelper.GetCurrentProfile().ftpRoot;
             string ftpUserID = ConfigurationHelper.GetCurrentProfile().ftpUser;
             string ftpPassword = ConfigurationHelper.GetCurrentProfile().ftpPass;
-            ArrayList tempList = new ArrayList();
-
-            StringBuilder result = new StringBuilder();
+            var tempList = new List<string>();
             FtpWebRequest reqFTP;
+            
             try
             {
-                reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://" + ftpServerIP + "/"));
+                reqFTP = (FtpWebRequest)WebRequest.Create(new Uri($"ftp://{ftpRootDirectory}/"));
                 reqFTP.UseBinary = true;
                 reqFTP.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
                 reqFTP.Method = WebRequestMethods.Ftp.ListDirectory;

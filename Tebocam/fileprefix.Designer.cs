@@ -50,6 +50,8 @@ namespace TeboCam
             this.button21 = new System.Windows.Forms.Button();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkIncludeMotionLevel = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -202,6 +204,7 @@ namespace TeboCam
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.startCycle);
             this.groupBox2.Controls.Add(this.label41);
@@ -215,10 +218,23 @@ namespace TeboCam
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // chkIncludeMotionLevel
+            // 
+            resources.ApplyResources(this.chkIncludeMotionLevel, "chkIncludeMotionLevel");
+            this.chkIncludeMotionLevel.Name = "chkIncludeMotionLevel";
+            this.chkIncludeMotionLevel.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Name = "label1";
+            // 
             // fileprefix
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkIncludeMotionLevel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -260,5 +276,7 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton radioButton11;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkIncludeMotionLevel;
     }
 }

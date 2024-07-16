@@ -1,20 +1,21 @@
+using AForge.Video.DirectShow;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Collections;
-using teboweb;
-//using SharpAvi;
-using System.Threading;
-using System.IO;
 using System.Diagnostics;
-using TeboWeb;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using AForge.Video.DirectShow;
+//using SharpAvi;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using TeboCam.TebocamControls;
+using teboweb;
+using TeboWeb;
 //using SharpAvi.Codecs;
 //using SharpAvi.Output;
 
@@ -106,7 +107,6 @@ namespace TeboCam
         private int secondsToTrainStart;
 
         private const int statLength = 15;
-        private int statIndex = 0;
         private int[] statCount = new int[statLength];
 
         private int intervalsToSave = 0;
@@ -318,7 +318,6 @@ namespace TeboCam
                 config.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".xml", configuration);
                 config.WriteXmlFile(TebocamState.xmlFolder + FileManager.configFile + ".bak", configuration);
             }
-
         }
 
         private enumCommandLine commandLine()
@@ -778,6 +777,7 @@ namespace TeboCam
             OnlineSettings();
             LogControl();
             MotionAlarmSettings();
+            TestSettings();
         }
 
         void AddControl(Control controlToAdd, Control.ControlCollection addTo, Point position, bool bringToFront = true)
@@ -789,6 +789,23 @@ namespace TeboCam
             {
                 controlToAdd.BringToFront();
             }
+
+            if (controlToAdd is TebocamCntl)
+            {
+                (controlToAdd as TebocamCntl).AfterControlAdded();
+            }
+        }
+
+        void TestSettings()
+        {
+            var passwordDel = new TeboCamDelegates.EventDelegate<PasswordChangedArgs>(TestPassword);
+            var passwordControl = new PasswordCntl("Test Password", "Hello world", passwordDel, 300, null, true);
+            AddControl(passwordControl, Test.Controls, new Point(17, 200));
+        }
+
+        void TestPassword(Object sender, PasswordChangedArgs args)
+        {
+            var result = args.password;
         }
 
         void MotionAlarmSettings()
@@ -1187,64 +1204,11 @@ namespace TeboCam
             }
         }
 
-        //https://github.com/baSSiLL/SharpAvi/wiki/Getting-Started
-        private void camera_NewFrame(object sender, System.EventArgs e)
-        {
-            throw new NotImplementedException();
-
-            //#TODO
-            //Set up writer
-            //write frames
-            //close writer
-
-
-            //frameCount++;
-
-            //if ((intervalsToSave != 0) && (saveOnMotion == true))
-            //{
-            //    //lets save the frame
-            //    if (1 == 2)//writer == null)
-            //    {
-            //        // create file name
-            //        DateTime date = DateTime.Now;
-            //        String fileName = String.Format("{0}-{1}-{2} {3}-{4}-{5}.avi", date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
-
-            //        try
-            //        {
-            //            // create AVI writer
-            //            writer = new AviWriter("video.avi");
-            //            var stream = writer.AddVideoStream();
-            //            var codecs = Mpeg4VideoEncoderVcm.GetAvailableCodecs();
-            //            FourCC selectedCodec = KnownFourCCs.Codecs.Xvid;
-            //            var encoder = new Mpeg4VideoEncoderVcm(cameraWindow.Camera.Width, cameraWindow.Camera.Height,
-            //                        30, // frame rate
-            //                        0, // number of frames, if known beforehand, or zero
-            //                        70, // quality, though usually ignored :(
-            //                        selectedCodec // codecs preference
-            //                        );
-            //            stream.Codec = selectedCodec;
-
-            //            // open AVI file
-            //            writer.Open(@"C:\" + fileName, cameraWindow.Camera.Width, cameraWindow.Camera.Height);
-            //        }
-            //        catch (ApplicationException ex)
-            //        {
-            //            if (writer != null)
-            //            {
-            //                writer.Dispose();
-            //                writer = null;
-            //            }
-            //        }
-            //    }
-
-            //}
-        }
-
         #endregion
 
         private void DeleteImages()
         {
-            ArrayList ftpFiles = ftp.GetFileList();
+            var ftpFiles = ftp.GetFileList();
 
             if (MessageDialog.messageQuestionConfirm("Click on yes to delete all saved image files.", "Delete all TeboCam image files?") == DialogResult.Yes)
             {
@@ -1279,7 +1243,7 @@ namespace TeboCam
                 {
                     if (ConfigurationHelper.GetCurrentProfile().filenamePrefix.Trim() != "")
                     {
-                        FileManager.InitialiseDeletionRegex(true);
+                        var regexStrings = FileManager.ImageFileNameRegexList();
                         FileManager.clearFtp();
                         lblAdminMes.Text = "Image web files deleted";
                     }
@@ -1424,11 +1388,6 @@ namespace TeboCam
             logControl.GetTxtLog().SynchronisedInvoke(() => logControl.GetTxtLog().Text = $"{msg} [{dt}]\n{logControl.GetTxtLog().Text}");
         }
 
-        private void actCountdown_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void drawLevel(object sender, System.EventArgs e)
         {
             if (showLevel) LevelControlBox.levelDraw(Movement.motionLevel);
@@ -1562,7 +1521,7 @@ namespace TeboCam
                     postProcessCommand = "profile " + ConfigurationHelper.GetCurrentProfileName();
                     var destinationFolder = Application.StartupPath;
 
-                    update.installUpdateRestart
+                    update.InstallUpdateRestart
                         (upd_url,
                         upd_file,
                         destinationFolder,
@@ -1580,7 +1539,6 @@ namespace TeboCam
                 TebocamState.tebowebException.LogException(ex);
             }
         }
-
 
         private void closeAllCameras()
         {
@@ -1640,14 +1598,6 @@ namespace TeboCam
             ImageThumbs.initPics(tmpInt);
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl1.SelectedIndex == 1)
-            {
-                updateThumbs();
-            }
-        }
-
         private void picWindow_ValueChanged(object sender, EventArgs e)
         {
             updateThumbs();
@@ -1690,7 +1640,7 @@ namespace TeboCam
 
         private int imageFilesCountWeb()
         {
-            ArrayList webFiles = ftp.GetFileList();
+            var webFiles = ftp.GetFileList();
             return webFiles.Count;
         }
 
@@ -1856,14 +1806,16 @@ namespace TeboCam
             notificationSettings.SetMosaicImagesPerRow(data.mosaicImagesPerRow);
             notificationSettings.SetSendEmail(data.sendNotifyEmail);
 
-            emailHostSettings.SetPassword(data.emailPass);
+            //var emailPasswordCntl = new PasswordCntl("Email Password", data.emailPass, delegate (Object sender, PasswordChangedArgs args) { ConfigurationHelper.GetCurrentProfile().emailPass = args.password; }, 294);
+            //AddControl(emailPasswordCntl, emailHostSettings.Controls, new Point(16,120));
             emailHostSettings.SetUser(data.emailUser);
             emailHostSettings.SetHost(data.smtpHost);
             emailHostSettings.SetPort(data.smtpPort.ToString());
-            emailHostSettings.SetSsl((bool)data.EnableSsl);
+            emailHostSettings.SetSsl(data.EnableSsl);
 
+            var ftpPasswordCntl = new PasswordCntl("Ftp Password", data.ftpPass, delegate (Object sender, PasswordChangedArgs args) { ConfigurationHelper.GetCurrentProfile().ftpPass = args.password; }, 294);
+            AddControl(ftpPasswordCntl, ftpSettings.Controls, new Point(16, 118));
             ftpSettings.SetUser(data.ftpUser);
-            ftpSettings.SetPassword(data.ftpPass);
             ftpSettings.SetRoot(data.ftpRoot);
 
             emailSettings.SetMailBody(data.mailBody);
@@ -1904,6 +1856,7 @@ namespace TeboCam
             onlineSettings.GetSqlUser().Text = data.webUser;
             onlineSettings.GetSqlPwd().Text = data.webPass;
             onlineSettings.GetSqlPoll().Text = data.webPoll.ToString();
+            onlineSettings.GetTxtHealthEndpoint().Text = data.HealthEndpoint;
             onlineSettings.GetTxtEndpoint().Text = data.AuthenticateEndpoint;
             onlineSettings.GetTxtEndpointLocal().Text = data.LocalAuthenticateEndpoint;
             if (!string.IsNullOrEmpty(data.AuthenticateEndpoint))
@@ -2136,11 +2089,6 @@ namespace TeboCam
         private void button5_Click_1(object sender, EventArgs e)
         {
             Internet.openInternetBrowserAt(tebowebUrl);
-        }
-
-        private void bttnMotionSchedule_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private scheduleClass.scheduleAction scheduleStart(string p_start, string p_end, bool currentlyActive)
@@ -2414,7 +2362,7 @@ namespace TeboCam
             var news = readTextFileintoArrayList(TebocamState.resourceFolder + "tebocamnews.txt");
             var whatsNew = readTextFileintoArrayList(TebocamState.resourceFolder + "tebocamwhatsnew.txt");
             newsInfo.BackColor = SystemColors.Control;
-            News form = new News(news, info, whatsNew, license);
+            var form = new News(news, info, whatsNew, license);
             form.Show();
         }
 
@@ -2444,21 +2392,6 @@ namespace TeboCam
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             calendar_activate();
-        }
-
-        public static List<Control> controls(Control ctrl)
-        {
-            List<Control> controlList = new List<Control>();
-
-            foreach (Control childControl in ctrl.Controls)
-            {
-                {
-                    // Recurse child controls.
-                    controlList.AddRange(controls(childControl));
-                    controlList.Add(childControl);
-                }
-            }
-            return controlList;
         }
 
         private void jPegSetCompression(ArrayList i)
@@ -2533,50 +2466,6 @@ namespace TeboCam
                     ConfigurationHelper.GetCurrentProfile().alertTimeStampRect = Convert.ToBoolean(item[5]);
                     ConfigurationHelper.GetCurrentProfile().alertStatsStamp = Convert.ToBoolean(item[7]);
                 }
-            }
-        }
-
-        private void timeStampMthOld(ArrayList i)
-        {
-
-            if (i[0].ToString() == "Online")
-            {
-                ConfigurationHelper.GetCurrentProfile().onlineTimeStamp = Convert.ToBoolean(i[1]);
-                ConfigurationHelper.GetCurrentProfile().onlineTimeStampFormat = i[2].ToString();
-                ConfigurationHelper.GetCurrentProfile().onlineTimeStampColour = i[3].ToString();
-                ConfigurationHelper.GetCurrentProfile().onlineTimeStampPosition = i[4].ToString();
-                ConfigurationHelper.GetCurrentProfile().onlineTimeStampRect = Convert.ToBoolean(i[5]);
-                ConfigurationHelper.GetCurrentProfile().onlineStatsStamp = Convert.ToBoolean(i[6]);
-            }
-
-            if (i[0].ToString() == "Publish")
-            {
-                ConfigurationHelper.GetCurrentProfile().publishTimeStamp = Convert.ToBoolean(i[1]);
-                ConfigurationHelper.GetCurrentProfile().publishTimeStampFormat = i[2].ToString();
-                ConfigurationHelper.GetCurrentProfile().publishTimeStampColour = i[3].ToString();
-                ConfigurationHelper.GetCurrentProfile().publishTimeStampPosition = i[4].ToString();
-                ConfigurationHelper.GetCurrentProfile().publishTimeStampRect = Convert.ToBoolean(i[5]);
-                ConfigurationHelper.GetCurrentProfile().publishStatsStamp = Convert.ToBoolean(i[6]);
-            }
-
-            if (i[0].ToString() == "Ping")
-            {
-                ConfigurationHelper.GetCurrentProfile().pingTimeStamp = Convert.ToBoolean(i[1]);
-                ConfigurationHelper.GetCurrentProfile().pingTimeStampFormat = i[2].ToString();
-                ConfigurationHelper.GetCurrentProfile().pingTimeStampColour = i[3].ToString();
-                ConfigurationHelper.GetCurrentProfile().pingTimeStampPosition = i[4].ToString();
-                ConfigurationHelper.GetCurrentProfile().pingTimeStampRect = Convert.ToBoolean(i[5]);
-                ConfigurationHelper.GetCurrentProfile().pingStatsStamp = Convert.ToBoolean(i[6]);
-            }
-
-            if (i[0].ToString() == "Alert")
-            {
-                ConfigurationHelper.GetCurrentProfile().alertTimeStamp = Convert.ToBoolean(i[1]);
-                ConfigurationHelper.GetCurrentProfile().alertTimeStampFormat = i[2].ToString();
-                ConfigurationHelper.GetCurrentProfile().alertTimeStampColour = i[3].ToString();
-                ConfigurationHelper.GetCurrentProfile().alertTimeStampPosition = i[4].ToString();
-                ConfigurationHelper.GetCurrentProfile().alertTimeStampRect = Convert.ToBoolean(i[5]);
-                ConfigurationHelper.GetCurrentProfile().alertStatsStamp = Convert.ToBoolean(i[6]);
             }
         }
 
@@ -2720,14 +2609,6 @@ namespace TeboCam
             LevelControlBox.Visible = showLevel;
         }
 
-        private static Point FindLocation(Control ctrl)
-        {
-            Point p;
-            for (p = ctrl.Location; ctrl.Parent != null; ctrl = ctrl.Parent)
-                p.Offset(ctrl.Parent.Location);
-            return p;
-        }
-
         private bool camClick(int button)
         {
             bool canClick = NotConnectedCameras.Any(x => x.id == button && x.CameraButtonState != GroupCameraButton.ButtonState.NotConnected);
@@ -2739,7 +2620,6 @@ namespace TeboCam
             newActiveButton.CameraButtonIsConnectedAndInactive();
             return true;
         }
-
 
         private void cameraSwitch(int button, bool refresh, bool load)
         {
@@ -2909,12 +2789,6 @@ namespace TeboCam
             NotConnectedCameras.ForEach(x => x.CameraButtonIsNotConnected());
         }
 
-        private void bttnCamProp_Click(object sender, EventArgs e)
-        {
-            VideoCaptureDevice localSource = new VideoCaptureDevice(CameraRig.ConnectedCameras[CameraRig.CurrentlyDisplayingCamera].cameraName);
-            localSource.DisplayPropertyPage(IntPtr.Zero); // non-modal
-        }
-
         private void button23_Click_1(object sender, EventArgs e)
         {
             ArrayList i = new ArrayList();
@@ -2989,6 +2863,7 @@ namespace TeboCam
                     record.endCyclePubWeb = Convert.ToInt32(result.EndCycle);
                     record.currentCyclePubWeb = Convert.ToInt32(result.CurrentCycle);
                     record.publishFirst = result.AppendToFilename;
+                    record.includeMotionLevel = result.IncludeMotionLevel;
                 }
 
                 if (result.FromString == "Publish Local")
@@ -3002,6 +2877,7 @@ namespace TeboCam
                     record.stampAppendPubLoc = result.AppendToFilename;
                     record.fileDirPubLoc = result.FileLoc;
                     record.fileDirPubCust = result.CustomLocation;
+                    record.includeMotionLevel = result.IncludeMotionLevel;
                 }
             }
 
@@ -3013,6 +2889,7 @@ namespace TeboCam
                 record.startCycle = Convert.ToInt32(result.StartCycle);
                 record.endCycle = Convert.ToInt32(result.EndCycle);
                 record.currentCycle = Convert.ToInt32(result.CurrentCycle);
+                record.includeMotionLevel = result.IncludeMotionLevel;
                 generateWebpageSettings.GetLblImgPref().Text = $"Image Prefix: {result.FilenamePrefix}   e.g {result.FilenamePrefix}1{TebocamState.ImgSuffix}";
             }
         }
@@ -3053,21 +2930,6 @@ namespace TeboCam
             };
             controlRoomForm.Controls.Add(controlRoom);
             controlRoomForm.ShowDialog();
-        }
-
-        public void AdminControl()
-        {
-            if (!devMachine) return;
-            var adm = new AdminCntl(this);
-            var border = 50;
-            Form frm = new Form()
-            {
-                Width = adm.Width + border,
-                Height = adm.Height + border,
-                FormBorderStyle = FormBorderStyle.FixedSingle
-            };
-            frm.Controls.Add(adm);
-            frm.Show();
         }
 
         private void btnMotionImage_Click(object sender, EventArgs e)

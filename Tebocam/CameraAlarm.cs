@@ -1,11 +1,10 @@
-﻿using System;
+﻿using AForge.Vision.Motion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeboCam
 {
@@ -67,7 +66,7 @@ namespace TeboCam
                 {
                     CameraRig.AreaOffAtMotionTrigger(e.camNo);
                 }
-
+                
                 if (TebocamState.Alert.on && imageSaveTime(true, e.camNo))
                 {
                     try
@@ -78,7 +77,8 @@ namespace TeboCam
                                                    ConfigurationHelper.GetCurrentProfile().endCycle,
                                                    ref ConfigurationHelper.GetCurrentProfile().currentCycle,
                                                    true,
-                                                   ".jpg");
+                                                   ConfigurationHelper.GetCurrentProfile().includeMotionLevel,
+                                                   CameraRig.ConnectedCameras[e.camNo].camera.MotionDetector.MotionDetectionAlgorithm.MotionLevel);
 
                         //20150110 Claudio asked for the possibility of not saving images
                         if (ConfigurationHelper.GetCurrentProfile().captureMovementImages)
@@ -116,8 +116,8 @@ namespace TeboCam
                         }
 
                         moveStatsAdd(time.currentTime());
-                        log.AddLine( "Movement detected");
-                        log.AddLine( "Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString(spikePerc));
+                        log.AddLine("Movement detected");
+                        log.AddLine("Movement level: " + l.lvl.ToString() + " spike perc.: " + Convert.ToString(spikePerc));
 
                         if (ConfigurationHelper.GetCurrentProfile().captureMovementImages)
                         {
@@ -127,7 +127,7 @@ namespace TeboCam
                     catch (Exception ex)
                     {
                         TebocamState.tebowebException.LogException(ex);
-                        log.AddLine( "Error in saving movement image.");
+                        log.AddLine("Error in saving movement image.");
                         Movement.updateSeq++;
                     }
                 }
